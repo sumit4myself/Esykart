@@ -1,0 +1,32 @@
+server:
+  port: ${PORT:8081}
+  display-name: Merchant Store
+  session-timeout: 30
+  error:
+    path: /error
+  tomcat:
+    access-log-enabled: true
+    basedir: D:\\server\\store\\merchant
+spring:
+  main: 
+    web-environment: true
+  application:
+    name: store-merchant
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .jsp
+    static-path-pattern: /resources
+  
+logging:
+  level:
+    com.webientsoft.esykart: DEBUG
+    org.springframework.boot: INFO
+  file: merchant_store.log
+  pattern:
+    file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
+    console: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
+      
+   
+    
+  

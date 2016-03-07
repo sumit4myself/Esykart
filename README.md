@@ -1,4 +1,4 @@
-## WebientSoft esykart
+## WebientSoft Esykart
 
 
 ## Documentation
@@ -38,7 +38,6 @@ build and release FAQ][].
 
 ## Staying in Touch
 Follow [@WebientSoft][] and its [team members][]
-on Twitter. In-depth articles can be found at [The Spring Blog][], and releases
-are announced via our [news feed][].
+on Twitter.
 
 
