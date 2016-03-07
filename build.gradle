@@ -1,0 +1,228 @@
+ buildscript {
+   repositories {
+     jcenter()
+   }
+   dependencies {
+     classpath "io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE"
+     classpath "org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE"
+   }
+}
+
+allprojects{
+   apply plugin: 'eclipse'
+}
+
+subprojects{
+   apply plugin: 'java'
+   apply plugin: "io.spring.dependency-management"
+
+
+repositories {
+   jcenter()
+}
+
+dependencyManagement {
+   imports {
+     mavenBom 'org.springframework.cloud:spring-cloud-starter-parent:Angel.SR3'
+     mavenBom 'org.springframework.boot:spring-boot-starter-parent:1.3.3.RELEASE'
+   }
+   
+   
+}
+
+dependencies {
+
+   compile 'org.springframework.cloud:spring-cloud-starter-config'
+   compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+}
+  
+}
+
+
+project(':esykart-common') {
+	description = 'Esykart Common'
+
+	dependencies {
+	    compile 'com.zaxxer:HikariCP:2.4.3'
+	    compile 'org.apache.commons:commons-lang3:3.4'
+	    compile 'org.postgresql:postgresql:9.4.1208.jre7'
+	    compile 'org.apache.commons:commons-collections4:4.1'
+	    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.3.3.RELEASE'
+	    compile 'org.springframework.cloud:spring-cloud-starter-ribbon:1.0.6.RELEASE'
+	}
+}
+
+
+project(':esykart-offer') {
+	description = 'Esykart Offer'
+    
+    apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+
+project(':esykart-order') {
+	description = 'Esykart Order'
+    
+    apply plugin: "spring-boot"
+	
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+
+project(':esykart-shipping') {
+	description = 'Esykart Shipping'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-workflow') {
+	description = 'Esykart Workflow'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-workflow') {
+	description = 'Esykart Workflow'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-auction') {
+	description = 'Esykart Auction'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+
+project(':esykart-payment') {
+	description = 'Esykart Payment'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+
+project(':esykart-product') {
+	description = 'Esykart Product'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-customer') {
+	description = 'Esykart Customer'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-merchant') {
+	description = 'Esykart Merchant'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-notification') {
+	description = 'Esykart Notification'
+
+	dependencies {
+	    compile(project(":esykart-common"))
+	}
+}
+
+project(':esykart-store') {
+	description = 'Esykart Store'
+
+	dependencies {
+	
+	}
+}
+
+
+project(':esykart-api-gateway') {
+	description = 'Esykart API Gateway'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		compile 'org.springframework.cloud:spring-cloud-starter-ribbon:1.0.6.RELEASE'
+		compile 'org.springframework.cloud:spring-cloud-starter-hystrix:1.0.6.RELEASE'
+	}
+}
+
+project(':esykart-store:esykart-store-customer') {
+	description = 'Esykart Customer Store'
+
+	apply plugin: "spring-boot"
+       
+	dependencies {
+		
+	}
+}
+
+project(':esykart-store:esykart-store-merchant') {
+	description = 'Esykart Merchant Store'
+
+    apply plugin: "spring-boot"
+	
+	dependencies {
+	
+	}
+}
+
+project(':esykart-discovery-server') {
+	description = 'Esykart Discovery Server'
+    
+    apply plugin: "spring-boot"
+    
+    dependencies{
+       compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server:1.0.7.RELEASE'
+     }
+}
+
+project(':esykart-config-server') {
+	description = 'Esykart Configuration Server'
+	
+	apply plugin: "spring-boot"
+	 
+	dependencies{
+	  compile 'org.springframework.cloud:spring-cloud-config-server:1.0.4.RELEASE'
+	}
+}
+
+
