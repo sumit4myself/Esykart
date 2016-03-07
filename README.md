@@ -21,10 +21,10 @@ extracted from the JDK download.
 `git clone git@github.com/sumit4myself/Esykart.git`
 
 ### Import sources into your IDE
-Run `./import-into-eclipse.sh` or read `import-into-idea.md` as appropriate.
+Run `./import-into-eclipse.bat`.
 > **Note:** Per the prerequisites above, ensure that you have JDK 8 configured properly in your IDE.
 
-### Install all spring-\* jars into your local Maven cache
+### Install all esycart-\* jars into your local Maven cache
 `./gradlew install`
 
 ### Compile and test; build all jars, distribution zips, and docs
