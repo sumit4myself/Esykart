@@ -1,4 +1,4 @@
 spring:
   application:
-    name: offer-service
+    name: OFFER-SERVICE
 

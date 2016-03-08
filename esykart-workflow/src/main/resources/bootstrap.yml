@@ -1,4 +1,4 @@
 spring:
   application:
-    name: workflow-service
+    name: WORKFLOW-SERVICE
 

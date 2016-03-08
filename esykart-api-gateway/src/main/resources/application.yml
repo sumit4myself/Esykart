@@ -1,6 +1,5 @@
 server:
   port: ${PORT:9000}
-  display-name: Esykart API Gateway
   tomcat:
     access-log-enabled: true
     basedir: D:\\server\\apigateway

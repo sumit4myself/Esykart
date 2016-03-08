@@ -14,6 +14,7 @@ allprojects{
 
 subprojects{
    apply plugin: 'java'
+   apply plugin: "spring-boot"
    apply plugin: "io.spring.dependency-management"
 
 
@@ -31,10 +32,14 @@ dependencyManagement {
 }
 
 dependencies {
-
+   compile 'org.springframework.boot:spring-boot-devtools'
    compile 'org.springframework.cloud:spring-cloud-starter-config'
    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 }
+
+bootRun {
+     addResources = true
+  }
   
 }
 
@@ -56,8 +61,6 @@ project(':esykart-common') {
 project(':esykart-offer') {
 	description = 'Esykart Offer'
     
-    apply plugin: "spring-boot"
-       
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -67,8 +70,6 @@ project(':esykart-offer') {
 project(':esykart-order') {
 	description = 'Esykart Order'
     
-    apply plugin: "spring-boot"
-	
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -78,8 +79,6 @@ project(':esykart-order') {
 project(':esykart-shipping') {
 	description = 'Esykart Shipping'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -88,8 +87,6 @@ project(':esykart-shipping') {
 project(':esykart-workflow') {
 	description = 'Esykart Workflow'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -97,8 +94,6 @@ project(':esykart-workflow') {
 
 project(':esykart-workflow') {
 	description = 'Esykart Workflow'
-
-	apply plugin: "spring-boot"
        
 	dependencies {
 		compile(project(":esykart-common"))
@@ -108,8 +103,6 @@ project(':esykart-workflow') {
 project(':esykart-auction') {
 	description = 'Esykart Auction'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -118,8 +111,6 @@ project(':esykart-auction') {
 
 project(':esykart-payment') {
 	description = 'Esykart Payment'
-
-	apply plugin: "spring-boot"
        
 	dependencies {
 		compile(project(":esykart-common"))
@@ -129,8 +120,6 @@ project(':esykart-payment') {
 
 project(':esykart-product') {
 	description = 'Esykart Product'
-
-	apply plugin: "spring-boot"
        
 	dependencies {
 		compile(project(":esykart-common"))
@@ -140,8 +129,6 @@ project(':esykart-product') {
 project(':esykart-customer') {
 	description = 'Esykart Customer'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -150,8 +137,6 @@ project(':esykart-customer') {
 project(':esykart-merchant') {
 	description = 'Esykart Merchant'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
 		compile(project(":esykart-common"))
 	}
@@ -165,50 +150,49 @@ project(':esykart-notification') {
 	}
 }
 
-project(':esykart-store') {
-	description = 'Esykart Store'
-
-	dependencies {
-	
-	}
-}
-
-
 project(':esykart-api-gateway') {
 	description = 'Esykart API Gateway'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
 		compile 'org.springframework.cloud:spring-cloud-starter-ribbon:1.0.6.RELEASE'
 		compile 'org.springframework.cloud:spring-cloud-starter-hystrix:1.0.6.RELEASE'
 	}
 }
 
+project(':esykart-store') {
+	description = 'Esykart Store'
+
+	dependencies {
+	 
+	}
+}
+
 project(':esykart-store:esykart-store-customer') {
 	description = 'Esykart Customer Store'
 
-	apply plugin: "spring-boot"
-       
 	dependencies {
-		
+	   compile 'org.springframework.cloud:spring-cloud-starter-zuul:1.0.6.RELEASE'
 	}
+	
+	jar {
+		manifest.attributes["Created-By"] =
+			'${System.getProperty("java.version")} (${System.getProperty("java.specification.vendor")})'
+		manifest.attributes["Implementation-Title"] = 'Esykart Customer Store'
+		manifest.attributes["Implementation-Version"] = '1.0'
+	}
+  
 }
 
 project(':esykart-store:esykart-store-merchant') {
 	description = 'Esykart Merchant Store'
-
-    apply plugin: "spring-boot"
 	
 	dependencies {
-	
+	   compile 'org.springframework.cloud:spring-cloud-starter-zuul:1.0.6.RELEASE'
 	}
 }
 
 project(':esykart-discovery-server') {
 	description = 'Esykart Discovery Server'
-    
-    apply plugin: "spring-boot"
     
     dependencies{
        compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server:1.0.7.RELEASE'
@@ -218,8 +202,6 @@ project(':esykart-discovery-server') {
 project(':esykart-config-server') {
 	description = 'Esykart Configuration Server'
 	
-	apply plugin: "spring-boot"
-	 
 	dependencies{
 	  compile 'org.springframework.cloud:spring-cloud-config-server:1.0.4.RELEASE'
 	}

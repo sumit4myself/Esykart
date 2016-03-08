@@ -1,4 +1,4 @@
 spring:
   application:
-    name: merchant-service
+    name: MERCHANT-SERVICE
 
