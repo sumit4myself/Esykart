@@ -1,0 +1,370 @@
+08-Mar-2016 21:14:57 ERROR o.s.c.c.c.ConfigServicePropertySourceLocator:107 - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/MERCHANT-STORE-UI/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+08-Mar-2016 21:14:57  INFO c.w.e.s.m.c.MerchantStoreUIApplication:666 - No active profile set, falling back to default profiles: default
+08-Mar-2016 21:14:57  INFO o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:578 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@22c977fc: startup date [Tue Mar 08 21:14:57 IST 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@7990a036
+08-Mar-2016 21:14:59  INFO o.s.b.f.s.DefaultListableBeanFactory:839 - Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+08-Mar-2016 21:14:59  INFO o.s.b.f.s.DefaultListableBeanFactory:839 - Overriding bean definition for bean 'infoEndpoint' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointAutoConfiguration; factoryMethodName=infoEndpoint; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointAutoConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$InfoEndpointRebinderConfiguration; factoryMethodName=infoEndpoint; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/autoconfigure/RefreshAutoConfiguration$InfoEndpointRebinderConfiguration.class]]
+08-Mar-2016 21:15:00  INFO o.s.c.c.s.GenericScope:230 - BeanFactory id=db28fe10-00a8-3b9f-903b-b77f6e8fc532
+08-Mar-2016 21:15:00  INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+08-Mar-2016 21:15:00  INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:328 - Bean 'org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$ConfigurationPropertiesRebinderConfiguration' of type [class org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$ConfigurationPropertiesRebinderConfiguration$$EnhancerBySpringCGLIB$$e1d25517] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-Mar-2016 21:15:01  INFO o.s.b.c.e.t.TomcatEmbeddedServletContainer:81 - Tomcat initialized with port(s): 8081 (http)
+08-Mar-2016 21:15:01  INFO o.a.c.c.StandardService:180 - Starting service Tomcat
+08-Mar-2016 21:15:01  INFO o.a.c.c.StandardEngine:180 - Starting Servlet Engine: Apache Tomcat/8.0.32
+08-Mar-2016 21:15:01  INFO o.a.c.c.C.[.[.[/]:180 - Initializing Spring embedded WebApplicationContext
+08-Mar-2016 21:15:01  INFO o.s.w.c.ContextLoader:272 - Root WebApplicationContext: initialization completed in 3549 ms
+08-Mar-2016 21:15:01  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [void com.netflix.discovery.DiscoveryClient.register()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:15:01  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [void com.netflix.discovery.DiscoveryClient.unregister()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:15:01  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [com.netflix.discovery.DiscoveryClient$InstanceInfoReplicator com.netflix.discovery.DiscoveryClient.getInstanceInfoReplicator()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:15:01  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [com.netflix.appinfo.InstanceInfo com.netflix.discovery.DiscoveryClient.getInstanceInfo()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:15:01  WARN c.n.c.s.URLConfigurationSource:120 - No URLs will be polled as dynamic configuration sources.
+08-Mar-2016 21:15:01  INFO c.n.c.s.URLConfigurationSource:121 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-Mar-2016 21:15:01  INFO c.n.c.DynamicPropertyFactory:281 - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@69b6ec01
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.ServletRegistrationBean:189 - Mapping servlet: 'zuulServlet' to [/zuul/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.ServletRegistrationBean:189 - Mapping servlet: 'dispatcherServlet' to [/]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'metricFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'characterEncodingFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'requestContextFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'applicationContextIdFilter' to: [/*]
+08-Mar-2016 21:15:03  INFO o.s.c.n.z.ZuulFilterInitializer:50 - Starting filter initializer context listener
+08-Mar-2016 21:15:03  INFO o.s.w.s.m.m.a.RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@22c977fc: startup date [Tue Mar 08 21:14:57 IST 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@7990a036
+08-Mar-2016 21:15:03  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/home]}" onto public java.lang.String com.webientsoft.esykart.store.merchant.web.controller.DefaultController.home()
+08-Mar-2016 21:15:03  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+08-Mar-2016 21:15:03  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+08-Mar-2016 21:15:03  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:15:03  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/resources] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:15:03  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/info || /info.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/routes || /routes.json],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.reset()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/routes || /routes.json],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.getRoutes()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/health || /health.json],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(java.security.Principal)
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env || /env.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:04  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:15:06  WARN o.s.b.d.a.OptionalLiveReloadServer:62 - Unable to start LiveReload server
+08-Mar-2016 21:15:06  WARN c.n.c.s.URLConfigurationSource:120 - No URLs will be polled as dynamic configuration sources.
+08-Mar-2016 21:15:06  INFO c.n.c.s.URLConfigurationSource:121 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:431 - Registering beans for JMX exposure on startup
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'zuulEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'refreshScope' has been autodetected for JMX exposure
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'environmentManager' has been autodetected for JMX exposure
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'zuulEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=zuulEndpoint,type=RoutesEndpoint]
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=22c977fc,type=ConfigurationPropertiesRebinder]
+08-Mar-2016 21:15:06  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.bootstrap.config:name=refreshEndpoint,type=RefreshEndpoint]
+08-Mar-2016 21:15:06  INFO o.s.c.s.DefaultLifecycleProcessor:341 - Starting beans in phase 0
+08-Mar-2016 21:15:06  INFO c.n.a.p.EurekaConfigBasedInstanceInfoProvider:80 - Setting initial instance status as: STARTING
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:739 - Disable delta property : false
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:740 - Single vip registry refresh property : null
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:741 - Force full registry fetch : false
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:742 - Application is null : false
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:743 - Registered Applications size is zero : true
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:745 - Application version is -1: true
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:836 - Getting all instance registry info from the eureka server
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:850 - The response status is 200
+08-Mar-2016 21:15:07  INFO c.n.d.DiscoveryClient:1222 - Starting heartbeat executor: renew interval is: 30
+08-Mar-2016 21:15:07  INFO o.s.c.n.e.EurekaDiscoveryClientConfiguration:131 - Registering application MERCHANT-STORE-UI with eureka with status UP
+08-Mar-2016 21:15:08  INFO o.s.c.n.z.w.ZuulHandlerMapping:341 - Mapped URL path [/test**] onto handler of type [class org.springframework.cloud.netflix.zuul.web.ZuulController]
+08-Mar-2016 21:15:08  INFO o.s.c.s.DefaultLifecycleProcessor:341 - Starting beans in phase 2147483647
+08-Mar-2016 21:15:08  INFO c.n.h.c.m.e.HystrixMetricsPoller:82 - Starting HystrixMetricsPoller
+08-Mar-2016 21:15:08  INFO o.s.c.n.h.HystrixCircuitBreakerConfiguration$HystrixMetricsPollerConfiguration:119 - Starting poller
+08-Mar-2016 21:15:08  INFO o.s.b.c.e.t.TomcatEmbeddedServletContainer:162 - Tomcat started on port(s): 8081 (http)
+08-Mar-2016 21:15:08  INFO c.w.e.s.m.c.MerchantStoreUIApplication:57 - Started MerchantStoreUIApplication in 12.93 seconds (JVM running for 13.508)
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:739 - Disable delta property : false
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:740 - Single vip registry refresh property : null
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:741 - Force full registry fetch : false
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:742 - Application is null : false
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:743 - Registered Applications size is zero : true
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:745 - Application version is -1: false
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:836 - Getting all instance registry info from the eureka server
+08-Mar-2016 21:15:37  INFO c.n.d.DiscoveryClient:850 - The response status is 200
+08-Mar-2016 21:15:38  INFO c.n.d.DiscoveryClient:1593 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - Re-registering apps/MERCHANT-STORE-UI
+08-Mar-2016 21:15:38  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:15:38  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:15:47  INFO c.n.d.DiscoveryClient:1654 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - retransmit instance info with status UP
+08-Mar-2016 21:15:47  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:15:47  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:739 - Disable delta property : false
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:740 - Single vip registry refresh property : null
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:741 - Force full registry fetch : false
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:742 - Application is null : false
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:743 - Registered Applications size is zero : true
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:745 - Application version is -1: false
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:836 - Getting all instance registry info from the eureka server
+08-Mar-2016 21:16:07  INFO c.n.d.DiscoveryClient:850 - The response status is 200
+08-Mar-2016 21:16:08  INFO c.n.d.DiscoveryClient:1593 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - Re-registering apps/MERCHANT-STORE-UI
+08-Mar-2016 21:16:08  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:16:08  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:17:24  INFO o.a.c.c.C.[.[.[/]:180 - Initializing Spring FrameworkServlet 'dispatcherServlet'
+08-Mar-2016 21:17:24  INFO o.s.w.s.DispatcherServlet:488 - FrameworkServlet 'dispatcherServlet': initialization started
+08-Mar-2016 21:17:24  INFO o.s.w.s.DispatcherServlet:507 - FrameworkServlet 'dispatcherServlet': initialization completed in 33 ms
+08-Mar-2016 21:17:25  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:09  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:11  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:14  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:46  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:47  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:47  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:48  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:48  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:48  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:48  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:49  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:19:51  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:19  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:22  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:23  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:37  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:50  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:52  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:53  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:53  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:53  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:53  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:53  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:20:54  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:21:05  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:21:06  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:21:34  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:21:35  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:23:00 ERROR o.s.c.c.c.ConfigServicePropertySourceLocator:107 - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/MERCHANT-STORE-UI/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+08-Mar-2016 21:23:00  INFO c.w.e.s.m.c.MerchantStoreUIApplication:666 - No active profile set, falling back to default profiles: default
+08-Mar-2016 21:23:00  INFO o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:578 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@22c977fc: startup date [Tue Mar 08 21:23:00 IST 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@6112022e
+08-Mar-2016 21:23:02  INFO o.s.b.f.s.DefaultListableBeanFactory:839 - Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+08-Mar-2016 21:23:02  INFO o.s.b.f.s.DefaultListableBeanFactory:839 - Overriding bean definition for bean 'infoEndpoint' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointAutoConfiguration; factoryMethodName=infoEndpoint; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointAutoConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$InfoEndpointRebinderConfiguration; factoryMethodName=infoEndpoint; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/autoconfigure/RefreshAutoConfiguration$InfoEndpointRebinderConfiguration.class]]
+08-Mar-2016 21:23:03  INFO o.s.c.c.s.GenericScope:230 - BeanFactory id=39556767-d1d1-30a5-9d39-d5cbb0feb27c
+08-Mar-2016 21:23:03  INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+08-Mar-2016 21:23:03  INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:328 - Bean 'org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$ConfigurationPropertiesRebinderConfiguration' of type [class org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$ConfigurationPropertiesRebinderConfiguration$$EnhancerBySpringCGLIB$$e1d25517] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-Mar-2016 21:23:04  INFO o.s.b.c.e.t.TomcatEmbeddedServletContainer:81 - Tomcat initialized with port(s): 8081 (http)
+08-Mar-2016 21:23:04  INFO o.a.c.c.StandardService:180 - Starting service Tomcat
+08-Mar-2016 21:23:04  INFO o.a.c.c.StandardEngine:180 - Starting Servlet Engine: Apache Tomcat/8.0.32
+08-Mar-2016 21:23:04  INFO o.a.c.c.C.[.[.[/]:180 - Initializing Spring embedded WebApplicationContext
+08-Mar-2016 21:23:04  INFO o.s.w.c.ContextLoader:272 - Root WebApplicationContext: initialization completed in 3371 ms
+08-Mar-2016 21:23:04  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [void com.netflix.discovery.DiscoveryClient.register()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:23:04  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [com.netflix.discovery.DiscoveryClient$InstanceInfoReplicator com.netflix.discovery.DiscoveryClient.getInstanceInfoReplicator()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:23:04  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [com.netflix.appinfo.InstanceInfo com.netflix.discovery.DiscoveryClient.getInstanceInfo()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:23:04  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [void com.netflix.discovery.DiscoveryClient.unregister()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:23:04  WARN c.n.c.s.URLConfigurationSource:120 - No URLs will be polled as dynamic configuration sources.
+08-Mar-2016 21:23:04  INFO c.n.c.s.URLConfigurationSource:121 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-Mar-2016 21:23:04  INFO c.n.c.DynamicPropertyFactory:281 - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@25d6868
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.ServletRegistrationBean:189 - Mapping servlet: 'zuulServlet' to [/zuul/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.ServletRegistrationBean:189 - Mapping servlet: 'dispatcherServlet' to [/]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'metricFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'characterEncodingFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'requestContextFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'applicationContextIdFilter' to: [/*]
+08-Mar-2016 21:23:06  INFO o.s.c.n.z.ZuulFilterInitializer:50 - Starting filter initializer context listener
+08-Mar-2016 21:23:06  INFO o.s.w.s.m.m.a.RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@22c977fc: startup date [Tue Mar 08 21:23:00 IST 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@6112022e
+08-Mar-2016 21:23:06  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/home]}" onto public java.lang.String com.webientsoft.esykart.store.merchant.web.controller.DefaultController.home()
+08-Mar-2016 21:23:06  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+08-Mar-2016 21:23:06  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+08-Mar-2016 21:23:06  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:23:06  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/resources] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:23:06  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/routes || /routes.json],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.reset()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/routes || /routes.json],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.getRoutes()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/health || /health.json],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(java.security.Principal)
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/info || /info.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+08-Mar-2016 21:23:07  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env || /env.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:23:09  WARN o.s.b.d.a.OptionalLiveReloadServer:62 - Unable to start LiveReload server
+08-Mar-2016 21:23:09  WARN c.n.c.s.URLConfigurationSource:120 - No URLs will be polled as dynamic configuration sources.
+08-Mar-2016 21:23:09  INFO c.n.c.s.URLConfigurationSource:121 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:431 - Registering beans for JMX exposure on startup
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'zuulEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'refreshScope' has been autodetected for JMX exposure
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'environmentManager' has been autodetected for JMX exposure
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'zuulEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=zuulEndpoint,type=RoutesEndpoint]
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=22c977fc,type=ConfigurationPropertiesRebinder]
+08-Mar-2016 21:23:09  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.bootstrap.config:name=refreshEndpoint,type=RefreshEndpoint]
+08-Mar-2016 21:23:09  INFO o.s.c.s.DefaultLifecycleProcessor:341 - Starting beans in phase 0
+08-Mar-2016 21:23:09  INFO c.n.a.p.EurekaConfigBasedInstanceInfoProvider:80 - Setting initial instance status as: STARTING
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:739 - Disable delta property : false
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:740 - Single vip registry refresh property : null
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:741 - Force full registry fetch : false
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:742 - Application is null : false
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:743 - Registered Applications size is zero : true
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:745 - Application version is -1: true
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:836 - Getting all instance registry info from the eureka server
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:850 - The response status is 200
+08-Mar-2016 21:23:10  INFO c.n.d.DiscoveryClient:1222 - Starting heartbeat executor: renew interval is: 30
+08-Mar-2016 21:23:10  INFO o.s.c.n.e.EurekaDiscoveryClientConfiguration:131 - Registering application MERCHANT-STORE-UI with eureka with status UP
+08-Mar-2016 21:23:10  INFO o.s.c.n.z.w.ZuulHandlerMapping:341 - Mapped URL path [/test**] onto handler of type [class org.springframework.cloud.netflix.zuul.web.ZuulController]
+08-Mar-2016 21:23:10  INFO o.s.c.s.DefaultLifecycleProcessor:341 - Starting beans in phase 2147483647
+08-Mar-2016 21:23:10  INFO c.n.h.c.m.e.HystrixMetricsPoller:82 - Starting HystrixMetricsPoller
+08-Mar-2016 21:23:10  INFO o.s.c.n.h.HystrixCircuitBreakerConfiguration$HystrixMetricsPollerConfiguration:119 - Starting poller
+08-Mar-2016 21:23:10  INFO o.s.b.c.e.t.TomcatEmbeddedServletContainer:162 - Tomcat started on port(s): 8081 (http)
+08-Mar-2016 21:23:10  INFO c.w.e.s.m.c.MerchantStoreUIApplication:57 - Started MerchantStoreUIApplication in 12.493 seconds (JVM running for 13.005)
+08-Mar-2016 21:23:14  INFO o.a.c.c.C.[.[.[/]:180 - Initializing Spring FrameworkServlet 'dispatcherServlet'
+08-Mar-2016 21:23:14  INFO o.s.w.s.DispatcherServlet:488 - FrameworkServlet 'dispatcherServlet': initialization started
+08-Mar-2016 21:23:14  INFO o.s.w.s.DispatcherServlet:507 - FrameworkServlet 'dispatcherServlet': initialization completed in 29 ms
+08-Mar-2016 21:23:14  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:23:17  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:23:40  INFO c.n.d.DiscoveryClient:1593 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - Re-registering apps/MERCHANT-STORE-UI
+08-Mar-2016 21:23:40  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:23:40  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:23:50  INFO c.n.d.DiscoveryClient:1654 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - retransmit instance info with status UP
+08-Mar-2016 21:23:50  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:23:50  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:23:55  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:23:55  WARN o.s.w.s.PageNotFound:1136 - No mapping found for HTTP request with URI [/templates/index.jsp] in DispatcherServlet with name 'dispatcherServlet'
+08-Mar-2016 21:24:10  INFO c.n.d.DiscoveryClient:1593 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - Re-registering apps/MERCHANT-STORE-UI
+08-Mar-2016 21:24:10  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:24:10  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:26:14 ERROR o.s.c.c.c.ConfigServicePropertySourceLocator:107 - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/MERCHANT-STORE-UI/default": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+08-Mar-2016 21:26:14  INFO c.w.e.s.m.c.MerchantStoreUIApplication:666 - No active profile set, falling back to default profiles: default
+08-Mar-2016 21:26:14  INFO o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext:578 - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2d2683cd: startup date [Tue Mar 08 21:26:14 IST 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@185f8cba
+08-Mar-2016 21:26:16  INFO o.s.b.f.s.DefaultListableBeanFactory:839 - Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+08-Mar-2016 21:26:16  INFO o.s.b.f.s.DefaultListableBeanFactory:839 - Overriding bean definition for bean 'infoEndpoint' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.actuate.autoconfigure.EndpointAutoConfiguration; factoryMethodName=infoEndpoint; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/actuate/autoconfigure/EndpointAutoConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$InfoEndpointRebinderConfiguration; factoryMethodName=infoEndpoint; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/cloud/autoconfigure/RefreshAutoConfiguration$InfoEndpointRebinderConfiguration.class]]
+08-Mar-2016 21:26:16  INFO o.s.c.c.s.GenericScope:230 - BeanFactory id=24cef24e-284b-335a-b1f4-b7ae51d7b876
+08-Mar-2016 21:26:16  INFO o.s.b.f.a.AutowiredAnnotationBeanPostProcessor:153 - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+08-Mar-2016 21:26:17  INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:328 - Bean 'org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$ConfigurationPropertiesRebinderConfiguration' of type [class org.springframework.cloud.autoconfigure.RefreshAutoConfiguration$ConfigurationPropertiesRebinderConfiguration$$EnhancerBySpringCGLIB$$a48a8a02] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+08-Mar-2016 21:26:17  INFO o.s.b.c.e.t.TomcatEmbeddedServletContainer:81 - Tomcat initialized with port(s): 8081 (http)
+08-Mar-2016 21:26:17  INFO o.a.c.c.StandardService:180 - Starting service Tomcat
+08-Mar-2016 21:26:17  INFO o.a.c.c.StandardEngine:180 - Starting Servlet Engine: Apache Tomcat/8.0.32
+08-Mar-2016 21:26:17  INFO o.a.c.c.C.[.[.[/]:180 - Initializing Spring embedded WebApplicationContext
+08-Mar-2016 21:26:17  INFO o.s.w.c.ContextLoader:272 - Root WebApplicationContext: initialization completed in 3497 ms
+08-Mar-2016 21:26:18  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [void com.netflix.discovery.DiscoveryClient.register()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:26:18  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [com.netflix.discovery.DiscoveryClient$InstanceInfoReplicator com.netflix.discovery.DiscoveryClient.getInstanceInfoReplicator()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:26:18  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [com.netflix.appinfo.InstanceInfo com.netflix.discovery.DiscoveryClient.getInstanceInfo()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:26:18  INFO o.s.a.f.CglibAopProxy:270 - Unable to proxy method [void com.netflix.discovery.DiscoveryClient.unregister()] because it is package-visible across different ClassLoaders: All calls to this method via a proxy will NOT be routed to the target instance.
+08-Mar-2016 21:26:18  WARN c.n.c.s.URLConfigurationSource:120 - No URLs will be polled as dynamic configuration sources.
+08-Mar-2016 21:26:18  INFO c.n.c.s.URLConfigurationSource:121 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-Mar-2016 21:26:18  INFO c.n.c.DynamicPropertyFactory:281 - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@688fe61a
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.ServletRegistrationBean:189 - Mapping servlet: 'zuulServlet' to [/zuul/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.ServletRegistrationBean:189 - Mapping servlet: 'dispatcherServlet' to [/]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'metricFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'characterEncodingFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'requestContextFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.b.c.e.FilterRegistrationBean:258 - Mapping filter: 'applicationContextIdFilter' to: [/*]
+08-Mar-2016 21:26:19  INFO o.s.c.n.z.ZuulFilterInitializer:50 - Starting filter initializer context listener
+08-Mar-2016 21:26:20  INFO o.s.w.s.m.m.a.RequestMappingHandlerAdapter:532 - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2d2683cd: startup date [Tue Mar 08 21:26:14 IST 2016]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@185f8cba
+08-Mar-2016 21:26:20  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/home]}" onto public java.lang.String com.webientsoft.esykart.store.merchant.web.controller.DefaultController.home()
+08-Mar-2016 21:26:20  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+08-Mar-2016 21:26:20  INFO o.s.w.s.m.m.a.RequestMappingHandlerMapping:534 - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+08-Mar-2016 21:26:20  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:26:20  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/resources] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:26:20  INFO o.s.w.s.h.SimpleUrlHandlerMapping:341 - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/hystrix.stream/**]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.cloud.netflix.endpoint.ServletWrappingEndpoint.handle(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/logfile || /logfile.json],methods=[GET || HEAD]}" onto public void org.springframework.boot.actuate.endpoint.mvc.LogFileMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws javax.servlet.ServletException,java.io.IOException
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/info || /info.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env || /env.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/routes || /routes.json],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.reset()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/routes || /routes.json],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> org.springframework.cloud.netflix.zuul.RoutesEndpoint.getRoutes()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/health || /health.json],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(java.security.Principal)
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+08-Mar-2016 21:26:21  INFO o.s.b.a.e.m.EndpointHandlerMapping:534 - Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+08-Mar-2016 21:26:23  WARN o.s.b.d.a.OptionalLiveReloadServer:62 - Unable to start LiveReload server
+08-Mar-2016 21:26:23  WARN c.n.c.s.URLConfigurationSource:120 - No URLs will be polled as dynamic configuration sources.
+08-Mar-2016 21:26:23  INFO c.n.c.s.URLConfigurationSource:121 - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:431 - Registering beans for JMX exposure on startup
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'zuulEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'refreshScope' has been autodetected for JMX exposure
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:912 - Bean with name 'environmentManager' has been autodetected for JMX exposure
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+08-Mar-2016 21:26:23  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'zuulEndpoint': registering with JMX server as MBean [org.springframework.cloud.netflix.zuul:name=zuulEndpoint,type=RoutesEndpoint]
+08-Mar-2016 21:26:24  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+08-Mar-2016 21:26:24  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=2d2683cd,type=ConfigurationPropertiesRebinder]
+08-Mar-2016 21:26:24  INFO o.s.j.e.a.AnnotationMBeanExporter:674 - Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.bootstrap.config:name=refreshEndpoint,type=RefreshEndpoint]
+08-Mar-2016 21:26:24  INFO o.s.c.s.DefaultLifecycleProcessor:341 - Starting beans in phase 0
+08-Mar-2016 21:26:24  INFO c.n.a.p.EurekaConfigBasedInstanceInfoProvider:80 - Setting initial instance status as: STARTING
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:739 - Disable delta property : false
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:740 - Single vip registry refresh property : null
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:741 - Force full registry fetch : false
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:742 - Application is null : false
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:743 - Registered Applications size is zero : true
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:745 - Application version is -1: true
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:836 - Getting all instance registry info from the eureka server
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:850 - The response status is 200
+08-Mar-2016 21:26:24  INFO c.n.d.DiscoveryClient:1222 - Starting heartbeat executor: renew interval is: 30
+08-Mar-2016 21:26:24  INFO o.s.c.n.e.EurekaDiscoveryClientConfiguration:131 - Registering application MERCHANT-STORE-UI with eureka with status UP
+08-Mar-2016 21:26:24  INFO o.s.c.n.z.w.ZuulHandlerMapping:341 - Mapped URL path [/test**] onto handler of type [class org.springframework.cloud.netflix.zuul.web.ZuulController]
+08-Mar-2016 21:26:25  INFO o.s.c.s.DefaultLifecycleProcessor:341 - Starting beans in phase 2147483647
+08-Mar-2016 21:26:25  INFO c.n.h.c.m.e.HystrixMetricsPoller:82 - Starting HystrixMetricsPoller
+08-Mar-2016 21:26:25  INFO o.s.c.n.h.HystrixCircuitBreakerConfiguration$HystrixMetricsPollerConfiguration:119 - Starting poller
+08-Mar-2016 21:26:25  INFO o.s.b.c.e.t.TomcatEmbeddedServletContainer:162 - Tomcat started on port(s): 8081 (http)
+08-Mar-2016 21:26:25  INFO c.w.e.s.m.c.MerchantStoreUIApplication:57 - Started MerchantStoreUIApplication in 13.474 seconds (JVM running for 14.102)
+08-Mar-2016 21:26:54  INFO c.n.d.DiscoveryClient:1593 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - Re-registering apps/MERCHANT-STORE-UI
+08-Mar-2016 21:26:54  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:26:54  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:27:04  INFO c.n.d.DiscoveryClient:1654 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - retransmit instance info with status UP
+08-Mar-2016 21:27:04  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:27:04  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
+08-Mar-2016 21:27:24  INFO c.n.d.DiscoveryClient:1593 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - Re-registering apps/MERCHANT-STORE-UI
+08-Mar-2016 21:27:24  INFO c.n.d.DiscoveryClient:603 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874: registering service...
+08-Mar-2016 21:27:24  INFO c.n.d.DiscoveryClient:608 - DiscoveryClient_MERCHANT-STORE-UI/SDGL874 - registration status: 204
