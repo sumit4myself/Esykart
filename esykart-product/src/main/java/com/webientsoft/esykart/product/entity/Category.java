@@ -1,0 +1,226 @@
+package com.webientsoft.esykart.product.entity;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+/**
+ * The persistent class for the category database table.
+ * 
+ */
+@Entity
+@Table(name = "category")
+public class Category implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column(name = "active_end_date")
+	private Timestamp activeEndDate;
+
+	@Column(name = "active_start_date")
+	private Timestamp activeStartDate;
+
+	@Column(name = "banner_id")
+	private Integer bannerId;
+
+	private String description;
+
+	@Column(name = "fulfillment_type")
+	private String fulfillmentType;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	@Column(name = "inventory_type")
+	private String inventoryType;
+
+	@Column(name = "long_description")
+	private String longDescription;
+
+	private String name;
+
+	private String status;
+
+	private String template;
+
+	private String url;
+
+	@JoinColumn(name = "parent_id")
+	@OneToMany(mappedBy = "category")
+	private List<Category> categories;
+
+	@ManyToMany(mappedBy = "categories")
+	private List<CategoryAttr> categoryAttrs;
+
+	@OneToMany(mappedBy = "category")
+	private List<Product> products;
+
+	public Category() {
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Timestamp getActiveEndDate() {
+		return this.activeEndDate;
+	}
+
+	public void setActiveEndDate(Timestamp activeEndDate) {
+		this.activeEndDate = activeEndDate;
+	}
+
+	public Timestamp getActiveStartDate() {
+		return this.activeStartDate;
+	}
+
+	public void setActiveStartDate(Timestamp activeStartDate) {
+		this.activeStartDate = activeStartDate;
+	}
+
+	public Integer getBannerId() {
+		return this.bannerId;
+	}
+
+	public void setBannerId(Integer bannerId) {
+		this.bannerId = bannerId;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getFulfillmentType() {
+		return this.fulfillmentType;
+	}
+
+	public void setFulfillmentType(String fulfillmentType) {
+		this.fulfillmentType = fulfillmentType;
+	}
+
+	public String getImageUrl() {
+		return this.imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getInventoryType() {
+		return this.inventoryType;
+	}
+
+	public void setInventoryType(String inventoryType) {
+		this.inventoryType = inventoryType;
+	}
+
+	public String getLongDescription() {
+		return this.longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getTemplate() {
+		return this.template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
+	}
+
+	public String getUrl() {
+		return this.url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public List<Category> getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public Category addCategory(Category category) {
+		getCategories().add(category);
+		return category;
+	}
+
+	public Category removeCategory(Category category) {
+		getCategories().remove(category);
+		return category;
+	}
+
+	public List<CategoryAttr> getCategoryAttrs() {
+		return this.categoryAttrs;
+	}
+
+	public void setCategoryAttrs(List<CategoryAttr> categoryAttrs) {
+		this.categoryAttrs = categoryAttrs;
+	}
+
+	public List<Product> getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public Product addProduct(Product product) {
+		getProducts().add(product);
+		product.setCategory(this);
+
+		return product;
+	}
+
+	public Product removeProduct(Product product) {
+		getProducts().remove(product);
+		product.setCategory(null);
+
+		return product;
+	}
+
+}

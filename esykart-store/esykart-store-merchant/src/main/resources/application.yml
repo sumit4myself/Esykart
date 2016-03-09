@@ -12,7 +12,7 @@ spring:
   mvc:
     view:
       prefix: /templates/
-      suffix: .jsp
+      suffix: .html
     static-path-pattern: /resources
   
 logging:
