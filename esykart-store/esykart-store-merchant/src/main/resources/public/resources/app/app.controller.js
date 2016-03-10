@@ -228,16 +228,16 @@ angular
                 },
                 {
                     id: 4,
-                    title: 'Product',
+                    title: 'Product Catalogue',
                     icon: '&#xE7FB;',
                     submenu: [
                               {
                                   title: 'Add',
-                                  link: 'restricted.product.add',
+                                  link: 'restricted.product.catalogue.add',
                               },
                               {
                                   title: 'Manage',
-                                  link: 'restricted.product.manage',
+                                  link: 'restricted.product.catalogue.manage',
                            }]
                 },
                 {

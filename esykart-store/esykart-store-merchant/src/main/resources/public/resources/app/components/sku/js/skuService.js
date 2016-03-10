@@ -1,5 +1,5 @@
 ﻿angular.module('altairApp').constant('url', 'rest/user/')
-.service('ProductService',
+.service('SkuService',
 		['$http','utils','url',
 		function($http, utils, url) {
 	

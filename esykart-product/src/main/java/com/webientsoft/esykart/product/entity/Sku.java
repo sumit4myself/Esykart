@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,152 +15,156 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.webientsoft.esykart.common.model.Status;
+
 /**
  * The persistent class for the sku database table.
  * 
  */
 @Entity
 public class Sku implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "active_end_date")
-    private Timestamp activeEndDate;
+	@Column(name = "active_end_date")
+	private Timestamp activeEndDate;
 
-    @Column(name = "active_start_date")
-    private Timestamp activeStartDate;
+	@Column(name = "active_start_date")
+	private Timestamp activeStartDate;
 
-    @Column(name = "available_flag")
-    private String availableFlag;
+	@Column(name = "available_flag")
+	private String availableFlag;
 
-    @Column(name = "is_discountable")
-    private String isDiscountable;
+	@Column(length = 1)
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
-    @Column(name = "merchant_id")
-    private Integer merchantId;
+	@Column(name = "is_discountable")
+	private String isDiscountable;
 
-    @Column(name = "quantity_available")
-    private Integer quantityAvailable;
+	@Column(name = "merchant_id")
+	private Integer merchantId;
 
-    @Column(name = "retail_price")
-    private Float retailPrice;
+	@Column(name = "quantity_available")
+	private Integer quantityAvailable;
 
-    @Column(name = "sale_price")
-    private Float salePrice;
+	@Column(name = "retail_price")
+	private Float retailPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "product_details_id")
-    private ProductDetail productDetail;
+	@Column(name = "sale_price")
+	private Float salePrice;
 
-    @OneToMany(mappedBy = "sku")
-    private List<SkuAvailability> skuAvailabilities;
+	@ManyToOne
+	@JoinColumn(name = "product_details_id")
+	private ProductDetail productDetail;
 
-    public Sku() {
-    }
+	@OneToMany(mappedBy = "sku")
+	private List<SkuAvailability> skuAvailabilities;
 
-    public Integer getId() {
-	return this.id;
-    }
+	public Sku() {
+	}
 
-    public void setId(Integer id) {
-	this.id = id;
-    }
+	public Sku(Integer id) {
+		this.id = id;
+	}
 
-    public Timestamp getActiveEndDate() {
-	return this.activeEndDate;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setActiveEndDate(Timestamp activeEndDate) {
-	this.activeEndDate = activeEndDate;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Timestamp getActiveStartDate() {
-	return this.activeStartDate;
-    }
+	public Timestamp getActiveEndDate() {
+		return activeEndDate;
+	}
 
-    public void setActiveStartDate(Timestamp activeStartDate) {
-	this.activeStartDate = activeStartDate;
-    }
+	public void setActiveEndDate(Timestamp activeEndDate) {
+		this.activeEndDate = activeEndDate;
+	}
 
-    public String getAvailableFlag() {
-	return this.availableFlag;
-    }
+	public Timestamp getActiveStartDate() {
+		return activeStartDate;
+	}
 
-    public void setAvailableFlag(String availableFlag) {
-	this.availableFlag = availableFlag;
-    }
+	public void setActiveStartDate(Timestamp activeStartDate) {
+		this.activeStartDate = activeStartDate;
+	}
 
-    public String getIsDiscountable() {
-	return this.isDiscountable;
-    }
+	public String getAvailableFlag() {
+		return availableFlag;
+	}
 
-    public void setIsDiscountable(String isDiscountable) {
-	this.isDiscountable = isDiscountable;
-    }
+	public void setAvailableFlag(String availableFlag) {
+		this.availableFlag = availableFlag;
+	}
 
-    public Integer getMerchantId() {
-	return this.merchantId;
-    }
+	public Status getStatus() {
+		return status;
+	}
 
-    public void setMerchantId(Integer merchantId) {
-	this.merchantId = merchantId;
-    }
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 
-    public Integer getQuantityAvailable() {
-	return this.quantityAvailable;
-    }
+	public String getIsDiscountable() {
+		return isDiscountable;
+	}
 
-    public void setQuantityAvailable(Integer quantityAvailable) {
-	this.quantityAvailable = quantityAvailable;
-    }
+	public void setIsDiscountable(String isDiscountable) {
+		this.isDiscountable = isDiscountable;
+	}
 
-    public Float getRetailPrice() {
-	return this.retailPrice;
-    }
+	public Integer getMerchantId() {
+		return merchantId;
+	}
 
-    public void setRetailPrice(Float retailPrice) {
-	this.retailPrice = retailPrice;
-    }
+	public void setMerchantId(Integer merchantId) {
+		this.merchantId = merchantId;
+	}
 
-    public Float getSalePrice() {
-	return this.salePrice;
-    }
+	public Integer getQuantityAvailable() {
+		return quantityAvailable;
+	}
 
-    public void setSalePrice(Float salePrice) {
-	this.salePrice = salePrice;
-    }
+	public void setQuantityAvailable(Integer quantityAvailable) {
+		this.quantityAvailable = quantityAvailable;
+	}
 
-    public ProductDetail getProductDetail() {
-	return this.productDetail;
-    }
+	public Float getRetailPrice() {
+		return retailPrice;
+	}
 
-    public void setProductDetail(ProductDetail productDetail) {
-	this.productDetail = productDetail;
-    }
+	public void setRetailPrice(Float retailPrice) {
+		this.retailPrice = retailPrice;
+	}
 
-    public List<SkuAvailability> getSkuAvailabilities() {
-	return this.skuAvailabilities;
-    }
+	public Float getSalePrice() {
+		return salePrice;
+	}
 
-    public void setSkuAvailabilities(List<SkuAvailability> skuAvailabilities) {
-	this.skuAvailabilities = skuAvailabilities;
-    }
+	public void setSalePrice(Float salePrice) {
+		this.salePrice = salePrice;
+	}
 
-    public SkuAvailability addSkuAvailability(SkuAvailability skuAvailability) {
-	getSkuAvailabilities().add(skuAvailability);
-	skuAvailability.setSku(this);
+	public ProductDetail getProductDetail() {
+		return productDetail;
+	}
 
-	return skuAvailability;
-    }
+	public void setProductDetail(ProductDetail productDetail) {
+		this.productDetail = productDetail;
+	}
 
-    public SkuAvailability removeSkuAvailability(SkuAvailability skuAvailability) {
-	getSkuAvailabilities().remove(skuAvailability);
-	skuAvailability.setSku(null);
+	public List<SkuAvailability> getSkuAvailabilities() {
+		return skuAvailabilities;
+	}
 
-	return skuAvailability;
-    }
+	public void setSkuAvailabilities(List<SkuAvailability> skuAvailabilities) {
+		this.skuAvailabilities = skuAvailabilities;
+	}
 
 }

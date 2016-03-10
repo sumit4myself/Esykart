@@ -202,14 +202,17 @@ altairApp
                     }
                 })
                 
-                 // -- product --
-                .state("restricted.product", {
+                
+                
+                
+                 // -- product  Catalogue --
+                .state("restricted.product.catalogue", {
                     url: "/product",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['app/components/product/js/productController.js',
-                                                     'app/components/product/js/productService.js']);
+                            return $ocLazyLoad.load(['app/components/productCatalogue/js/productCatalogueController.js',
+                                                     'app/components/productCatalogue/js/productCatalogueService.js']);
                         }]
                     }, 
                     ncyBreadcrumb: {
@@ -217,10 +220,15 @@ altairApp
                     } ,
                     abstract: true
                 })
-                .state("restricted.product.add", {
+                .state("restricted.product.catalogue.add", {
                     url: "/add",
-                    templateUrl: 'app/components/product/createProduct.html',
-                    controller: 'AddProductController',
+                    templateUrl: 'app/components/productCalalogue/createProductCalalogue.html',
+                    controller: 'AddProductCalalogueController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['app/components/productCatalogue/js/productCatalogueModel.js'],{serie:true});
+	                    }]
+                    },
                     data: {
                         pageTitle: 'Add Product'
                     },
@@ -228,10 +236,10 @@ altairApp
                         label: 'Add'
                     } 
                 })
-                .state("restricted.product.manage", {
+                .state("restricted.product.catalogue.manage", {
                     url: "/manage",
-                    templateUrl: 'app/components/product/manageProduct.html',
-                    controller: 'ManageProductController',
+                    templateUrl: 'app/components/productCalalogue/manageProductCatalogue.html',
+                    controller: 'ManageProductCalalogueController',
                     data: {
                         pageTitle: 'Manage Product'
                     }

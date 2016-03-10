@@ -1,11 +1,13 @@
 package com.webientsoft.esykart.product.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.webientsoft.esykart.common.model.Status;
 
 /**
  * The persistent class for the category database table.
@@ -28,10 +32,10 @@ public class Category implements Serializable {
 	private Integer id;
 
 	@Column(name = "active_end_date")
-	private Timestamp activeEndDate;
+	private Date activeEndDate;
 
 	@Column(name = "active_start_date")
-	private Timestamp activeStartDate;
+	private Date activeStartDate;
 
 	@Column(name = "banner_id")
 	private Integer bannerId;
@@ -52,14 +56,16 @@ public class Category implements Serializable {
 
 	private String name;
 
-	private String status;
+	@Column(length = 1)
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
 	private String template;
 
 	private String url;
 
 	@JoinColumn(name = "parent_id")
-	@OneToMany(mappedBy = "category")
+	@OneToMany
 	private List<Category> categories;
 
 	@ManyToMany(mappedBy = "categories")
@@ -79,19 +85,19 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getActiveEndDate() {
+	public Date getActiveEndDate() {
 		return this.activeEndDate;
 	}
 
-	public void setActiveEndDate(Timestamp activeEndDate) {
+	public void setActiveEndDate(Date activeEndDate) {
 		this.activeEndDate = activeEndDate;
 	}
 
-	public Timestamp getActiveStartDate() {
+	public Date getActiveStartDate() {
 		return this.activeStartDate;
 	}
 
-	public void setActiveStartDate(Timestamp activeStartDate) {
+	public void setActiveStartDate(Date activeStartDate) {
 		this.activeStartDate = activeStartDate;
 	}
 
@@ -151,13 +157,14 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 
-	public String getStatus() {
-		return this.status;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
+
 
 	public String getTemplate() {
 		return this.template;

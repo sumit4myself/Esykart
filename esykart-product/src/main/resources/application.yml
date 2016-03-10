@@ -9,7 +9,7 @@ spring:
   main: 
     web-environment: true
   datasource:
-    name: OrderDS
+    name: ProductDS
     max-idle: 3
     max-active: 10
     max-wait: 1000

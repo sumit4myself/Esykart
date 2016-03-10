@@ -10,12 +10,16 @@ public class SkuModel {
 	private Date activeStartDate;
 	private String availableFlag;
 	private String isDiscountable;
-	private Integer merchantId;
+	private String status;
+
 	private Integer quantityAvailable;
 	private Float retailPrice;
 	private Float salePrice;
+
 	private ProductDetailModel productDetail;
 	private List<SkuAvailabilityModel> skuAvailabilities;
+
+	private Integer merchantId;
 
 	public Integer getId() {
 		return id;
@@ -71,6 +75,14 @@ public class SkuModel {
 
 	public void setQuantityAvailable(Integer quantityAvailable) {
 		this.quantityAvailable = quantityAvailable;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Float getRetailPrice() {

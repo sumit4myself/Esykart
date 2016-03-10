@@ -17,14 +17,14 @@ import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.product.ProductModel;
-import com.webientsoft.esykart.product.service.ProductService;
+import com.webientsoft.esykart.product.service.ProductCatalogueService;
 
 @RestController
 @RequestMapping(value = "/products/catalogue")
 public class ProductCatalogueController {
 
 	@Autowired
-	private ProductService productService;
+	private ProductCatalogueService productService;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public @ResponseBody ResponseEntity<?> create(@RequestBody ProductModel model) {

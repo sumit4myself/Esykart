@@ -10,45 +10,41 @@ import com.webientsoft.esykart.common.dao.support.JPADaoSupport;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.common.model.product.ProductModel;
 import com.webientsoft.esykart.common.model.product.SkuModel;
 import com.webientsoft.esykart.common.utils.BeanUtils;
-import com.webientsoft.esykart.product.entity.Product;
-import com.webientsoft.esykart.product.service.ProductService;
+import com.webientsoft.esykart.product.entity.Sku;
+import com.webientsoft.esykart.product.service.SKUService;
 
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService {
+public class SKUServiceImpl implements SKUService {
 
 	@Autowired
 	private JPADaoSupport dao;
 
-	
 	@Override
 	public void save(SkuModel model) {
-		Product product = new Product();
-		BeanUtils.copyProperties(model, product);
-		dao.persist(product);
+		Sku sku = new Sku();
+		BeanUtils.copyProperties(model, sku);
+		dao.persist(sku);
 	}
 
 	@Override
 	public void update(Integer id, SkuModel model) {
-		Product product = new Product();
-		product.setId(id);
-		BeanUtils.copyProperties(model, product);
-		dao.merge(product);
+		Sku sku = new Sku();
+		BeanUtils.copyProperties(model, sku);
+		dao.persist(sku);
 	}
 
 	@Override
-	public ProductModel find(Integer id) {
+	public SkuModel find(Integer id) {
 
-		Product product = dao.find(Product.class, id);
-		ProductModel model = new ProductModel();
-		BeanUtils.copyProperties(product, model);
+		Sku sku = dao.find(Sku.class, id);
+		SkuModel model = new SkuModel();
+		BeanUtils.copyProperties(sku, model);
 		return model;
 	}
 
-	
 	@Override
 	public PaginatedDataModel search(FilterModel model) {
 		PaginatedDataModel dataModel = new PaginatedDataModel();
@@ -56,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
 			// TODO include count
 			int totalCount = 0;
 			int filteredCount = 0;
-			
+
 			dataModel.setTotalCount(totalCount);
 			dataModel.setFilteredCount(filteredCount);
 		}
