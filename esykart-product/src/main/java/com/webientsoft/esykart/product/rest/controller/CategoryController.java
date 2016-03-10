@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webientsoft.esykart.common.model.Status;
-import com.webientsoft.esykart.common.model.admin.UserModel;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.product.CategoryModel;
@@ -28,13 +27,13 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public @ResponseBody ResponseEntity<?> create(@RequestBody UserModel model) {
+    public @ResponseBody ResponseEntity<?> create(@RequestBody CategoryModel model) {
 	MultiValueMap<String, String> headers = new HttpHeaders();
 	return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
-    public @ResponseBody ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody UserModel model) {
+    public @ResponseBody ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody CategoryModel model) {
 	MultiValueMap<String, String> headers = new HttpHeaders();
 	return new ResponseEntity<>(headers, HttpStatus.OK);
     }

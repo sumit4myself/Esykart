@@ -14,46 +14,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webientsoft.esykart.common.model.Status;
-import com.webientsoft.esykart.common.model.admin.UserModel;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.product.ProductModel;
+import com.webientsoft.esykart.common.model.product.SkuModel;
 import com.webientsoft.esykart.product.service.ProductService;
 
 @Controller
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+	@Autowired
+	private ProductService productService;
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public @ResponseBody ResponseEntity<?> create(@RequestBody UserModel model) {
-	MultiValueMap<String, String> headers = new HttpHeaders();
-	return new ResponseEntity<>(headers, HttpStatus.CREATED);
-    }
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public @ResponseBody ResponseEntity<?> create(@RequestBody SkuModel model) {
+		MultiValueMap<String, String> headers = new HttpHeaders();
+		return new ResponseEntity<>(headers, HttpStatus.CREATED);
+	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
-    public @ResponseBody ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody UserModel model) {
-	MultiValueMap<String, String> headers = new HttpHeaders();
-	return new ResponseEntity<>(headers, HttpStatus.OK);
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public @ResponseBody ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody SkuModel model) {
+		MultiValueMap<String, String> headers = new HttpHeaders();
+		return new ResponseEntity<>(headers, HttpStatus.OK);
+	}
 
-    @RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, produces = "application/json")
-    public @ResponseBody ResponseEntity<?> changeStatus(@PathVariable("id") int id,
-	    @RequestParam("status") Status status) {
+	@RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, produces = "application/json")
+	public @ResponseBody ResponseEntity<?> changeStatus(@PathVariable("id") int id,
+			@RequestParam("status") Status status) {
 
-	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity<ProductModel> getDetail(@PathVariable("id") int id) {
-	return new ResponseEntity<>(productService.find(id), HttpStatus.OK);
-    }
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ResponseEntity<ProductModel> getDetail(@PathVariable("id") int id) {
+		return new ResponseEntity<>(productService.find(id), HttpStatus.OK);
+	}
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(FilterModel model) {
-	return new ResponseEntity<>(productService.search(model), HttpStatus.OK);
-    }
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(FilterModel model) {
+		return new ResponseEntity<>(productService.search(model), HttpStatus.OK);
+	}
 
 }

@@ -11,6 +11,7 @@ import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.product.ProductModel;
+import com.webientsoft.esykart.common.model.product.SkuModel;
 import com.webientsoft.esykart.common.utils.BeanUtils;
 import com.webientsoft.esykart.product.entity.Product;
 import com.webientsoft.esykart.product.service.ProductService;
@@ -24,14 +25,14 @@ public class ProductServiceImpl implements ProductService {
 
 	
 	@Override
-	public void save(ProductModel model) {
+	public void save(SkuModel model) {
 		Product product = new Product();
 		BeanUtils.copyProperties(model, product);
 		dao.persist(product);
 	}
 
 	@Override
-	public void update(Integer id, ProductModel model) {
+	public void update(Integer id, SkuModel model) {
 		Product product = new Product();
 		product.setId(id);
 		BeanUtils.copyProperties(model, product);
