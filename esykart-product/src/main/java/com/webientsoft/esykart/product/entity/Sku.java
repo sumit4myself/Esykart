@@ -29,6 +29,8 @@ public class Sku implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	private String uuid;
+
 	@Column(name = "active_end_date")
 	private Timestamp activeEndDate;
 
@@ -165,6 +167,14 @@ public class Sku implements Serializable {
 
 	public void setSkuAvailabilities(List<SkuAvailability> skuAvailabilities) {
 		this.skuAvailabilities = skuAvailabilities;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 }

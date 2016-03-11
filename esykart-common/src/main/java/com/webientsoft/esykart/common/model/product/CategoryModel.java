@@ -18,7 +18,7 @@ public class CategoryModel {
 	private String status;
 	private String template;
 	private String url;
-	private List<CategoryAttrModel> categoryAttrs;
+	private List<CategoryAttributeModel> categoryAttrs;
 
 	public Integer getCategoryId() {
 		return categoryId;
@@ -124,11 +124,11 @@ public class CategoryModel {
 		this.url = url;
 	}
 
-	public List<CategoryAttrModel> getCategoryAttrs() {
+	public List<CategoryAttributeModel> getCategoryAttrs() {
 		return categoryAttrs;
 	}
 
-	public void setCategoryAttrs(List<CategoryAttrModel> categoryAttrs) {
+	public void setCategoryAttrs(List<CategoryAttributeModel> categoryAttrs) {
 		this.categoryAttrs = categoryAttrs;
 	}
 

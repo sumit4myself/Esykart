@@ -1,6 +1,8 @@
 package com.webientsoft.esykart.common.model.product;
 
-public class CategoryAttrModel {
+import java.util.List;
+
+public class CategoryAttributeModel {
 
 	private Integer id;
 	private Integer displayOrder;
@@ -8,12 +10,14 @@ public class CategoryAttrModel {
 	private boolean isSearchable;
 	private String label;
 	private String name;
-	private String type;
-	private String uiType;
+	private String attributeType;
+	private String attributeDisplayType;
 	private String validationErrorCode;
 	private String validationErrorMsg;
 	private String validationRule;
 	private String validationType;
+
+	private List<CategoryAttributeValueModel> values;
 
 	public Integer getId() {
 		return id;
@@ -63,20 +67,20 @@ public class CategoryAttrModel {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public String getAttributeType() {
+		return attributeType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setAttributeType(String attributeType) {
+		this.attributeType = attributeType;
 	}
 
-	public String getUiType() {
-		return uiType;
+	public String getAttributeDisplayType() {
+		return attributeDisplayType;
 	}
 
-	public void setUiType(String uiType) {
-		this.uiType = uiType;
+	public void setAttributeDisplayType(String attributeDisplayType) {
+		this.attributeDisplayType = attributeDisplayType;
 	}
 
 	public String getValidationErrorCode() {
@@ -109,6 +113,14 @@ public class CategoryAttrModel {
 
 	public void setValidationType(String validationType) {
 		this.validationType = validationType;
+	}
+
+	public List<CategoryAttributeValueModel> getValues() {
+		return values;
+	}
+
+	public void setValues(List<CategoryAttributeValueModel> values) {
+		this.values = values;
 	}
 
 }

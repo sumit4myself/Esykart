@@ -18,10 +18,6 @@ import javax.persistence.Table;
 
 import com.webientsoft.esykart.common.model.Status;
 
-/**
- * The persistent class for the category database table.
- * 
- */
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
@@ -31,16 +27,24 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	private String name;
+
+	@Column(name = "long_description")
+	private String longDescription;
+
+	private String description;
+
 	@Column(name = "active_end_date")
 	private Date activeEndDate;
 
 	@Column(name = "active_start_date")
 	private Date activeStartDate;
 
+	
+	
+//	Category banner to be displayed while displaying product catalogue. 
 	@Column(name = "banner_id")
 	private Integer bannerId;
-
-	private String description;
 
 	@Column(name = "fulfillment_type")
 	private String fulfillmentType;
@@ -51,15 +55,11 @@ public class Category implements Serializable {
 	@Column(name = "inventory_type")
 	private String inventoryType;
 
-	@Column(name = "long_description")
-	private String longDescription;
-
-	private String name;
-
 	@Column(length = 1)
 	@Enumerated(EnumType.STRING)
 	private Status status;
-
+	
+//	Template to be used while displaying product catalogue. Eg. Electronics, Mobile,Cloth and soon.
 	private String template;
 
 	private String url;
@@ -69,7 +69,7 @@ public class Category implements Serializable {
 	private List<Category> categories;
 
 	@ManyToMany(mappedBy = "categories")
-	private List<CategoryAttr> categoryAttrs;
+	private List<CategoryAttribute> categoryAttributes;
 
 	@OneToMany(mappedBy = "category")
 	private List<Product> products;
@@ -78,15 +78,39 @@ public class Category implements Serializable {
 	}
 
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Date getActiveEndDate() {
-		return this.activeEndDate;
+		return activeEndDate;
 	}
 
 	public void setActiveEndDate(Date activeEndDate) {
@@ -94,7 +118,7 @@ public class Category implements Serializable {
 	}
 
 	public Date getActiveStartDate() {
-		return this.activeStartDate;
+		return activeStartDate;
 	}
 
 	public void setActiveStartDate(Date activeStartDate) {
@@ -102,23 +126,15 @@ public class Category implements Serializable {
 	}
 
 	public Integer getBannerId() {
-		return this.bannerId;
+		return bannerId;
 	}
 
 	public void setBannerId(Integer bannerId) {
 		this.bannerId = bannerId;
 	}
 
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public String getFulfillmentType() {
-		return this.fulfillmentType;
+		return fulfillmentType;
 	}
 
 	public void setFulfillmentType(String fulfillmentType) {
@@ -126,7 +142,7 @@ public class Category implements Serializable {
 	}
 
 	public String getImageUrl() {
-		return this.imageUrl;
+		return imageUrl;
 	}
 
 	public void setImageUrl(String imageUrl) {
@@ -134,27 +150,11 @@ public class Category implements Serializable {
 	}
 
 	public String getInventoryType() {
-		return this.inventoryType;
+		return inventoryType;
 	}
 
 	public void setInventoryType(String inventoryType) {
 		this.inventoryType = inventoryType;
-	}
-
-	public String getLongDescription() {
-		return this.longDescription;
-	}
-
-	public void setLongDescription(String longDescription) {
-		this.longDescription = longDescription;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Status getStatus() {
@@ -165,9 +165,8 @@ public class Category implements Serializable {
 		this.status = status;
 	}
 
-
 	public String getTemplate() {
-		return this.template;
+		return template;
 	}
 
 	public void setTemplate(String template) {
@@ -175,7 +174,7 @@ public class Category implements Serializable {
 	}
 
 	public String getUrl() {
-		return this.url;
+		return url;
 	}
 
 	public void setUrl(String url) {
@@ -183,51 +182,27 @@ public class Category implements Serializable {
 	}
 
 	public List<Category> getCategories() {
-		return this.categories;
+		return categories;
 	}
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
-	public Category addCategory(Category category) {
-		getCategories().add(category);
-		return category;
+	public List<CategoryAttribute> getCategoryAttributes() {
+		return categoryAttributes;
 	}
 
-	public Category removeCategory(Category category) {
-		getCategories().remove(category);
-		return category;
-	}
-
-	public List<CategoryAttr> getCategoryAttrs() {
-		return this.categoryAttrs;
-	}
-
-	public void setCategoryAttrs(List<CategoryAttr> categoryAttrs) {
-		this.categoryAttrs = categoryAttrs;
+	public void setCategoryAttributes(List<CategoryAttribute> categoryAttributes) {
+		this.categoryAttributes = categoryAttributes;
 	}
 
 	public List<Product> getProducts() {
-		return this.products;
+		return products;
 	}
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
-	}
-
-	public Product addProduct(Product product) {
-		getProducts().add(product);
-		product.setCategory(this);
-
-		return product;
-	}
-
-	public Product removeProduct(Product product) {
-		getProducts().remove(product);
-		product.setCategory(null);
-
-		return product;
 	}
 
 }

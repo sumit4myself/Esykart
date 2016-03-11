@@ -22,8 +22,8 @@ public class ProductDetailModel {
 	private String weightUnitOfMeasure;
 	private ProductModel product;
 
-	private List<ProductDetailsAttrValueMapModel> productDetailsAttrValueMaps;
-	private List<ProductDetailsMediaMapModel> productDetailsMediaMaps;
+	private List<ProductDetailAttrValueMapModel> productDetailsAttrValueMaps;
+	private List<ProductDetailMediaMapModel> productDetailsMediaMaps;
 
 	private List<SkuModel> skus;
 
@@ -131,19 +131,19 @@ public class ProductDetailModel {
 		this.product = product;
 	}
 
-	public List<ProductDetailsAttrValueMapModel> getProductDetailsAttrValueMaps() {
+	public List<ProductDetailAttrValueMapModel> getProductDetailsAttrValueMaps() {
 		return productDetailsAttrValueMaps;
 	}
 
-	public void setProductDetailsAttrValueMaps(List<ProductDetailsAttrValueMapModel> productDetailsAttrValueMaps) {
+	public void setProductDetailsAttrValueMaps(List<ProductDetailAttrValueMapModel> productDetailsAttrValueMaps) {
 		this.productDetailsAttrValueMaps = productDetailsAttrValueMaps;
 	}
 
-	public List<ProductDetailsMediaMapModel> getProductDetailsMediaMaps() {
+	public List<ProductDetailMediaMapModel> getProductDetailsMediaMaps() {
 		return productDetailsMediaMaps;
 	}
 
-	public void setProductDetailsMediaMaps(List<ProductDetailsMediaMapModel> productDetailsMediaMaps) {
+	public void setProductDetailsMediaMaps(List<ProductDetailMediaMapModel> productDetailsMediaMaps) {
 		this.productDetailsMediaMaps = productDetailsMediaMaps;
 	}
 

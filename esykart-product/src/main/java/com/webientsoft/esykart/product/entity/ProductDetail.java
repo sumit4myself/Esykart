@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,8 +23,7 @@ import com.webientsoft.esykart.common.model.Status;
  * 
  */
 @Entity
-@Table(name = "product_details")
-@NamedQuery(name = "ProductDetail.findAll", query = "SELECT p FROM ProductDetail p")
+@Table(name = "product_detail")
 public class ProductDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -67,10 +65,10 @@ public class ProductDetail implements Serializable {
 	private Product product;
 
 	@OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
-	private List<ProductDetailsAttrValueMap> productDetailsAttrValueMaps;
+	private List<ProductDetailAttributeValueMap> productDetailAttrValueMaps;
 
 	@OneToMany(mappedBy = "productDetail")
-	private List<ProductDetailsMediaMap> productDetailsMediaMaps;
+	private List<ProductDetailMediaMap> productDetailMediaMaps;
 
 	@OneToMany(mappedBy = "productDetail")
 	private List<Sku> skus;
@@ -79,7 +77,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
@@ -87,7 +85,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
 	}
 
 	public void setDescription(String description) {
@@ -95,7 +93,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public String getDimensionUnitOfMeasure() {
-		return this.dimensionUnitOfMeasure;
+		return dimensionUnitOfMeasure;
 	}
 
 	public void setDimensionUnitOfMeasure(String dimensionUnitOfMeasure) {
@@ -103,7 +101,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public Float getHeight() {
-		return this.height;
+		return height;
 	}
 
 	public void setHeight(Float height) {
@@ -111,7 +109,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public String getIsDiscountable() {
-		return this.isDiscountable;
+		return isDiscountable;
 	}
 
 	public void setIsDiscountable(String isDiscountable) {
@@ -119,7 +117,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public String getIsFeaturedProduct() {
-		return this.isFeaturedProduct;
+		return isFeaturedProduct;
 	}
 
 	public void setIsFeaturedProduct(String isFeaturedProduct) {
@@ -127,7 +125,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public Float getLength() {
-		return this.length;
+		return length;
 	}
 
 	public void setLength(Float length) {
@@ -135,7 +133,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public String getLongDescription() {
-		return this.longDescription;
+		return longDescription;
 	}
 
 	public void setLongDescription(String longDescription) {
@@ -151,7 +149,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public Float getWeight() {
-		return this.weight;
+		return weight;
 	}
 
 	public void setWeight(Float weight) {
@@ -159,7 +157,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public String getWeightUnitOfMeasure() {
-		return this.weightUnitOfMeasure;
+		return weightUnitOfMeasure;
 	}
 
 	public void setWeightUnitOfMeasure(String weightUnitOfMeasure) {
@@ -167,7 +165,7 @@ public class ProductDetail implements Serializable {
 	}
 
 	public Float getWidth() {
-		return this.width;
+		return width;
 	}
 
 	public void setWidth(Float width) {
@@ -175,79 +173,35 @@ public class ProductDetail implements Serializable {
 	}
 
 	public Product getProduct() {
-		return this.product;
+		return product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
 	}
 
-	public List<ProductDetailsAttrValueMap> getProductDetailsAttrValueMaps() {
-		return this.productDetailsAttrValueMaps;
+	public List<ProductDetailAttributeValueMap> getProductDetailAttrValueMaps() {
+		return productDetailAttrValueMaps;
 	}
 
-	public void setProductDetailsAttrValueMaps(List<ProductDetailsAttrValueMap> productDetailsAttrValueMaps) {
-		this.productDetailsAttrValueMaps = productDetailsAttrValueMaps;
+	public void setProductDetailAttrValueMaps(List<ProductDetailAttributeValueMap> productDetailAttrValueMaps) {
+		this.productDetailAttrValueMaps = productDetailAttrValueMaps;
 	}
 
-	public ProductDetailsAttrValueMap addProductDetailsAttrValueMap(
-			ProductDetailsAttrValueMap productDetailsAttrValueMap) {
-		getProductDetailsAttrValueMaps().add(productDetailsAttrValueMap);
-		productDetailsAttrValueMap.setProductDetail(this);
-
-		return productDetailsAttrValueMap;
+	public List<ProductDetailMediaMap> getProductDetailMediaMaps() {
+		return productDetailMediaMaps;
 	}
 
-	public ProductDetailsAttrValueMap removeProductDetailsAttrValueMap(
-			ProductDetailsAttrValueMap productDetailsAttrValueMap) {
-		getProductDetailsAttrValueMaps().remove(productDetailsAttrValueMap);
-		productDetailsAttrValueMap.setProductDetail(null);
-
-		return productDetailsAttrValueMap;
-	}
-
-	public List<ProductDetailsMediaMap> getProductDetailsMediaMaps() {
-		return this.productDetailsMediaMaps;
-	}
-
-	public void setProductDetailsMediaMaps(List<ProductDetailsMediaMap> productDetailsMediaMaps) {
-		this.productDetailsMediaMaps = productDetailsMediaMaps;
-	}
-
-	public ProductDetailsMediaMap addProductDetailsMediaMap(ProductDetailsMediaMap productDetailsMediaMap) {
-		getProductDetailsMediaMaps().add(productDetailsMediaMap);
-		productDetailsMediaMap.setProductDetail(this);
-
-		return productDetailsMediaMap;
-	}
-
-	public ProductDetailsMediaMap removeProductDetailsMediaMap(ProductDetailsMediaMap productDetailsMediaMap) {
-		getProductDetailsMediaMaps().remove(productDetailsMediaMap);
-		productDetailsMediaMap.setProductDetail(null);
-
-		return productDetailsMediaMap;
+	public void setProductDetailMediaMaps(List<ProductDetailMediaMap> productDetailMediaMaps) {
+		this.productDetailMediaMaps = productDetailMediaMaps;
 	}
 
 	public List<Sku> getSkus() {
-		return this.skus;
+		return skus;
 	}
 
 	public void setSkus(List<Sku> skus) {
 		this.skus = skus;
-	}
-
-	public Sku addSkus(Sku skus) {
-		getSkus().add(skus);
-		skus.setProductDetail(this);
-
-		return skus;
-	}
-
-	public Sku removeSkus(Sku skus) {
-		getSkus().remove(skus);
-		skus.setProductDetail(null);
-
-		return skus;
 	}
 
 }

@@ -1,12 +1,14 @@
 package com.webientsoft.esykart.common.model.product;
 
-public class CategoryAttrValueModel {
+public class CategoryAttributeValueModel {
 
 	private Integer id;
 
 	private String label;
 
 	private String value;
+
+	private Integer availableProducts;
 
 	public Integer getId() {
 		return id;
@@ -30,6 +32,14 @@ public class CategoryAttrValueModel {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public Integer getAvailableProducts() {
+		return availableProducts;
+	}
+
+	public void setAvailableProducts(Integer availableProducts) {
+		this.availableProducts = availableProducts;
 	}
 
 }

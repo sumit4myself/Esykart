@@ -1,5 +1,5 @@
 package com.webientsoft.esykart.common.model.product;
 
-public class ProductDetailsAttrValueMapModel {
+public class ProductDetailAttrValueMapModel {
 
 }
