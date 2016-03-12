@@ -4,8 +4,8 @@
 .DS_Store
 .settings
 .esykartBeans
-bin
-build.sh
+**\bin
+**\build.sh
 integration-repo
 ivy-cache
 jxl.log
@@ -14,15 +14,12 @@ derby.log
 esykart-test/test-output/
 .gradle
 argfile*
-pom.xml
-activemq-data/
-
-/build
-buildSrc/build
+**/build
+**/buildSrc/build
 /esykart-*/build
 /src/asciidoc/build
 target/
-
+*.log
 # Eclipse artifacts, including WTP generated manifests
 .classpath
 .project
