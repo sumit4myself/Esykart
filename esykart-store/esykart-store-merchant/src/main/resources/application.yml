@@ -35,12 +35,4 @@ zuul:
   ignored-services: '*'
   routes:
     api-gateway: /api/**
-
-       
     
-      
-   
- 
-     
-    
-  

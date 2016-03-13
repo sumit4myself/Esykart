@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" ng-app="altairApp" 
-document-events="" ng-click="onClick($event)" ng-keyup="onKeyUp($event)"
- ng-class="{ 'page_loading': pageLoading, 'page_loaded': pageLoaded, 'app_initialized': appInitialized && (!$state.is('login') && !$state.includes('error'))}">
-<head lang="en">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<html html xmlns:th="http://www.thymeleaf.org" lang="en"
+	ng-app="altairApp" document-events ng-click="onClick($event)"
+	ng-keyup="onKeyUp($event)"
+	ng-class="{ 'page_loading': pageLoading, 'page_loaded': pageLoaded, 'app_initialized': appInitialized && (!$state.is('login') && !$state.includes('error'))}">
+<head>
 <meta charset="UTF-8">
-<title page-title="" ng-bind="page_title"></title>
+<title page-title ng-bind="page_title"></title>
 <meta name="viewport"
 	content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,7 @@ document-events="" ng-click="onClick($event)" ng-keyup="onKeyUp($event)"
 	href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic&subset=latin'
 	rel='stylesheet' media="all">
 <link
-	href="/http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700"
+	href="http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700"
 	rel="stylesheet" media="all">
 
 <!-- JS -->
@@ -63,7 +63,7 @@ document-events="" ng-click="onClick($event)" ng-keyup="onKeyUp($event)"
 <script src="resources/app/app.states.js"></script>
 <script src="resources/app/app.controller.js"></script>
 <script src="resources/app/app.oc_lazy_load.js"></script>
-
+<script src="resources/app/app.oc_lazy_load.js"></script>
 
 <!-- main stylesheet -->
 <link rel="stylesheet" href="resources/assets/css/main.min.css" media="all"
@@ -95,7 +95,7 @@ document-events="" ng-click="onClick($event)" ng-keyup="onKeyUp($event)"
 	<div ui-view="main_header"></div>
 	<div ui-view id="main_view"
 		ng-class="{'uk-height-1-1': page_full_height }">
-		<h1>WebientSoft EsyKart Powered By Spring Cloud</h1>
+		<h1>EsyCart Merchant Store</h1>
 	</div>
 	<div ui-view="main_sidebar" ng-hide="topMenuActive"></div>
 
