@@ -141,7 +141,9 @@ project(':esykart-store') {
 	description = 'Esykart Store'
 	subprojects{
 		 dependencies {
-		    compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
+		    compile 'com.hazelcast:hazelcast:3.6.1'
+		    compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
+		    compile 'org.springframework.session:spring-session:1.1.0.RELEASE'
 		    compile 'org.springframework.cloud:spring-cloud-starter-zuul:1.0.6.RELEASE'
 		    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.3.3.RELEASE'
 		  }
