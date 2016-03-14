@@ -3,8 +3,8 @@
         <div class="md-card uk-margin-large-bottom">
             <div class="md-card-content">
                 <form id="role_form" class="uk-form-stacked" >
-                    <wizard on-finish="saveRole()" template="resources/app/templates/wizard.tpl.html">
-                        <wz-step wz-title="Role details" template="resources/app/templates/wizard.step.tpl.html" canexit="validateRoleDetails">
+                    <wizard on-finish="saveRole()" template="app/templates/wizard.tpl.html">
+                        <wz-step wz-title="Role details" template="app/templates/wizard.step.tpl.html" canexit="validateRoleDetails">
                             <h2 class="heading_a">  Role details
                                 <span class="sub-heading">Enter user role details. </span>
                             </h2>
@@ -36,7 +36,7 @@
                             </div>
                         </wz-step>
                        
-                        <wz-step wz-title="Assign permission" template="resources/app/templates/wizard.step.tpl.html">
+                        <wz-step wz-title="Assign permission" template="app/templates/wizard.step.tpl.html">
                             <h2 class="heading_a">
                                 Permission
                                 <span class="sub-heading">Assign permission to role.</span>

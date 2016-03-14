@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html
 html xmlns:th="http://www.thymeleaf.org" lang="en"
-ng-app="altairApp" document-events ng-click="onClick($event)" ng-keyup="onKeyUp($event)" ng-class="{ 'page_loading': pageLoading, 'page_loaded': pageLoaded, 'app_initialized': appInitialized && (!$state.is('login') && !$state.includes('error'))}">
+ng-app="altairApp" document-events 
+ng-click="onClick($event)" 
+ng-keyup="onKeyUp($event)" 
+ng-class="{ 'page_loading': pageLoading, 'page_loaded': pageLoaded, 'app_initialized': appInitialized && (!$state.is('login') && !$state.includes('error'))}">
+
 <head>
     <meta charset="UTF-8">
     <title page-title ng-bind="page_title"></title>
@@ -73,6 +77,7 @@ ng-app="altairApp" document-events ng-click="onClick($event)" ng-keyup="onKeyUp(
     'uk-height-1-1': page_full_height,
     'footer_active': footerActive,
 }" content-sidebar>
+    
     <div id="page_preloader" ng-hide="hidePreloader"><img src="assets/img/page_preloader.gif" alt=""/></div>
 
     <div ui-view="main_header"></div>
