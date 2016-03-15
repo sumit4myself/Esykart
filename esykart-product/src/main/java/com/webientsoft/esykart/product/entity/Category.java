@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -40,33 +41,38 @@ public class Category implements Serializable {
 	@Column(name = "active_start_date")
 	private Date activeStartDate;
 
-	
-	
-//	Category banner to be displayed while displaying product catalogue. 
+	// Category banner to be displayed while displaying product catalogue.
 	@Column(name = "banner_id")
 	private Integer bannerId;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "fulfillment_type")
-	private String fulfillmentType;
+	private FulfillmentType fulfillmentType;
 
 	@Column(name = "image_url")
 	private String imageUrl;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "inventory_type")
-	private String inventoryType;
+	private InventoryType inventoryType;
 
 	@Column(length = 1)
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	
-//	Template to be used while displaying product catalogue. Eg. Electronics, Mobile,Cloth and soon.
+
+	// Template to be used while displaying product catalogue. Eg. Electronics,
+	// Mobile,Cloth and soon.
 	private String template;
 
 	private String url;
 
-	@JoinColumn(name = "parent_id")
-	@OneToMany
+	
+	@OneToMany(mappedBy = "parentCategory")
 	private List<Category> categories;
+	
+	@JoinColumn(name = "parent_id")
+	@ManyToOne()
+	private Category parentCategory;
 
 	@ManyToMany(mappedBy = "categories")
 	private List<CategoryAttribute> categoryAttributes;
@@ -133,14 +139,6 @@ public class Category implements Serializable {
 		this.bannerId = bannerId;
 	}
 
-	public String getFulfillmentType() {
-		return fulfillmentType;
-	}
-
-	public void setFulfillmentType(String fulfillmentType) {
-		this.fulfillmentType = fulfillmentType;
-	}
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -149,11 +147,19 @@ public class Category implements Serializable {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getInventoryType() {
+	public FulfillmentType getFulfillmentType() {
+		return fulfillmentType;
+	}
+
+	public void setFulfillmentType(FulfillmentType fulfillmentType) {
+		this.fulfillmentType = fulfillmentType;
+	}
+
+	public InventoryType getInventoryType() {
 		return inventoryType;
 	}
 
-	public void setInventoryType(String inventoryType) {
+	public void setInventoryType(InventoryType inventoryType) {
 		this.inventoryType = inventoryType;
 	}
 

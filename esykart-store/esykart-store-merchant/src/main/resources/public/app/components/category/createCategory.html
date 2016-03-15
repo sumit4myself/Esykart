@@ -1,10 +1,133 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div id="page_content">
+    <div id="page_content_inner">
 
-</body>
-</html>
+        <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">Category Details</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-2">
+                        <label>Name</label>
+                        <input type="text" class="md-input" md-input ng-model="category.name" />
+                    </div>
+                     <div class="uk-width-medium-1-2">
+                        <input type="text" selectize config="parent_category.config" options="parent_category.options" ng-model="category.parentCategory.id" ng-change="onParentCategorySelect()"  />
+                    </div>
+                </div>
+                
+                 <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                        <div class="uk-form-row">
+                            <label>Description</label>
+                            <textarea ui-tinymce="tinymce_options" cols="30" rows="15" ng-model="category.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+         <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">Activation Period</h3>
+                    <div class="uk-grid" data-uk-grid-margin>
+
+		            <div class="uk-width-medium-1-2">
+		                <div class="md-card">
+		                    <div class="md-card-content">
+		                        <h3 class="heading_a">Start Date</h3>
+		                        <div class="uk-grid">
+		                            <div class="uk-width-medium-1-2">
+		                                <div class="uk-input-group">
+		                                    <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+				                            <label for="uk_dp_1">Select date</label>
+				                            <input class="md-input" type="text" id="uk_dp_1" data-uk-datepicker="{format:'DD/MM/YYYY'}" md-input ng-model="forms_advanced.datepicker">
+		                                </div>
+		                            </div>
+		                             <div class=" uk-width-medium-1-2">
+		                                <div class="uk-input-group">
+		                                    <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-clock-o"></i></span>
+		                                    <label for="uk_tp_1">Select time</label>
+		                                    <input class="md-input" type="text" id="uk_tp_1" data-uk-timepicker md-input ng-model="forms_advanced.timepicker">
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            
+		            
+		            
+		            <div class="uk-width-medium-1-2">
+		                <div class="md-card">
+		                    <div class="md-card-content">
+		                        <h3 class="heading_a">End Date</h3>
+		                        <div class="uk-grid">
+		                            <div class="uk-width-medium-1-2">
+		                                <div class="uk-input-group">
+		                                    <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+				                            <label for="uk_dp_1">Select date</label>
+				                            <input class="md-input" type="text" id="uk_dp_1" data-uk-datepicker="{format:'DD/MM/YYYY'}" md-input ng-model="forms_advanced.datepicker">
+		                                </div>
+		                            </div>
+		                             <div class=" uk-width-medium-1-2">
+		                                <div class="uk-input-group">
+		                                    <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-clock-o"></i></span>
+		                                    <label for="uk_tp_1">Select time</label>
+		                                    <input class="md-input" type="text" id="uk_tp_1" data-uk-timepicker md-input ng-model="forms_advanced.timepicker">
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+            </div>
+        </div>
+        
+          <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">Inventory Configuration</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-2">
+                        <input type="text" config="inventory_type.config" options="inventory_type.options" ng-model="category.inventoryType" name="category.inventoryType" selectize />
+                    </div>
+                     <div class="uk-width-medium-1-2">
+                        <input type="text" config="fulfillment_type.config" options="fulfillment_type.options" ng-model="category.fulfillmentType" name="category.fulfillmentType" selectize />
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+       
+       
+        <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">Attribute Mapping</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                         <selectize config="attribute.config" options="attribute.options" position="bottom" ng-model="category.fulfillmentType"></selectize>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+       
+        
+        
+         <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">UI Configuration</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-2">
+                        <label>Template</label>
+                        <input type="text" class="md-input"  md-input ng-model="category.template" />
+                    </div>
+                     <div class="uk-width-medium-1-2">
+                        <input type="text" config="banner.config" options="banner.options" ng-model="category.bannerId" name="category.bannerId" selectize />
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>

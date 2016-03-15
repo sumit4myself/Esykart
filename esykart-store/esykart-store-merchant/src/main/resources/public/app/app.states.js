@@ -177,12 +177,13 @@ altairApp
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['app/components/category/js/categoryController.js',
+                            return $ocLazyLoad.load(['lazy_parsleyjs',
+                                                     'app/components/category/js/categoryController.js',
                                                      'app/components/category/js/categoryService.js']);
                         }]
                     }, 
                     ncyBreadcrumb: {
-                        label: 'User'
+                        label: 'Category'
                     } ,
                     abstract: true
                 })
@@ -193,6 +194,13 @@ altairApp
                     data: {
                         pageTitle: 'Add Category'
                     },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_tinymce',
+                                                     'app/components/category/js/categoryModel.js'
+                                                     ]);
+                        }]
+                    }, 
                     ncyBreadcrumb: {
                         label: 'Add'
                     } 

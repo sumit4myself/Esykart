@@ -12,8 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.webientsoft.esykart.common.model.Status;
@@ -61,7 +61,7 @@ public class ProductDetail implements Serializable {
 	private Float width;
 
 	@JoinColumn(name = "product_id")
-	@OneToOne
+	@ManyToOne
 	private Product product;
 
 	@OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)

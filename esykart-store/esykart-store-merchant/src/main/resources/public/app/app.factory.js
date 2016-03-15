@@ -21,6 +21,16 @@ altairApp
     })
     .factory('utils', function () {
         return {
+        	
+        	handleSuccess : function (response) {
+                return response.data;
+            },
+            handleError : function (error) {
+                return function () {
+                    return { success: false, message: error };
+                };
+            },
+        	
             // Util for finding an object by its 'id' property among an array
             findByItemId: function findById(a, id) {
                 for (var i = 0; i < a.length; i++) {
