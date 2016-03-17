@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div id="page_content">
+    <div id="page_content_inner">
 
-</body>
-</html>
+        <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">General Details</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-4">
+                        <label>Name</label>
+                        <input type="text" class="md-input" md-input ng-model="category.name" />
+                    </div>
+                     <div class="uk-width-medium-1-4">
+                        <label>Model</label>
+                        <input type="text" class="md-input" md-input ng-model="category.model" />
+                    </div>
+                    
+                     <div class="uk-width-medium-1-4">
+                        <input type="text" selectize config="category.config" options="category.options" ng-model="product.category.id" ng-change="onCategoryChange()"  />
+                    </div>
+                    
+                      <div class="uk-width-medium-1-4">
+                        <input type="text" selectize config="category.brand" options="brand.options" ng-model="category.brandId"   />
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                        <div class="uk-form-row">
+                            <label>Description</label>
+                            <textarea ui-tinymce="tinymce_options" cols="30" rows="15" ng-model="category.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+        
+        
+          <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">Product Option</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-2">
+                        <input type="text" config="inventory_type.config" options="inventory_type.options" ng-model="category.inventoryType" name="category.inventoryType" selectize />
+                    </div>
+                     <div class="uk-width-medium-1-2">
+                        <input type="text" config="fulfillment_type.config" options="fulfillment_type.options" ng-model="category.fulfillmentType" name="category.fulfillmentType" selectize />
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+       
+       
+        <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">Shipping</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-1">
+                         <selectize config="attribute.config" options="attribute.options" position="bottom" ng-model="category.fulfillmentType"></selectize>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+       
+        
+        
+         <div class="md-card">
+            <div class="md-card-content">
+                <h3 class="heading_a">UI Configuration</h3>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-2">
+                        <label>Template</label>
+                        <input type="text" class="md-input"  md-input ng-model="category.template" />
+                    </div>
+                     <div class="uk-width-medium-1-2">
+                        <input type="text" config="banner.config" options="banner.options" ng-model="category.bannerId" name="category.bannerId" selectize />
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>

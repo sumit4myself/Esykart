@@ -236,11 +236,11 @@ angular
                     submenu: [
                               {
                                   title: 'Add',
-                                  link: 'restricted.product.catalogue.add',
+                                  link: 'restricted.product.add',
                               },
                               {
                                   title: 'Manage',
-                                  link: 'restricted.product.catalogue.manage',
+                                  link: 'restricted.product.manage',
                            }]
                 },
                 {

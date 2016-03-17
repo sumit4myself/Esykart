@@ -40,15 +40,6 @@ altairApp
                 
                 
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
                   // -- user --
                 .state("restricted.user", {
                     url: "/user",
@@ -132,7 +123,7 @@ altairApp
                 
                 
                  // -- product  Catalogue --
-                .state("restricted.product.catalogue", {
+                .state("restricted.product", {
                     url: "/product",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
@@ -146,13 +137,17 @@ altairApp
                     } ,
                     abstract: true
                 })
-                .state("restricted.product.catalogue.add", {
+                
+                .state("restricted.product.add", {
                     url: "/add",
-                    templateUrl: 'app/components/productCalalogue/createProductCalalogue.html',
-                    controller: 'AddProductCalalogueController',
+                    templateUrl: 'app/components/productCatalogue/createProductCatalogue.html',
+                    controller: 'AddProductCatalogueController',
                     resolve: {
 	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['app/components/productCatalogue/js/productCatalogueModel.js'],{serie:true});
+	                    	return $ocLazyLoad.load(['app/components/productCatalogue/js/productCatalogueModel.js',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce'
+	                    	                         ],{serie:true});
 	                    }]
                     },
                     data: {
@@ -162,13 +157,18 @@ altairApp
                         label: 'Add'
                     } 
                 })
-                .state("restricted.product.catalogue.manage", {
+                .state("restricted.product.manage", {
                     url: "/manage",
-                    templateUrl: 'app/components/productCalalogue/manageProductCatalogue.html',
-                    controller: 'ManageProductCalalogueController',
+                    templateUrl: 'app/components/productCatalogue/manageProductCatalogue.html',
+                    controller: 'ManageProductCatalogueController',
                     data: {
                         pageTitle: 'Manage Product'
-                    }
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
                 })
                 
                  // -- category --
@@ -197,6 +197,9 @@ altairApp
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load(['lazy_tinymce',
+                                                     'app/components/common/js/fulfillmentService.js',
+                                                     'app/components/common/js/inventoryService.js',
+                                                     'app/components/store/banner/js/bannerService.js',
                                                      'app/components/category/js/categoryModel.js'
                                                      ]);
                         }]
@@ -209,13 +212,15 @@ altairApp
                     url: "/manage",
                     templateUrl: 'app/components/category/manageCategory.html',
                     controller: 'ManageCategoryController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables','lazy_iCheck']);
+                        }]
+                    }, 
                     data: {
                         pageTitle: 'Manage Category'
                     }
                 })
-                
-                
-                
                 
                 
                   // -- customer --

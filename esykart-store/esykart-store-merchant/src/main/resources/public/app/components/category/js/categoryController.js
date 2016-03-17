@@ -1,8 +1,8 @@
 angular.module('altairApp')
 .controller(
 		'AddCategoryController',
-		[ '$scope', '$rootScope', 'utils', 'CategoryService',
-		function($scope, $rootScope, utils, CategoryService) {
+		[ '$scope', '$rootScope', 'utils', 'CategoryService','BannerService','InventoryService','FulfillmentService',
+		function($scope, $rootScope, utils, CategoryService,BannerService,InventoryService,FulfillmentService) {
 			$scope.category = new Category();
 			
 			
@@ -16,12 +16,8 @@ angular.module('altairApp')
 			
 //			UI Configuration
 			$scope.parent_category = {
-					options: [ {
-                        id: 1,
-                        name: "Item A1",
-                        value: "a1",
-                    }],
-	                config : {
+				options: [],
+				config : {
 		                create: false,
 		                maxItems: 1,
 		                placeholder: 'Parent Category',
@@ -32,78 +28,31 @@ angular.module('altairApp')
             }
 			
 			$scope.inventory_type = {
-					options: [ 
-		           {
-                        id: 1,
-                        name: "Always Available",
-                        value: "ALWAYS_AVAILABLE",
-                    },
-                    {
-                        id: 2,
-                        name: "Check Quantity",
-                        value: "CHECK_QUANTITY",
-                    },
-                    {
-                        id: 3,
-                        name: "Unavailable",
-                        value: "UNAVAILABLE",
-                    },
-                    
-                    
-                    ],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Select Inventory Type',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
+				options: [],
+                config : {
+	                create: false,
+	                maxItems: 1,
+	                placeholder: 'Select Inventory Type',
+	                valueField: 'id',
+	                labelField: 'name',
+	                searchField: 'name'
+	            }
             }
 			
 			$scope.fulfillment_type = {
-				options: [ 
-		           {
-                        id: 1,
-                        name: "Digital",
-                        value: "DIGITAL",
-                    },
-                    {
-                        id: 2,
-                        name: "Gift Card",
-                        value: "GIFT_CARD",
-                    },
-                    {
-                        id: 3,
-                        name: "Physical Pickup",
-                        value: "PHYSICAL_PICKUP",
-                    },
-                    {
-                        id: 4,
-                        name: "Physical Pickup or Ship",
-                        value: "PHYSICAL_PICKUP_OR_SHIP",
-                    },
-                    {
-                        id: 5,
-                        name: "Physical Ship",
-                        value: "PHYSICAL_SHIP",
-                    }],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Select Fulfillment Type',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
+				options: [],
+			    config : {
+	                create: false,
+	                maxItems: 1,
+	                placeholder: 'Select Fulfillment Type',
+	                valueField: 'id',
+	                labelField: 'name',
+	                searchField: 'name'
+	            }
             }
 			
 			$scope.attribute = {
-					options: [ {
-                        id: 1,
-                        name: "Item A1",
-                        value: "a1",
-                    }],
+					options: [],
 	                config : {
 	                	 plugins: {
 	                         'remove_button': {
@@ -120,11 +69,7 @@ angular.module('altairApp')
             }
 			
 			$scope.banner = {
-					options: [ {
-                        id: 1,
-                        name: "Item A1",
-                        value: "a1",
-                    }],
+					options: [],
 	                config : {
 	                	 plugins: {
 	                         'remove_button': {
@@ -140,6 +85,9 @@ angular.module('altairApp')
 		            }
             }
 			
+			
+			
+			
 			$scope.tinymce_options = {
 	                skin_url: 'assets/skins/tinymce/material_design',
 	                plugins: [
@@ -149,6 +97,18 @@ angular.module('altairApp')
 	                ],
 	                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
             }
+			
+			BannerService.findAll().then(function(response){
+				 if (!response.success) {
+	                	UIkit.notify({
+	                        message: response.message,
+	                        status: 'danger',
+	                        pos: 'top-right',
+	                	});
+	                } else {
+	                	$scope.parent_category.options = response;
+	                }
+			});
 			
 			CategoryService.findAll().then(function (response) {
                 if (!response.success) {
@@ -161,6 +121,14 @@ angular.module('altairApp')
                 	$scope.parent_category.options = response;
                 }
             });
+			
+			FulfillmentService.findAll().then(function (response) {
+            	$scope.fulfillment_type.options = response;
+            });
+			InventoryService.findAll().then(function (response) {
+            	$scope.inventory_type.options = response;
+            });
+			
 		} ])
 
 .controller(
@@ -173,3 +141,41 @@ angular.module('altairApp')
 			
 			
 		} ])
+.controller('ManageCategoryTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
+            var vm = this;
+            vm.dt_data = [];
+            vm.dtOptions = DTOptionsBuilder
+                .fromSource('data/dt_data.json')
+                .withOption('initComplete', function() {
+                    $timeout(function() {
+                        $compile($('.dt-uikit .md-input'))($scope);
+                    })
+                })
+	            .withOption('bProcessing',  false)
+	            .withOption('bServerSide',  false)
+	            .withOption( "aLengthMenu" , [ [ 5, 10, 25, 50, 100 ],[ 5, 10, 25, 50, 100 ] ])
+	            .withOption('fnDrawCallback',  function( oSettings ) {
+	            	 $timeout(function() {
+//	                        $compile($('.md-input'))($scope);
+                    })
+	            })
+	            .withDisplayLength(5)	           
+	            
+            vm.dtColumnDefs = [
+                   DTColumnDefBuilder.newColumnDef(0).withTitle('Name'),
+                   DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
+                   DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
+                   DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
+                   DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
+                   DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
+                   .renderWith(function(data){
+                	   var html = '';
+                	   	html += '<a href="#"> <i class="md-icon material-icons md-color-blue-grey-500">&#xE254;</i></a>';
+                	   	html += ' <a href="#"><i class="md-icon material-icons md-color-blue-500">&#xE88F;</i></a>';
+                	   	html += ' <a href="#"><i class="md-icon material-icons md-color-red-500">&#xE872;</i></a>';
+                		html += ' <a href="#"><i class="md-icon material-icons md-color-green-500">&#xE86C;</i></a>';
+                	   	html += ' <a href="#"><i class="md-icon material-icons md-color-purple-500">&#xE14B;</i></a>';	
+            		   return html;
+                  })
+            ];
+        });

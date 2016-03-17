@@ -1,8 +1,8 @@
 angular.module('altairApp')
 .controller(
-		'AddStoreController',
-		[ '$scope', '$rootScope', 'utils', 'StoreService',
-		function($scope, $rootScope, utils, StoreService) {
+		'AddBannerController',
+		[ '$scope', '$rootScope', 'utils', 'BannerService',
+		function($scope, $rootScope, utils, BannerService) {
 
 			
 			
@@ -11,9 +11,9 @@ angular.module('altairApp')
 		} ])
 
 .controller(
-		'ManageStoreController',
-		[ '$scope', '$rootScope', 'utils', 'StoreService',
-		function($scope, $rootScope, utils, StoreService) {
+		'ManageBannerController',
+		[ '$scope', '$rootScope', 'utils', 'BannerService',
+		function($scope, $rootScope, utils, BannerService) {
 
 			
 			

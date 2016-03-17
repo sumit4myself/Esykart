@@ -52,7 +52,7 @@ function ProductDetail(){
 		this.productDetailsAttrValueMaps.push(attr);
 	};
 	
-	this.addMedia  = function(mapKey;url){
+	this.addMedia  = function(mapKey,url){
 		var media = new Object();
 		media.mapKey = mapKey;
 		media.url = url;
