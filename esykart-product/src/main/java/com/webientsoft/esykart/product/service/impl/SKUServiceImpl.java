@@ -48,7 +48,7 @@ public class SKUServiceImpl implements SKUService {
 	@Override
 	public PaginatedDataModel search(FilterModel model) {
 		PaginatedDataModel dataModel = new PaginatedDataModel();
-		if (model.isHasCount()) {
+		if (model.isCountCached()) {
 			// TODO include count
 			int totalCount = 0;
 			int filteredCount = 0;

@@ -52,7 +52,7 @@ public class ProductCatalogueServiceImpl implements ProductCatalogueService {
 		PaginatedDataModel dataModel = new PaginatedDataModel();
 		StringBuilder queryBuilder = new StringBuilder();
 		Map<String, Object> params = new HashMap<>();
-		if (model.isHasCount()) {
+		if (model.isCountCached()) {
 			int totalCount = 0;
 			int filteredCount = 0;
 

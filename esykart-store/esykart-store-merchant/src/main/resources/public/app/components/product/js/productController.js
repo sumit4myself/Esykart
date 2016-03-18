@@ -1,12 +1,7 @@
 angular.module('altairApp')
-.controller(
-		'AddProductCatalogueController',
-		[ '$scope', '$rootScope', 'utils', 'ProductCatalogueService',
-		function($scope, $rootScope, utils, ProductCatalogueService) {
-			
-			
-			
-			
+.controller('AddProductController',
+		['$scope', '$rootScope', 'utils', 'ProductService', 'CategoryService','InventoryService','FulfillmentService',
+		function($scope, $rootScope, utils, ProductService,  CategoryService,   InventoryService,  FulfillmentService) {
 			
 			
 			
@@ -65,6 +60,49 @@ angular.module('altairApp')
 		            }
             }
 			
+			$scope.inventory_type = {
+					options: [],
+	                config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Select Inventory Type',
+		                valueField: 'id',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+	            }
+				
+			$scope.fulfillment_type = {
+					options: [],
+				    config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Select Fulfillment Type',
+		                valueField: 'id',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+            }
+		
+			CategoryService.findAll().then(function (response) {
+                if (!response.success) {
+                	UIkit.notify({
+                        message: response.message,
+                        status: 'danger',
+                        pos: 'top-right',
+                	});
+                } else {
+                	$scope.category.options = response;
+                }
+            });
+			
+			FulfillmentService.findAll().then(function (response) {
+            	$scope.fulfillment_type.options = response;
+            });
+			InventoryService.findAll().then(function (response) {
+            	$scope.inventory_type.options = response;
+            });
+			
 			$scope.tinymce_options = {
 	                skin_url: 'assets/skins/tinymce/material_design',
 	                plugins: [
@@ -74,14 +112,20 @@ angular.module('altairApp')
 	                ],
 	                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
             }
+			
+			 // masked inputs
+            var $maskedInput = $('.masked_input');
+            if($maskedInput.length) {
+                $maskedInput.inputmask();
+            }
 		
 		
 		} ])
 
 .controller(
-		'ManageProductCatalogueController',
-		[ '$scope', '$rootScope', 'utils', 'ProductCatalogueService',
-		function($scope, $rootScope, utils, ProductCatalogueService) {
+		'ManageProductController',
+		[ '$scope', '$rootScope', 'utils', 'ProductService',
+		function($scope, $rootScope, utils, ProductService) {
 
 			
 			

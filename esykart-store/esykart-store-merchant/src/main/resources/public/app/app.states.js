@@ -122,14 +122,14 @@ altairApp
                 
                 
                 
-                 // -- product  Catalogue --
+                 // -- product   --
                 .state("restricted.product", {
                     url: "/product",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['app/components/productCatalogue/js/productCatalogueController.js',
-                                                     'app/components/productCatalogue/js/productCatalogueService.js']);
+                            return $ocLazyLoad.load(['app/components/product/js/productController.js',
+                                                     'app/components/product/js/productService.js']);
                         }]
                     }, 
                     ncyBreadcrumb: {
@@ -140,13 +140,17 @@ altairApp
                 
                 .state("restricted.product.add", {
                     url: "/add",
-                    templateUrl: 'app/components/productCatalogue/createProductCatalogue.html',
-                    controller: 'AddProductCatalogueController',
+                    templateUrl: 'app/components/product/createProduct.html',
+                    controller: 'AddProductController',
                     resolve: {
 	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['app/components/productCatalogue/js/productCatalogueModel.js',
+	                    	return $ocLazyLoad.load(['app/components/product/js/productModel.js',
+	                    	                         'app/components/common/js/fulfillmentService.js',
+                                                     'app/components/common/js/inventoryService.js',
+                                                     'app/components/category/js/categoryService.js',
 	                    	                         'lazy_wizard',
-	                    	                         'lazy_tinymce'
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs'
 	                    	                         ],{serie:true});
 	                    }]
                     },
@@ -159,8 +163,8 @@ altairApp
                 })
                 .state("restricted.product.manage", {
                     url: "/manage",
-                    templateUrl: 'app/components/productCatalogue/manageProductCatalogue.html',
-                    controller: 'ManageProductCatalogueController',
+                    templateUrl: 'app/components/product/manageProduct.html',
+                    controller: 'ManageProductController',
                     data: {
                         pageTitle: 'Manage Product'
                     },

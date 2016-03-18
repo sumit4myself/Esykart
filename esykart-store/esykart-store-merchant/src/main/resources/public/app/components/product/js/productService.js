@@ -1,6 +1,6 @@
 ﻿angular.module('altairApp')
 .constant('url', 'rest/user/')
-.service('ProductCatalogueService',
+.service('ProductService',
 		['$http','utils','url',
 		function($http, utils, url) {
 	

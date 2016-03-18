@@ -7,8 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,14 +24,10 @@ public class ProductDetailAttributeValueMap implements Serializable {
 
 	private String lable;
 
-	@Enumerated
-	private AttributeType type;
-
 	private String value;
 
-	@ManyToOne
-	@JoinColumn(name = "product_detail_id")
-	private ProductDetail productDetail;
+	@Enumerated
+	private AttributeType type;
 
 	public Integer getId() {
 		return id;
@@ -66,13 +60,4 @@ public class ProductDetailAttributeValueMap implements Serializable {
 	public void setValue(String value) {
 		this.value = value;
 	}
-
-	public ProductDetail getProductDetail() {
-		return productDetail;
-	}
-
-	public void setProductDetail(ProductDetail productDetail) {
-		this.productDetail = productDetail;
-	}
-
 }

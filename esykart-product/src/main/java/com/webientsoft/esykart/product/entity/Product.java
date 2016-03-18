@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -24,23 +27,47 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "is_taxable")
-	private String isTaxable;
-
 	private String manufacture;
 
 	private String model;
 
 	private String name;
 
-	@Column(name = "tax_code")
-	private String taxCode;
+	@Column(name = "is_taxable")
+	private boolean isTaxable;
+
+	@Column(name = "tax_detail_id")
+	private Integer taxDetailId;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "fulfillment_type")
+	private FulfillmentType fulfillmentType;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "inventory_type")
+	private InventoryType inventoryType;
 
 	@ManyToOne
 	private Category category;
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private List<ProductDetail> details;
+	
+	@JoinColumn(name = "product_id")
+	@OneToMany()
+	private List<ProductMediaMap> productMediaMaps;
+
+	public Product() {
+		super();
+	}
+
+	public Product(Integer id) {
+		super();
+		this.id = id;
+	}
 
 	public Integer getId() {
 		return id;
@@ -48,14 +75,6 @@ public class Product implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getIsTaxable() {
-		return isTaxable;
-	}
-
-	public void setIsTaxable(String isTaxable) {
-		this.isTaxable = isTaxable;
 	}
 
 	public String getManufacture() {
@@ -82,12 +101,44 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public String getTaxCode() {
-		return taxCode;
+	public boolean isTaxable() {
+		return isTaxable;
 	}
 
-	public void setTaxCode(String taxCode) {
-		this.taxCode = taxCode;
+	public void setTaxable(boolean isTaxable) {
+		this.isTaxable = isTaxable;
+	}
+
+	public Integer getTaxDetailId() {
+		return taxDetailId;
+	}
+
+	public void setTaxDetailId(Integer taxDetailId) {
+		this.taxDetailId = taxDetailId;
+	}
+
+	public FulfillmentType getFulfillmentType() {
+		return fulfillmentType;
+	}
+
+	public void setFulfillmentType(FulfillmentType fulfillmentType) {
+		this.fulfillmentType = fulfillmentType;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public InventoryType getInventoryType() {
+		return inventoryType;
+	}
+
+	public void setInventoryType(InventoryType inventoryType) {
+		this.inventoryType = inventoryType;
 	}
 
 	public Category getCategory() {
@@ -106,4 +157,11 @@ public class Product implements Serializable {
 		this.details = details;
 	}
 
+	public List<ProductMediaMap> getProductMediaMaps() {
+		return productMediaMaps;
+	}
+
+	public void setProductMediaMaps(List<ProductMediaMap> productMediaMaps) {
+		this.productMediaMaps = productMediaMaps;
+	}
 }

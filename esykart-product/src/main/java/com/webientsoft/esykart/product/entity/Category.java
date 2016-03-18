@@ -30,10 +30,13 @@ public class Category implements Serializable {
 
 	private String name;
 
-	@Column(name = "long_description")
-	private String longDescription;
-
 	private String description;
+	
+	@Column(name = "is_taxable")
+	private boolean isTaxable;
+	
+	@Column(name = "tax_detail_id")
+	private Integer taxDetailId;
 
 	@Column(name = "active_end_date")
 	private Date activeEndDate;
@@ -45,12 +48,12 @@ public class Category implements Serializable {
 	@Column(name = "banner_id")
 	private Integer bannerId;
 
+	@Column(name = "icon_id")
+	private Integer iconId;
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "fulfillment_type")
 	private FulfillmentType fulfillmentType;
-
-	@Column(name = "image_url")
-	private String imageUrl;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "inventory_type")
@@ -66,10 +69,9 @@ public class Category implements Serializable {
 
 	private String url;
 
-	
 	@OneToMany(mappedBy = "parentCategory")
 	private List<Category> categories;
-	
+
 	@JoinColumn(name = "parent_id")
 	@ManyToOne()
 	private Category parentCategory;
@@ -81,6 +83,11 @@ public class Category implements Serializable {
 	private List<Product> products;
 
 	public Category() {
+	}
+
+	public Category(Integer id) {
+		super();
+		this.id = id;
 	}
 
 	public Integer getId() {
@@ -97,14 +104,6 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getLongDescription() {
-		return longDescription;
-	}
-
-	public void setLongDescription(String longDescription) {
-		this.longDescription = longDescription;
 	}
 
 	public String getDescription() {
@@ -139,12 +138,12 @@ public class Category implements Serializable {
 		this.bannerId = bannerId;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public Integer getIconId() {
+		return iconId;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setIconId(Integer iconId) {
+		this.iconId = iconId;
 	}
 
 	public FulfillmentType getFulfillmentType() {
@@ -195,6 +194,14 @@ public class Category implements Serializable {
 		this.categories = categories;
 	}
 
+	public Category getParentCategory() {
+		return parentCategory;
+	}
+
+	public void setParentCategory(Category parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
 	public List<CategoryAttribute> getCategoryAttributes() {
 		return categoryAttributes;
 	}
@@ -210,5 +217,4 @@ public class Category implements Serializable {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
-
 }

@@ -15,19 +15,7 @@ public class FilterModel implements Serializable {
 
 	private Map<String, String> filter;
 
-	private boolean hasCount;
-
-	public boolean isHasCount() {
-		return hasCount;
-	}
-
-	public void setHasCount(boolean hasCount) {
-		this.hasCount = hasCount;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	private boolean countCached;
 
 	public Integer getLimit() {
 		return limit;
@@ -67,6 +55,14 @@ public class FilterModel implements Serializable {
 
 	public void setFilter(Map<String, String> filter) {
 		this.filter = filter;
+	}
+
+	public boolean isCountCached() {
+		return countCached;
+	}
+
+	public void setCountCached(boolean countCached) {
+		this.countCached = countCached;
 	}
 
 }

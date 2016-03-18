@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,10 +26,6 @@ public class ProductDetailMediaMap implements Serializable {
 	private String mapKey;
 
 	private String url;
-
-	@ManyToOne
-	@JoinColumn(name = "product_detail_id")
-	private ProductDetail productDetail;
 
 	public ProductDetailMediaMap() {
 	}
@@ -58,14 +52,6 @@ public class ProductDetailMediaMap implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public ProductDetail getProductDetail() {
-		return this.productDetail;
-	}
-
-	public void setProductDetail(ProductDetail productDetail) {
-		this.productDetail = productDetail;
 	}
 
 }

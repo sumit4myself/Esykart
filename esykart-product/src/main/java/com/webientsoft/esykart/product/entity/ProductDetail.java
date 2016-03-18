@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -64,10 +63,12 @@ public class ProductDetail implements Serializable {
 	@ManyToOne
 	private Product product;
 
-	@OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_detail_id")
+	@OneToMany()
 	private List<ProductDetailAttributeValueMap> productDetailAttrValueMaps;
 
-	@OneToMany(mappedBy = "productDetail")
+	@JoinColumn(name = "product_detail_id")
+	@OneToMany()
 	private List<ProductDetailMediaMap> productDetailMediaMaps;
 
 	@OneToMany(mappedBy = "productDetail")

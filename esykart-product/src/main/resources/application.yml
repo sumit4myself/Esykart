@@ -40,7 +40,7 @@ logging:
     com.netflix.discovery: INFO
     com.webientsoft.esykart: DEBUG
     org.springframework.cloud: INFO
-  file: product_service.log
+  file: D:\\log\\product_service.log
   pattern:
     file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
     console: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
