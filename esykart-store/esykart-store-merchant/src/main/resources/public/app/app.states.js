@@ -293,7 +293,8 @@ altairApp
                     controller: 'AddProductController',
                     resolve: {
 	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['shipping_module',
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
 	                    	                         'product_model',
 	                    	                         'lazy_wizard',
 	                    	                         'lazy_tinymce',

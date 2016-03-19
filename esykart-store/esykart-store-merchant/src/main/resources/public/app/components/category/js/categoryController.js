@@ -6,6 +6,19 @@ angular.module('altairApp')
 			$scope.category = new Category();
 			
 			
+			CategoryService.save($scope.category.toJson()).then(function(){
+				if (!response.success) {
+                	UIkit.notify({
+                        message: response.message,
+                        status: 'danger',
+                        pos: 'top-right',
+                	});
+                } else {
+                	
+                }
+			});
+			
+			
 //			event binding
 			$scope.onParentCategorySelect = function(){
 				if($scope.category.parentCategory.id != null){
@@ -141,6 +154,7 @@ angular.module('altairApp')
 			
 			
 		} ])
+		
 .controller('ManageCategoryTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
             var vm = this;
             vm.dt_data = [];

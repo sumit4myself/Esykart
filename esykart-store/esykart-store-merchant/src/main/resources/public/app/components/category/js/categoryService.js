@@ -3,7 +3,7 @@
 		['$http','utils','url',
 		function($http, utils, url) {
 			var service = {};
-	        service.save = function (){
+	        service.save = function (category){
 	        	return $http.post(url,category)
 				.then(utils.handleSuccess, utils.handleError('Error occurred while saving category.'));
 	        };
