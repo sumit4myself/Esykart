@@ -32,21 +32,24 @@ public class ProductDetail implements Serializable {
 
 	private String description;
 
+	@Column(name = "long_description")
+	private String longDescription;
+
+	@Column(name = "use_product_media")
+	private boolean useProductMedia;
+
 	@Column(name = "dimension_unit_of_measure")
 	private String dimensionUnitOfMeasure;
 
 	private Float height;
 
 	@Column(name = "is_discountable")
-	private String isDiscountable;
+	private boolean isDiscountable;
 
 	@Column(name = "is_featured_product")
-	private String isFeaturedProduct;
+	private boolean isFeaturedProduct;
 
 	private Float length;
-
-	@Column(name = "long_description")
-	private String longDescription;
 
 	@Column(length = 1)
 	@Enumerated(EnumType.STRING)
@@ -93,6 +96,22 @@ public class ProductDetail implements Serializable {
 		this.description = description;
 	}
 
+	public String getLongDescription() {
+		return longDescription;
+	}
+
+	public void setLongDescription(String longDescription) {
+		this.longDescription = longDescription;
+	}
+
+	public boolean isUseProductMedia() {
+		return useProductMedia;
+	}
+
+	public void setUseProductMedia(boolean useProductMedia) {
+		this.useProductMedia = useProductMedia;
+	}
+
 	public String getDimensionUnitOfMeasure() {
 		return dimensionUnitOfMeasure;
 	}
@@ -109,19 +128,19 @@ public class ProductDetail implements Serializable {
 		this.height = height;
 	}
 
-	public String getIsDiscountable() {
+	public boolean isDiscountable() {
 		return isDiscountable;
 	}
 
-	public void setIsDiscountable(String isDiscountable) {
+	public void setDiscountable(boolean isDiscountable) {
 		this.isDiscountable = isDiscountable;
 	}
 
-	public String getIsFeaturedProduct() {
+	public boolean isFeaturedProduct() {
 		return isFeaturedProduct;
 	}
 
-	public void setIsFeaturedProduct(String isFeaturedProduct) {
+	public void setFeaturedProduct(boolean isFeaturedProduct) {
 		this.isFeaturedProduct = isFeaturedProduct;
 	}
 
@@ -131,14 +150,6 @@ public class ProductDetail implements Serializable {
 
 	public void setLength(Float length) {
 		this.length = length;
-	}
-
-	public String getLongDescription() {
-		return longDescription;
-	}
-
-	public void setLongDescription(String longDescription) {
-		this.longDescription = longDescription;
 	}
 
 	public Status getStatus() {

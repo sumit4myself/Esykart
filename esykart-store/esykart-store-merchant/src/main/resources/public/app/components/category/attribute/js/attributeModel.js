@@ -18,15 +18,15 @@
 	
 	this.categoryAttributeValues = new Array();
 
-	this.appValue(id, label, value) {
-		CategoryAttributeValue categoryAttributeValue = new CategoryAttributeValue();
+	this.addValue = function(id, label, value) {
+		var categoryAttributeValue = new CategoryAttributeValue();
 		categoryAttributeValue.id = id;
 		categoryAttributeValue.lable = label;
 		categoryAttributeValue.value = value;
 		categoryAttributeValues.push(categoryAttributeValue);
 	}
 	
-	this.toJson : function(){
+	this.toJson = function(){
 		return JSON.stringify(this);
 	}
 }

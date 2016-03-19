@@ -5,33 +5,32 @@
             <div class="md-card-content">
                 <h3 class="heading_a">General Details</h3>
                 <div class="uk-grid" data-uk-grid-margin>
+                   	 <div class="uk-width-medium-1-2">
+                        <input type="text" selectize config="product.config" options="product.options" ng-model="productDetail.product.id" />
+                    </div>
+                    
                     <div class="uk-width-medium-1-4">
-                        <label>Name</label>
-                        <input type="text" class="md-input" md-input ng-model="category.name" />
+                        <input type="checkbox" class="switchery" ui-switch ng-model="productDetail.isDiscountable" id="isDiscountable" />
+                        <label for="isDiscountable" class="inline-label">Discountable ? </label>
                     </div>
                      <div class="uk-width-medium-1-4">
-                        <label>Model</label>
-                        <input type="text" class="md-input" md-input ng-model="category.model" />
+                        <input type="checkbox" class="switchery" ui-switch ng-model="productDetail.isFeaturedProduct" id="isFeaturedProduct" />
+                        <label for="isFeaturedProduct" class="inline-label">FeaturedProduct ?</label>
                     </div>
-                    
-                     <div class="uk-width-medium-1-4">
-                        <input type="text" selectize config="category.config" options="category.options" ng-model="product.category.id" ng-change="onCategoryChange()"  />
-                    </div>
-                    
-                      <div class="uk-width-medium-1-4">
-                        <input type="text" selectize config="brand.config" options="brand.options" ng-model="product.brandId"   />
-                    </div>
-                    
-                    
                 </div>
                 
                 <div class="uk-grid">
                     <div class="uk-width-1-1">
                         <div class="uk-form-row">
                             <label>Description</label>
-                            <textarea ui-tinymce="tinymce_options" cols="30" rows="15" ng-model="category.description"></textarea>
+                            <textarea ui-tinymce="tinymce_options" cols="30" rows="15" ng-model="productDetail.description"></textarea>
                         </div>
                     </div>
+                </div>
+                
+                
+                <div>
+                	{{productDetail}}
                 </div>
             </div>
         </div>

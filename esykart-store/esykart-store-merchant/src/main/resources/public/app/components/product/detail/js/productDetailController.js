@@ -1,14 +1,8 @@
 angular.module('altairApp')
-.controller('AddProductCatalogueController',
-		['$scope', '$rootScope', 'utils', 'ProductCatalogueService', 'CategoryService','InventoryService','FulfillmentService',
-		function($scope, $rootScope, utils, ProductCatalogueService,  CategoryService,   InventoryService,  FulfillmentService) {
-			
-			
-			
-			
-			
-			
-			
+.controller('AddProductDetailController',
+		['$scope', '$rootScope', 'utils', 'ProductDetailService', 'ProductService',
+		function($scope, $rootScope, utils, ProductDetailService,  ProductService) {
+			$scope.productDetail = new ProductDetail();
 			
 			
 			
@@ -40,72 +34,20 @@ angular.module('altairApp')
 			
 			
 //			UI Configuration 
-			$scope.category = {
+			$scope.product = {
 					options: [],
 	                config : {
 		                create: false,
 		                maxItems: 1,
-		                placeholder: 'Category',
+		                placeholder: 'Product',
 		                valueField: 'id',
 		                labelField: 'name',
 		                searchField: 'name'
 		            }
             }
 			
-			$scope.brand = {
-					options: [],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Brand',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
-            }
 			
-			$scope.inventory_type = {
-					options: [],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Select Inventory Type',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
-	            }
-				
-			$scope.fulfillment_type = {
-					options: [],
-				    config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Select Fulfillment Type',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
-            }
 		
-			CategoryService.findAll().then(function (response) {
-                if (!response.success) {
-                	UIkit.notify({
-                        message: response.message,
-                        status: 'danger',
-                        pos: 'top-right',
-                	});
-                } else {
-                	$scope.category.options = response;
-                }
-            });
-			
-			FulfillmentService.findAll().then(function (response) {
-            	$scope.fulfillment_type.options = response;
-            });
-			InventoryService.findAll().then(function (response) {
-            	$scope.inventory_type.options = response;
-            });
 			
 			$scope.tinymce_options = {
 	                skin_url: 'assets/skins/tinymce/material_design',
@@ -127,9 +69,9 @@ angular.module('altairApp')
 		} ])
 
 .controller(
-		'ManageProductCatalogueController',
-		[ '$scope', '$rootScope', 'utils', 'ProductCatalogueService',
-		function($scope, $rootScope, utils, ProductCatalogueService) {
+		'ManageProductDetailController',
+		[ '$scope', '$rootScope', 'utils', 'ProductDetailService',
+		function($scope, $rootScope, utils, ProductDetailService) {
 
 			
 			

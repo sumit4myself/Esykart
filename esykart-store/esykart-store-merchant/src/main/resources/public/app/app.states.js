@@ -38,6 +38,76 @@ altairApp
                     }
                 })
                 
+           
+                 // -- RESTRICTED --
+                .state("restricted", {
+                    abstract: true,
+                    url: "",
+                    views: {
+                        'main_header': {
+                            templateUrl: 'app/shared/header/headerView.html',
+                            controller: 'main_headerCtrl'
+                        },
+                        'main_sidebar': {
+                            templateUrl: 'app/shared/main_sidebar/main_sidebarView.html',
+                            controller: 'main_sidebarCtrl'
+                        },
+                        '': {
+                            templateUrl: 'app/views/restricted.html'
+                        }
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'lazy_uikit',
+                                'lazy_selectizeJS',
+                                'lazy_switchery',
+                                'lazy_prismJS',
+                                'lazy_autosize',
+                                'lazy_iCheck',
+                                'lazy_style_switcher'
+                            ],{ serie: true });
+                        }]
+                    }
+                })
+            
+                // -- DASHBOARD --
+                .state("restricted.dashboard", {
+                    url: "/",
+                    templateUrl: 'app/components/dashboard/dashboardView.html',
+                    controller: 'dashboardCtrl',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                // ocLazyLoad config (app/app.js)
+                                'lazy_countUp',
+                                'lazy_charts_peity',
+                                'lazy_charts_easypiechart',
+                                'lazy_charts_metricsgraphics',
+                                'lazy_charts_chartist',
+                                'lazy_weathericons',
+                                'lazy_google_maps',
+                                'lazy_clndr',
+                                'app/components/dashboard/dashboardController.js'
+                            ], {serie: true} );
+                        }],
+                        sale_chart_data: function($http){
+                            return $http({method: 'GET', url: 'data/mg_dashboard_chart.min.json'})
+                                .then(function (data) {
+                                    return data.data;
+                                });
+                        },
+                        user_data: function($http){
+                            return $http({ method: 'GET', url: 'data/user_data.json' })
+                                .then(function (data) {
+                                    return data.data;
+                                });
+                        }
+                    },
+                    data: {
+                        pageTitle: 'Dashboard'
+                    }
+                })
                 
                 
                   // -- user --
@@ -66,11 +136,7 @@ altairApp
                     },
                     data: {
                         pageTitle: 'Add User'
-                    },
-                    
-                    ncyBreadcrumb: {
-                        label: 'Add User'
-                    } 
+                    }
                 })
                 .state("restricted.user.manage", {
                     url: "/manage",
@@ -80,7 +146,6 @@ altairApp
                         pageTitle: 'Manage User'
                     }
                 })
-                
                 
                 // -- role --
                 .state("restricted.role", {
@@ -120,6 +185,94 @@ altairApp
                 })
                 
                 
+                 // -- category attribute --
+                .state("restricted.category_attribute", {
+                    url: "/category/attribute",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['category_attrinute_module']);
+                        }]
+                    }, 
+                    abstract: true
+                })
+                .state("restricted.category_attribute.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/category/attribute/createAttribute.html',
+                    controller: 'AddAttributeController',
+                    data: {
+                        pageTitle: 'Add Category Attribute'
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_parsleyjs',
+                                                     'lazy_iCheck',
+                                                     'app/components/category/attribute/js/attributeModel.js']);
+                        }]
+                    } 
+                })
+                .state("restricted.category_attribute.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/category/attribute/manageAttribute.html',
+                    controller: 'ManageAttributeController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables']);
+                        }]
+                    }, 
+                    data: {
+                        pageTitle: 'Manage Category Attribute'
+                    }
+                })
+                
+                
+                
+                
+                 // -- category --
+                .state("restricted.category", {
+                    url: "/category",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['category_module']);
+                        }]
+                    },
+                	abstract: true
+                })
+                
+                .state("restricted.category.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/category/createCategory.html',
+                    controller: 'AddCategoryController',
+                    data: {
+                        pageTitle: 'Add Category'
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_parsleyjs',
+                                                     'lazy_tinymce',
+                                                     'category_model',
+                                                     'shipping_module',
+                                                     'store_banner_module'
+                                                     ]);
+                        }]
+                    }
+                })
+                .state("restricted.category.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/category/manageCategory.html',
+                    controller: 'ManageCategoryController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables',
+                                                     'lazy_iCheck'
+                                                     ]);
+                        }]
+                    }, 
+                    data: {
+                        pageTitle: 'Manage Category'
+                    }
+                })
                 
                 
                  // -- product   --
@@ -128,13 +281,9 @@ altairApp
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['app/components/product/js/productController.js',
-                                                     'app/components/product/js/productService.js']);
+                            return $ocLazyLoad.load(['product_module']);
                         }]
                     }, 
-                    ncyBreadcrumb: {
-                        label: 'User'
-                    } ,
                     abstract: true
                 })
                 
@@ -144,10 +293,8 @@ altairApp
                     controller: 'AddProductController',
                     resolve: {
 	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['app/components/product/js/productModel.js',
-	                    	                         'app/components/common/js/fulfillmentService.js',
-                                                     'app/components/common/js/inventoryService.js',
-                                                     'app/components/category/js/categoryService.js',
+	                    	return $ocLazyLoad.load(['shipping_module',
+	                    	                         'product_model',
 	                    	                         'lazy_wizard',
 	                    	                         'lazy_tinymce',
 	                    	                         'lazy_masked_inputs'
@@ -156,11 +303,9 @@ altairApp
                     },
                     data: {
                         pageTitle: 'Add Product'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Add'
-                    } 
+                    }
                 })
+
                 .state("restricted.product.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/product/manageProduct.html',
@@ -175,55 +320,47 @@ altairApp
 	                }
                 })
                 
-                 // -- category --
-                .state("restricted.category", {
-                    url: "/category",
+                 // -- productDetail   --
+                .state("restricted.product_detail", {
+                    url: "/product/detail",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_parsleyjs',
-                                                     'app/components/category/js/categoryController.js',
-                                                     'app/components/category/js/categoryService.js']);
+                            return $ocLazyLoad.load(['product_details_module','product_module']);
                         }]
                     }, 
-                    ncyBreadcrumb: {
-                        label: 'Category'
-                    } ,
                     abstract: true
                 })
-                .state("restricted.category.add", {
+                
+                .state("restricted.product_detail.add", {
                     url: "/add",
-                    templateUrl: 'app/components/category/createCategory.html',
-                    controller: 'AddCategoryController',
-                    data: {
-                        pageTitle: 'Add Category'
+                    templateUrl: 'app/components/product/detail/createProductDetail.html',
+                    controller: 'AddProductDetailController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['product_details_model',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs'
+	                    	                         ],{serie:true});
+	                    }]
                     },
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_tinymce',
-                                                     'app/components/common/js/fulfillmentService.js',
-                                                     'app/components/common/js/inventoryService.js',
-                                                     'app/components/store/banner/js/bannerService.js',
-                                                     'app/components/category/js/categoryModel.js'
-                                                     ]);
-                        }]
-                    }, 
-                    ncyBreadcrumb: {
-                        label: 'Add'
-                    } 
-                })
-                .state("restricted.category.manage", {
-                    url: "/manage",
-                    templateUrl: 'app/components/category/manageCategory.html',
-                    controller: 'ManageCategoryController',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_datatables','lazy_iCheck']);
-                        }]
-                    }, 
                     data: {
-                        pageTitle: 'Manage Category'
+                        pageTitle: 'Add Product Detail'
                     }
+                })
+
+                .state("restricted.product_detail.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/product/detail/manageProductDetail.html',
+                    controller: 'ManageProductDetailController',
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                },
+	                data: {
+	                    pageTitle: 'Manage Product Detail'
+	                }
                 })
                 
                 
@@ -237,9 +374,6 @@ altairApp
                                                      'app/components/customer/js/customerService.js']);
                         }]
                     }, 
-                    ncyBreadcrumb: {
-                        label: 'User'
-                    } ,
                     abstract: true
                 })
                 .state("restricted.customer.add", {
@@ -248,10 +382,7 @@ altairApp
                     controller: 'AddCustomerController',
                     data: {
                         pageTitle: 'Add Customer'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Add'
-                    } 
+                    }
                 })
                 .state("restricted.customer.manage", {
                     url: "/manage",
@@ -276,14 +407,6 @@ altairApp
                     },
                     abstract: true
                 })
-                .state("restricted.merchant.add", {
-                    url: "/add",
-                    templateUrl: 'app/components/merchant/createMerchant.html',
-                    controller: 'AddMerchantController',
-                    data: {
-                        pageTitle: 'Add Merchant'
-                    }
-                })
                 .state("restricted.merchant.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/merchant/manageMerchant.html',
@@ -304,14 +427,6 @@ altairApp
                         }]
                     },
                     abstract: true
-                })
-                .state("restricted.order.add", {
-                    url: "/add",
-                    templateUrl: 'app/components/order/createOrder.html',
-                    controller: 'AddOrderController',
-                    data: {
-                        pageTitle: 'Add Order'
-                    }
                 })
                 .state("restricted.order.manage", {
                     url: "/manage",
@@ -393,77 +508,7 @@ altairApp
                 
                 
                 
-            // -- RESTRICTED --
-                .state("restricted", {
-                    abstract: true,
-                    url: "",
-                    views: {
-                        'main_header': {
-                            templateUrl: 'app/shared/header/headerView.html',
-                            controller: 'main_headerCtrl'
-                        },
-                        'main_sidebar': {
-                            templateUrl: 'app/shared/main_sidebar/main_sidebarView.html',
-                            controller: 'main_sidebarCtrl'
-                        },
-                        '': {
-                            templateUrl: 'app/views/restricted.html'
-                        }
-                    },
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                'lazy_uikit',
-                                'lazy_selectizeJS',
-                                'lazy_switchery',
-                                'lazy_prismJS',
-                                'lazy_autosize',
-                                'lazy_iCheck',
-                                'lazy_style_switcher'
-                            ],{ serie: true });
-                        }]
-                    }
-                })
-            // -- DASHBOARD --
-                .state("restricted.dashboard", {
-                    url: "/",
-                    templateUrl: 'app/components/dashboard/dashboardView.html',
-                    controller: 'dashboardCtrl',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                // ocLazyLoad config (app/app.js)
-                                'lazy_countUp',
-                                'lazy_charts_peity',
-                                'lazy_charts_easypiechart',
-                                'lazy_charts_metricsgraphics',
-                                'lazy_charts_chartist',
-                                'lazy_weathericons',
-                                'lazy_google_maps',
-                                'lazy_clndr',
-                                'app/components/dashboard/dashboardController.js'
-                            ], {serie: true} );
-                        }],
-                        sale_chart_data: function($http){
-                            return $http({method: 'GET', url: 'data/mg_dashboard_chart.min.json'})
-                                .then(function (data) {
-                                    return data.data;
-                                });
-                        },
-                        user_data: function($http){
-                            return $http({ method: 'GET', url: 'data/user_data.json' })
-                                .then(function (data) {
-                                    return data.data;
-                                });
-                        }
-                    },
-                    data: {
-                        pageTitle: 'Dashboard'
-                    },
-                    ncyBreadcrumb: {
-                        label: 'Home'
-                    }
-                })
+           
                 // -- FORMS --
                 .state("restricted.forms", {
                     url: "/forms",

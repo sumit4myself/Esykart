@@ -8,6 +8,105 @@ altairApp
                 debug: false,
                 events: false,
                 modules: [
+//                    module 
+					{
+                        name: 'category_attrinute_model',
+                        files: [
+                                'app/components/category/attribute/js/attributeModel.js',
+                        ],
+                        serie: true
+                    },
+                    {
+                        name: 'category_attrinute_module',
+                        files: [
+                                'app/components/category/attribute/js/attributeController.js',
+                                'app/components/category/attribute/js/attributeService.js'
+                                
+                        ],
+                        serie: true
+                    },
+
+                    {
+                        name: 'category_model',
+                        files: [
+                                'app/components/category/attribute/js/attributeModel.js',
+                                'app/components/category/js/categoryModel.js'
+                        ],
+                        serie: true
+                    },
+                    {
+                        name: 'category_module',
+                        files: [
+								'app/components/category/js/categoryController.js',
+								'app/components/category/js/categoryService.js'
+                        ],
+                        serie: true
+                    },
+                    
+                    {
+                        name: 'product_model',
+                        files: [
+                                'app/components/category/attribute/js/attributeModel.js',
+                                'app/components/category/js/categoryModel.js',
+                                'app/components/product/js/productModel.js', 
+                        ],
+                        serie: true
+                    },
+                    
+                    {
+                        name: 'product_module',
+                        files: [
+								'app/components/product/js/productController.js',
+								'app/components/product/js/productService.js'
+                        ],
+                        serie: true
+                    },
+                    
+                    {
+                        name: 'product_details_model',
+                        files: [
+                            'app/components/category/attribute/js/attributeModel.js',
+                            'app/components/category/js/categoryModel.js',
+                            'app/components/product/js/productModel.js', 
+                            'app/components/product/detail/js/productDetailModel.js'
+                            
+                        ],
+                        serie: true
+                    },
+                    
+                    {
+                        name: 'product_details_module',
+                        files: [
+							'app/components/product/detail/js/productDetailController.js',
+							'app/components/product/detail/js/productDetailService.js'
+                        ],
+                        serie: true
+                    },
+                    
+                    {
+                        name: 'shipping_module',
+                        files: [
+                            'app/components/common/js/fulfillmentService.js',
+                            'app/components/common/js/inventoryService.js',
+                        ],
+                        serie: true
+                    },
+                    
+                    {
+                        name: 'store_banner_module',
+                        files: [
+                            'app/components/store/banner/js/bannerController.js',
+                            'app/components/store/banner/js/bannerService.js'
+                        ],
+                        serie: true
+                    },
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     // ----------- UIKIT ------------------
                     {
                         name: 'lazy_uikit',
@@ -34,6 +133,10 @@ altairApp
                         ],
                         serie: true
                     },
+                    
+                    
+                    
+                    
 
                     // ----------- FORM ELEMENTS -----------
                     {

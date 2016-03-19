@@ -32,7 +32,7 @@ public class Product implements Serializable {
 	private String model;
 
 	private String name;
-
+	
 	@Column(name = "is_taxable")
 	private boolean isTaxable;
 
@@ -42,9 +42,6 @@ public class Product implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "fulfillment_type")
 	private FulfillmentType fulfillmentType;
-
-	@Column(name = "image_url")
-	private String imageUrl;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "inventory_type")
@@ -123,14 +120,6 @@ public class Product implements Serializable {
 
 	public void setFulfillmentType(FulfillmentType fulfillmentType) {
 		this.fulfillmentType = fulfillmentType;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 
 	public InventoryType getInventoryType() {
