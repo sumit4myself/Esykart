@@ -29,7 +29,7 @@ public class Merchant implements Serializable {
 	@Column(name = "registraion_id")
 	private Integer registraionId;
 
-	/*
+	 /*
 	 * @OneToOne(cascade = CascadeType.ALL) private User user;
 	 */
 

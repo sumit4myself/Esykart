@@ -175,6 +175,7 @@ altairApp
                         pageTitle: 'Add Role'
                     }
                 })
+                
                 .state("restricted.role.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/role/manageRole.html',
@@ -183,8 +184,7 @@ altairApp
                         pageTitle: 'Manage Role'
                     }
                 })
-                
-                
+                                
                  // -- category attribute --
                 .state("restricted.category_attribute", {
                     url: "/category/attribute",
@@ -196,6 +196,7 @@ altairApp
                     }, 
                     abstract: true
                 })
+                
                 .state("restricted.category_attribute.add", {
                     url: "/add",
                     templateUrl: 'app/components/category/attribute/createAttribute.html',
@@ -224,8 +225,7 @@ altairApp
                         pageTitle: 'Manage Category Attribute'
                     }
                 })
-                
-                
+                        
                 
                 
                  // -- category --
@@ -403,6 +403,7 @@ altairApp
                             return $ocLazyLoad.load(['lazy_datatables', 
                                                      'lazy_parsleyjs',
                                                      'app/components/merchant/js/merchantController.js',
+                                                     'app/components/merchant/js/merchantModel.js',
                                                      'app/components/merchant/js/merchantService.js']);
                         }]
                     },
@@ -414,6 +415,15 @@ altairApp
                     controller: 'ManageMerchantController',
                     data: {
                         pageTitle: 'Manage Merchant'
+                    }
+                })
+                
+                 .state("restricted.merchant.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/merchant/createMerchant.html',
+                    controller: 'AddMerchantController',
+                    data: {
+                        pageTitle: 'Add Merchant'
                     }
                 })
                 

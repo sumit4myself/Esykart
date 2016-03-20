@@ -4,40 +4,66 @@ public class MerchantModel {
 	
 	private Integer merchantId;
 	private String displayName;
-	private Integer registraionId;
-	private Integer addressId;
-	private Integer alternateAddressId;
-	
-	
+	private String fullName;
+	private String email;
+	private String mobile;
+	private String password;
+
 	public Integer getMerchantId() {
 		return merchantId;
 	}
+
 	public void setMerchantId(Integer merchantId) {
 		this.merchantId = merchantId;
 	}
+
 	public String getDisplayName() {
 		return displayName;
 	}
+
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
-	public Integer getRegistraionId() {
-		return registraionId;
+
+	/*
+	 * public Integer getRegistraionId() { return registraionId; } public void
+	 * setRegistraionId(Integer registraionId) { this.registraionId =
+	 * registraionId; } public Integer getAddressId() { return addressId; }
+	 * public void setAddressId(Integer addressId) { this.addressId = addressId;
+	 * } public Integer getAlternateAddressId() { return alternateAddressId; }
+	 * public void setAlternateAddressId(Integer alternateAddressId) {
+	 * this.alternateAddressId = alternateAddressId; }
+	 */
+	public String getFullName() {
+		return fullName;
 	}
-	public void setRegistraionId(Integer registraionId) {
-		this.registraionId = registraionId;
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
-	public Integer getAddressId() {
-		return addressId;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setAddressId(Integer addressId) {
-		this.addressId = addressId;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public Integer getAlternateAddressId() {
-		return alternateAddressId;
+
+	public String getMobile() {
+		return mobile;
 	}
-	public void setAlternateAddressId(Integer alternateAddressId) {
-		this.alternateAddressId = alternateAddressId;
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

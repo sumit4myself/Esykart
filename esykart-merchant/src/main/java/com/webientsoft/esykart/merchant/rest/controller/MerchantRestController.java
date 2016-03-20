@@ -28,7 +28,7 @@ public class MerchantRestController {
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public @ResponseBody ResponseEntity<?> create(@RequestBody MerchantModel model) {
-		System.out.println("post calkled ");
+	System.out.println("post calkled ");
 	MultiValueMap<String, String> headers = new HttpHeaders();
 	return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
