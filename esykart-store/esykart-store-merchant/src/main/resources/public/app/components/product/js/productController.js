@@ -1,39 +1,23 @@
+var product_media_row_template = '<tr><td><input type="file" class="dropify" data-height="150"/></td> ' +
+                                 '<td><input type="text" config="image.config" options="image.options"  ng-model="product.fulfillmentType" selectize /></td> ' +
+	                             '<td><a href="javascript:void(0)"  class="md-btn md-btn-danger md-btn-wave-light waves-effect waves-button waves-light remove-row"> <i class="material-icons md-color-white">&#xE15D;</i> Remove </a></td></tr>';
 angular.module('altairApp')
+.constant('productMediaRowTemplate',product_media_row_template)
 .controller('AddProductController',
-		['$scope', '$rootScope', 'utils', 'ProductService', 'CategoryService','InventoryService','FulfillmentService',
-		function($scope, $rootScope, utils, ProductService,  CategoryService,   InventoryService,  FulfillmentService) {
+		['$scope', '$rootScope', '$compile', 'utils', 'ProductService', 'CategoryService','InventoryService','FulfillmentService', 'productMediaRowTemplate',
+		function($scope, $rootScope, $compile, utils, ProductService,  CategoryService,   InventoryService,  FulfillmentService , productMediaRowTemplate) {
+			$scope.product =  Product();
+			   
+			   
+			$("#product_media_table").on("click",".add-row",function(){
+				$("#product_media_table").append(productMediaRowTemplate);  
+				initDropify($("#product_media_table").find("tr:last-child"));
+				$compile($("#product_media_table").find("tr:last-child"))($scope);
+			});
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-//			validation 
-			$scope.validateStep1 = function(){
-				
-			}
-			$scope.validateStep2 = function(){
-				
-			}
-			$scope.validateStep3 = function(){
-				
-			}
-			
-			
-//			event bindings
-			$scope.onCategoryChange = function(){
-				
-				
-				
-				
-			}
-			
-			
+			$("#product_media_table").on("click",".remove-row",function(){
+				$(this).closest("tr").remove();
+			});
 			
 //			UI Configuration 
 			$scope.category = {
@@ -54,6 +38,18 @@ angular.module('altairApp')
 		                create: false,
 		                maxItems: 1,
 		                placeholder: 'Brand',
+		                valueField: 'id',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+            }
+
+			$scope.tax = {
+					options: [],
+	                config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Tax Code',
 		                valueField: 'id',
 		                labelField: 'name',
 		                searchField: 'name'
@@ -83,6 +79,18 @@ angular.module('altairApp')
 		                searchField: 'name'
 		            }
             }
+			
+			$scope.image = {
+					options: [],
+	                config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Image Key',
+		                valueField: 'id',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+            }
 		
 			CategoryService.findAll().then(function (response) {
                 if (!response.success) {
@@ -96,31 +104,49 @@ angular.module('altairApp')
                 }
             });
 			
+			
+			
+//			init
+			initDropify();
 			FulfillmentService.findAll().then(function (response) {
             	$scope.fulfillment_type.options = response;
             });
 			InventoryService.findAll().then(function (response) {
             	$scope.inventory_type.options = response;
             });
+		
 			
-			$scope.tinymce_options = {
-	                skin_url: 'assets/skins/tinymce/material_design',
-	                plugins: [
-	                    "advlist autolink lists link image charmap print preview anchor",
-	                    "searchreplace visualblocks code fullscreen",
-	                    "insertdatetime media table contextmenu paste"
-	                ],
-	                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-            }
 			
-			 // masked inputs
-            var $maskedInput = $('.masked_input');
-            if($maskedInput.length) {
-                $maskedInput.inputmask();
-            }
+//			helper functions
+
+			function initDropify(container){
+				if(container){
+					$(container).find('.dropify').dropify({
+						   messages: {
+						        'default': 'Upload File',
+						        'replace': 'Drag and drop or click to replace',
+						        'remove':  'Remove',
+						        'error':   'Ooops, something wrong appended.'
+						    }
+				   });
+				}else{
+					$('.dropify').dropify({
+						   messages: {
+						        'default': 'Upload File',
+						        'replace': 'Drag and drop or click to replace',
+						        'remove':  'Remove',
+						        'error':   'Ooops, something wrong appended.'
+						    }
+				   });
+				}
+			}
+			
+			
+		
+		}])
 		
 		
-		} ])
+		
 
 .controller(
 		'ManageProductController',

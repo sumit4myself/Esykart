@@ -247,6 +247,7 @@ altairApp
                     data: {
                         pageTitle: 'Add Category'
                     },
+                    params: { id : null }, 
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load(['lazy_parsleyjs',
@@ -298,7 +299,8 @@ altairApp
 	                    	                         'product_model',
 	                    	                         'lazy_wizard',
 	                    	                         'lazy_tinymce',
-	                    	                         'lazy_masked_inputs'
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
 	                    	                         ],{serie:true});
 	                    }]
                     },
