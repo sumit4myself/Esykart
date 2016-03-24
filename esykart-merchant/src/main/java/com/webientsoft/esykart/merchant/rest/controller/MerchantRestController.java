@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.merchant.model.MerchantModel;
+import com.webientsoft.esykart.common.model.merchant.MerchantModel;
 import com.webientsoft.esykart.merchant.service.MerchantService;
 
 @RestController

@@ -13,4 +13,5 @@ public enum NatureOfBusiness {
 	public String value() {
 		return value;
 	}
+	
 }

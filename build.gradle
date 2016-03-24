@@ -152,8 +152,7 @@ project(':esykart-store') {
 	       addResources = true
 	    }
 	}
-   
-}
+ }
 
 project(':esykart-store:esykart-store-customer') {
 	description = 'Esykart Customer Store'
@@ -169,7 +168,11 @@ project(':esykart-store:esykart-store-customer') {
 
 project(':esykart-store:esykart-store-merchant') {
 	description = 'Esykart Merchant Store'
-  
+  dependencies{
+       compile 'org.webjars:jquery:2.2.1'
+       compile 'org.webjars:bootstrap:3.0.3'
+       compile(project(":esykart-common"))
+     }
 }
 
 project(':esykart-discovery-server') {

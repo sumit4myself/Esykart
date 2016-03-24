@@ -10,9 +10,10 @@ import com.webientsoft.esykart.common.dao.support.JPADaoSupport;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
+import com.webientsoft.esykart.common.model.merchant.MerchantModel;
 import com.webientsoft.esykart.common.utils.BeanUtils;
 import com.webientsoft.esykart.merchant.entity.Merchant;
-import com.webientsoft.esykart.merchant.model.MerchantModel;
+
 
 public class MerchantServiceImpl implements MerchantService {
 
@@ -62,4 +63,7 @@ public class MerchantServiceImpl implements MerchantService {
 		dao.executeUpdateByNamedQuery("MERCHANT_DETAIL_UPDATE_STATUS",
 				dao.addQueryNamedParameters("id", id, "status", status));
 	}
+
+	
+
 }

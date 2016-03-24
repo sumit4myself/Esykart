@@ -392,6 +392,13 @@ altairApp
                     url: "/manage",
                     templateUrl: 'app/components/customer/manageCustomer.html',
                     controller: 'ManageCustomerController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables',
+                                                     'lazy_iCheck'
+                                                     ]);
+                        }]
+                    }, 
                     data: {
                         pageTitle: 'Manage Customer'
                     }
@@ -446,6 +453,13 @@ altairApp
                     url: "/manage",
                     templateUrl: 'app/components/order/manageOrder.html',
                     controller: 'ManageOrderController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables',
+                                                     'lazy_iCheck'
+                                                     ]);
+                        }]
+                    }, 
                     data: {
                         pageTitle: 'Manage Order'
                     }
