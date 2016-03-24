@@ -7,6 +7,7 @@ function Product() {
 	this.taxDetailId = null;
 	this.fulfillmentType = null;
 	this.inventoryType = null;
+	
 	this.productMediaMaps = new Array();
 	this.category = new Category();
 

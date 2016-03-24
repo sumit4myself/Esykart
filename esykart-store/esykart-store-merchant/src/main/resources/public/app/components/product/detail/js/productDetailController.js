@@ -1,7 +1,12 @@
+var product_media_row_template = '<tr><td><input type="file" class="dropify" data-height="150"/></td> ' +
+                                 '<td><input type="text" config="image.config" options="image.options"  ng-model="product.fulfillmentType" selectize /></td> ' +
+	                             '<td><a href="javascript:void(0)"  class="md-btn md-btn-danger md-btn-wave-light waves-effect waves-button waves-light remove-row"> <i class="material-icons md-color-white">&#xE15D;</i> Remove </a></td></tr>';
+
 angular.module('altairApp')
+.constant('productMediaRowTemplate',product_media_row_template)
 .controller('AddProductDetailController',
-		['$scope', '$rootScope', 'utils', 'ProductDetailService', 'ProductService',
-		function($scope, $rootScope, utils, ProductDetailService,  ProductService) {
+		['$scope', '$rootScope', '$compile' , 'utils', 'ProductDetailService', 'ProductService', 'productMediaRowTemplate',
+		function($scope, $rootScope,$compile, utils, ProductDetailService,  ProductService , productMediaRowTemplate) {
 			$scope.productDetail = new ProductDetail();
 			
 			
@@ -11,16 +16,7 @@ angular.module('altairApp')
 			
 			
 			
-//			validation 
-			$scope.validateStep1 = function(){
-				
-			}
-			$scope.validateStep2 = function(){
-				
-			}
-			$scope.validateStep3 = function(){
-				
-			}
+
 			
 			
 //			event bindings
@@ -30,6 +26,32 @@ angular.module('altairApp')
 				
 				
 			}
+			
+			$("#product_media_table").on("click",".add-row",function(){
+				$("#product_media_table").append(productMediaRowTemplate);  
+				initDropify($("#product_media_table").find("tr:last-child"));
+				$compile($("#product_media_table").find("tr:last-child"))($scope);
+			});
+			
+			$("#product_media_table").on("click",".remove-row",function(){
+				$(this).closest("tr").remove();
+			});
+			
+			$scope.onSave = function (){
+				console.log($scope.productDetail);
+				console.log(this);
+				
+			};
+			
+			$scope.onReset = function (){
+				console.log(this);
+				
+			};
+			
+			$scope.onCancel = function (){
+				console.log(this);
+				
+			};
 			
 			
 			
@@ -41,6 +63,78 @@ angular.module('altairApp')
 		                maxItems: 1,
 		                placeholder: 'Product',
 		                valueField: 'id',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+            }
+			
+			
+			$scope.dimensionUnits = {
+								options : [ {
+									value : "CENTIMETERS",
+									name : "Centimeters"
+								}, {
+									value : "FEET",
+									name : "Feet"
+								}, {
+									value : "INCHES",
+									name : "Inches"
+								}, {
+									value : "METERS",
+									name : "Meters"
+								} ],
+	                config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Dimension Units',
+		                valueField: 'value',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+            }
+			
+			$scope.weightUnits = {
+					options : [ {
+						value : "KILOGRAMS",
+						name : "Kilograms"
+					}, {
+						value : "Pounds",
+						name : "Pounds"
+					}],
+					
+	                config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Weight Units',
+		                valueField: 'value',
+		                labelField: 'name',
+		                searchField: 'name'
+		            }
+            }
+			
+			
+			$scope.image = {
+					options:  [ {
+						name : "Primary",
+						value : "Primary",
+					}, {
+						name : "Alt1",
+						value : "Alt1",
+					}, {
+						name : "Alt2",
+						value : "Alt2",
+					} ,{
+						name : "Alt3",
+						value : "Alt3",
+					},{
+						name : "Alt4",
+						value : "Alt4",
+					}],
+	                config : {
+		                create: false,
+		                maxItems: 1,
+		                placeholder: 'Image Key',
+		                valueField: 'value',
 		                labelField: 'name',
 		                searchField: 'name'
 		            }
@@ -59,11 +153,36 @@ angular.module('altairApp')
 	                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
             }
 			
+			
+			initDropify();
 			 // masked inputs
             var $maskedInput = $('.masked_input');
             if($maskedInput.length) {
                 $maskedInput.inputmask();
             }
+            
+//			helper functions
+            function initDropify(container){
+				if(container){
+					$(container).find('.dropify').dropify({
+						   messages: {
+						        'default': 'Upload File',
+						        'replace': 'Drag and drop or click to replace',
+						        'remove':  'Remove',
+						        'error':   'Ooops, something wrong appended.'
+						    }
+				   });
+				}else{
+					$('.dropify').dropify({
+						   messages: {
+						        'default': 'Upload File',
+						        'replace': 'Drag and drop or click to replace',
+						        'remove':  'Remove',
+						        'error':   'Ooops, something wrong appended.'
+						    }
+				   });
+				}
+			}
 		
 		
 		} ])

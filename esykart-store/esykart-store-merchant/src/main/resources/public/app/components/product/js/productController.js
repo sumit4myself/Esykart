@@ -6,9 +6,28 @@ angular.module('altairApp')
 .controller('AddProductController',
 		['$scope', '$rootScope', '$compile', 'utils', 'ProductService', 'CategoryService','InventoryService','FulfillmentService', 'productMediaRowTemplate',
 		function($scope, $rootScope, $compile, utils, ProductService,  CategoryService,   InventoryService,  FulfillmentService , productMediaRowTemplate) {
-			$scope.product =  Product();
+			$scope.product =  new Product();
 			   
-			   
+			 
+			
+			
+			
+			$scope.onSave = function (){
+				
+				console.log($scope.product);
+				
+			};
+			
+			$scope.onReset = function (){
+				$scope.product = new Product();
+				
+			};
+			
+			$scope.onCancel = function (){
+				console.log(this);
+				
+			};
+			
 			$("#product_media_table").on("click",".add-row",function(){
 				$("#product_media_table").append(productMediaRowTemplate);  
 				initDropify($("#product_media_table").find("tr:last-child"));
@@ -61,8 +80,8 @@ angular.module('altairApp')
 	                config : {
 		                create: false,
 		                maxItems: 1,
-		                placeholder: 'Select Inventory Type',
-		                valueField: 'id',
+		                placeholder: 'Inventory Type',
+		                valueField: 'value',
 		                labelField: 'name',
 		                searchField: 'name'
 		            }
@@ -73,20 +92,35 @@ angular.module('altairApp')
 				    config : {
 		                create: false,
 		                maxItems: 1,
-		                placeholder: 'Select Fulfillment Type',
-		                valueField: 'id',
+		                placeholder: 'Fulfillment Type',
+		                valueField: 'value',
 		                labelField: 'name',
 		                searchField: 'name'
 		            }
             }
 			
 			$scope.image = {
-					options: [],
+					options:  [ {
+						name : "Primary",
+						value : "Primary",
+					}, {
+						name : "Alt1",
+						value : "Alt1",
+					}, {
+						name : "Alt2",
+						value : "Alt2",
+					} ,{
+						name : "Alt3",
+						value : "Alt3",
+					},{
+						name : "Alt4",
+						value : "Alt4",
+					}],
 	                config : {
 		                create: false,
 		                maxItems: 1,
 		                placeholder: 'Image Key',
-		                valueField: 'id',
+		                valueField: 'value',
 		                labelField: 'name',
 		                searchField: 'name'
 		            }

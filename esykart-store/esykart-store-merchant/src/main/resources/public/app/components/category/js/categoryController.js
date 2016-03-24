@@ -20,6 +20,24 @@ angular.module('altairApp')
 			
 			
 //			event binding
+			
+			$scope.onSave = function (){
+				
+				console.log(this);
+				
+			};
+			
+			$scope.onReset = function (){
+				console.log(this);
+				
+			};
+			
+			$scope.onCancel = function (){
+				console.log(this);
+				
+			};
+			
+			
 			$scope.onParentCategorySelect = function(){
 				if($scope.category.parentCategory.id != null){
 					

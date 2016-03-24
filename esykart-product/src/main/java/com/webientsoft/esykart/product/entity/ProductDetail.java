@@ -1,6 +1,7 @@
 package com.webientsoft.esykart.product.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,16 +33,17 @@ public class ProductDetail implements Serializable {
 
 	private String description;
 
+	@Column(name = "retail_price")
+	private Float retailPrice;
+
+	@Column(name = "sale_price")
+	private Float salePrice;
+
 	@Column(name = "long_description")
 	private String longDescription;
 
 	@Column(name = "use_product_media")
 	private boolean useProductMedia;
-
-	@Column(name = "dimension_unit_of_measure")
-	private String dimensionUnitOfMeasure;
-
-	private Float height;
 
 	@Column(name = "is_discountable")
 	private boolean isDiscountable;
@@ -49,18 +51,30 @@ public class ProductDetail implements Serializable {
 	@Column(name = "is_featured_product")
 	private boolean isFeaturedProduct;
 
+	@Column(name = "is_actionable")
+	private boolean isActionable;
+
+	@Column(name = "dimension_unit_of_measure")
+	private String dimensionUnitOfMeasure;
+
+	private Float height;
 	private Float length;
+	private Float width;
+
+	@Column(name = "weight_unit_of_measure")
+	private String weightUnitOfMeasure;
+
+	private Float weight;
 
 	@Column(length = 1)
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	private Float weight;
+	@Column(name = "active_end_date")
+	private Date activeEndDate;
 
-	@Column(name = "weight_unit_of_measure")
-	private String weightUnitOfMeasure;
-
-	private Float width;
+	@Column(name = "active_start_date")
+	private Date activeStartDate;
 
 	@JoinColumn(name = "product_id")
 	@ManyToOne
@@ -214,6 +228,46 @@ public class ProductDetail implements Serializable {
 
 	public void setSkus(List<Sku> skus) {
 		this.skus = skus;
+	}
+
+	public Float getRetailPrice() {
+		return retailPrice;
+	}
+
+	public void setRetailPrice(Float retailPrice) {
+		this.retailPrice = retailPrice;
+	}
+
+	public Float getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(Float salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public Date getActiveEndDate() {
+		return activeEndDate;
+	}
+
+	public void setActiveEndDate(Date activeEndDate) {
+		this.activeEndDate = activeEndDate;
+	}
+
+	public Date getActiveStartDate() {
+		return activeStartDate;
+	}
+
+	public void setActiveStartDate(Date activeStartDate) {
+		this.activeStartDate = activeStartDate;
+	}
+
+	public boolean isActionable() {
+		return isActionable;
+	}
+
+	public void setActionable(boolean isActionable) {
+		this.isActionable = isActionable;
 	}
 
 }

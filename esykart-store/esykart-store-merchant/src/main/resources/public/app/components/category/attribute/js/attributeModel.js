@@ -5,8 +5,8 @@
 	this.label = null;
 	this.displayOrder = null;
 	
-	this.isRequired = null;
-	this.isSearchable = null;
+	this.isRequired = true;
+	this.isSearchable = false;
 	
 	this.attributeType = null;
 	this.attributeDisplayType = null;
@@ -14,7 +14,6 @@
 	this.validationErrorCode = null;
 	this.validationErrorMsg = null;
 	this.validationRule = null;
-	this.validationType = null;
 	
 	this.categoryAttributeValues = new Array();
 

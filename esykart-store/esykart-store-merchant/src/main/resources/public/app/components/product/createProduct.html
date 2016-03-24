@@ -1,112 +1,121 @@
 <div id="page_content">
-    <div id="page_content_inner">
+	<div id="page_content_inner">
 
-        <div class="md-card">
-            <div class="md-card-content">
-                <h3 class="heading_a">General Details</h3>
-                <div class="uk-grid" data-uk-grid-margin>
-                    <div class="uk-width-medium-1-2">
-                        <label>Name</label>
-                        <input type="text" class="md-input" md-input ng-model="product.name" />
-                    </div>
-                     <div class="uk-width-medium-1-2">
-                        <label>Model</label>
-                        <input type="text" class="md-input" md-input ng-model="product.model" />
-                    </div>
-                </div>
-                
-                 <div class="uk-grid" data-uk-grid-margin>
-                     <div class="uk-width-medium-1-2">
-                        <input type="text" selectize config="category.config" options="category.options" ng-model="product.category.id" ng-change="onCategoryChange()"  />
-                    </div>
-                    
-                     <div class="uk-width-medium-1-2">
-                        <input type="text" selectize config="brand.config" options="brand.options" ng-model="product.brandId"   />
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">General Details</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<label>Name</label> <input type="text" class="md-input" md-input
+							ng-model="product.name" />
+					</div>
+					<div class="uk-width-medium-1-2">
+						<label>Model</label> <input type="text" class="md-input" md-input
+							ng-model="product.model" />
+					</div>
+				</div>
+
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<input type="text" selectize config="category.config"
+							options="category.options" ng-model="product.category.id"
+							ng-change="onCategoryChange()" />
+					</div>
+
+					<div class="uk-width-medium-1-2">
+						<input type="text" selectize config="brand.config"
+							options="brand.options" ng-model="product.brandId" />
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-        <div class="md-card">
-            <div class="md-card-content">
-                <h3 class="heading_a">Financial</h3>
-                <div class="uk-grid" data-uk-grid-margin>
-                     <div class="uk-width-medium-1-2">
-                        <input type="checkbox" class="switchery" ui-switch ng-model="product.isTaxable"   />
-                        <label for="isFeaturedProduct" class="inline-label">Taxable ?</label>
-                    </div>
-                     <div class="uk-width-medium-1-2">
-                        <input type="text" config="tax.config" options="tax.options" ng-model="product.taxDetailId"  selectize ng-disabled="!product.isTaxable" />
-                    </div>
-                    
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Financial</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<input type="checkbox" class="switchery" ui-switch
+							ng-model="product.isTaxable" /> <label for="isTaxable"
+							class="inline-label">Taxable ?</label>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<input type="text" config="tax.config" options="tax.options"
+							ng-model="product.taxDetailId" selectize
+							ng-disabled="!product.isTaxable" />
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Inventory / Shipping</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<input type="text" config="inventory_type.config"
+							options="inventory_type.options" ng-model="product.inventoryType"
+							selectize />
+					</div>
+					<div class="uk-width-medium-1-2">
+						<input type="text" config="fulfillment_type.config"
+							options="fulfillment_type.options"
+							ng-model="product.fulfillmentType" selectize />
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Image</h3>
+				<div class="uk-grid" data-uk-grid-margin="">
+					<div class="uk-width-medium-1-1">
+						<table class="uk-table uk-table-nowrap" id="product_media_table">
+							<thead>
+								<tr>
+									<th class="uk-width-2-10">Image</th>
+									<th class="uk-width-7-10">Image Key</th>
+									<th class="uk-width-1-10"><a href="javascript:void(0)"
+										class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light add-row">
+											<i class="material-icons md-color-white">&#xE148;</i> Add
+									</a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="file" class="dropify" data-height="150" ng-model="productMediaMaps.productMediaMaps.image" />
+									</td>
+									<td><input type="text" config="image.config"
+										options="image.options" ng-model="productMediaMaps.productMediaMaps.key"
+										selectize /></td>
+									<td><a href="javascript:void(0)"
+										class="md-btn md-btn-danger md-btn-wave-light waves-effect waves-button waves-light remove-row">
+											<i class="material-icons md-color-white">&#xE15D;</i> Remove
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="uk-grid uk-grid-width-1-1">
+					<div class="uk-clearfix">
+					    <div class="uk-float-right">
+					    	<a class="md-btn md-btn-primary md-btn-wave-light" href="javascript:void(0)" ng-click="onCancel()">Cancel</a>
+                       		<a class="md-btn md-btn-warning md-btn-wave-light" href="javascript:void(0)" ng-click="onReset()">Reset</a>
+                        	<a class="md-btn md-btn-success md-btn-wave-light" href="javascript:void(0)" ng-click="onSave()">Save</a>
+					    </div>
+					</div>
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="md-card">
-            <div class="md-card-content">
-                <h3 class="heading_a">Inventory / Shipping</h3>
-                <div class="uk-grid" data-uk-grid-margin>
-                    <div class="uk-width-medium-1-2">
-                        <input type="text" config="inventory_type.config" options="inventory_type.options" 
-                        	ng-model="product.inventoryType"  selectize />
-                    </div>
-                     <div class="uk-width-medium-1-2">
-                        <input type="text" config="fulfillment_type.config" options="fulfillment_type.options" 
-                        	ng-model="product.fulfillmentType" selectize />
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-         <div class="md-card">
-            <div class="md-card-content">
-                <h3 class="heading_a">Image</h3>
-                 <div class="uk-grid" data-uk-grid-margin="">
-                <div class="uk-width-medium-1-1">
-                    <div class="md-card">
-                        <div class="md-card-content">
-                            <div class="uk-overflow-container">
-                                <table class="uk-table uk-table-nowrap" id = "product_media_table">
-                                    <thead>
-	                                    <tr>
-			                                <th class="uk-width-2-10">Image</th>
-			                                <th class="uk-width-7-10">Image Key</th>
-			                                <th class="uk-width-1-10">
-												<a href="javascript:void(0)" class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light add-row">
-													<i class="material-icons md-color-white">&#xE148;</i> Add
-												</a>
-			                                </th>
-			                            </tr>
-                                    </thead>
-                                    <tbody>
-	                                    <tr>
-	                                        <td>
-                                                   <input type="file" class="dropify" data-height="150"/>
-	                                        </td>
-	                                        <td>
-                                            	<input type="text" config="image.config" options="image.options" 
-                       							ng-model="product.fulfillmentType" selectize />
-	                                        </td>
-	                                        <td>
-	                                         	<a href="javascript:void(0)"  class="md-btn md-btn-danger md-btn-wave-light waves-effect waves-button waves-light remove-row">
-													<i class="material-icons md-color-white">&#xE15D;</i> Remove
-												</a>
-	                                        </td>
-	                                    </tr>
-                                   </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+				
+			</div>
+		</div>
+	</div>
 </div>

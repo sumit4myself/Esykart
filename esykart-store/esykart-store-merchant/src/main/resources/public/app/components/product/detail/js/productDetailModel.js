@@ -4,6 +4,7 @@ function ProductDetail() {
 	this.longDescription = null;
 	this.isDiscountable = false;
 	this.isFeaturedProduct = false;
+	this.isActionable = false;
 	this.useProductMedia = false
 	this.status = null;
 
@@ -14,6 +15,9 @@ function ProductDetail() {
 	this.height = null;
 	this.length = null;
 	this.width = null;
+	
+	this.activeEndDate = null;
+	this.activeStartDate = null;
 
 	this.productDetailsAttrValueMaps = new Array();
 	this.productDetailsMediaMaps = new Array();
@@ -31,10 +35,11 @@ function ProductDetail() {
 		this.productDetailsAttrValueMaps.push(attr);
 	};
 
-	this.addMedia = function(mapKey, url) {
+	this.addMedia = function(mapKey, data) {
 		var media = new Object();
 		media.mapKey = mapKey;
-		media.url = url;
+//		media.url = url;
+		media.data = data;
 		this.productDetailsMediaMaps.push(media);
 	};
 	

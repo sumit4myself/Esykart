@@ -1,10 +1,128 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div id="page_content">
+	<div id="page_content_inner">
 
-</body>
-</html>
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Category Attribute Details</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<label>Name</label> <input type="text" class="md-input" md-input
+							ng-model="attribute.name" />
+					</div>
+					<div class="uk-width-medium-1-2">
+						<label>Label</label> <input type="text" class="md-input" md-input
+							ng-model="attribute.label" />
+					</div>
+				</div>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<input type="text" config="attributeType.config"
+							options="attributeType.options"
+							ng-model="attribute.attributeType" selectize />
+					</div>
+					<div class="uk-width-medium-1-2">
+						<input type="text" config="attributeDisplayType.config"
+							options="attributeDisplayType.options"
+							ng-model="attribute.attributeDisplayType" selectize />
+					</div>
+				</div>
+
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<input type="text" config="displayOrder.config"
+							options="displayOrder.options" ng-model="attribute.displayOrder"
+							selectize />
+					</div>
+					<div class="uk-width-medium-1-4">
+						<input type="checkbox" class="switchery" ui-switch
+							ng-model="attribute.isRequired" /> <label
+							for="isFeaturedProduct" class="inline-label">Searchable </label>
+					</div>
+					<div class="uk-width-medium-1-4">
+						<input type="checkbox" class="switchery" ui-switch
+							ng-model="attribute.isSearchable" /> <label
+							for="isFeaturedProduct" class="inline-label">Required </label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Validation</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-1">
+						<label>Error Message</label> <input type="text" class="md-input"
+							md-input ng-model="attribute.label" />
+					</div>
+				</div>
+
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<label>Error Code</label> <input type="text" class="md-input"
+							md-input ng-model="attribute.name" />
+					</div>
+					<div class="uk-width-medium-1-2">
+						<label>Validation String Expression</label> <input type="text"
+							class="md-input" md-input ng-model="attribute.name" />
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Category Attribute Values</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-1">
+						<table class="uk-table uk-table-nowrap" id="attribute_value_table">
+							<thead>
+								<tr>
+									<th class="uk-width-3-10">Label</th>
+									<th class="uk-width-3-10">Value</th>
+									<th class="uk-width-3-10">Display Order</th>
+									<th class="uk-width-1-10"><a href="javascript:void(0)"
+										class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light add-row">
+											<i class="material-icons md-color-white">&#xE148;</i> Add
+									</a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id ="0" class="ng-scope">
+									<td><input type="text" class="md-input" md-input
+										ng-model="attribute.categoryAttributeValues[0].label" /></td>
+									<td><input type="text" class="md-input" md-input
+										ng-model="attribute.categoryAttributeValues[0].value" /></td>
+									<td><input type="text" config="displayOrder.config"
+										options="displayOrder.options"
+										ng-model="attribute.categoryAttributeValues[0].displayOrder" selectize /></td>
+									<td><a href="javascript:void(0)"
+										class="md-btn md-btn-danger md-btn-wave-light waves-effect waves-button waves-light remove-row">
+											<i class="material-icons md-color-white">&#xE15D;</i> Remove
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="uk-grid uk-grid-width-1-1">
+					<div class="uk-clearfix">
+					    <div class="uk-float-right">
+					    	<a class="md-btn md-btn-primary md-btn-wave-light" href="javascript:void(0)" ng-click="onCancel()">Cancel</a>
+                       		<a class="md-btn md-btn-warning md-btn-wave-light" href="javascript:void(0)" ng-click="onReset()">Reset</a>
+                        	<a class="md-btn md-btn-success md-btn-wave-light" href="javascript:void(0)" ng-click="onSave()">Save</a>
+					    </div>
+					</div>
+                </div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

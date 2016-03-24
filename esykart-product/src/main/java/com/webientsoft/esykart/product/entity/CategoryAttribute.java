@@ -32,10 +32,10 @@ public class CategoryAttribute implements Serializable {
 	private Integer displayOrder;
 
 	@Column(name = "is_required")
-	private String isRequired;
+	private boolean isRequired;
 
 	@Column(name = "is_searchable")
-	private String isSearchable;
+	private boolean isSearchable;
 
 	private String label;
 
@@ -57,9 +57,6 @@ public class CategoryAttribute implements Serializable {
 
 	@Column(name = "validation_rule")
 	private String validationRule;
-
-	@Column(name = "validation_type")
-	private String validationType;
 
 	@OneToMany(mappedBy = "categoryAttribute")
 	private List<CategoryAttributeValue> categoryAttributeValues;
@@ -88,21 +85,7 @@ public class CategoryAttribute implements Serializable {
 		this.displayOrder = displayOrder;
 	}
 
-	public String getIsRequired() {
-		return isRequired;
-	}
-
-	public void setIsRequired(String isRequired) {
-		this.isRequired = isRequired;
-	}
-
-	public String getIsSearchable() {
-		return isSearchable;
-	}
-
-	public void setIsSearchable(String isSearchable) {
-		this.isSearchable = isSearchable;
-	}
+	
 
 	public String getLabel() {
 		return label;
@@ -152,14 +135,6 @@ public class CategoryAttribute implements Serializable {
 		this.validationRule = validationRule;
 	}
 
-	public String getValidationType() {
-		return validationType;
-	}
-
-	public void setValidationType(String validationType) {
-		this.validationType = validationType;
-	}
-
 	public List<CategoryAttributeValue> getCategoryAttributeValues() {
 		return categoryAttributeValues;
 	}
@@ -183,5 +158,23 @@ public class CategoryAttribute implements Serializable {
 	public void setAttributeDisplayType(AttributeDisplayType attributeDisplayType) {
 		this.attributeDisplayType = attributeDisplayType;
 	}
+
+	public boolean isRequired() {
+		return isRequired;
+	}
+
+	public void setRequired(boolean isRequired) {
+		this.isRequired = isRequired;
+	}
+
+	public boolean isSearchable() {
+		return isSearchable;
+	}
+
+	public void setSearchable(boolean isSearchable) {
+		this.isSearchable = isSearchable;
+	}
+	
+	
 
 }

@@ -343,7 +343,8 @@ altairApp
 	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
 	                    	return $ocLazyLoad.load(['product_details_model',
 	                    	                         'lazy_tinymce',
-	                    	                         'lazy_masked_inputs'
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
 	                    	                         ],{serie:true});
 	                    }]
                     },

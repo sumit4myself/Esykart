@@ -2,6 +2,7 @@ package com.webientsoft.esykart.product.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "category_attribute_value")
@@ -23,6 +23,9 @@ public class CategoryAttributeValue implements Serializable {
 	private String label;
 
 	private String value;
+
+	@Column(name = "display_order")
+	private Integer displayOrder;
 
 	@ManyToOne
 	@JoinColumn(name = "category_attribute_id")
@@ -59,9 +62,13 @@ public class CategoryAttributeValue implements Serializable {
 	public void setCategoryAttribute(CategoryAttribute categoryAttribute) {
 		this.categoryAttribute = categoryAttribute;
 	}
-	
-	
-	
-	
+
+	public Integer getDisplayOrder() {
+		return displayOrder;
+	}
+
+	public void setDisplayOrder(Integer displayOrder) {
+		this.displayOrder = displayOrder;
+	}
 
 }

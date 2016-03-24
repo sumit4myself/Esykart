@@ -2,7 +2,6 @@ package com.webientsoft.esykart.product.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +21,7 @@ public class ProductMediaMap implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "map_key")
-	private String mapKey;
+	private String key;
 
 	private String url;
 
@@ -38,12 +36,16 @@ public class ProductMediaMap implements Serializable {
 		this.id = id;
 	}
 
-	public String getMapKey() {
-		return this.mapKey;
+	public String getKey() {
+		return key;
 	}
 
-	public void setMapKey(String mapKey) {
-		this.mapKey = mapKey;
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getUrl() {
