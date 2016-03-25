@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.common.dao.support.JPADaoSupport;
 import com.webientsoft.esykart.common.model.Status;
@@ -15,6 +16,7 @@ import com.webientsoft.esykart.common.utils.BeanUtils;
 import com.webientsoft.esykart.merchant.entity.Merchant;
 
 
+@Service
 public class MerchantServiceImpl implements MerchantService {
 
 	@Autowired
