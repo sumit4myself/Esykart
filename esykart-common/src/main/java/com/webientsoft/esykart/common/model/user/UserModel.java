@@ -1,4 +1,4 @@
-package com.webientsoft.esykart.common.model.admin;
+package com.webientsoft.esykart.common.model.user;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ public class UserModel {
     private String password;
 
     private List<RoleModel> roles;
+    
     private UserPreferenceModel preference;
 
     

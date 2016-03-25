@@ -1,4 +1,4 @@
-package com.webientsoft.esykart.common.model.admin;
+package com.webientsoft.esykart.common.model.user;
 
 import java.util.List;
 
