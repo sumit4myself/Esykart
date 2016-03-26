@@ -53,7 +53,6 @@ public class MerchantServiceImpl implements MerchantService {
 		if (model.isCountCached()) {
 			int totalCount = 0;
 			int filteredCount = 0;
-
 		}
 		List<?> dataList = dao.findByQueryString(queryBuilder.toString(), params);
 		dataModel.setDataList(dataList);
