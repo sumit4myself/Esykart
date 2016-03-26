@@ -19,8 +19,8 @@ import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.merchant.MerchantModel;
 import com.webientsoft.esykart.merchant.service.MerchantService;
 
-@RestController
-@RequestMapping(value = "/merchant")
+//@RestController
+//@RequestMapping(value = "/merchant")
 public class MerchantRestController {
 
 	@Autowired

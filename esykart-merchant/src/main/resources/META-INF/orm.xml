@@ -4,5 +4,36 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
 	version="2.1">
 
-	
+	<named-query name="USER_AUTHENTICATE">
+		<query>
+			SELECT U.status 
+				FROM User U 
+					WHERE LOWER(U.userName) = LOWER(:userName) AND U.password =:password
+		
+		</query>
+	</named-query>
+
+	<!-- <named-query name="USER_FIND_PREMISSION">
+		<query>
+			SELECT DISTINCT R.permissions
+				FROM User U 
+					LEFT OUTER JOIN U.roles R
+				WHERE 
+					WHERE LOWER(U.userName) = LOWER(:userName)
+		</query>
+	</named-query> -->
+
+	<named-query name="USER_FIND_MENU">
+		<query>
+			SELECT L1 
+				FROM Menu L1 
+					LEFT OUTER JOIN L1.subMenus L2
+					LEFT OUTER JOIN L2.subMenus L3 
+				WHERE 
+					L1.permissions IN ( :permissions) OR 
+					L2.permissions IN ( :permissions) OR 
+					L3.permissions IN ( :permissions)
+		</query>
+	</named-query>
+
 </entity-mappings>

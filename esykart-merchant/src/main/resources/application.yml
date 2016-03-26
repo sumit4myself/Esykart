@@ -6,6 +6,14 @@ server:
     basedir: D:\\server\\merchant
     
 spring:
+  data:
+    rest:
+      base-path: /rest
+    jpa:
+      repositories:
+        enabled: true     
+      
+      
   main: 
     web-environment: true
   datasource:
@@ -35,13 +43,14 @@ spring:
       hibernate.hbm2ddl.import_files : /sql/postgrs-setup.sql
     hibernate:
       ddl-auto: create-drop
-           
+         
       
 logging:
   level:
     com.netflix.discovery: INFO
     com.webientsoft.esykart: DEBUG
     org.springframework.cloud: INFO
+    org.springframework.data: ALL
   file: merchant_service.log
   pattern:
     file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
