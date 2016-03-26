@@ -1,10 +1,10 @@
 angular.module('altairApp')
 .controller(
 		'AddCategoryController',
-		[ '$scope', '$rootScope', 'utils', 'CategoryService','BannerService','InventoryService','FulfillmentService',
-		function($scope, $rootScope, utils, CategoryService,BannerService,InventoryService,FulfillmentService) {
+		[ '$scope', '$rootScope','$stateParams', 'utils', 'CategoryService','BannerService','InventoryService','FulfillmentService',
+		function($scope, $rootScope,$stateParams, utils, CategoryService,BannerService,InventoryService,FulfillmentService) {
 			$scope.category = new Category();
-			
+			console.log($stateParams);
 			
 			CategoryService.save($scope.category.toJson()).then(function(){
 				if (!response.success) {

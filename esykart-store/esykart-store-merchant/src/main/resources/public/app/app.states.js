@@ -108,83 +108,7 @@ altairApp
                         pageTitle: 'Dashboard'
                     }
                 })
-                
-                
-                  // -- user --
-                .state("restricted.user", {
-                    url: "/user",
-                    template: '<div ui-view autoscroll="false" ng-class="{ \'uk-height-1-1\': page_full_height }"/>',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        	return $ocLazyLoad.load(['lazy_datatables', 
-                        	                         'lazy_parsleyjs',
-                        	                         'app/components/user/js/userController.js',
-                                                     'app/components/user/js/userService.js',
-                                                     ]);
-                        }]
-                    },
-                    abstract: true
-                })
-                .state("restricted.user.add", {
-                    url: "/add",
-                    templateUrl: 'app/components/user/createUser.html',
-                    controller: 'AddUserController',
-                    resolve: {
-	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['lazy_wizard'],{serie:true});
-	                    }]
-                    },
-                    data: {
-                        pageTitle: 'Add User'
-                    }
-                })
-                .state("restricted.user.manage", {
-                    url: "/manage",
-                    templateUrl: 'app/components/user/manageUser.html',
-                    controller: 'ManageUserController',
-                    data: {
-                        pageTitle: 'Manage User'
-                    }
-                })
-                
-                // -- role --
-                .state("restricted.role", {
-                    url: "/role",
-                    template: '<div ui-view autoscroll="false"/>',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_datatables', 
-                                                     'lazy_parsleyjs',
-                                                     'app/components/role/js/roleController.js',
-                                                     'app/components/role/js/roleService.js' 
-                                                     ]);
-                        }]
-                    },
-                    abstract: true
-                })
-                .state("restricted.role.add", {
-                    url: "/add",
-                    templateUrl: 'app/components/role/createRole.html',
-                    controller: 'AddRoleController',
-                    resolve: {
-	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['lazy_wizard'],{serie:true});
-	                    }]
-                    },
-                    data: {
-                        pageTitle: 'Add Role'
-                    }
-                })
-                
-                .state("restricted.role.manage", {
-                    url: "/manage",
-                    templateUrl: 'app/components/role/manageRole.html',
-                    controller: 'ManageRoleController',
-                    data: {
-                        pageTitle: 'Manage Role'
-                    }
-                })
-                                
+                               
                  // -- category attribute --
                 .state("restricted.category_attribute", {
                     url: "/category/attribute",
@@ -203,6 +127,22 @@ altairApp
                     controller: 'AddAttributeController',
                     data: {
                         pageTitle: 'Add Category Attribute'
+                    },
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_parsleyjs',
+                                                     'lazy_iCheck',
+                                                     'app/components/category/attribute/js/attributeModel.js']);
+                        }]
+                    } 
+                })
+                .state("restricted.category_attribute.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/category/attribute/createAttribute.html',
+                    controller: 'AddAttributeController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Edit Category Attribute'
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -246,6 +186,25 @@ altairApp
                     controller: 'AddCategoryController',
                     data: {
                         pageTitle: 'Add Category'
+                    },
+                    params: { id : null }, 
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_parsleyjs',
+                                                     'lazy_tinymce',
+                                                     'category_model',
+                                                     'shipping_module',
+                                                     'store_banner_module'
+                                                     ]);
+                        }]
+                    }
+                })
+                .state("restricted.category.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/category/createCategory.html',
+                    controller: 'AddCategoryController',
+                    data: {
+                        pageTitle: 'Edit Category'
                     },
                     params: { id : null }, 
                     resolve: {
@@ -308,6 +267,28 @@ altairApp
                         pageTitle: 'Add Product'
                     }
                 })
+                
+                .state("restricted.product.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/product/createProduct.html',
+                    controller: 'AddProductController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'product_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Product'
+                    }
+                })
 
                 .state("restricted.product.manage", {
                     url: "/manage",
@@ -352,6 +333,25 @@ altairApp
                         pageTitle: 'Add Product Detail'
                     }
                 })
+                
+                .state("restricted.product_detail.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/product/detail/createProductDetail.html',
+                    controller: 'AddProductDetailController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['product_details_model',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Edit Product Detail'
+                    }
+                })
 
                 .state("restricted.product_detail.manage", {
                     url: "/manage",
@@ -368,72 +368,111 @@ altairApp
                 })
                 
                 
-                  // -- customer --
-                .state("restricted.customer", {
-                    url: "/customer",
+                 // -- sku   --
+                .state("restricted.sku", {
+                    url: "/sku",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['app/components/customer/js/customerController.js',
-                                                     'app/components/customer/js/customerService.js']);
+                            return $ocLazyLoad.load(['product_module']);
                         }]
                     }, 
                     abstract: true
                 })
-                .state("restricted.customer.add", {
+                
+                .state("restricted.sku.add", {
                     url: "/add",
-                    templateUrl: 'app/components/customer/createCustomer.html',
-                    controller: 'AddCustomerController',
-                    data: {
-                        pageTitle: 'Add Customer'
-                    }
-                })
-                .state("restricted.customer.manage", {
-                    url: "/manage",
-                    templateUrl: 'app/components/customer/manageCustomer.html',
-                    controller: 'ManageCustomerController',
+                    templateUrl: 'app/components/sku/createSku.html',
+                    controller: 'AddSkuController',
                     resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_datatables',
-                                                     'lazy_iCheck'
-                                                     ]);
-                        }]
-                    }, 
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'product_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
                     data: {
-                        pageTitle: 'Manage Customer'
+                        pageTitle: 'Add Sku'
                     }
                 })
                 
-                  // -- merchant --
-                .state("restricted.merchant", {
-                    url: "/merchant",
+                .state("restricted.sku.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/sku/createSku.html',
+                    controller: 'AddSkuController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'product_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Sku'
+                    }
+                })
+
+                .state("restricted.sku.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/sku/manageSku.html',
+                    controller: 'ManageSkuController',
+                    data: {
+                        pageTitle: 'Manage Sku'
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
+                })
+
+                
+                  // -- offer --
+                .state("restricted.offer", {
+                    url: "/offer",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_datatables', 
-                                                     'lazy_parsleyjs',
-                                                     'app/components/merchant/js/merchantController.js',
-                                                     'app/components/merchant/js/merchantModel.js',
-                                                     'app/components/merchant/js/merchantService.js']);
+                            return $ocLazyLoad.load(['app/components/offer/js/offerController.js',
+                                                     'app/components/offer/js/offerService.js']);
                         }]
                     },
                     abstract: true
                 })
-                .state("restricted.merchant.manage", {
-                    url: "/manage",
-                    templateUrl: 'app/components/merchant/manageMerchant.html',
-                    controller: 'ManageMerchantController',
+                .state("restricted.offer.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/offer/createOffer.html',
+                    controller: 'AddOfferController',
                     data: {
-                        pageTitle: 'Manage Merchant'
+                        pageTitle: 'Add Offer'
                     }
                 })
-                
-                 .state("restricted.merchant.add", {
-                    url: "/add",
-                    templateUrl: 'app/components/merchant/createMerchant.html',
-                    controller: 'AddMerchantController',
+                .state("restricted.offer.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/offer/createOffer.html',
+                    controller: 'AddOfferController',
+                    params: { id : null }, 
                     data: {
-                        pageTitle: 'Add Merchant'
+                        pageTitle: 'Edit Offer'
+                    }
+                })
+                .state("restricted.offer.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/offer/manageOffer.html',
+                    controller: 'ManageOfferController',
+                    data: {
+                        pageTitle: 'Manage Offer'
                     }
                 })
                 
@@ -465,36 +504,500 @@ altairApp
                     }
                 })
                 
-                
-                  // -- offer --
-                .state("restricted.offer", {
-                    url: "/offer",
+                 // -- customer --
+                .state("restricted.customer", {
+                    url: "/customer",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['app/components/offer/js/offerController.js',
-                                                     'app/components/offer/js/offerService.js']);
+                            return $ocLazyLoad.load(['app/components/customer/js/customerController.js',
+                                                     'app/components/customer/js/customerService.js']);
                         }]
                     },
                     abstract: true
                 })
-                .state("restricted.offer.add", {
-                    url: "/add",
-                    templateUrl: 'app/components/offer/createOffer.html',
-                    controller: 'AddOfferController',
-                    data: {
-                        pageTitle: 'Add Offer'
-                    }
-                })
-                .state("restricted.offer.manage", {
+                .state("restricted.customer.manage", {
                     url: "/manage",
-                    templateUrl: 'app/components/offer/manageOffer.html',
-                    controller: 'ManageOfferController',
+                    templateUrl: 'app/components/customer/manageCustomer.html',
+                    controller: 'ManageCustomerController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables',
+                                                     'lazy_iCheck'
+                                                     ]);
+                        }]
+                    }, 
                     data: {
-                        pageTitle: 'Manage Offer'
+                        pageTitle: 'Manage Customer'
                     }
                 })
                 
+                
+                 // -- banner   --
+                .state("restricted.store_banner", {
+                    url: "/store/banner",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['banner_module']);
+                        }]
+                    }, 
+                    abstract: true
+                })
+                
+                .state("restricted.store_banner.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/banner/createBanner.html',
+                    controller: 'AddBannerController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'banner_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Banner'
+                    }
+                })
+                
+                .state("restricted.store_banner.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/banner/createBanner.html',
+                    controller: 'AddBannerController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'banner_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Banner'
+                    }
+                })
+
+                .state("restricted.store_banner.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/banner/manageBanner.html',
+                    controller: 'ManageBannerController',
+                    data: {
+                        pageTitle: 'Manage Banner'
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
+                })
+                
+                 // -- icon   --
+                .state("restricted.store_icon", {
+                    url: "/store/icon",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['icon_module']);
+                        }]
+                    }, 
+                    abstract: true
+                })
+                
+                .state("restricted.store_icon.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/icon/createIcon.html',
+                    controller: 'AddIconController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'icon_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Icon'
+                    }
+                })
+                
+                .state("restricted.store_icon.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/icon/createIcon.html',
+                    controller: 'AddIconController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'icon_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Icon'
+                    }
+                })
+
+                .state("restricted.store_icon.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/icon/manageIcon.html',
+                    controller: 'ManageIconController',
+                    data: {
+                        pageTitle: 'Manage Icon'
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
+                })
+                
+                 // -- layout   --
+                .state("restricted.store_layout", {
+                    url: "/store/layout",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['layout_module']);
+                        }]
+                    }, 
+                    abstract: true
+                })
+                
+                .state("restricted.store_layout.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/layout/createLayout.html',
+                    controller: 'AddLayoutController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'layout_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Layout'
+                    }
+                })
+                
+                .state("restricted.store_layout.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/layout/createLayout.html',
+                    controller: 'AddLayoutController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'layout_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Edit Layout'
+                    }
+                })
+
+                .state("restricted.store_layout.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/layout/manageLayout.html',
+                    controller: 'ManageLayoutController',
+                    data: {
+                        pageTitle: 'Manage Layout'
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
+                })
+                
+                 // -- menu   --
+                .state("restricted.store_menu", {
+                    url: "/store/menu",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['menu_module']);
+                        }]
+                    }, 
+                    abstract: true
+                })
+                
+                .state("restricted.store_menu.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/menu/createMenu.html',
+                    controller: 'AddMenuController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'menu_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Menu'
+                    }
+                })
+                
+                .state("restricted.store_menu.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/menu/createMenu.html',
+                    controller: 'AddMenuController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'menu_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Edit Menu'
+                    }
+                })
+
+                .state("restricted.store_menu.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/menu/manageMenu.html',
+                    controller: 'ManageMenuController',
+                    data: {
+                        pageTitle: 'Manage Menu'
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
+                })
+                
+                 // -- page   --
+                .state("restricted.store_page", {
+                    url: "/store/page",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['page_module']);
+                        }]
+                    }, 
+                    abstract: true
+                })
+                
+                .state("restricted.store_page.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/page/createPage.html',
+                    controller: 'AddPageController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'page_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add Page'
+                    }
+                })
+                
+                .state("restricted.store_page.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/page/createPage.html',
+                    controller: 'AddPageController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['category_module',
+	                    	                         'shipping_module',
+	                    	                         'page_model',
+	                    	                         'lazy_wizard',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Edit Page'
+                    }
+                })
+
+                .state("restricted.store_page.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/page/managePage.html',
+                    controller: 'ManagePageController',
+                    data: {
+                        pageTitle: 'Manage Page'
+                    },
+	                resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+	                }
+                })
+
+                 // -- merchant --
+                .state("restricted.merchant", {
+                    url: "/merchant",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables', 
+                                                     'lazy_parsleyjs',
+                                                     'app/components/merchant/js/merchantController.js',
+                                                     'app/components/merchant/js/merchantModel.js',
+                                                     'app/components/merchant/js/merchantService.js']);
+                        }]
+                    },
+                    abstract: true
+                })
+                .state("restricted.merchant.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/merchant/manageMerchant.html',
+                    controller: 'ManageMerchantController',
+                    data: {
+                        pageTitle: 'Manage Merchant'
+                    }
+                })
+
+                
+                   // -- user --
+                .state("restricted.user", {
+                    url: "/user",
+                    template: '<div ui-view autoscroll="false" ng-class="{ \'uk-height-1-1\': page_full_height }"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        	return $ocLazyLoad.load(['lazy_datatables', 
+                        	                         'lazy_parsleyjs',
+                        	                         'app/components/user/js/userController.js',
+                                                     'app/components/user/js/userService.js',
+                                                     ]);
+                        }]
+                    },
+                    abstract: true
+                })
+                .state("restricted.user.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/user/createUser.html',
+                    controller: 'AddUserController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_wizard'],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'Add User'
+                    }
+                })
+                 .state("restricted.user.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/user/createUser.html',
+                    controller: 'AddUserController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Edit User'
+                    }
+                })
+        		.state("restricted.user.view", {
+                    url: "/add",
+                    templateUrl: 'app/components/user/viewUser.html',
+                    controller: 'ViewUserController',
+                    data: {
+                        pageTitle: 'View User'
+                    }
+                })
+                
+                .state("restricted.user.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/user/manageUser.html',
+                    controller: 'ManageUserController',
+                    data: {
+                        pageTitle: 'Manage User'
+                    }
+                })
+                
+                // -- role --
+                .state("restricted.role", {
+                    url: "/role",
+                    template: '<div ui-view autoscroll="false"/>',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables', 
+                                                     'lazy_parsleyjs',
+                                                     'app/components/role/js/roleController.js',
+                                                     'app/components/role/js/roleService.js' 
+                                                     ]);
+                        }]
+                    },
+                    abstract: true
+                })
+                .state("restricted.role.add", {
+                    url: "/add",
+                    templateUrl: 'app/components/role/createRole.html',
+                    controller: 'AddRoleController',
+                    data: {
+                        pageTitle: 'Add Role'
+                    }
+                })
+                .state("restricted.role.edit", {
+                    url: "/edit",
+                    templateUrl: 'app/components/role/createRole.html',
+                    controller: 'AddRoleController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Edit Role'
+                    }
+                })
+                .state("restricted.role.manage", {
+                    url: "/manage",
+                    templateUrl: 'app/components/role/manageRole.html',
+                    controller: 'ManageRoleController',
+                    data: {
+                        pageTitle: 'Manage Role'
+                    }
+                })
                 
                   // -- setting --
                 .state("restricted.setting", {
@@ -511,26 +1014,6 @@ altairApp
                         pageTitle: 'Setting'
                     }
                 })
-
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 
                 

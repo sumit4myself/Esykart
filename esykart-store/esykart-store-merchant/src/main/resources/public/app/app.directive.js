@@ -57,16 +57,21 @@ altairApp
 	    		if(permissionType == "Add"){
 	    			$(permissions).each(function(){
     					if(this.privilege.privilegeName == "Add"){
-    						html += '<a ui-sref="{{'+this.link+'}}" class="class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light">';
-    							html += '<i class="material-icons md-color-white">'+this.privilege.icon+'</i>'+this.privilege.privilegeName+'</a>';
-    						html += '</a>';
+							html += '<a ng-click="{{'+this.link+'}}" class="class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light">';
+								html += '<i class="material-icons md-color-white">'+this.privilege.icon+'</i>'+this.privilege.privilegeName+'</a>';
+							html += '</a>';
     					}
 	    			})
 	    		}else{
 	    			$(permissions).each(function(){
     					if(this.privilege.privilegeName != "Add"){
     						var iconAndClass = this.privilege.icon.split("@");
-    				    	html += '<a ui-sref="{{'+this.link+'}}"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
+    						var link = this.link.replace('id_key',idField).replace('id_val',idValue);
+    				    	if(this.link.indexOf("javascript") >= 0){
+    				    		html += '<a ng-click="{{'+link+'}}"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
+    						}else{
+    							html += '<a ui-sref="{{'+link+'}}"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
+    						}
     					}
 	    			})
 	    		}
