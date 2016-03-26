@@ -188,7 +188,7 @@ angular.module('altairApp')
 	            .withOption( "aLengthMenu" , [ [ 5, 10, 25, 50, 100 ],[ 5, 10, 25, 50, 100 ] ])
 	            .withOption('fnDrawCallback',  function( oSettings ) {
 	            	 $timeout(function() {
-//	                        $compile($('.md-input'))($scope);
+	                        $compile($('user-permission'))($scope);
                     })
 	            })
 	            .withDisplayLength(5)	           
@@ -201,13 +201,7 @@ angular.module('altairApp')
                    DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
                    DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
                    .renderWith(function(data){
-                	   var html = '';
-                	   	html += '<a href="#"> <i class="md-icon material-icons md-color-blue-grey-500">&#xE254;</i></a>';
-                	   	html += ' <a href="#"><i class="md-icon material-icons md-color-blue-500">&#xE88F;</i></a>';
-                	   	html += ' <a href="#"><i class="md-icon material-icons md-color-red-500">&#xE872;</i></a>';
-                		html += ' <a href="#"><i class="md-icon material-icons md-color-green-500">&#xE86C;</i></a>';
-                	   	html += ' <a href="#"><i class="md-icon material-icons md-color-purple-500">&#xE14B;</i></a>';	
-            		   return html;
+                	   return  '<user-permission data-permission-for="restricted.category.manage" data-id-value="'+data+'" data-id-field="id" data-permission-type="Manage"/>';
                   })
             ];
         });

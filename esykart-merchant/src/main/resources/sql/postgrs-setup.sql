@@ -1,9 +1,9 @@
 INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Add','&#xE148;' , '1');
-INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('View', '&#xE254;', '2');
-INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Edit', '&#xE254;', '3');
-INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Delete', '&#xE872;', '4');
-INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Activate', '&#xE86C;', '5');
-INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Deactivate', '&#xE14B;', '6');
+INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('View', '&#xE254;@md-color-blue-grey-500', '2');
+INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Edit', '&#xE254;@md-color-blue-500', '3');
+INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Delete', '&#xE872;@md-color-red-500', '4');
+INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Activate', '&#xE86C;@md-color-green-500', '5');
+INSERT INTO privilege(privilege_name,icon,sort_index) VALUES ('Deactivate', '&#xE14B;@md-color-purple-500', '6');
 
 
 INSERT INTO menu(icon, link, sort_index, title, parent_id) VALUES ('&#xE871;', 'restricted.dashboard', 1, 'Dashboard', null);

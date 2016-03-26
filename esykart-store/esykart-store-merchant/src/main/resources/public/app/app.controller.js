@@ -8,14 +8,20 @@ angular
     .controller('mainCtrl', [
         '$scope',
         '$rootScope',
-        function ($scope,$rootScope) {}
+        '$http',
+        function ($scope,$rootScope,$http) {
+    	  $http.get('/details').success(function(response) {
+              $rootScope.userDetail = response;
+          });
+        }
     ])
     .controller('main_headerCtrl', [
         '$timeout',
+        '$rootScope',
         '$scope',
         '$window',
-        function ($timeout,$scope,$window) {
-
+        function ($timeout,$rootScope,$scope,$window) {
+        	console.log($rootScope.userDetail);
             $scope.user_data = {
                 name: "Lue Feest",
                 avatar: "assets/img/avatars/avatar_11_tn.png",

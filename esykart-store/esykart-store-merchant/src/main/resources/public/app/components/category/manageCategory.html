@@ -2,9 +2,12 @@
 	<div id="page_content_inner">
 		<div class="md-card">
 			<div class="md-card-content">
-				<h3 class="heading_a">Category Details</h3>
-
-				<div
+				<h3 class="heading_a">Category Details
+					<div class="uk-float-right">
+						<user-permission data-permission-for="restricted.category.manage" data-permission-type="add"/>
+					</div>
+				</h3>
+				<div class="uk-margin-top"
 					ng-controller="ManageCategoryTableController as TableController">
 					<table datatable dt-options="TableController.dtOptions"
 						dt-column-defs="TableController.dtColumnDefs"
