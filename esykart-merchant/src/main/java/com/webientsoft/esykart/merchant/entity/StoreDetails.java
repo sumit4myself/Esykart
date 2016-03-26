@@ -11,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.tomcat.jni.Address;
+
 @Entity
-@Table(name = "store_details")
+@Table(name = "store_details", schema = "core")
 public class StoreDetails implements Serializable {
 
 	private static final long serialVersionUID = -9182788101089214421L;
@@ -31,6 +33,9 @@ public class StoreDetails implements Serializable {
 	@Column(name = "nature_business")
 	private NatureOfBusiness natureOfBusiness;
 
+	@Column(name = "business_description")
+	private Address address;
+	
 	public Integer getId() {
 		return id;
 	}
