@@ -12,12 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.webientsoft.esykart.common.entity.Users;
+import com.webientsoft.esykart.merchant.entity.user.User;
 
 @Entity
 @Table(name = "merchant", schema = "core")
 public class Merchant implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,7 +26,7 @@ public class Merchant implements Serializable {
 	@Column(name = "merchant_id")
 	private Integer merchantId;
 	@OneToOne(cascade = CascadeType.ALL)
-	private Users users;
+	private User users;
 
 	public Integer getMerchantId() {
 		return merchantId;
@@ -36,11 +36,11 @@ public class Merchant implements Serializable {
 		this.merchantId = merchantId;
 	}
 
-	public Users getUsers() {
+	public User getUsers() {
 		return users;
 	}
 
-	public void setUsers(Users users) {
+	public void setUsers(User users) {
 		this.users = users;
 	}
 }

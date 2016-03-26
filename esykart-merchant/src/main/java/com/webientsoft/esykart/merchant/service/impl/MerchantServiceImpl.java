@@ -7,13 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.webientsoft.esykart.common.dao.support.JPADaoSupport;
-import com.webientsoft.esykart.common.entity.Users;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.merchant.MerchantModel;
 import com.webientsoft.esykart.common.utils.BeanUtils;
 import com.webientsoft.esykart.merchant.entity.Merchant;
+import com.webientsoft.esykart.merchant.entity.user.User;
 import com.webientsoft.esykart.merchant.service.MerchantService;
 
 
@@ -25,24 +25,14 @@ public class MerchantServiceImpl implements MerchantService {
 	@Override
 	public void save(MerchantModel model) {
 		Merchant merchant = new Merchant();
-		Users users=new Users();
-		users.setFullName(model.getFullName());
-		users.setEmail(model.getEmail());
-		users.setPassword(model.getPassword());
-		users.setMobile(model.getMobile());
-		merchant.setUsers(users);
+		merchant.setUsers(populateUser(model));
 		dao.persist(merchant);
 	}
 
 	@Override
 	public void update(Integer id, MerchantModel model) {
 		Merchant merchant = new Merchant();
-		Users users=new Users();
-		users.setFullName(model.getFullName());
-		users.setEmail(model.getEmail());
-		users.setPassword(model.getPassword());
-		users.setMobile(model.getMobile());
-		merchant.setUsers(users);
+		merchant.setUsers(populateUser(model));
 		merchant.setMerchantId(id);
 		dao.merge(merchant);
 	}
@@ -76,6 +66,13 @@ public class MerchantServiceImpl implements MerchantService {
 				dao.addQueryNamedParameters("id", id, "status", status));
 	}
 
-	
+	private User populateUser(MerchantModel model){
+		User users=new User();
+		users.setName(model.getFullName());
+		users.setEmail(model.getEmail());
+		users.setPassword(model.getPassword());
+		users.setMobile(model.getMobile());
+		return null;
+	}
 
 }
