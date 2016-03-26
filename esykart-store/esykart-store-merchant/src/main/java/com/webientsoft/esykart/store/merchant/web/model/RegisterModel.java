@@ -7,6 +7,7 @@ public class RegisterModel {
 	private String email;
 	private String mobile;
 	private String password;
+	
 	public Integer getMerchantId() {
 		return merchantId;
 	}

@@ -19,41 +19,42 @@ import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.merchant.MerchantModel;
 import com.webientsoft.esykart.merchant.service.MerchantService;
 
-//@RestController
-//@RequestMapping(value = "/merchant")
+@RestController
+@RequestMapping(value = "/merchant")
 public class MerchantRestController {
 
 	@Autowired
 	private MerchantService merchantService;
-	
+
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public @ResponseBody ResponseEntity<?> create(@RequestBody MerchantModel model) {
-	System.out.println("post calkled ");
-	MultiValueMap<String, String> headers = new HttpHeaders();
-	return new ResponseEntity<>(headers, HttpStatus.CREATED);
-    }
+	public @ResponseBody ResponseEntity<?> create(@RequestBody MerchantModel model) {
+		MultiValueMap<String, String> headers = new HttpHeaders();
+		merchantService.save(model);
+		return new ResponseEntity<>(headers, HttpStatus.CREATED);
+	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
-    public @ResponseBody ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody MerchantModel model) {
-	MultiValueMap<String, String> headers = new HttpHeaders();
-	return new ResponseEntity<>(headers, HttpStatus.OK);
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public @ResponseBody ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody MerchantModel model) {
+		MultiValueMap<String, String> headers = new HttpHeaders();
+		merchantService.update(id, model);
+		return new ResponseEntity<>(headers, HttpStatus.OK);
+	}
 
-    @RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, produces = "application/json")
-    public @ResponseBody ResponseEntity<?> changeStatus(@PathVariable("id") int id,
-	    @RequestParam("status") Status status) {
+	@RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, produces = "application/json")
+	public @ResponseBody ResponseEntity<?> changeStatus(@PathVariable("id") int id,
+			@RequestParam("status") Status status) {
 
-	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity<MerchantModel> getDetail(@PathVariable("id") int id) {
-	return new ResponseEntity<>(merchantService.find(id), HttpStatus.OK);
-    }
+	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ResponseEntity<MerchantModel> getDetail(@PathVariable("id") int id) {
+		return new ResponseEntity<>(merchantService.find(id), HttpStatus.OK);
+	}
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(FilterModel model) {
-	return new ResponseEntity<>(merchantService.search(model), HttpStatus.OK);
-    }
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(FilterModel model) {
+		return new ResponseEntity<>(merchantService.search(model), HttpStatus.OK);
+	}
 
 }

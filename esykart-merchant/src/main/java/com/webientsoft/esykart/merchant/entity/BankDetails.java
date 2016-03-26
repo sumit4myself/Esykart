@@ -10,10 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bank_details")
+@Table(name = "bank_details", schema = "core")
 public class BankDetails implements Serializable {
 
 	private static final long serialVersionUID = -9008869185412452584L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
