@@ -4,83 +4,102 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-@JsonIgnoreProperties(value = {"password"})
+@JsonIgnoreProperties(value = { "password" })
 public class UserModel {
 
-    private Integer userId;
-    private String userName;
-    private String name;
-    private String mobile;
-    private String email;
-    private String password;
+	private Integer userId;
+	private String userName;
+	private String name;
+	private String mobile;
+	private String email;
+	private String password;
 
-    private List<RoleModel> roles;
-    
-    private UserPreferenceModel preference;
+	private List<RoleModel> roles;
 
-    
-    public List<RoleModel> getRoles() {
-	return roles;
-    }
+	private List<AlertModel> alerts;
 
-    public void setRoles(List<RoleModel> roles) {
-	this.roles = roles;
-    }
+	private List<MenuModel> menus;
 
-    public UserPreferenceModel getPreference() {
-	return preference;
-    }
+	private UserPreferenceModel preference;
 
-    public void setPreference(UserPreferenceModel preference) {
-	this.preference = preference;
-    }
+	public List<AlertModel> getAlerts() {
+		return alerts;
+	}
 
-    public Integer getUserId() {
-	return userId;
-    }
+	public void setAlerts(List<AlertModel> alerts) {
+		this.alerts = alerts;
+	}
 
-    public void setUserId(Integer userId) {
-	this.userId = userId;
-    }
+	public List<RoleModel> getRoles() {
+		return roles;
+	}
 
-    public String getUserName() {
-	return userName;
-    }
+	public void setRoles(List<RoleModel> roles) {
+		this.roles = roles;
+	}
 
-    public void setUserName(String userName) {
-	this.userName = userName;
-    }
+	public UserPreferenceModel getPreference() {
+		return preference;
+	}
 
-    public String getName() {
-	return name;
-    }
+	public void setPreference(UserPreferenceModel preference) {
+		this.preference = preference;
+	}
 
-    public void setName(String name) {
-	this.name = name;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    public String getMobile() {
-	return mobile;
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    public void setMobile(String mobile) {
-	this.mobile = mobile;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public String getEmail() {
-	return email;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setEmail(String email) {
-	this.email = email;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getPassword() {
-	return password;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPassword(String password) {
-	this.password = password;
-    }
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<MenuModel> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<MenuModel> menus) {
+		this.menus = menus;
+	}
+
 }

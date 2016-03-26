@@ -10,6 +10,9 @@ public class MenuModel {
     private String link;
     private List<PrivilegeModel> privileges;
     private List<MenuModel> subMenu;
+    
+    
+    
     public Integer getMenuId() {
         return menuId;
     }

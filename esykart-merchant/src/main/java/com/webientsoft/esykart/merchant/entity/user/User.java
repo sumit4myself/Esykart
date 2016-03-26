@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 import com.webientsoft.esykart.common.model.Status;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,19 +33,19 @@ public class User implements Serializable {
 	@Column(name = "user_id")
 	private Integer userId;
 
-	@Column(name = "user_name", nullable = false)
+	@Column(name = "user_name", length = 100, nullable = false, unique = true)
 	private String userName;
 
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", length = 100, nullable = false)
 	private String name;
 
-	@Column(name = "mobile", nullable = false)
+	@Column(name = "mobile", length = 15, nullable = false, unique = true)
 	private String mobile;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 
 	@Column(name = "updated_by")
@@ -55,7 +55,7 @@ public class User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedOn;
 
-	@Column(name = "status", nullable = false)
+	@Column(name = "status", nullable = false, length = 1)
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
@@ -65,7 +65,7 @@ public class User implements Serializable {
 	@ManyToMany
 	private List<Role> roles;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
 	private UserPreference userPreferences;
 
 	public User() {

@@ -20,6 +20,9 @@ public class Permission implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "permission_id")
 	private Integer permissionId;
+	
+	@Column(name = "link", nullable = false)
+	private String link;
 
 	@JoinColumn(name = "privilege_id", referencedColumnName = "privilege_id")
 	@ManyToOne
@@ -51,6 +54,18 @@ public class Permission implements Serializable {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

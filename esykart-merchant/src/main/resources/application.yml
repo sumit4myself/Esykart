@@ -32,8 +32,10 @@ spring:
     database: POSTGRESQL
     properties:
       hibernate.format_sql: true
+      hibernate.hbm2ddl.import_files : /sql/postgrs-setup.sql
     hibernate:
       ddl-auto: create-drop
+           
       
 logging:
   level:

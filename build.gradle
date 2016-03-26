@@ -134,6 +134,7 @@ project(':esykart-api-gateway') {
 	dependencies {
 		compile 'org.springframework.cloud:spring-cloud-starter-ribbon:1.0.6.RELEASE'
 		compile 'org.springframework.cloud:spring-cloud-starter-hystrix:1.0.6.RELEASE'
+		compile(project(":esykart-common"))
 	}
 }
 

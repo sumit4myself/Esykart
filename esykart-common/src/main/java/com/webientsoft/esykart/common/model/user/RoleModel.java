@@ -8,10 +8,7 @@ public class RoleModel {
 	private String roleName;
 	private String description;
 
-	private List<Integer> privilegeIds;
-	private List<Integer> assignedUserIds;
-
-	private List<PrivilegeModel> privileges;
+	private List<PermissionModel> permissions;
 	private List<UserModel> users;
 
 	public Integer getRoleId() {
@@ -38,28 +35,12 @@ public class RoleModel {
 		this.description = description;
 	}
 
-	public List<Integer> getPrivilegeIds() {
-		return privilegeIds;
+	public List<PermissionModel> getPermissions() {
+		return permissions;
 	}
 
-	public void setPrivilegeIds(List<Integer> privilegeIds) {
-		this.privilegeIds = privilegeIds;
-	}
-
-	public List<Integer> getAssignedUserIds() {
-		return assignedUserIds;
-	}
-
-	public void setAssignedUserIds(List<Integer> assignedUserIds) {
-		this.assignedUserIds = assignedUserIds;
-	}
-
-	public List<PrivilegeModel> getPrivileges() {
-		return privileges;
-	}
-
-	public void setPrivileges(List<PrivilegeModel> privileges) {
-		this.privileges = privileges;
+	public void setPermissions(List<PermissionModel> permissions) {
+		this.permissions = permissions;
 	}
 
 	public List<UserModel> getUsers() {

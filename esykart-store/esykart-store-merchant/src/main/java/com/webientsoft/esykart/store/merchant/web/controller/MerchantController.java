@@ -6,8 +6,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.webientsoft.esykart.store.merchant.service.MerchantService;
 import com.webientsoft.esykart.store.merchant.web.model.RegisterModel;
-import com.webientsoft.esykart.store.merchant.web.service.MerchantService;
 
 @Controller
 public class MerchantController {

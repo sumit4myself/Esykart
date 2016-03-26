@@ -39,10 +39,10 @@ public class Menu implements Serializable {
 	@Column(name = "title", nullable = false)
 	private String title;
 
-	@Column(name = "icon", nullable = false)
+	@Column(name = "icon")
 	private String icon;
 
-	@Column(name = "link", nullable = false)
+	@Column(name = "link")
 	private String link;
 
 	@Column(name = "sort_index", nullable = false)

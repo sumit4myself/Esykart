@@ -36,7 +36,7 @@ public class Role implements Serializable {
 	@Column(name = "role_id")
 	private Integer roleId;
 
-	@Column(name = "role_name")
+	@Column(name = "role_name", length =100 , nullable = false, unique = true)
 	private String roleName;
 
 	@Column(name = "description")
@@ -50,7 +50,7 @@ public class Role implements Serializable {
 	private Date updatedOn;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "status")
+	@Column(name = "status",length = 1)
 	private Status status;
 
 	@JoinTable(name = "role_permission_mapping", joinColumns = {
