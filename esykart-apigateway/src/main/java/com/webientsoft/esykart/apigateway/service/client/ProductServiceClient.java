@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.webientsoft.esykart.common.model.merchant.Merchant;
 import com.webientsoft.esykart.common.model.product.ProductModel;
 
 /**
@@ -27,7 +26,7 @@ public interface ProductServiceClient {
 	long save(ProductModel entity);
 
 	@RequestMapping(value = BASE_PATH + "/{id}", method = RequestMethod.PUT)
-	void update(@PathVariable("id") long id, Merchant entity);
+	void update(@PathVariable("id") long id, ProductModel entity);
 
 	@RequestMapping(value = BASE_PATH + "/{id}", method = RequestMethod.DELETE)
 	void delete(@PathVariable("id") long id);
