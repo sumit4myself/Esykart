@@ -11,6 +11,7 @@ spring:
     database: H2
     properties:
       hibernate.format_sql: true
+      hibernate.hbm2ddl.import_files : /sql/h2-setup.sql
     hibernate:
       ddl-auto: create-drop
   main: 
