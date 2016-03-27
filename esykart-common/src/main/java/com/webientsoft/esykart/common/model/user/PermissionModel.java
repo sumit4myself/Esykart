@@ -5,6 +5,7 @@ public class PermissionModel {
 	private Integer permissionId;
 	private PrivilegeModel privilege;
 	private MenuModel menu;
+	private String link;
 
 	public Integer getPermissionId() {
 		return permissionId;
@@ -28,6 +29,14 @@ public class PermissionModel {
 
 	public void setMenu(MenuModel menu) {
 		this.menu = menu;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }

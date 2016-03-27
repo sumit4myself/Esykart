@@ -166,11 +166,22 @@ angular.module('altairApp')
 		'ManageCategoryController',
 		[ '$scope', '$rootScope', 'utils', 'CategoryService',
 		function($scope, $rootScope, utils, CategoryService) {
-
+			
+			$scope.delete = function (id){
+				console.log(this);
+				console.log(id);
+			};
+			
+			$scope.activate = function (id){
+				console.log(this);
+				console.log(id);
+			};
 			
 			
-			
-			
+			$scope.deactivate = function(id){
+				console.log(this);
+				console.log(id);
+			};
 		} ])
 		
 .controller('ManageCategoryTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
@@ -201,7 +212,7 @@ angular.module('altairApp')
                    DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
                    DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
                    .renderWith(function(data){
-                	   return  '<user-permission data-permission-for="restricted.category.manage" data-id-value="'+data+'" data-id-field="id" data-permission-type="Manage"/>';
+                	   return  '<user-permission data-permission-for="restricted.category.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
                   })
             ];
         });

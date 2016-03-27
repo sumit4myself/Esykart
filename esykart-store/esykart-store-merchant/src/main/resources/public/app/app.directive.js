@@ -26,7 +26,7 @@ altairApp
         }
     ])
     
-    .directive('userPermission', ['$rootScope', function($rootScope) {
+    .directive('userPermission', ['$rootScope','$compile', function($rootScope,$compile) {
     	return {
 		restrict: 'E',
 		transclude: false,
@@ -54,11 +54,11 @@ altairApp
     		});
 	    	
 	    	if(permissions != null){
-	    		if(permissionType == "Add"){
+	    		if(permissionType == "ADD"){
 	    			$(permissions).each(function(){
     					if(this.privilege.privilegeName == "Add"){
-							html += '<a ng-click="{{'+this.link+'}}" class="class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light">';
-								html += '<i class="material-icons md-color-white">'+this.privilege.icon+'</i>'+this.privilege.privilegeName+'</a>';
+							html += '<a ui-sref="'+this.link+'" class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light">';
+								html += '<i class="material-icons md-color-white">'+this.privilege.icon+'</i> '+this.privilege.privilegeName+'</a>';
 							html += '</a>';
     					}
 	    			})
@@ -67,10 +67,10 @@ altairApp
     					if(this.privilege.privilegeName != "Add"){
     						var iconAndClass = this.privilege.icon.split("@");
     						var link = this.link.replace('id_key',idField).replace('id_val',idValue);
-    				    	if(this.link.indexOf("javascript") >= 0){
-    				    		html += '<a ng-click="{{'+link+'}}"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
+    				    	if(this.link.indexOf("id_key") >= 0){
+    				    		html += '<a ui-sref="'+link+'"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
     						}else{
-    							html += '<a ui-sref="{{'+link+'}}"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
+    							html += '<a ng-click="'+link+'"><i class="md-icon material-icons '+iconAndClass[1]+'">'+iconAndClass[0]+'</i></a>';
     						}
     					}
 	    			})
@@ -83,6 +83,7 @@ altairApp
     			}
 	    	}
 	   	elem.append(html);
+	   	$compile(elem)(scope);
 	  }
 	}
     }])
