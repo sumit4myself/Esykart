@@ -138,7 +138,7 @@ INSERT INTO menu(icon, link, sort_index, title, parent_id) VALUES ('&#xE8C0;', '
 --Menu and Permission setup done 
 
 
-INSERT INTO role(role_name,description, status, updated_by, updated_on) VALUES ('SuperAdmin', 'Super Admin Role', 'A', null, now(id_val));
+INSERT INTO role(role_name,description, status, updated_by, updated_on) VALUES ('SuperAdmin', 'Super Admin Role', 'A', null, now());
     
 INSERT INTO role_permission_mapping(role_id, permission_id) SELECT (SELECT role_id FROM role WHERE role_name = 'SuperAdmin'),permission_id FROM permission;
 

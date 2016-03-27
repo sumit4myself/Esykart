@@ -5,6 +5,8 @@
 
 package com.webientsoft.esykart.user.repository;
 
+import com.webientsoft.esykart.user.entity.User;
+
 /**
  * 
  * @author DeepakT
@@ -12,5 +14,6 @@ package com.webientsoft.esykart.user.repository;
  */
 public interface UserRepositoryCustom {
 
+	User authenticate(String userName, String password);
 	
 }

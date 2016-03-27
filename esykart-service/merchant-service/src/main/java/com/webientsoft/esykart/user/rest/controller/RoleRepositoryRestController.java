@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.merchant.entity.Merchant;
-import com.webientsoft.esykart.merchant.repository.MerchantRepository;
+import com.webientsoft.esykart.user.entity.Role;
+import com.webientsoft.esykart.user.repository.RoleRepository;
 
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/roles")
 @RepositoryRestController
 public class RoleRepositoryRestController {
 
@@ -27,19 +27,19 @@ public class RoleRepositoryRestController {
 			RoleRepositoryRestController.class);
 
 	@Autowired
-	private MerchantRepository merchantRepository;
+	private RoleRepository roleRepository;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = {
 		"application/json" }, produces = { "application/json" })
-	public @ResponseBody ResponseEntity<Integer> save(@RequestBody Merchant merchant) {
-		return ResponseEntity.ok(merchantRepository.save(merchant).getId());
+	public @ResponseBody ResponseEntity<Integer> save(@RequestBody Role role) {
+		return ResponseEntity.ok(roleRepository.save(role).getRoleId());
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = {
 		"application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id,
-			@RequestBody Merchant merchant) {
-		merchantRepository.save(merchant);
+			@RequestBody Role role) {
+		roleRepository.save(role);
 		return ResponseEntity.noContent().build();
 	}
 
@@ -47,13 +47,13 @@ public class RoleRepositoryRestController {
 		"application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
-		merchantRepository.changeStatus(id, status);
+		roleRepository.changeStatus(id, status);
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<Merchant> getDetail(@PathVariable("id") int id) {
-		 return ResponseEntity.ok(merchantRepository.findOne(id));
+	public @ResponseBody ResponseEntity<Role> getDetail(@PathVariable("id") int id) {
+		 return ResponseEntity.ok(roleRepository.findOne(id));
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")

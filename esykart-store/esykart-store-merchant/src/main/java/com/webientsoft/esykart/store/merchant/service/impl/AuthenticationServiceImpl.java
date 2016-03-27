@@ -3,6 +3,7 @@ package com.webientsoft.esykart.store.merchant.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.common.model.common.AuthenticationModel;
@@ -11,13 +12,25 @@ import com.webientsoft.esykart.common.model.user.PermissionModel;
 import com.webientsoft.esykart.common.model.user.PrivilegeModel;
 import com.webientsoft.esykart.common.model.user.UserModel;
 import com.webientsoft.esykart.store.merchant.service.AuthenticationService;
+import com.webientsoft.esykart.store.merchant.service.client.AuthenticationServiceClient;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
+	
+	@Autowired
+	private AuthenticationServiceClient client;
 
 	@Override
 	public UserModel authenticate(AuthenticationModel model) {
-		UserModel user = new UserModel();
+		System.out.println("client ========================== "+ client);
+		System.out.println("model ========================== "+ model);
+		UserModel user = client.authenticate(model);
+		if(true)
+			return user;
+		
+		
+		
+		
 		user.setName("Sumit Kumar Shamra");
 		user.setEmail("sumit4myself@gmail.com");
 		user.setUserName("Sumit4myself");

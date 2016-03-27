@@ -8,4 +8,32 @@
 		<query>UPDATE Merchant m SET m.status=:status WHERE m.id=:merchantId</query>
 	</named-query>
 
+	<named-query name="Role.changeStatus">
+		<query>UPDATE Role m SET m.status=:status WHERE m.roleId=:roleId</query>
+	</named-query>
+
+	<named-query name="User.changeStatus">
+		<query>UPDATE User m SET m.status=:status WHERE m.userId=:userId</query>
+	</named-query>
+
+	<named-query name="User.authenticate">
+		<query>
+			SELECT U 
+				FROM User U 
+					WHERE LOWER(U.userName) = LOWER(:userName) AND U.password =:password
+		
+		</query>
+	</named-query>
+
+	<named-query name="User.findMenus">
+		<query>
+			SELECT DISTINCT L1 
+				FROM Menu L1 
+					LEFT OUTER JOIN L1.subMenus L2
+				WHERE 
+					L1.permissions IN ( :permissions) OR 
+					L2.permissions IN ( :permissions)
+		</query>
+	</named-query>
+
 </entity-mappings>

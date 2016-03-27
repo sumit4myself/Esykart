@@ -41,16 +41,19 @@ zuul:
         stripPrefix: false
         service-id: apigateway      
     merchantService: 
-        path: /merchants/**
+        path: /merchants/** 
+              /users/**
+              /roles/**
         retryable: true
         stripPrefix: false
-        service-id: apigateway        
+        service-id: apigateway  
+            
              
 ribbon:
   eureka:
     enabled: false
 
-apigateway:
+APIGATEWAY:
   ribbon:
     listOfServers: http://localhost:9000     
     

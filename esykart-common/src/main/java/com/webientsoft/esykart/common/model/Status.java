@@ -3,7 +3,7 @@ package com.webientsoft.esykart.common.model;
 
 public enum Status {
 
-	ACTIVE("A"), INACTIVE("I"), DEACTIVE("D");
+	A("A"), I("I"), D("D");
 
 	private String value;
 

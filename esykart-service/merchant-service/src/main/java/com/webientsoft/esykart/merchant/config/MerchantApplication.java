@@ -17,9 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @since 1.0
  */
 @EnableTransactionManagement
-@EntityScan(basePackages = { "com.webientsoft.esykart.merchant.entity" })
+@EntityScan(basePackages = { "com.webientsoft.esykart.merchant.entity", "com.webientsoft.esykart.user.entity" })
 @SpringBootApplication(scanBasePackages = { "com.webientsoft.esykart" })
-@EnableJpaRepositories(basePackages = { "com.webientsoft.esykart.merchant.repository" })
+@EnableJpaRepositories(basePackages = { "com.webientsoft.esykart.merchant.repository",
+		"com.webientsoft.esykart.user.repository" })
 public class MerchantApplication {
 
 	public static void main(String[] args) {

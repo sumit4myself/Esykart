@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.webientsoft.esykart.common.model.Status;
 
@@ -64,6 +65,9 @@ public class User implements Serializable {
 					@JoinColumn(name = "user_id", referencedColumnName = "user_id") })
 	@ManyToMany
 	private List<Role> roles;
+
+	@Transient
+	private List<Menu> menus;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
 	private UserPreference userPreferences;
@@ -161,6 +165,14 @@ public class User implements Serializable {
 
 	public void setUserPreferences(UserPreference userPreferences) {
 		this.userPreferences = userPreferences;
+	}
+
+	public List<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
 	}
 
 }

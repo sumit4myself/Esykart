@@ -16,10 +16,8 @@ import com.webientsoft.esykart.merchant.entity.Merchant;
  * @since 1.0
  */
 
-public interface MerchantRepository
-		extends BaseRepository<Merchant, Integer>, MerchantRepositoryCustom {
+public interface MerchantRepository extends BaseRepository<Merchant, Integer>, MerchantRepositoryCustom {
 
-	void changeStatus(@Param("merchantId") Integer merchantId,
-			@Param("status") Status status);
+	void changeStatus(@Param("merchantId") Integer merchantId, @Param("status") Status status);
 
 }

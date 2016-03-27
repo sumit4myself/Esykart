@@ -1,10 +1,6 @@
+package com.webientsoft.esykart.apigateway.rest.controller;
 
-package com.webientsoft.esykart.user.rest.controller;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,38 +8,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.webientsoft.esykart.apigateway.service.UserService;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.AuthenticationModel;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.user.entity.User;
-import com.webientsoft.esykart.user.repository.UserRepository;
+import com.webientsoft.esykart.common.model.user.UserModel;
 
-@RequestMapping(value = "/users")
-@RepositoryRestController
-public class UserRepositoryRestController {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserRepositoryRestController.class);
+@RestController
+@RequestMapping("/users")
+public class UserRestController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, consumes = {
 			"application/json" }, produces = { "application/json" })
-	public @ResponseBody ResponseEntity<User> authenticate(@RequestBody AuthenticationModel model) {
-		return ResponseEntity.ok(userRepository.authenticate(model.getUserName(), model.getPassword()));
+	public @ResponseBody ResponseEntity<UserModel> authenticate(@RequestBody AuthenticationModel model) {
+		return ResponseEntity.ok(userService.authenticate(model));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
-	public @ResponseBody ResponseEntity<Integer> save(@RequestBody User user) {
-		return ResponseEntity.ok(userRepository.save(user).getUserId());
+	public @ResponseBody ResponseEntity<Void> save(@RequestBody UserModel user) {
+		userService.save(user);
+		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
 			"application/json" })
-	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody User user) {
-		userRepository.save(user);
+	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody UserModel user) {
+		userService.save(user);
 		return ResponseEntity.noContent().build();
 	}
 
@@ -51,13 +47,13 @@ public class UserRepositoryRestController {
 			"application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
-		userRepository.changeStatus(id, status);
+		userService.changeStatus(id, status);
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<User> getDetail(@PathVariable("id") int id) {
-		return ResponseEntity.ok(userRepository.findOne(id));
+	public @ResponseBody ResponseEntity<UserModel> getDetail(@PathVariable("id") int id) {
+		return ResponseEntity.ok(userService.find(id));
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
