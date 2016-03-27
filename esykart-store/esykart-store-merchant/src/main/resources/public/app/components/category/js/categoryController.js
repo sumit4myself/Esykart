@@ -1,12 +1,11 @@
 angular.module('altairApp')
 .controller(
 		'AddCategoryController',
-		[ '$scope', '$rootScope','$stateParams', 'utils', 'CategoryService','BannerService','InventoryService','FulfillmentService',
-		function($scope, $rootScope,$stateParams, utils, CategoryService,BannerService,InventoryService,FulfillmentService) {
+		[ '$scope', '$rootScope','$state','$stateParams', 'utils', 'CategoryService','BannerService','InventoryService','FulfillmentService',
+		function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerService,InventoryService,FulfillmentService) {
 			$scope.category = new Category();
-			console.log($stateParams);
 			
-			CategoryService.save($scope.category.toJson()).then(function(){
+			/*CategoryService.save($scope.category.toJson()).then(function(){
 				if (!response.success) {
                 	UIkit.notify({
                         message: response.message,
@@ -16,7 +15,7 @@ angular.module('altairApp')
                 } else {
                 	
                 }
-			});
+			});*/
 			
 			
 //			event binding
@@ -33,8 +32,7 @@ angular.module('altairApp')
 			};
 			
 			$scope.onCancel = function (){
-				console.log(this);
-				
+				$state.go("restricted.category.manage");
 			};
 			
 			
@@ -137,7 +135,7 @@ angular.module('altairApp')
 	                        pos: 'top-right',
 	                	});
 	                } else {
-	                	$scope.parent_category.options = response;
+	                	$scope.banner.options = response;
 	                }
 			});
 			
@@ -164,13 +162,12 @@ angular.module('altairApp')
 		
 		
 .controller('ViewCategoryController',
-		[ '$scope', '$rootScope','$stateParams', 'CategoryService',
-		function($scope, $rootScope,$stateParams, CategoryService) {
-			$scope.category = new Category();
+		[ '$scope', '$rootScope','$state','$stateParams', 'CategoryService',
+		function($scope, $rootScope,$state,$stateParams, CategoryService) {
+//			$scope.category = new Category();
 			
 			$scope.onCancel = function (){
-				console.log(this);
-				
+				$state.go("restricted.category.manage");
 			};
 						
 } ])

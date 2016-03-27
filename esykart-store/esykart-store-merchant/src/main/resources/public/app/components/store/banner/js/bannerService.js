@@ -3,7 +3,7 @@
 		['$http','utils','url',
 		function($http, utils, url) {
 			var service = {};
-	        service.save = function (){
+	        service.save = function (banner){
 	        	return $http.post(url,banner)
 				.then(utils.handleSuccess, utils.handleError('Error occurred while saving banner.'));
 	        };
