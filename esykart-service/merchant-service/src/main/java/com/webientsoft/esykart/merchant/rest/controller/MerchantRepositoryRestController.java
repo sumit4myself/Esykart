@@ -1,5 +1,5 @@
 
-package com.webientsoft.esykart.merchant.repository.rest.controller;
+package com.webientsoft.esykart.merchant.rest.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
