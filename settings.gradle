@@ -1,19 +1,26 @@
+/*
+ * Copyright (c) 2016, WebientSoft and/or its affiliates. All rights reserved. 
+ * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
+ */
+
 rootProject.name = 'esykart'
 
 include 'esykart-common'
-include 'esykart-offer'
-include 'esykart-order'
-include 'esykart-shipping'
-include 'esykart-workflow'
-include 'esykart-auction'
-include 'esykart-payment'
-include 'esykart-product'
-include 'esykart-customer'
-include 'esykart-merchant'
-include 'esykart-notification'
 include 'esykart-store'
-include 'esykart-api-gateway'
+include 'esykart-service'
+include 'esykart-apigateway'
+include 'esykart-config-server'
+include 'esykart-service:offer-service'
+include 'esykart-service:order-service'
+include 'esykart-service:shipping-service'
+include 'esykart-service:workflow-service'
+include 'esykart-service:auction-service'
+include 'esykart-service:payment-service'
+include 'esykart-service:product-service'
+include 'esykart-service:customer-service'
+include 'esykart-service:merchant-service'
+include 'esykart-service:notification-service'
+include 'esykart-service-discovery-server'
 include 'esykart-store:esykart-store-customer'
 include 'esykart-store:esykart-store-merchant'
-include 'esykart-discovery-server'
-include 'esykart-config-server'
+

@@ -1,42 +1,128 @@
+/*
+ * Copyright (c) 2016, WebientSoft and/or its affiliates. All rights reserved. 
+ * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
+ */
+
  buildscript {
-   repositories {
-     jcenter()
-   }
-   dependencies {
+ 
+    repositories {
+		maven { url 'http://repo.springsource.org/plugins-release' }
+	}
+	
+	dependencies {
+     classpath('org.springframework.build.gradle:propdeps-plugin:0.0.5')
      classpath 'io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE'
      classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE'
    }
-}
-
-allprojects{
-   apply plugin: 'eclipse'
-}
-
-subprojects{
-   apply plugin: 'java'
-   apply plugin: 'spring-boot'
-   apply plugin: 'io.spring.dependency-management'
-
-
-repositories {
-   jcenter()
-}
-
-dependencyManagement {
-   imports {
-     mavenBom 'org.springframework.cloud:spring-cloud-starter-parent:Angel.SR3'
-     mavenBom 'org.springframework.boot:spring-boot-starter-parent:1.3.3.RELEASE'
-   }
-   
    
 }
 
-dependencies {
-   compile 'org.springframework.boot:spring-boot-devtools'
-   compile 'org.springframework.cloud:spring-cloud-starter-config'
-   compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+configure(allprojects) { project ->
+	group = 'com.webientsoft'
+	version = qualifyVersionIfNecessary(version)
+
+    ext.env                  = buildEnvironment() 
+    ext.springBootVersion    = '1.3.3.RELEASE'
+	ext.springCloudVersion   = '1.0.6.RELEASE'
+	ext.junitVersion         = '4.11'
+	ext.slf4jVersion         = '1.7.5'
+	ext.xstreamVersion       = '1.4.6'
+
+	ext.gradleScriptDir   = "${rootProject.projectDir}/gradle"
+
+	apply plugin: 'java'
+	apply plugin: 'findbugs'
+	apply plugin: 'propdeps'
+	apply plugin: 'io.spring.dependency-management'
+	apply from  : "${gradleScriptDir}/ide.gradle"
+	apply from  : "${gradleScriptDir}/${env}.gradle"
+
+	compileJava.options*.compilerArgs = [
+		'-Xlint:serial', '-Xlint:varargs', '-Xlint:cast', '-Xlint:classfile',
+		'-Xlint:dep-ann', '-Xlint:divzero', '-Xlint:empty', '-Xlint:finally',
+		'-Xlint:overrides', '-Xlint:path', '-Xlint:processing', '-Xlint:static',
+		'-Xlint:try', '-Xlint:fallthrough', '-Xlint:rawtypes', '-Xlint:deprecation',
+		'-Xlint:unchecked', '-Xlint:-options', '-Werror'
+	]
+
+	compileTestJava.options*.compilerArgs = [
+		'-Xlint:serial', '-Xlint:varargs', '-Xlint:cast', '-Xlint:classfile',
+		'-Xlint:dep-ann', '-Xlint:divzero', '-Xlint:empty', '-Xlint:finally',
+		'-Xlint:overrides', '-Xlint:path', '-Xlint:processing', '-Xlint:static',
+		'-Xlint:try', '-Xlint:-fallthrough', '-Xlint:-rawtypes', '-Xlint:-deprecation',
+		'-Xlint:-unchecked', '-Xlint:-options']
+
+	compileJava {
+		sourceCompatibility=1.7
+		targetCompatibility=1.7
+	}
+
+	compileTestJava {
+		sourceCompatibility=1.7
+		targetCompatibility=1.7
+	}
+
+	sourceSets.test.resources.srcDirs = ['src/test/resources', 'src/test/java']
+
+	test {
+		systemProperty('java.awt.headless', 'true')
+		systemProperty('testGroups', project.properties.get('testGroups'))
+		scanForTestClasses = false
+		include(['**/*Tests.class', '**/*Test.class'])
+		// Since we set scanForTestClasses to false, we need to filter out inner
+		// classes with the '$' pattern; otherwise, using -Dtest.single=MyTests to
+		// run MyTests by itself will fail if MyTests contains any inner classes. 
+		exclude(['**/Abstract*.class', '**/*$*'])
+	}
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+
+	dependencies {
+		testCompile "junit:junit:${junitVersion}"
+		testCompile "org.hamcrest:hamcrest-all:1.3"
+		testCompile "org.mockito:mockito-core:1.9.5"
+		compile 'org.springframework.cloud:spring-cloud-config-client:1.0.4.RELEASE'
+	}
+
+	ext.javadocLinks = [
+		'http://docs.oracle.com/javase/7/docs/api/',
+		'http://docs.oracle.com/javaee/6/api/',
+		'http://docs.oracle.com/cd/E13222_01/wls/docs90/javadocs/', // CommonJ
+		'http://pic.dhe.ibm.com/infocenter/wasinfo/v7r0/topic/com.ibm.websphere.javadoc.doc/web/apidocs/',
+		'http://glassfish.java.net/nonav/docs/v3/api/',
+		'http://docs.jboss.org/jbossas/javadoc/4.0.5/connector/',
+		'http://docs.jboss.org/jbossas/javadoc/7.1.2.Final/',
+		'http://commons.apache.org/proper/commons-lang/javadocs/api-2.5/',
+		'http://commons.apache.org/proper/commons-codec/apidocs/',
+		'http://commons.apache.org/proper/commons-dbcp/apidocs/',
+		'http://portals.apache.org/pluto/portlet-2.0-apidocs/',
+		'http://tiles.apache.org/framework/apidocs/',
+		'http://aopalliance.sourceforge.net/doc/',
+		'http://www.eclipse.org/aspectj/doc/released/aspectj5rt-api/',
+		'http://ehcache.org/apidocs/',
+		'http://quartz-scheduler.org/api/2.1.7/',
+		'http://jackson.codehaus.org/1.9.4/javadoc/',
+		'http://fasterxml.github.com/jackson-core/javadoc/2.3.0/',
+		'http://fasterxml.github.com/jackson-databind/javadoc/2.3.0/',
+		'http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs'
+	] as String[]
 }
 
+findbugs {
+    toolVersion = '2.0.1'
+    sourceSets = [sourceSets.main]
+    ignoreFailures = true
+    reportsDir = file("$project.buildDir/findbugsReports")
+    effort = 'max'
+    reportLevel = 'high'
+    visitors = ['FindSqlInjection', 'SwitchFallthrough']
+    omitVisitors = ['FindNonShortCircuit']
+    includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")
+    excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")
+    excludeBugsFilter = file("$rootProject.projectDir/config/findbugs/excludeBugsFilter.xml")
 }
 
 
@@ -44,150 +130,216 @@ project(':esykart-common') {
 	description = 'Esykart Common'
 
 	dependencies {
-	    compile 'com.zaxxer:HikariCP:2.4.3'
-	    compile 'org.apache.commons:commons-lang3:3.4'
+	   compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.5'
+	}
+}
+
+
+project(':esykart-apigateway') {
+	description = 'Esykart API Gateway'
+	
+	apply plugin: 'spring-boot'
+	
+	dependencies {
+		compile(project(':esykart-common'))
+		compile 'com.netflix.hystrix:hystrix-javanica:1.4.10'
+	    compile "org.springframework.cloud:spring-cloud-starter-feign:${springCloudVersion}"
+	    compile "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}"
+	    compile "org.springframework.cloud:spring-cloud-starter-hystrix:${springCloudVersion}"
+	}
+}
+
+project(':esykart-service') {
+	description = 'Esykart Service'
+	
+	subprojects{
+	
+	   apply plugin: 'spring-boot'
+	   
+	   dependencies {
+		compile(project(':esykart-common'))
+		compile 'org.apache.commons:commons-lang3:3.4'
      	compile 'org.apache.commons:commons-collections4:4.0'
      	compile 'commons-beanutils:commons-beanutils:1.9.2' 
-	    compile 'org.postgresql:postgresql:9.4.1208.jre7'
 	    compile 'org.apache.commons:commons-collections4:4.1'
-	    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.3.3.RELEASE'
+	    compile "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}"
+	    compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+	   }
+	
 	}
+	
 }
 
 
-project(':esykart-offer') {
-	description = 'Esykart Offer'
+project(':esykart-service:offer-service') {
+	description = 'Offer Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
 
-project(':esykart-order') {
-	description = 'Esykart Order'
+project(':esykart-service:order-service') {
+	description = 'Order Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
 
-project(':esykart-shipping') {
-	description = 'Esykart Shipping'
+project(':esykart-service:shipping-service') {
+	description = 'Shipping-service'
+
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
-project(':esykart-workflow') {
-	description = 'Esykart Workflow'
+project(':esykart-service:workflow-service') {
+	description = 'Workflow Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
-project(':esykart-auction') {
-	description = 'Esykart Auction'
+project(':esykart-service:auction-service') {
+	description = 'Auction Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
 
-project(':esykart-payment') {
-	description = 'Esykart Payment'
+project(':esykart-service:payment-service') {
+	description = 'Payment Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
 
-project(':esykart-product') {
-	description = 'Esykart Product'
+project(':esykart-service:product-service') {
+	description = 'Product Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+		
 	}
 }
 
-project(':esykart-customer') {
-	description = 'Esykart Customer'
+project(':esykart-service:customer-service') {
+	description = 'Customer Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+
 	}
 }
 
-project(':esykart-merchant') {
-	description = 'Esykart Merchant'
+project(':esykart-service:merchant-service') {
+	description = 'Merchant Service'
+	
 	dependencies {
-		compile(project(":esykart-common"))
+
 	}
 }
 
-project(':esykart-notification') {
-	description = 'Esykart Notification'
+project(':esykart-service:notification-service') {
+	description = 'Notification Service'
+	
 	dependencies {
-	    compile(project(":esykart-common"))
+	   
 	}
 }
 
-project(':esykart-api-gateway') {
-	description = 'Esykart API Gateway'
-	dependencies {
-		compile 'org.springframework.cloud:spring-cloud-starter-ribbon:1.0.6.RELEASE'
-		compile 'org.springframework.cloud:spring-cloud-starter-hystrix:1.0.6.RELEASE'
-		compile(project(":esykart-common"))
-	}
-}
 
 project(':esykart-store') {
 	description = 'Esykart Store'
+	
+	ext.jqueryVersion          = '2.2.1'
+	ext.bootstrapVersion      = '3.0.3'
+	ext.hazelcastVersion      = '3.6.1'
+	ext.nekohtmlVersion       = '1.9.22'
+	ext.springSessionVersion  = '1.1.0.RELEASE'
+	
 	subprojects{
-		 dependencies {
-		    compile 'com.hazelcast:hazelcast:3.6.1'
-		    compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
-		    compile 'org.springframework.session:spring-session:1.1.0.RELEASE'
-		    compile 'org.springframework.cloud:spring-cloud-starter-zuul:1.0.6.RELEASE'
-		    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.3.3.RELEASE'
-		  }
+	
+	    apply plugin: 'spring-boot'
+	    
+	    dependencies {
+		    compile "org.webjars:jquery:${jqueryVersion}"
+            compile "org.webjars:bootstrap:${bootstrapVersion}"
+		    compile "com.hazelcast:hazelcast:${hazelcastVersion}"
+		    compile "net.sourceforge.nekohtml:nekohtml:${nekohtmlVersion}"
+		    compile "org.springframework.session:spring-session:${springSessionVersion}"
+		    compile "org.springframework.cloud:spring-cloud-starter-zuul:${springCloudVersion}"
+		    compile "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
+		}
 		
-	    bootRun {
+        bootRun {
 	       addResources = true
 	    }
-	}
- }
+	}   
+}
 
 project(':esykart-store:esykart-store-customer') {
 	description = 'Esykart Customer Store'
-
-	jar {
-		manifest.attributes["Created-By"] =
-			'${System.getProperty("java.version")} (${System.getProperty("java.specification.vendor")})'
-		manifest.attributes["Implementation-Title"] = 'Esykart Customer Store'
-		manifest.attributes["Implementation-Version"] = '1.0'
-	}
-  
+	
 }
 
 project(':esykart-store:esykart-store-merchant') {
 	description = 'Esykart Merchant Store'
-  dependencies{
-       compile 'org.webjars:jquery:2.2.1'
-       compile 'org.webjars:bootstrap:3.0.3'
-       compile(project(":esykart-common"))
-     }
+	 
 }
 
-project(':esykart-discovery-server') {
-	description = 'Esykart Discovery Server'
-    dependencies{
-       compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server:1.0.7.RELEASE'
-     }
-}
 
 project(':esykart-config-server') {
 	description = 'Esykart Configuration Server'
+	
+	apply plugin: 'spring-boot'
+	 
 	dependencies{
 	  compile 'org.springframework.cloud:spring-cloud-config-server:1.0.4.RELEASE'
 	}
 }
 
 
+project(':esykart-service-discovery-server') {
+	description = 'Esykart Service Discovery Server'
+	
+	apply plugin: 'spring-boot'
+    
+    dependencies{
+       compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server:1.0.7.RELEASE'
+     }
+}
+
+
+
+def buildEnvironment() {
+  def env=System.getProperty('esykart.build.profile')!=null 
+                   ? System.getProperty('esykart.build.profile')
+                   :System.getenv('ESYKART_BUILD_PROFILE')
+  return env!=null?env:'dev'
+}
+
+/*
+ * Support publication of artifacts versioned by topic branch.
+ * CI builds supply `-P BRANCH_NAME=<TOPIC>` to gradle at build time.
+ * If <TOPIC> starts with 'SPR-', change version
+ *     from BUILD-SNAPSHOT => <TOPIC>-SNAPSHOT
+ *     e.g. 3.2.1.BUILD-SNAPSHOT => 3.2.1.SPR-1234-SNAPSHOT
+ */
+ 
+def qualifyVersionIfNecessary(version) {
+	if (rootProject.hasProperty('BRANCH_NAME')) {
+		def qualifier = rootProject.getProperty('BRANCH_NAME')
+		if (qualifier.startsWith('SPR-')) {
+			return version.replace('BUILD', qualifier)
+		}
+	}
+	return version
+}

@@ -1,0 +1,35 @@
+server:
+  port: ${port:9000}
+    
+spring:
+  main: 
+    web-environment: true    
+    
+logging:
+  level:
+    com.webientsoft.esykart: DEBUG
+    org.springframework.cloud: INFO
+     
+ribbon:
+  eureka:
+   enabled: false
+
+OFFER-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9003/   
+    
+ORDER-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9003/   
+    
+PRODUCT-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9003/              
+
+CUSTOMER-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9002/
+    
+MERCHANT-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9003/   

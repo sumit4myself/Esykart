@@ -1,0 +1,27 @@
+spring:
+  main:
+    web-environment: true
+  datasource:
+    jndi-name: java:comp/env/jdbc/NotificationDS
+  jpa: 
+    database: POSTGRESQL
+  mail:
+    protocol: smtp
+    host: localhost
+    port: 8888
+    username: test
+    password: test
+    test-connection: true
+    properties: 
+       test: test
+          
+logging:
+  level:
+    com.webientsoft.esykart: DEBUG
+    org.springframework.cloud: INFO
+  file: D:\\esykart\\logs\\notification_service.log
+  pattern:
+    file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
+    console: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
+      
+      

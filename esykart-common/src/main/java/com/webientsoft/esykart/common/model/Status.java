@@ -1,8 +1,9 @@
+
 package com.webientsoft.esykart.common.model;
 
 public enum Status {
 
-	A("A"), I("I"), D("D");
+	ACTIVE("A"), INACTIVE("I"), DEACTIVE("D");
 
 	private String value;
 

@@ -1,0 +1,15 @@
+spring:
+  main: 
+    web-environment: true
+  datasource:
+    jndi-name: java:comp/env/jdbc/CustomerDS
+      
+logging:
+  level:
+    com.webientsoft.esykart: DEBUG
+    org.springframework.cloud: INFO
+  file: D:\\esykart\logs\\customer_service.log
+  pattern:
+    file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
+    console: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
+    

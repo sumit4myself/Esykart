@@ -1,0 +1,23 @@
+server:
+  port: ${port:9003} 
+  
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa: 
+    show-sql: true
+    open-in-view: false
+    database: H2
+    properties:
+      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+  main: 
+    web-environment: true
+      
+logging:
+  level:
+    com.webientsoft.esykart: DEBUG
+    org.springframework.cloud: INFO
+ 

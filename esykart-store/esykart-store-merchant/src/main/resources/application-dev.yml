@@ -1,0 +1,62 @@
+server:
+  port: ${port:8081}
+  session-timeout: 30
+  error:
+    include-stacktrace: always
+  
+spring: 
+  main: 
+    web-environment: true
+  mvc: 
+    throw-exception-if-no-handler-found: true
+  thymeleaf: 
+    mode: LEGACYHTML5         
+  
+logging:
+  level:
+    com.webientsoft.esykart: DEBUG
+    org.springframework.boot: INFO
+          
+zuul: 
+  ignored-services: '*'
+  routes:
+    orderService: 
+        path: /ordres/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway
+    offerService: 
+        path: /offers/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway
+    productService:  
+        path: /products/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway
+    customerService: 
+        path: /customers/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway      
+    merchantService: 
+        path: /merchants/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway        
+             
+ribbon:
+  eureka:
+    enabled: false
+
+apigateway:
+  ribbon:
+    listOfServers: http://localhost:9000     
+    
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false

@@ -1,36 +1,3 @@
-server:
-  port: ${PORT:8080}
-  session-timeout: 30
-  error:
-    path: /error
-  tomcat:
-    access-log-enabled: true
-    basedir: D:\\server\\store\\customer
 spring:
-  main: 
-    web-environment: true
-  mvc:
-    throw-exception-if-no-handler-found: true
-  thymeleaf: 
-    mode: LEGACYHTML5     
-  
-logging:
-  level:
-    com.webientsoft.esykart: DEBUG
-    org.springframework.boot: INFO
-  file: customer_store.log
-  pattern:
-    file: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
-    console: '%d{dd-MMM-yyyy HH:mm:ss} %5p %c{1}:%L - %m%n'
- 
- 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
-       
-zuul: 
-  ignored-services: '*'
-  routes:
-    API-GATEWAY: /api/**      
-  
+  profiles:
+    active: ${profile:dev}
