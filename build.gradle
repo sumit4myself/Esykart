@@ -292,6 +292,9 @@ project(':esykart-store:esykart-store-customer') {
 
 project(':esykart-store:esykart-store-merchant') {
 	description = 'Esykart Merchant Store'
+	dependencies{
+	 	compile(project(':esykart-common'))
+	}
 	 
 }
 
