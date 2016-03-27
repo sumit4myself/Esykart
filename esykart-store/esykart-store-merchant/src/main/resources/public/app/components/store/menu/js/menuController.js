@@ -1,22 +1,21 @@
 angular.module('altairApp')
 .controller(
-		'AddStoreController',
-		[ '$scope', '$rootScope', 'utils', 'StoreService',
-		function($scope, $rootScope, utils, StoreService) {
+		'AddMenuController',
+		[ '$scope', '$rootScope', 'utils', 'MenuService',
+				function($scope, $rootScope, utils, MenuService) {
 
-			
-			
-			
-			
-		} ])
+				} ])
 
 .controller(
-		'ManageStoreController',
-		[ '$scope', '$rootScope', 'utils', 'StoreService',
-		function($scope, $rootScope, utils, StoreService) {
+		'ManageMenuController',
+		[ '$scope', '$rootScope', 'utils', 'MenuService',
+				function($scope, $rootScope, utils, MenuService) {
 
-			
-			
-			
-			
-		} ])
+				} ])
+
+.controller(
+		'ViewMenuController',
+		[ '$scope', '$rootScope', '$stateParams', 'MenuService',
+				function($scope, $rootScope, $stateParams, MenuService) {
+
+				} ])

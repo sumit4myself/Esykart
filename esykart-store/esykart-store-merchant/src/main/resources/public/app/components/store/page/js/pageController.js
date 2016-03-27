@@ -1,22 +1,21 @@
 angular.module('altairApp')
 .controller(
-		'AddStoreController',
-		[ '$scope', '$rootScope', 'utils', 'StoreService',
-		function($scope, $rootScope, utils, StoreService) {
+		'AddPageController',
+		[ '$scope', '$rootScope', 'utils', 'PageService',
+				function($scope, $rootScope, utils, PageService) {
 
-			
-			
-			
-			
-		} ])
+				} ])
 
 .controller(
-		'ManageStoreController',
-		[ '$scope', '$rootScope', 'utils', 'StoreService',
-		function($scope, $rootScope, utils, StoreService) {
+		'ManagePageController',
+		[ '$scope', '$rootScope', 'utils', 'PageService',
+				function($scope, $rootScope, utils, PageService) {
 
-			
-			
-			
-			
-		} ])
+				} ])
+
+.controller(
+		'ViewPageController',
+		[ '$scope', '$rootScope', '$stateParams', 'PageService',
+				function($scope, $rootScope, $stateParams, PageService) {
+
+				} ])

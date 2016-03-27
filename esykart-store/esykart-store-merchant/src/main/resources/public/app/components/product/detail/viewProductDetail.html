@@ -1,0 +1,226 @@
+<div id="page_content">
+	<div id="page_content_inner">
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">General Details</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-2">
+						<input type="text" selectize config="product.config"
+							options="product.options" ng-model="productDetail.product.id" />
+					</div>
+
+					<div class="uk-width-medium-1-2">
+						<input type="checkbox" class="switchery" ui-switch color="#ffb300"
+							ng-model="productDetail.isDiscountable" /> <label
+							for="isDiscountable" class="inline-label">Discountable</label>
+
+						&nbsp;&nbsp; <input type="checkbox" class="switchery" ui-switch
+							color="#1e88e5" ng-model="productDetail.isActionable"
+							id="isActionable" /> <label for="isActionable"
+							class="inline-label">Actionable</label> &nbsp;&nbsp; <input
+							type="checkbox" class="switchery" ui-switch color="#7cb342"
+							ng-model="productDetail.isFeaturedProduct" /> <label
+							for="isFeaturedProduct" class="inline-label">Featured
+							Product</label>
+
+					</div>
+				</div>
+
+				<div class="uk-grid">
+					<div class="uk-width-1-1">
+						<div class="uk-form-row">
+							<label>Description</label>
+							<textarea ui-tinymce="tinymce_options" cols="30" rows="15"
+								ng-model="productDetail.longDescription"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Activation Period</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+
+					<div class="uk-width-medium-1-2">
+						<div class="md-card">
+							<div class="md-card-content">
+								<h3 class="heading_a">Start Date</h3>
+								<div class="uk-grid">
+									<div class="uk-width-medium-1-2">
+										<div class="uk-input-group">
+											<span class="uk-input-group-addon"><i
+												class="uk-input-group-icon uk-icon-calendar"></i></span> <label
+												for="uk_dp_1">Select date</label> <input class="md-input"
+												type="text" data-uk-datepicker="{format:'DD/MM/YYYY'}"
+												md-input ng-model="productDetail.activeStartDate">
+										</div>
+									</div>
+									<div class=" uk-width-medium-1-2">
+										<div class="uk-input-group">
+											<span class="uk-input-group-addon"><i
+												class="uk-input-group-icon uk-icon-clock-o"></i></span> <label
+												for="uk_tp_1">Select time</label> <input class="md-input"
+												type="text" data-uk-timepicker md-input
+												ng-model="productDetail.activeStartDate">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="uk-width-medium-1-2">
+						<div class="md-card">
+							<div class="md-card-content">
+								<h3 class="heading_a">End Date</h3>
+								<div class="uk-grid">
+									<div class="uk-width-medium-1-2">
+										<div class="uk-input-group">
+											<span class="uk-input-group-addon"><i
+												class="uk-input-group-icon uk-icon-calendar"></i></span> <label
+												for="uk_dp_1">Select date</label> <input class="md-input"
+												type="text" data-uk-datepicker="{format:'DD/MM/YYYY'}"
+												md-input ng-model="productDetail.activeEndDate">
+										</div>
+									</div>
+									<div class=" uk-width-medium-1-2">
+										<div class="uk-input-group">
+											<span class="uk-input-group-addon"><i
+												class="uk-input-group-icon uk-icon-clock-o"></i></span> <label
+												for="uk_tp_1">Select time</label> <input class="md-input"
+												type="text" data-uk-timepicker md-input
+												ng-model="productDetail.activeEndDate">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Weight / Dimension</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-4">
+						<input type="text" selectize config="dimensionUnits.config"
+							options="dimensionUnits.options"
+							ng-model="productDetail.dimensionUnitOfMeasure" />
+					</div>
+
+					<div class="uk-width-medium-1-4">
+						<label for="masked_currency">Width </label> <input
+							class="md-input masked_input" type="text" md-input ng-model="productDetail.width" />
+					</div>
+
+					<div class="uk-width-medium-1-4">
+						<label for="masked_currency">Height </label> <input
+							class="md-input masked_input" type="text" md-input ng-model="productDetail.height"/>
+					</div>
+					<div class="uk-width-medium-1-4">
+						<label for="masked_currency">Length </label> <input
+							class="md-input masked_input" type="text" md-input ng-model="productDetail.length"/>
+					</div>
+
+				</div>
+
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-4">
+						<input type="text" selectize config="weightUnits.config"
+							options="weightUnits.options"
+							ng-model="productDetail.weightUnitOfMeasure" />
+					</div>
+
+					<div class="uk-width-medium-1-4">
+						<label for="masked_currency">Weight </label> <input
+							class="md-input masked_input" type="text" md-input ng-model="productDetail.weight"/>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Price / Shipping</h3>
+				<div class="uk-grid" data-uk-grid-margin>
+					<div class="uk-width-medium-1-4">
+						<label for="masked_currency">Retail Price * </label> <input
+							class="md-input masked_input" type="text" md-input
+							ng-model="productDetail.retailPrice"
+							data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '&#x20b9; ', 'placeholder': '0'"
+							data-inputmask-showmaskonhover="false" />
+					</div>
+
+					<div class="uk-width-medium-1-4">
+						<label for="masked_currency">Sale Price </label> <input
+							class="md-input masked_input" type="text" md-input
+							ng-model="productDetail.salePricee"
+							data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': '&#x20b9; ', 'placeholder': '0'"
+							data-inputmask-showmaskonhover="false" />
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Image</h3>
+				<div class="uk-grid" data-uk-grid-margin="">
+					<div class="uk-width-medium-1-1">
+						<table class="uk-table uk-table-nowrap" id="product_media_table">
+							<thead>
+								<tr>
+									<th class="uk-width-2-10">Image</th>
+									<th class="uk-width-7-10">Image Key</th>
+									<th class="uk-width-1-10"><a href="javascript:void(0)"
+										class="md-btn md-btn-success md-btn-wave-light waves-effect waves-button waves-light add-row">
+											<i class="material-icons md-color-white">&#xE148;</i> Add
+									</a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="file" class="dropify" data-height="150"
+										ng-model="productMediaMaps.productMediaMaps.image" /></td>
+									<td><input type="text" config="image.config"
+										options="image.options"
+										ng-model="productMediaMaps.productMediaMaps.key" selectize /></td>
+									<td><a href="javascript:void(0)"
+										class="md-btn md-btn-danger md-btn-wave-light waves-effect waves-button waves-light remove-row">
+											<i class="material-icons md-color-white">&#xE15D;</i> Remove
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="uk-grid uk-grid-width-1-1">
+					<div class="uk-clearfix">
+						<div class="uk-float-right">
+							<a class="md-btn md-btn-primary md-btn-wave-light"
+								href="javascript:void(0)" ng-click="onCancel()">Cancel</a> <a
+								class="md-btn md-btn-warning md-btn-wave-light"
+								href="javascript:void(0)" ng-click="onReset()">Reset</a> <a
+								class="md-btn md-btn-success md-btn-wave-light"
+								href="javascript:void(0)" ng-click="onSave()">Save</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>

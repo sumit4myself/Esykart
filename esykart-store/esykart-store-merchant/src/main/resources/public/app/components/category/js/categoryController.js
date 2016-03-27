@@ -161,6 +161,20 @@ angular.module('altairApp')
             });
 			
 		} ])
+		
+		
+.controller('ViewCategoryController',
+		[ '$scope', '$rootScope','$stateParams', 'CategoryService',
+		function($scope, $rootScope,$stateParams, CategoryService) {
+			$scope.category = new Category();
+			
+			$scope.onCancel = function (){
+				console.log(this);
+				
+			};
+						
+} ])
+		
 
 .controller(
 		'ManageCategoryController',

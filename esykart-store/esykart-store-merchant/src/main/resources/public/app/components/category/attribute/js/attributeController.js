@@ -130,6 +130,16 @@ angular.module('altairApp')
 			
 			
 		} ])
+.controller(
+		'ViewAttributeController',
+		[ '$scope', '$rootScope', '$stateParams', 'AttributeService',
+		function($scope, $rootScope, $stateParams, AttributeService) {
+
+			
+			
+			
+			
+		} ])
 
 .controller(
 		'ManageAttributeController',

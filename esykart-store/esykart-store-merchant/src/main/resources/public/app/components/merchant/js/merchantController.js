@@ -28,6 +28,16 @@ angular.module('altairApp')
 			
 			
 		} ])
+ .controller(
+		'ViewMerchantController',
+		[ '$scope', '$rootScope', '$stateParams', 'MerchantService',
+		function($scope, $rootScope, $stateParams, MerchantService) {
+
+			
+			
+			
+			
+		} ])
 		
 		
   .controller('ManageMerchantTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {

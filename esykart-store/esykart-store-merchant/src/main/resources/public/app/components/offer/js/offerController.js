@@ -9,7 +9,6 @@ angular.module('altairApp')
 			
 			
 		} ])
-
 .controller(
 		'ManageOfferController',
 		[ '$scope', '$rootScope', 'utils', 'OfferService',
@@ -20,3 +19,16 @@ angular.module('altairApp')
 			
 			
 		} ])
+.controller(
+		'ViewOfferController',
+		[ '$scope', '$rootScope', '$stateParams', 'OfferService',
+		function($scope, $rootScope, $stateParams, OfferService) {
+
+			
+			
+			
+			
+		} ])
+		
+		
+		

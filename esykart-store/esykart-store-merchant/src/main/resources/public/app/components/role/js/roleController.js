@@ -54,7 +54,16 @@ angular.module('altairApp')
                    DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
                    DTColumnDefBuilder.newColumnDef(5).withTitle('Salary')
             ];
-        })
+})
+        
+.controller('ViewRoleController', [ '$scope', '$rootScope', '$stateParams', 'RoleService',
+function($scope, $rootScope, $stateParams, RoleService) {
+
+	
+	
+	
+	
+}])
 
 .controller(
 		'ManageRoleController',

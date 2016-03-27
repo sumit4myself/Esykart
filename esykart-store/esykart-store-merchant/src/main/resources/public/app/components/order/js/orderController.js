@@ -11,6 +11,19 @@ angular.module('altairApp')
 		} ])
 
 .controller(
+		'ViewOrderController',
+		[ '$scope', '$rootScope', '$stateParams', 'OrderService',
+		function($scope, $rootScope, $stateParams, OrderService) {
+
+			
+			
+			
+			
+		} ])
+		
+		
+		
+.controller(
 		'ManageOrderController',
 		[ '$scope', '$rootScope', 'utils', 'OrderService',
 		function($scope, $rootScope, utils, OrderService) {

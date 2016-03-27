@@ -185,7 +185,21 @@ angular.module('altairApp')
 			}
 		
 		
-		} ])
+} ])
+		
+		
+
+.controller(
+		'ViewProductDetailController',
+		[ '$scope', '$rootScope', '$stateParams', 'ProductDetailService',
+		function($scope, $rootScope, $stateParams, ProductDetailService) {
+
+			
+			
+			
+			
+} ])
+		
 
 .controller(
 		'ManageProductDetailController',

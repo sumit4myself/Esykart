@@ -152,6 +152,15 @@ altairApp
                         }]
                     } 
                 })
+                .state("restricted.category_attribute.view", {
+                    url: "/edit",
+                    templateUrl: 'app/components/category/attribute/viewAttribute.html',
+                    controller: 'viewAttributeController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Category Attribute'
+                    }
+                })
                 .state("restricted.category_attribute.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/category/attribute/manageAttribute.html',
@@ -187,7 +196,6 @@ altairApp
                     data: {
                         pageTitle: 'Add Category'
                     },
-                    params: { id : null }, 
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load(['lazy_parsleyjs',
@@ -217,6 +225,15 @@ altairApp
                                                      ]);
                         }]
                     }
+                })
+                .state("restricted.category.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/category/viewCategory.html',
+                    controller: 'ViewCategoryController',
+                    data: {
+                        pageTitle: 'View Category'
+                    },
+                    params: { id : null }
                 })
                 .state("restricted.category.manage", {
                     url: "/manage",
@@ -286,9 +303,19 @@ altairApp
 	                    }]
                     },
                     data: {
-                        pageTitle: 'Add Product'
+                        pageTitle: 'Edit Product'
                     }
                 })
+                
+                 .state("restricted.product.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/product/viewProduct.html',
+                    controller: 'ViewProductController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Product'
+                    }
+                 })
 
                 .state("restricted.product.manage", {
                     url: "/manage",
@@ -352,7 +379,24 @@ altairApp
                         pageTitle: 'Edit Product Detail'
                     }
                 })
-
+                .state("restricted.product_detail.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/product/detail/ViewProductDetail.html',
+                    controller: 'ViewProductDetailController',
+                    params: { id : null }, 
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['product_details_model',
+	                    	                         'lazy_tinymce',
+	                    	                         'lazy_masked_inputs',
+	                    	                         'lazy_dropify'
+	                    	                         ],{serie:true});
+	                    }]
+                    },
+                    data: {
+                        pageTitle: 'View Product Detail'
+                    }
+                })
                 .state("restricted.product_detail.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/product/detail/manageProductDetail.html',
@@ -423,6 +467,16 @@ altairApp
                     }
                 })
 
+                .state("restricted.sku.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/sku/viewSku.html',
+                    controller: 'ViewSkuController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Add Sku'
+                    }
+                })
+                
                 .state("restricted.sku.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/sku/manageSku.html',
@@ -467,6 +521,15 @@ altairApp
                         pageTitle: 'Edit Offer'
                     }
                 })
+                .state("restricted.offer.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/offer/viewOffer.html',
+                    controller: 'ViewOfferController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Offer'
+                    }
+                })
                 .state("restricted.offer.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/offer/manageOffer.html',
@@ -503,6 +566,15 @@ altairApp
                         pageTitle: 'Manage Order'
                     }
                 })
+                .state("restricted.order.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/order/viewOrder.html',
+                    controller: 'ViewOrderController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Order'
+                    }
+                })
                 
                  // -- customer --
                 .state("restricted.customer", {
@@ -515,6 +587,15 @@ altairApp
                         }]
                     },
                     abstract: true
+                })
+                .state("restricted.customer.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/customer/viewCustomer.html',
+                    controller: 'ViewCustomerController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Customer Order'
+                    }
                 })
                 .state("restricted.customer.manage", {
                     url: "/manage",
@@ -588,6 +669,17 @@ altairApp
                     }
                 })
 
+                .state("restricted.store_banner.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/banner/viewBanner.html',
+                    controller: 'viewBannerController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Banner'
+                    }
+                })
+
+                
                 .state("restricted.store_banner.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/banner/manageBanner.html',
@@ -654,6 +746,16 @@ altairApp
                     },
                     data: {
                         pageTitle: 'Add Icon'
+                    }
+                })
+                
+                .state("restricted.store_icon.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/icon/viewIcon.html',
+                    controller: 'ViewIconController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Icon'
                     }
                 })
 
@@ -726,6 +828,15 @@ altairApp
                     }
                 })
 
+                .state("restricted.store_layout.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/layout/viewLayout.html',
+                    controller: 'viewLayoutController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Edit Layout'
+                    }
+                })
                 .state("restricted.store_layout.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/layout/manageLayout.html',
@@ -795,6 +906,15 @@ altairApp
                     }
                 })
 
+                .state("restricted.store_menu.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/menu/viewMenu.html',
+                    controller: 'ViewMenuController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Edit Menu'
+                    }
+                })
                 .state("restricted.store_menu.manage", {
                     url: "/manage",
                     templateUrl: 'app/components/menu/manageMenu.html',
@@ -863,6 +983,16 @@ altairApp
                         pageTitle: 'Edit Page'
                     }
                 })
+                
+                .state("restricted.store_page.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/page/viewPage.html',
+                    controller: 'ViewPageController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'Edit Page'
+                    }
+                })
 
                 .state("restricted.store_page.manage", {
                     url: "/manage",
@@ -899,6 +1029,16 @@ altairApp
                     controller: 'ManageMerchantController',
                     data: {
                         pageTitle: 'Manage Merchant'
+                    }
+                })
+                
+                .state("restricted.merchant.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/merchant/viewMerchant.html',
+                    controller: 'ViewMerchantController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Merchant'
                     }
                 })
 
@@ -944,6 +1084,7 @@ altairApp
                     url: "/add",
                     templateUrl: 'app/components/user/viewUser.html',
                     controller: 'ViewUserController',
+                    params: { id : null }, 
                     data: {
                         pageTitle: 'View User'
                     }
@@ -988,6 +1129,15 @@ altairApp
                     params: { id : null }, 
                     data: {
                         pageTitle: 'Edit Role'
+                    }
+                })
+                .state("restricted.role.view", {
+                    url: "/view",
+                    templateUrl: 'app/components/role/viewRole.html',
+                    controller: 'viewRoleController',
+                    params: { id : null }, 
+                    data: {
+                        pageTitle: 'View Role'
                     }
                 })
                 .state("restricted.role.manage", {

@@ -174,24 +174,28 @@ angular.module('altairApp')
 				   });
 				}
 			}
-			
-			
-		
-		}])
+}])
 		
 		
-		
+.controller('ViewProductController', [ '$scope', '$rootScope', '$stateParams', 'ProductService',
+function($scope, $rootScope, $stateParams, ProductService) {
 
-.controller(
-		'ManageProductController',
-		[ '$scope', '$rootScope', 'utils', 'ProductService',
-		function($scope, $rootScope, utils, ProductService) {
+	
+	
+	
+	
+}])
+		
+		
+.controller('ManageProductController',
+[ '$scope', '$rootScope', 'utils', 'ProductService',
+function($scope, $rootScope, utils, ProductService) {
 
-			
-			
-			
-			
-		} ])
+	
+	
+	
+	
+} ])
 .controller('ManageProductController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
             var vm = this;
             vm.dt_data = [];
