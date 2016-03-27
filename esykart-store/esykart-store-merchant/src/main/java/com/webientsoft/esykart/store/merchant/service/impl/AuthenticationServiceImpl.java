@@ -3,7 +3,6 @@ package com.webientsoft.esykart.store.merchant.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.common.model.common.AuthenticationModel;
@@ -11,14 +10,11 @@ import com.webientsoft.esykart.common.model.user.MenuModel;
 import com.webientsoft.esykart.common.model.user.PermissionModel;
 import com.webientsoft.esykart.common.model.user.PrivilegeModel;
 import com.webientsoft.esykart.common.model.user.UserModel;
-import com.webientsoft.esykart.store.merchant.client.helper.RestTemplateHelper;
 import com.webientsoft.esykart.store.merchant.service.AuthenticationService;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-	@Autowired
-	private RestTemplateHelper restTemplateHelper;
 
 	@Override
 	public UserModel authenticate(AuthenticationModel model) {
@@ -38,7 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		List<PermissionModel> dashboardPermissions = new ArrayList<>();
 		PermissionModel dashboardPermission = new PermissionModel();
 		PrivilegeModel dashboardPrivilege = new PrivilegeModel();
-		dashboardPrivilege.setLink("restricted.dashboard");
+		dashboardPermission.setLink("restricted.dashboard");
 		dashboardPrivilege.setPrivilegeName("View");
 		dashboardPermission.setPrivilege(dashboardPrivilege);
 		dashboardPermissions.add(dashboardPermission);
@@ -46,7 +42,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		
 		
 		
-		return restTemplateHelper.authenticate(model);
+		return new UserModel();
 	}
 
 }

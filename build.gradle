@@ -270,6 +270,7 @@ project(':esykart-store') {
 	    apply plugin: 'spring-boot'
 	    
 	    dependencies {
+	        compile(project(':esykart-common'))
 		    compile "org.webjars:jquery:${jqueryVersion}"
             compile "org.webjars:bootstrap:${bootstrapVersion}"
 		    compile "com.hazelcast:hazelcast:${hazelcastVersion}"
