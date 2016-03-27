@@ -5,7 +5,7 @@ public class PrivilegeModel {
 	private Integer privilegeId;
 	private String privilegeName;
 	private String icon;
-	private int sortindex;
+	private int sortindex;        
 
 	public Integer getPrivilegeId() {
 		return privilegeId;

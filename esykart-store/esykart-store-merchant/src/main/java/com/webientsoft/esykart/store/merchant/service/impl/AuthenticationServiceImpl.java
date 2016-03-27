@@ -15,6 +15,10 @@ import com.webientsoft.esykart.store.merchant.service.AuthenticationService;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 	@Override
 	public UserModel authenticate(AuthenticationModel model) {
 		UserModel user = new UserModel();
@@ -93,7 +97,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		user.setMenus(menus);
 		
 		
+<<<<<<< HEAD
 		return user;
+=======
+		return new UserModel();
+>>>>>>> origin/master
 	}
 
 }
