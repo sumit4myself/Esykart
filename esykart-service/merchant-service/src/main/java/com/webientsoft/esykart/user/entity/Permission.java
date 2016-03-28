@@ -28,10 +28,6 @@ public class Permission implements Serializable {
 	@ManyToOne
 	private Privilege privilege;
 
-	@JoinColumn(name = "menu_id", referencedColumnName = "menu_id")
-	@ManyToOne
-	private Menu menu;
-
 	public Integer getPermissionId() {
 		return permissionId;
 	}
@@ -48,24 +44,12 @@ public class Permission implements Serializable {
 		this.privilege = privilege;
 	}
 
-	public Menu getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
-
 	public String getLink() {
 		return link;
 	}
 
 	public void setLink(String link) {
 		this.link = link;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

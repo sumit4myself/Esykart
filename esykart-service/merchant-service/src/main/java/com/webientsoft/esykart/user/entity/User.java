@@ -3,6 +3,7 @@ package com.webientsoft.esykart.user.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,6 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.webientsoft.esykart.common.model.Status;
 
 @Entity
@@ -60,11 +62,12 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
+	@JsonManagedReference
 	@JoinTable(name = "role_user_mapping", inverseJoinColumns = {
 			@JoinColumn(name = "role_id", referencedColumnName = "role_id") }, joinColumns = {
 					@JoinColumn(name = "user_id", referencedColumnName = "user_id") })
 	@ManyToMany
-	private List<Role> roles;
+	private Set<Role> roles;
 
 	@Transient
 	private List<Menu> menus;
@@ -151,11 +154,11 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 

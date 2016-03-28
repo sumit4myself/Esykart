@@ -144,4 +144,5 @@ INSERT INTO role_permission_mapping(role_id, permission_id) SELECT (SELECT role_
 
 INSERT INTO users(email, mobile, name, user_name, password, status, updated_by, updated_on) VALUES ('superadmin@webientsoft.com', '9891939498', 'Super Admin', 'superAdmin', 'SuperAdm!n', 'A', null, now());
 
+INSERT INTO role_user_mapping(role_id,user_id) VALUES((SELECT role_id FROM role WHERE role_name = 'SuperAdmin'),(SELECT user_id FROM users WHERE user_name = 'superAdmin'));
             

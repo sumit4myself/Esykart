@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,11 +32,9 @@ public class AuthenticationController {
 	
 	
 	@RequestMapping(value = "authenticate" , method = RequestMethod.POST)
-	public String authenticatePost(@ModelAttribute("AUTHENTICATION_MODEL") AuthenticationModel model ){
+	public String authenticatePost(@ModelAttribute("AUTHENTICATION_MODEL") AuthenticationModel model,HttpSession session){
 		UserModel userModel = authenticationService.authenticate(model);
-		
-		
-		
+		session.setAttribute("USER_DETAILS", userModel);
 		return REDIRECT_HOME_PAGE;
 	}
 	
@@ -50,10 +47,9 @@ public class AuthenticationController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/details" , method = RequestMethod.POST)
-	public ResponseEntity<UserModel> details(@RequestBody AuthenticationModel model ){
-		UserModel userModel = authenticationService.authenticate(model);
-		return ResponseEntity.ok(userModel);
+	@RequestMapping(value = "/details" , method = RequestMethod.GET,produces = { "application/json" })
+	public ResponseEntity<UserModel> details(HttpSession session){
+		return ResponseEntity.ok( (UserModel) session.getAttribute("USER_DETAILS"));
 	}
 	
 }

@@ -6,7 +6,7 @@ package com.webientsoft.esykart.user.entity;
  */
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,8 +15,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The entity Class of core.module table.
@@ -48,12 +51,17 @@ public class Menu implements Serializable {
 	@Column(name = "sort_index", nullable = false)
 	private int sortIndex;
 
-	@OneToMany(mappedBy = "menu")
-	private List<Permission> permissions;
+	@JoinColumn(name = "menu_id", referencedColumnName = "menu_id")
+	@OneToMany
+	private Set<Permission> permissions;
 
+	@JsonProperty("submenu")
+	@OneToMany(mappedBy = "parentMenu",cascade = CascadeType.ALL)
+	private Set<Menu> subMenus;
+	
 	@JoinColumn(name = "parent_id")
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Menu> subMenus;
+	@ManyToOne()
+	private Menu parentMenu;
 
 	public Menu() {
 	}
@@ -98,20 +106,50 @@ public class Menu implements Serializable {
 		this.sortIndex = sortIndex;
 	}
 
-	public List<Permission> getPermissions() {
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(List<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 
-	public List<Menu> getSubMenus() {
+	public Set<Menu> getSubMenus() {
 		return subMenus;
 	}
 
-	public void setSubMenus(List<Menu> subMenus) {
+	public void setSubMenus(Set<Menu> subMenus) {
 		this.subMenus = subMenus;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((menuId == null) ? 0 : menuId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Menu other = (Menu) obj;
+		if (menuId == null) {
+			if (other.menuId != null)
+				return false;
+		} else if (!menuId.equals(other.menuId))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Menu [title=" + title + ", link=" + link + "]";
 	}
 
 }

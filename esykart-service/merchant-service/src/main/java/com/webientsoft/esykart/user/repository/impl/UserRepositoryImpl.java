@@ -1,7 +1,8 @@
 package com.webientsoft.esykart.user.repository.impl;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,7 +29,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 		query.setParameter("userName", userName);
 		query.setParameter("password", password);
 		User user = (User) query.getSingleResult();
-		List<Permission> permissions = new ArrayList<>();
+		Set<Permission> permissions = new HashSet<>();
 		for (Role role : user.getRoles()) {
 			permissions.addAll(role.getPermissions());
 		}

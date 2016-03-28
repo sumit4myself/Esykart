@@ -1099,17 +1099,15 @@ altairApp
                     }
                 })
                 
+                
+                
                 // -- role --
                 .state("restricted.role", {
                     url: "/role",
                     template: '<div ui-view autoscroll="false"/>',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['lazy_datatables', 
-                                                     'lazy_parsleyjs',
-                                                     'app/components/role/js/roleController.js',
-                                                     'app/components/role/js/roleService.js' 
-                                                     ]);
+                            return $ocLazyLoad.load(['role_module']);
                         }]
                     },
                     abstract: true
@@ -1118,6 +1116,11 @@ altairApp
                     url: "/add",
                     templateUrl: 'app/components/role/createRole.html',
                     controller: 'AddRoleController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['role_model','lazy_parsleyjs']);
+                        }]
+                    },
                     data: {
                         pageTitle: 'Add Role'
                     }
@@ -1127,7 +1130,12 @@ altairApp
                     templateUrl: 'app/components/role/createRole.html',
                     controller: 'AddRoleController',
                     params: { id : null }, 
-                    data: {
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        	  return $ocLazyLoad.load(['role_model','lazy_parsleyjs']);
+                        }]
+                    },
+                    data: {	
                         pageTitle: 'Edit Role'
                     }
                 })

@@ -21,7 +21,6 @@ angular
         '$scope',
         '$window',
         function ($timeout,$rootScope,$scope,$window) {
-        	console.log($rootScope.userDetail);
             $scope.user_data = {
                 name: "Lue Feest",
                 avatar: "assets/img/avatars/avatar_11_tn.png",
@@ -102,6 +101,14 @@ angular
         '$scope',
         '$rootScope',
         function ($timeout,$scope,$rootScope) {
+        	$scope.sections = [];
+        	$rootScope.$watch('userDetail',function(value,old) {
+        		  var menus  = $rootScope.userDetail.menus;
+        		  menus.sort(function(a, b){
+                      return a.sortIndex - b.sortIndex;
+                  });
+                  $scope.sections = menus;
+    		}, false);
 
             $scope.$on('onLastRepeat', function (scope, element, attrs) {
                 $timeout(function() {
@@ -154,212 +161,216 @@ angular
                     $('#lang_switcher').next().children('.selectize-input').find('input').attr('readonly',true);
                 }
             };
-
-            // menu entries
-            $scope.sections = [
-                               {
-                                   id: 0,
-                                   title: 'Dashboard',
-                                   icon: '&#xE871;',
-                                   link: 'restricted.dashboard'
-                               },
-               				   {
-                                   id: 1,
-                                   title: 'Catalogue',
-                                   icon:  '&#xE919;',
-                                   submenu: [{
-                                                 title: 'Category Attribute',
-                                                 submenu: [
-               											  {
-               												  title: 'Add',
-               												  link: 'restricted.category_attribute.add'
-               											  },
-               											  {
-               												  title: 'Manage',
-               												  link: 'restricted.category_attribute.manage'
-               											   }
-               											  ]
-                                        },
-               							{
-                                                 title: 'Category',
-                                                 submenu: [
-               											  {
-               												  title: 'Add',
-               												  link: 'restricted.category.add'
-               											  },
-               											  {
-               												  title: 'Manage',
-               												  link: 'restricted.category.manage'
-               											  }
-               											  ]
-                                         },
-           							  	{	
-                                                 title: 'Product',
-                                                 submenu: [{
-               												  title: 'Add',
-               												  link: 'restricted.product.add'
-               											  },
-               											  {
-               												  title: 'Manage',
-               												  link: 'restricted.product.manage'
-               											  }]
-                                         },
-               							  {
-                                                 title: 'Product Detail',
-                                                 submenu: [{
-               												  title: 'Add',
-               												  link: 'restricted.product_detail.add'
-               											  },
-               											  {
-               												  title: 'Manage',
-               												  link: 'restricted.product_detail.manage'
-               											   }]
-                                         },
-               							  {
-                                                 title: 'SKU',
-                                                 submenu: [{
-               												  title: 'Add',
-               												  link: 'restricted.sku.add'
-               											  },
-               											  {
-               												  title: 'Manage',
-               												  link: 'restricted.sku.manage'
-               											  }]
-                                         }]
-                               },
-               					
-                               {
-                                   id: 2,
-                                   title: 'Pricing',
-                                   icon: '&#xE54E;',
-                                   submenu: [{
-                                             title: 'Offers',
-                                             submenu: [{
-               											  title: 'Add',
-               											  link: 'restricted.offer.add'
-               										  },
-               										  {
-               											  title: 'Manage',
-               											  link: 'restricted.offer.manage'
-               										  }]
-               						   }]
-                               },
-               					{
-                                   id: 3,
-                                   title: 'Customer Care',
-                                   icon: '&#xE7F2;',
-                                   submenu: [{
-                                             	title: 'Customers',
-                                             	link: 'restricted.customer.manage'
-	               						   },
-	               						   {
-	                                            title: 'Orders',
-	               							  	link: 'restricted.order.manage'
-	               						   }]
-                               }, 
-               					{
-                                   id: 4,
-                                   title: 'Store Setting',
-                                   icon: '&#xE912;',
-                                   submenu: [{
-                                                 title: 'Banner',
-                                                  submenu: [{
-               												 title: 'Add',
-               												 link: 'restricted.store_banner.add'
-               											 },
-               											 {
-               												 title: 'Manage',
-               												 link: 'restricted.store_banner.manage'
-               											 }]
-                                             },
-               							  	{
-                                                 title: 'Icon',
-                                                 submenu: [{
-               												 title: 'Add',
-               												 link: 'restricted.store_icon.add'
-               											 },
-               											 {
-               												 title: 'Manage',
-               												 link: 'restricted.store_icon.manage'
-               											 }]
-                                             },
-                                             {
-                                                 title: 'Layout',
-                                                 submenu: [{
-               												 title: 'Add',
-               												 link: 'restricted.store_layout.add'
-               											 },
-               											 {
-               												 title: 'Manage',
-               												 link: 'restricted.store_layout.manage'
-               											 }]
-               							   },
-               							   {
-                                                title: 'Menu',
-                                                submenu: [{
-               												 title: 'Add',
-               												 link: 'restricted.store_menu.add'
-               											 },
-               											 {
-               												 title: 'Manage',
-               												 link: 'restricted.store_menu.manage'
-               											 }]
-               							  },
-               							  {
-                                                title: 'Page',
-                                                submenu: [{
-               												 title: 'Add',
-               												 link: 'restricted.store_page.add'
-               											 },
-               											 {
-               												 title: 'Manage',
-               												 link: 'restricted.store_page.manage'
-               											 }]
-               							  }
-               						   ]
-                               },
-               				{
-                                   id: 5,
-                                   title: 'Users',
-                                   icon: '&#xE32A;',
-               					   submenu: [
-               					             {
-               					            	 title: 'Merchant',
-												 link: 'restricted.merchant.manage'
-               					             },
-                                             {
-                                                 title: 'User',
-                                                submenu: [
-               										  {
-               											  title: 'Add',
-               											  link: 'restricted.user.add'
-               										  },
-               										  {
-               											  title: 'Manage',
-               											  link: 'restricted.user.manage'
-               										  }
-               									   ]
-                                             },
-                                             {
-                                                 title: 'Role',
-                                                 submenu: [{
-               												  title: 'Add',
-               												  link: 'restricted.role.add'
-               											  },
-               											  {
-               												  title: 'Manage',
-               												  link: 'restricted.role.manage'
-               										      }]
-                                          }]
-                               },
-               				   {
-                                   id: 6,
-                                   title: 'Settings',
-                                   icon: '&#xE8C0;',
-                                   link: 'restricted.setting'
-               				   }
-            ]
-
         }
-    ])
-;
+    ]);
+
+
+
+
+
+/*
+
+// menu entries
+$scope.sections = [
+                   {
+                       id: 0,
+                       title: 'Dashboard',
+                       icon: '&#xE871;',
+                       link: 'restricted.dashboard'
+                   },
+   				   {
+                       id: 1,
+                       title: 'Catalogue',
+                       icon:  '&#xE919;',
+                       submenu: [{
+                                     title: 'Category Attribute',
+                                     submenu: [
+   											  {
+   												  title: 'Add',
+   												  link: 'restricted.category_attribute.add'
+   											  },
+   											  {
+   												  title: 'Manage',
+   												  link: 'restricted.category_attribute.manage'
+   											   }
+   											  ]
+                            },
+   							{
+                                     title: 'Category',
+                                     submenu: [
+   											  {
+   												  title: 'Add',
+   												  link: 'restricted.category.add'
+   											  },
+   											  {
+   												  title: 'Manage',
+   												  link: 'restricted.category.manage'
+   											  }
+   											  ]
+                             },
+							  	{	
+                                     title: 'Product',
+                                     submenu: [{
+   												  title: 'Add',
+   												  link: 'restricted.product.add'
+   											  },
+   											  {
+   												  title: 'Manage',
+   												  link: 'restricted.product.manage'
+   											  }]
+                             },
+   							  {
+                                     title: 'Product Detail',
+                                     submenu: [{
+   												  title: 'Add',
+   												  link: 'restricted.product_detail.add'
+   											  },
+   											  {
+   												  title: 'Manage',
+   												  link: 'restricted.product_detail.manage'
+   											   }]
+                             },
+   							  {
+                                     title: 'SKU',
+                                     submenu: [{
+   												  title: 'Add',
+   												  link: 'restricted.sku.add'
+   											  },
+   											  {
+   												  title: 'Manage',
+   												  link: 'restricted.sku.manage'
+   											  }]
+                             }]
+                   },
+   					
+                   {
+                       id: 2,
+                       title: 'Pricing',
+                       icon: '&#xE54E;',
+                       submenu: [{
+                                 title: 'Offers',
+                                 submenu: [{
+   											  title: 'Add',
+   											  link: 'restricted.offer.add'
+   										  },
+   										  {
+   											  title: 'Manage',
+   											  link: 'restricted.offer.manage'
+   										  }]
+   						   }]
+                   },
+   					{
+                       id: 3,
+                       title: 'Customer Care',
+                       icon: '&#xE7F2;',
+                       submenu: [{
+                                 	title: 'Customers',
+                                 	link: 'restricted.customer.manage'
+       						   },
+       						   {
+                                    title: 'Orders',
+       							  	link: 'restricted.order.manage'
+       						   }]
+                   }, 
+   					{
+                       id: 4,
+                       title: 'Store Setting',
+                       icon: '&#xE912;',
+                       submenu: [{
+                                     title: 'Banner',
+                                      submenu: [{
+   												 title: 'Add',
+   												 link: 'restricted.store_banner.add'
+   											 },
+   											 {
+   												 title: 'Manage',
+   												 link: 'restricted.store_banner.manage'
+   											 }]
+                                 },
+   							  	{
+                                     title: 'Icon',
+                                     submenu: [{
+   												 title: 'Add',
+   												 link: 'restricted.store_icon.add'
+   											 },
+   											 {
+   												 title: 'Manage',
+   												 link: 'restricted.store_icon.manage'
+   											 }]
+                                 },
+                                 {
+                                     title: 'Layout',
+                                     submenu: [{
+   												 title: 'Add',
+   												 link: 'restricted.store_layout.add'
+   											 },
+   											 {
+   												 title: 'Manage',
+   												 link: 'restricted.store_layout.manage'
+   											 }]
+   							   },
+   							   {
+                                    title: 'Menu',
+                                    submenu: [{
+   												 title: 'Add',
+   												 link: 'restricted.store_menu.add'
+   											 },
+   											 {
+   												 title: 'Manage',
+   												 link: 'restricted.store_menu.manage'
+   											 }]
+   							  },
+   							  {
+                                    title: 'Page',
+                                    submenu: [{
+   												 title: 'Add',
+   												 link: 'restricted.store_page.add'
+   											 },
+   											 {
+   												 title: 'Manage',
+   												 link: 'restricted.store_page.manage'
+   											 }]
+   							  }
+   						   ]
+                   },
+   				{
+                       id: 5,
+                       title: 'Users',
+                       icon: '&#xE32A;',
+   					   submenu: [
+   					             {
+   					            	 title: 'Merchant',
+									 link: 'restricted.merchant.manage'
+   					             },
+                                 {
+                                     title: 'User',
+                                    submenu: [
+   										  {
+   											  title: 'Add',
+   											  link: 'restricted.user.add'
+   										  },
+   										  {
+   											  title: 'Manage',
+   											  link: 'restricted.user.manage'
+   										  }
+   									   ]
+                                 },
+                                 {
+                                     title: 'Role',
+                                     submenu: [{
+   												  title: 'Add',
+   												  link: 'restricted.role.add'
+   											  },
+   											  {
+   												  title: 'Manage',
+   												  link: 'restricted.role.manage'
+   										      }]
+                              }]
+                   },
+   				   {
+                       id: 6,
+                       title: 'Settings',
+                       icon: '&#xE8C0;',
+                       link: 'restricted.setting'
+   				   }
+]*/

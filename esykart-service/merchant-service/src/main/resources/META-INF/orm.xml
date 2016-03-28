@@ -20,6 +20,8 @@
 		<query>
 			SELECT U 
 				FROM User U 
+					LEFT OUTER JOIN FETCH U.roles R
+					LEFT OUTER JOIN FETCH R.permissions P
 					WHERE LOWER(U.userName) = LOWER(:userName) AND U.password =:password
 		
 		</query>
@@ -29,10 +31,12 @@
 		<query>
 			SELECT DISTINCT L1 
 				FROM Menu L1 
-					LEFT OUTER JOIN L1.subMenus L2
+					LEFT OUTER JOIN FETCH L1.subMenus L2
+					LEFT OUTER JOIN FETCH L1.permissions P1
+					LEFT OUTER JOIN FETCH L2.permissions P2
 				WHERE 
-					L1.permissions IN ( :permissions) OR 
-					L2.permissions IN ( :permissions)
+					L1.parentMenu IS NULL AND (P1 IN ( :permissions) OR P2 IN ( :permissions))
+					
 		</query>
 	</named-query>
 

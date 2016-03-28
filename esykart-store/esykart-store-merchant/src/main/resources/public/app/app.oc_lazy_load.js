@@ -8,7 +8,7 @@ altairApp
                 debug: false,
                 events: false,
                 modules: [
-//                    module 
+// module
 					{
                         name: 'category_attrinute_model',
                         files: [
@@ -100,11 +100,36 @@ altairApp
                         ],
                         serie: true
                     },
-                    
-                    
-                    
-                    
-                    
+                   {
+                    	
+                    	name :  'user_model',
+                		files : [
+                		         'app/components/user/js/userModel.js',
+                		]
+                   },
+                   {
+                   	
+                   	name :  'user_module',
+               		files : [
+               		      'app/components/user/js/userController.js',
+                          'app/components/user/js/userService.js'
+               		      ]
+                  },
+                  {
+                  	
+                  	name :  'role_model',
+              		files : [
+              		         'app/components/role/js/roleModel.js',
+              		]
+                 },
+                 {
+                 	
+                 	name :  'role_module',
+             		files : [
+             		      'app/components/role/js/roleController.js',
+                        'app/components/role/js/roleService.js'
+             		      ]
+                },
                     
                     
                     // ----------- UIKIT ------------------

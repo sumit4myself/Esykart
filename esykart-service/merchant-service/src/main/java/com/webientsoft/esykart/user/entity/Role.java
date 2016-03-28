@@ -3,6 +3,7 @@ package com.webientsoft.esykart.user.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.webientsoft.esykart.common.model.Status;
 
 @Entity
@@ -48,12 +51,15 @@ public class Role implements Serializable {
 	@Column(name = "status",length = 1)
 	private Status status;
 
+	
+	@JsonManagedReference
 	@JoinTable(name = "role_permission_mapping", joinColumns = {
 			@JoinColumn(name = "role_id", referencedColumnName = "role_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "permission_id", referencedColumnName = "permission_id") })
 	@ManyToMany
-	private List<Permission> permissions;
+	private Set<Permission> permissions;
 
+	@JsonBackReference
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 
@@ -112,11 +118,11 @@ public class Role implements Serializable {
 		this.status = status;
 	}
 
-	public List<Permission> getPermissions() {
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(List<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 

@@ -2,14 +2,19 @@ package com.webientsoft.esykart.common.model.user;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class MenuModel {
 
 	private Integer menuId;
 	private String title;
 	private String icon;
 	private String link;
+	private int sortIndex;
 	private List<PermissionModel> permissions;
-	private List<MenuModel> subMenu;
+
+	@JsonProperty("submenu")
+	private List<MenuModel> subMenus;
 
 	public Integer getMenuId() {
 		return menuId;
@@ -43,12 +48,12 @@ public class MenuModel {
 		this.link = link;
 	}
 
-	public List<MenuModel> getSubMenu() {
-		return subMenu;
+	public List<MenuModel> getSubMenus() {
+		return subMenus;
 	}
 
-	public void setSubMenu(List<MenuModel> subMenu) {
-		this.subMenu = subMenu;
+	public void setSubMenus(List<MenuModel> subMenu) {
+		this.subMenus = subMenu;
 	}
 
 	public List<PermissionModel> getPermissions() {
@@ -57,6 +62,14 @@ public class MenuModel {
 
 	public void setPermissions(List<PermissionModel> permissions) {
 		this.permissions = permissions;
+	}
+
+	public int getSortIndex() {
+		return sortIndex;
+	}
+
+	public void setSortIndex(int sortIndex) {
+		this.sortIndex = sortIndex;
 	}
 
 }

@@ -5,7 +5,7 @@ public class PrivilegeModel {
 	private Integer privilegeId;
 	private String privilegeName;
 	private String icon;
-	private int sortindex;        
+	private int sortIndex;
 
 	public Integer getPrivilegeId() {
 		return privilegeId;
@@ -31,12 +31,12 @@ public class PrivilegeModel {
 		this.icon = icon;
 	}
 
-	public int getSortindex() {
-		return sortindex;
+	public int getSortIndex() {
+		return sortIndex;
 	}
 
-	public void setSortindex(int sortindex) {
-		this.sortindex = sortindex;
+	public void setSortIndex(int sortIndex) {
+		this.sortIndex = sortIndex;
 	}
 
 }

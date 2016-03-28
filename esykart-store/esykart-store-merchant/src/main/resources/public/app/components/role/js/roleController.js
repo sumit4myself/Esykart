@@ -5,7 +5,42 @@ angular.module('altairApp')
 		function($scope, $rootScope, utils, RoleService) {
 			var $role_form = $("#role_form");
 			var parsleyForm = $role_form.parsley();
-			$scope.role = {};
+			$scope.role = new Role();
+			
+			$scope.menus = $rootScope.userDetail.menus;
+			
+			console.log($scope.menus);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			$scope.onSave = function(){
+				
+				
+				
+				
+			}
+			
+			$scope.onCancel = function(){
+				$state.go("restricted.role.manage");
+			}
+			$scope.onReset = function(){
+				$scope.role = new Role();				
+			}
+			
+			
+			
+			
+			
+			
 			$scope.validateRoleDetails = function(context){
 /*				var d = $q.defer()
 			    $timeout(function(){

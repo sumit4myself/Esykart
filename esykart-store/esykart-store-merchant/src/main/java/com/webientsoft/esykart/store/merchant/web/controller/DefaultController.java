@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DefaultController {
 
 	@RequestMapping("/home")
-	public String home(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String home(HttpSession session) {
+//		HttpSession session = request.getSession();
 		session.setAttribute("provider", "WebientSoft");
 		return "index";
 	}
 
 	@RequestMapping("/provider")
-	public @ResponseBody String provider(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public @ResponseBody String provider(HttpSession session ) {
+//		HttpSession session = request.getSession();
 		return (String) session.getAttribute("provider");
 	}
 

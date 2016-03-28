@@ -39,13 +39,13 @@ altairApp
 	    	var idField        = attrs['idField'];
 	    	var permissions = null;
 	    	var html = "";
-	    	
+
 	    	$($rootScope.userDetail.menus).each(function(){
 	    		if(this.link == permissionFor){
 	    			permissions = this.permissions;
 	    			
-	    		}else if(this.subMenu != null){
-	    			$(this.subMenu).each(function(){
+	    		}else if(this.submenu != null){
+	    			$(this.submenu).each(function(){
 	    				if(this.link == permissionFor){
 	    					permissions = this.permissions;
 	    				}
@@ -54,6 +54,9 @@ altairApp
     		});
 	    	
 	    	if(permissions != null){
+	    		permissions.sort(function(a, b){
+	    			return (a.privilege.sortIndex > b.privilege.sortIndex ? 1 : -1);
+                });
 	    		if(permissionType == "ADD"){
 	    			$(permissions).each(function(){
     					if(this.privilege.privilegeName == "Add"){

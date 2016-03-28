@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserModel authenticate(AuthenticationModel model) {
-		System.out.println("APIGATEWAY  => authenticate = " +model );
 		return client.authenticate(model);
 	}
 
