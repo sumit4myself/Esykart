@@ -4,186 +4,205 @@ var product_media_row_template = '<tr><td><input type="file" class="dropify" dat
 angular.module('altairApp')
 .constant('productMediaRowTemplate',product_media_row_template)
 .controller('AddProductController',
-		['$scope', '$rootScope', '$compile', 'utils', 'ProductService', 'CategoryService','InventoryService','FulfillmentService', 'productMediaRowTemplate',
-		function($scope, $rootScope, $compile, utils, ProductService,  CategoryService,   InventoryService,  FulfillmentService , productMediaRowTemplate) {
+['$scope', '$rootScope', '$compile','$state','$stateParams','ProductService', 'CategoryService','InventoryService','FulfillmentService', 'productMediaRowTemplate',
+function($scope, $rootScope, $compile,$state,$stateParams, ProductService,  CategoryService,   InventoryService,  FulfillmentService , productMediaRowTemplate) {
+	$scope.product =  new Product();
+		   
+		
+//		handling edit request
+	if($stateParams.id != null){
+		ProductService.find(id).then(function(response){
+        	$scope.product.copyProperties(response);
+        	$scope.oldProduct = $scope.product;
+		});
+	}
+		
+	//		event binding
+	$scope.onSave = function() {
+//			TODO validation
+		var $role_form = $("#role_form");
+		// var parsleyForm = $role_form.parsley();
+		ProductService.save($scope.product.toJson()).then(function(response){
+			UIkit.notify({
+                message: 'Product saved successfully.',
+                status: 'success',
+                pos: 'top-right',
+        	});
+    	});
+	}
+	
+	$scope.onCancel = function() {
+		$state.go("restricted.role.manage");
+	}
+	$scope.onReset = function() {
+		if($stateParams.id != null){
+			$scope.product = $scope.oldProduct
+		}else{
 			$scope.product =  new Product();
-			   
-			 
-			
-			
-			
-			$scope.onSave = function (){
-				
-				console.log($scope.product);
-				
-			};
-			
-			$scope.onReset = function (){
-				$scope.product = new Product();
-				
-			};
-			
-			$scope.onCancel = function (){
-				console.log(this);
-				
-			};
-			
-			$("#product_media_table").on("click",".add-row",function(){
-				$("#product_media_table").append(productMediaRowTemplate);  
-				initDropify($("#product_media_table").find("tr:last-child"));
-				$compile($("#product_media_table").find("tr:last-child"))($scope);
-			});
-			
-			$("#product_media_table").on("click",".remove-row",function(){
-				$(this).closest("tr").remove();
-			});
-			
+		}
+	}
+	
+	$("#product_media_table").on("click",".add-row",function(){
+		$("#product_media_table").append(productMediaRowTemplate);  
+		initDropify($("#product_media_table").find("tr:last-child"));
+		$compile($("#product_media_table").find("tr:last-child"))($scope);
+	});
+	
+	$("#product_media_table").on("click",".remove-row",function(){
+		$(this).closest("tr").remove();
+	});
+	
 //			UI Configuration 
-			$scope.category = {
-					options: [],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Category',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
+	$scope.category = {
+			options: [],
+            config : {
+                create: false,
+                maxItems: 1,
+                placeholder: 'Category',
+                valueField: 'id',
+                labelField: 'name',
+                searchField: 'name'
             }
-			
-			$scope.brand = {
-					options: [],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Brand',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
+    }
+	
+	$scope.brand = {
+			options: [],
+            config : {
+                create: false,
+                maxItems: 1,
+                placeholder: 'Brand',
+                valueField: 'id',
+                labelField: 'name',
+                searchField: 'name'
             }
+    }
 
-			$scope.tax = {
-					options: [],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Tax Code',
-		                valueField: 'id',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
+	$scope.tax = {
+			options: [],
+            config : {
+                create: false,
+                maxItems: 1,
+                placeholder: 'Tax Code',
+                valueField: 'id',
+                labelField: 'name',
+                searchField: 'name'
             }
-			
-			$scope.inventory_type = {
-					options: [],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Inventory Type',
-		                valueField: 'value',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
-	            }
-				
-			$scope.fulfillment_type = {
-					options: [],
-				    config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Fulfillment Type',
-		                valueField: 'value',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
+    }
+	
+	$scope.inventory_type = {
+			options: [],
+            config : {
+                create: false,
+                maxItems: 1,
+                placeholder: 'Inventory Type',
+                valueField: 'value',
+                labelField: 'name',
+                searchField: 'name'
             }
-			
-			$scope.image = {
-					options:  [ {
-						name : "Primary",
-						value : "Primary",
-					}, {
-						name : "Alt1",
-						value : "Alt1",
-					}, {
-						name : "Alt2",
-						value : "Alt2",
-					} ,{
-						name : "Alt3",
-						value : "Alt3",
-					},{
-						name : "Alt4",
-						value : "Alt4",
-					}],
-	                config : {
-		                create: false,
-		                maxItems: 1,
-		                placeholder: 'Image Key',
-		                valueField: 'value',
-		                labelField: 'name',
-		                searchField: 'name'
-		            }
-            }
+        }
 		
-			CategoryService.findAll().then(function (response) {
-                if (!response.success) {
-                	UIkit.notify({
-                        message: response.message,
-                        status: 'danger',
-                        pos: 'top-right',
-                	});
-                } else {
-                	$scope.category.options = response;
-                }
-            });
-			
-			
-			
+	$scope.fulfillment_type = {
+			options: [],
+		    config : {
+                create: false,
+                maxItems: 1,
+                placeholder: 'Fulfillment Type',
+                valueField: 'value',
+                labelField: 'name',
+                searchField: 'name'
+            }
+    }
+	
+	$scope.image = {
+			options:  [ {
+				name : "Primary",
+				value : "Primary",
+			}, {
+				name : "Alt1",
+				value : "Alt1",
+			}, {
+				name : "Alt2",
+				value : "Alt2",
+			} ,{
+				name : "Alt3",
+				value : "Alt3",
+			},{
+				name : "Alt4",
+				value : "Alt4",
+			}],
+            config : {
+                create: false,
+                maxItems: 1,
+                placeholder: 'Image Key',
+                valueField: 'value',
+                labelField: 'name',
+                searchField: 'name'
+            }
+    }
+
+	CategoryService.findAll().then(function (response) {
+        if (!response.success) {
+        	UIkit.notify({
+                message: response.message,
+                status: 'danger',
+                pos: 'top-right',
+        	});
+        } else {
+        	$scope.category.options = response;
+        }
+    });
+	
+	
+	
 //			init
-			initDropify();
-			FulfillmentService.findAll().then(function (response) {
-            	$scope.fulfillment_type.options = response;
-            });
-			InventoryService.findAll().then(function (response) {
-            	$scope.inventory_type.options = response;
-            });
-		
-			
-			
+	initDropify();
+	FulfillmentService.findAll().then(function (response) {
+    	$scope.fulfillment_type.options = response;
+    });
+	InventoryService.findAll().then(function (response) {
+    	$scope.inventory_type.options = response;
+    });
+
+	
+	
 //			helper functions
 
-			function initDropify(container){
-				if(container){
-					$(container).find('.dropify').dropify({
-						   messages: {
-						        'default': 'Upload File',
-						        'replace': 'Drag and drop or click to replace',
-						        'remove':  'Remove',
-						        'error':   'Ooops, something wrong appended.'
-						    }
-				   });
-				}else{
-					$('.dropify').dropify({
-						   messages: {
-						        'default': 'Upload File',
-						        'replace': 'Drag and drop or click to replace',
-						        'remove':  'Remove',
-						        'error':   'Ooops, something wrong appended.'
-						    }
-				   });
-				}
-			}
+	function initDropify(container){
+		if(container){
+			$(container).find('.dropify').dropify({
+				   messages: {
+				        'default': 'Upload File',
+				        'replace': 'Drag and drop or click to replace',
+				        'remove':  'Remove',
+				        'error':   'Ooops, something wrong appended.'
+				    }
+		   });
+		}else{
+			$('.dropify').dropify({
+				   messages: {
+				        'default': 'Upload File',
+				        'replace': 'Drag and drop or click to replace',
+				        'remove':  'Remove',
+				        'error':   'Ooops, something wrong appended.'
+				    }
+		   });
+		}
+	}
 }])
 		
 		
-.controller('ViewProductController', [ '$scope', '$rootScope', '$stateParams', 'ProductService',
+.controller('ViewProductController', 
+[ '$scope', '$rootScope', '$stateParams', 'ProductService',
 function($scope, $rootScope, $stateParams, ProductService) {
-
-	
-	
-	
-	
+	$scope.product = new Product();
+	if($stateParams.id != null){
+		ProductService.find(id).then(function(response){
+        	$scope.product.copyProperties(response);
+		});
+	}
+	$scope.onCancel = function() {
+		$state.go("restricted.product.manage");
+	}
 }])
 		
 		

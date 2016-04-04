@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.webientsoft.esykart.common.model.common.AuthenticationModel;
 import com.webientsoft.esykart.common.model.user.UserModel;
 
-@FeignClient("APIGATEWAY")
+@FeignClient("apigateway")
 public interface AuthenticationServiceClient {
 
 	String BASE_PATH = "/users";

@@ -1,6 +1,5 @@
 package com.webientsoft.esykart.store.merchant.web.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
@@ -13,8 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DefaultController {
 
+	private static final String REDIRECT_LOGIN_PAGE = "redirect:/";
+	
 	@RequestMapping("/home")
 	public String home(HttpSession session) {
+		if(session.getAttribute("USER_DETAILS") == null){
+			return REDIRECT_LOGIN_PAGE;
+		}
+		
 //		HttpSession session = request.getSession();
 		session.setAttribute("provider", "WebientSoft");
 		return "index";

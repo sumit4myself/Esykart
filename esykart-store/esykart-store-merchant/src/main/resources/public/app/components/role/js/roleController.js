@@ -1,112 +1,133 @@
-angular.module('altairApp')
-.controller(
-		'AddRoleController',
-		[ '$scope', '$rootScope', 'utils', 'RoleService',
-		function($scope, $rootScope, utils, RoleService) {
+angular.module('altairApp').controller('AddRoleController',
+['$scope', '$rootScope','$state','$stateParams','RoleService','AuthorizationService',
+function($scope, $rootScope,$state,$stateParams, RoleService,AuthorizationService) {
+//		UI Models 
+		$scope.role = new Role();
+		$scope.permissions = new Array();
+		$scope.menus = AuthorizationService.getGrantedSections();
+		
+		//		handling edit request
+		if($stateParams.id != null){
+			RoleService.find(id).then(function(response){
+            	$scope.role.copyProperties(response);
+            	$scope.permissions = $scope.role.getPermissions();
+            	$scope.oldRole = $scope.role;
+			});
+		}
+			
+		//		event binding
+		$scope.onSave = function() {
+//			TODO validation
+			
+			
 			var $role_form = $("#role_form");
-			var parsleyForm = $role_form.parsley();
-			$scope.role = new Role();
+			// var parsleyForm = $role_form.parsley();
+
 			
-			$scope.menus = $rootScope.userDetail.menus;
-			
-			console.log($scope.menus);
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			$scope.onSave = function(){
-				
-				
-				
-				
+			$scope.role.setPermissions($scope.permissions);
+			RoleService.save($scope.role.toJson()).then(function(response){
+				UIkit.notify({
+                    message: 'Role saved successfully.',
+                    status: 'success',
+                    pos: 'top-right',
+            	});
+        	});
+		}
+		
+		$scope.onCancel = function() {
+			$state.go("restricted.role.manage");
+		}
+		
+		$scope.onReset = function() {
+			if(){
+				$scope.role = $scope.oldRole
+				$scope.permissions = $scope.oldRole.getPermissions();
+			}else{
+				$scope.role = new Role();
+				$scope.permissions = new Array();
 			}
-			
-			$scope.onCancel = function(){
-				$state.go("restricted.role.manage");
-			}
-			$scope.onReset = function(){
-				$scope.role = new Role();				
-			}
-			
-			
-			
-			
-			
-			
-			$scope.validateRoleDetails = function(context){
-/*				var d = $q.defer()
-			    $timeout(function(){
-			        return d.resolve(true);
-			    }, 2000);
-			    return d.promise;*/
-				
-				var result  = parsleyForm.validate({group: 'block1', force: true})
-				console.log("result = "+result);
-				return result;
-			}
-			
-			$scope.saveRole = function(){
-				var result  = parsleyForm.validate({group: 'block2', force: true})
-				
-				var form_serialized = JSON.stringify( utils.serializeObject($role_form), null, 2 );
-                UIkit.modal.alert('<p>Wizard data:</p><pre>' + form_serialized + '</pre>');
-                console.log($scope.role );
-                
-				return true;
-			}
-		} ])
-		.controller('permission_table', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
-            var vm = this;
-            vm.dt_data = [];
-            vm.dtOptions = DTOptionsBuilder
-                .fromSource('data/dt_data.json')
-                .withOption('initComplete', function() {
-                    $timeout(function() {
-                        $compile($('.dt-uikit .md-input'))($scope);
-                    })
-                })
-	            .withOption('bProcessing',  true)
-	            .withOption('bServerSide',  true)
-	            .withOption( "aLengthMenu" , [ [ 5, 10, 25, 50, 100 ],[ 5, 10, 25, 50, 100 ] ])
-	            .withDisplayLength(5)	           
-	            
-            vm.dtColumnDefs = [
-                   DTColumnDefBuilder.newColumnDef(0).withTitle('Name').renderWith(function(data){
-//                   	console.log(data);
-                   	return "<a>" +data+ "</a>";
-                   }),
-                   DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
-                   DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
-                   DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
-                   DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
-                   DTColumnDefBuilder.newColumnDef(5).withTitle('Salary')
-            ];
-})
-        
-.controller('ViewRoleController', [ '$scope', '$rootScope', '$stateParams', 'RoleService',
+		}
+} ])
+
+.controller('ViewRoleController',
+[ '$scope', '$rootScope', '$stateParams', 'RoleService',
 function($scope, $rootScope, $stateParams, RoleService) {
+	$scope.role = new Role();
+//	handling edit request
+	if($stateParams.id != null){
+		RoleService.find(id).then(function(response){
+            	$scope.role.copyProperties(response);
+            	$scope.permissions = $scope.role.getPermissions();
+		});
+	}
+	$scope.onCancel = function() {
+		$state.go("restricted.role.manage");
+	}
+} ])
 
-	
-	
-	
-	
-}])
+.controller('ManageRoleController', 
+['$scope', '$rootScope', 'utils', 'RoleService',
+function($scope, $rootScope, utils, RoleService) {
+	$scope.delete = function (id){
+		UIkit.modal.confirm('Are you sure?', function(){ 
+			RoleService.changeStatus(id,"D").then(function(response){
+				UIkit.notify({
+                    message: 'Role deleted successfully.',
+                    status: 'success',
+                    pos: 'top-right',
+            	});
+        	});
+		});
+	};
+	$scope.activate = function (id){
+		RoleService.changeStatus(id,"A").then(function(response){
+			UIkit.notify({
+                message: 'Role activated successfully.',
+                status: 'success',
+                pos: 'top-right',
+        	});
+    	});
+	};
+	$scope.deactivate = function(id){
+		UIkit.modal.confirm('Are you sure?', function(){ 
+			RoleService.changeStatus(id,"I").then(function(response){
+				UIkit.notify({
+                    message: 'Role deactivated successfully.',
+                    status: 'success',
+                    pos: 'top-right',
+            	});
+        	});
+		});
+	};
+} ])
 
-.controller(
-		'ManageRoleController',
-		[ '$scope', '$rootScope', 'utils', 'RoleService',
-		function($scope, $rootScope, utils, RoleService) {
-
-			
-			
-			
-			
-		} ])
+.controller('ManageRoleTableController',
+function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnBuilder) {
+	var vm = this;
+	vm.dtOptions = DTOptionsBuilder
+	  .fromSource("data/crud_table/students.json")
+//      .withOption('processing', true)
+//      .withOption('serverSide', true)
+      .withOption('initComplete', function() {
+			$timeout(function() {
+				$compile($('.dt-uikit .md-input'))($scope);
+			})
+		})
+		.withOption('fnDrawCallback',  function( oSettings ) {
+	    	 $timeout(function() {
+	                $compile($('user-permission'))($scope);
+	        })
+		})
+		.withOption("aLengthMenu", [ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
+        .withPaginationType('full_numbers')
+        .withDisplayLength(5);	
+	
+		vm.dtColumns = [
+	                DTColumnBuilder.newColumn("Name").withTitle('Role name'),
+	                DTColumnBuilder.newColumn("EmailAddress").withTitle('Decription'),
+	                DTColumnBuilder.newColumn("StudentId").withTitle('Action').notSortable()
+	                   .renderWith(function(data){
+	                	   return  '<user-permission data-permission-for="restricted.role.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
+                     })
+	            ];
+})

@@ -5,6 +5,9 @@
 
 package com.webientsoft.esykart.user.repository;
 
+import com.webientsoft.esykart.common.model.common.FilterModel;
+import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
+
 /**
  * 
  * @author DeepakT
@@ -12,5 +15,6 @@ package com.webientsoft.esykart.user.repository;
  */
 public interface RoleRepositoryCustom {
 
+	PaginatedDataModel search(FilterModel model);
 	
 }

@@ -23,28 +23,30 @@ import com.webientsoft.esykart.user.repository.RoleRepository;
 @RepositoryRestController
 public class RoleRepositoryRestController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(
-			RoleRepositoryRestController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RoleRepositoryRestController.class);
 
 	@Autowired
 	private RoleRepository roleRepository;
 
-	@RequestMapping(method = RequestMethod.POST, consumes = {
-		"application/json" }, produces = { "application/json" })
+	@RequestMapping(method = RequestMethod.POST, 
+			consumes = { "application/json" }, 
+			produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Integer> save(@RequestBody Role role) {
 		return ResponseEntity.ok(roleRepository.save(role).getRoleId());
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = {
-		"application/json" }, produces = { "application/json" })
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, 
+			consumes = {"application/json" }, 
+			produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id,
 			@RequestBody Role role) {
 		roleRepository.save(role);
 		return ResponseEntity.noContent().build();
 	}
 
-	@RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, consumes = {
-		"application/json" }, produces = { "application/json" })
+	@RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, 
+			consumes = {"application/json" }, 
+			produces = {"application/json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
 		roleRepository.changeStatus(id, status);
@@ -56,9 +58,9 @@ public class RoleRepositoryRestController {
 		 return ResponseEntity.ok(roleRepository.findOne(id));
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(FilterModel model) {
-		return ResponseEntity.ok(null);
+	@RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(@RequestBody FilterModel model) {
+		return ResponseEntity.ok(roleRepository.search(model));
 	}
 
 }

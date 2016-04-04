@@ -26,7 +26,8 @@ altairApp
         }
     ])
     
-    .directive('userPermission', ['$rootScope','$compile', function($rootScope,$compile) {
+.directive('userPermission', ['$rootScope','$compile','AuthorizationService', 
+function($rootScope,$compile,AuthorizationService) {
     	return {
 		restrict: 'E',
 		transclude: false,
@@ -40,18 +41,7 @@ altairApp
 	    	var permissions = null;
 	    	var html = "";
 
-	    	$($rootScope.userDetail.menus).each(function(){
-	    		if(this.link == permissionFor){
-	    			permissions = this.permissions;
-	    			
-	    		}else if(this.submenu != null){
-	    			$(this.submenu).each(function(){
-	    				if(this.link == permissionFor){
-	    					permissions = this.permissions;
-	    				}
-	    			})
-	    		}
-    		});
+	    	permissions = AuthorizationService.getGrantedPermissions(permissionFor);
 	    	
 	    	if(permissions != null){
 	    		permissions.sort(function(a, b){

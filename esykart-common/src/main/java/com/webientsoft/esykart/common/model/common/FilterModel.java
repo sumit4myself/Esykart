@@ -10,12 +10,8 @@ public class FilterModel implements Serializable {
 	private Integer limit;
 	private Integer offset;
 
-	private String sort;
-	private String direction;
-
 	private Map<String, String> filter;
-
-	private boolean countCached;
+	private Map<String, String> sorting;
 
 	public Integer getLimit() {
 		return limit;
@@ -33,22 +29,6 @@ public class FilterModel implements Serializable {
 		this.offset = offset;
 	}
 
-	public String getSort() {
-		return sort;
-	}
-
-	public void setSort(String sort) {
-		this.sort = sort;
-	}
-
-	public String getDirection() {
-		return direction;
-	}
-
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-
 	public Map<String, String> getFilter() {
 		return filter;
 	}
@@ -57,12 +37,12 @@ public class FilterModel implements Serializable {
 		this.filter = filter;
 	}
 
-	public boolean isCountCached() {
-		return countCached;
+	public Map<String, String> getSorting() {
+		return sorting;
 	}
 
-	public void setCountCached(boolean countCached) {
-		this.countCached = countCached;
+	public void setSorting(Map<String, String> sorting) {
+		this.sorting = sorting;
 	}
 
 }

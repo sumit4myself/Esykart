@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div id="page_content">
+	<div id="page_content_inner">
+		<div class="md-card">
+			<div class="md-card-content">
+				<h3 class="heading_a">Manage Role
+					<div class="uk-float-right">
+						<user-permission data-permission-for="restricted.role.manage" data-permission-type="ADD"/>
+					</div>
+				</h3>
+				<div class="uk-margin-top"
+					ng-controller="ManageRoleTableController as TableController">
+					<table datatable 
+						dt-options="TableController.dtOptions"
+						dt-columns="TableController.dtColumns"
+						dt-instance="TableController.dtInstance" class="uk-table"
+						cellspacing="0" width="100%">
+						
+						
+					</table>
+				</div>
+			</div>
+		</div>
 
-</body>
-</html>
+	</div>
+</div>

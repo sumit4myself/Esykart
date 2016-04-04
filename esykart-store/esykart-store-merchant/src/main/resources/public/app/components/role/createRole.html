@@ -1,21 +1,20 @@
 <div id="page_content">
 	<div id="page_content_inner">
-
 		<div class="md-card">
 			<div class="md-card-content">
 				<h3 class="heading_a">Role Details</h3>
 				<div class="uk-grid" data-uk-grid-margin>
 					<div class="uk-width-medium-1-1">
-						<label>Name</label> 
-						<input type="text" class="md-input" md-input ng-model="category.name" />
+						<label>Name</label> <input type="text" class="md-input" md-input
+							ng-model="role.roleName" />
 					</div>
 				</div>
 
 				<div class="uk-grid">
 					<div class="uk-width-1-1">
 						<div class="uk-form-row">
-							<label>Description</label>
-							<input type="text" class="md-input" md-input ng-model="category.description" />
+							<label>Description</label> <input type="text" class="md-input"
+								md-input ng-model="role.description" />
 						</div>
 					</div>
 				</div>
@@ -25,54 +24,68 @@
 		<div class="md-card">
 			<div class="md-card-content">
 				<h3 class="heading_a uk-margin-bottom">Permissions</h3>
-	            <div class="md-card uk-margin-medium-bottom">
-	                <div class="md-card-content">
-	                    <div class="uk-grid" data-uk-grid-margin>
-	                        <div class="uk-width-1-1">
-	                            <ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}" >
-	                                <li ng-repeat="menu in menus"  ng-class='{uk-active:$first}' >
-	                                	<a href="#"> 
-	                                		<i class="material-icons" ng-bind-html="menu.icon"></i> {{menu.title}}
-                                		</a>
-                               		</li>
-	                            </ul>
-	                            <ul id="tabs_1" class="uk-switcher uk-margin">
-	                            	<li ng-repeat="menu in menus" >
-                           			<div class="md-card uk-margin-medium-bottom">
-					                    <div class="uk-overflow-container">
-						                        <table class="uk-table uk-table-condensed">
-						                            <thead>
-						                            <tr>
-						                                <th ng-if="menu.submenu">{{menu.submenu}}</th>
-						                                <th>Table Heading</th>
-						                                <th>Table Heading</th>
-						                            </tr>
-						                            </thead>
-						                            <tbody>
-						                            <tr>
-						                                <td>Table Data</td>
-						                                <td>Table Data</td>
-						                                <td>Table Data</td>
-						                            </tr>
-						                            <tr>
-						                                <td>Table Data</td>
-						                                <td>Table Data</td>
-						                                <td>Table Data</td>
-						                            </tr>
-						                            <tr>
-						                                <td>Table Data</td>
-						                                <td>Table Data</td>
-						                                <td>Table Data</td>
-						                            </tr>
-						                            </tbody>
-						                        </table>
-						                    </div>
-						            </div>
-	                            </ul>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
+				
+				{{permissions}}
+				<div class="md-card uk-margin-medium-bottom" ng-init="permissionIndex = 0">
+					<div class="md-card-content">
+						<div class="uk-grid" data-uk-grid-margin>
+							<div class="uk-width-1-1">
+								<ul class="uk-tab" data-uk-tab="{connect:'#tabs_1'}">
+									<li ng-repeat="menu in menus" ng-class="{'uk-active' : $first}">
+										<a href="#"> <i class="material-icons"
+											ng-bind-html="menu.icon"></i> {{menu.title}}
+									</a>
+									</li>
+								</ul>
+								<ul id="tabs_1" class="uk-switcher uk-margin">
+									<li ng-repeat="menu in menus" >
+										<div class="md-card uk-margin-medium-bottom">
+											<div class="uk-overflow-container">
+												<table id="permissionTable" class="uk-table uk-table-condensed" >
+													<thead>
+														<tr>
+															<th ng-if="menu.submenu.length > 0 ">Module</th>
+															<th>Permission</th>
+															<th>Grant</th>
+														</tr>
+													</thead>
+													<tbody ng-if="menu.submenu.length > 0">
+														 <tr ng-repeat-start="subMenu in  menu.submenu">
+												            <td rowspan="{{subMenu.permissions.length + 1}}"> {{subMenu.title}}</td>                    
+												        </tr>
+												        <tr ng-repeat-end ng-repeat="permission in  subMenu.permissions" > 
+												            <td width="30%">{{permission.privilege.privilegeName}}</td>
+															<td width="20%">
+													        	<pw-switch ng-model="permissions[permission.permissionId].permissionId"
+																	ng-true-value="{{permission.permissionId}}"
+																	ng-false-value="null"
+																	data-checked="Yes"
+																	data-unchecked="No" >
+																</pw-switch>
+															</td>
+												        </tr>
+													</tbody>
+													<tbody ng-if="menu.submenu.length <= 0">
+														<tr ng-repeat="permission in  menu.permissions">
+															<td>{{permission.privilege.privilegeName}}</td>
+															<td width="20%">
+																<pw-switch ng-model="permissions[permission.permissionId].permissionId"
+																	ng-true-value="{{permission.permissionId}}"
+																	ng-false-value="null"
+																	data-checked="Yes"
+																	data-unchecked="No">
+																</pw-switch>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<div class="uk-grid uk-grid-width-1-1">
 					<div class="uk-clearfix">

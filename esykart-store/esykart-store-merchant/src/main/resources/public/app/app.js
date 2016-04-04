@@ -29,22 +29,52 @@ altairApp.config(function($breadcrumbProvider) {
     });
 });
 
+altairApp.config(function($httpProvider) {
+	$httpProvider.interceptors.push(function($q) {
+		return {
+		   'request': function(config) {
+			   return config;
+		    },
+		    'requestError': function(rejection) {
+		    	UIkit.notify({
+                    message: "[ "+rejection.status+" ] "+ rejection.statusText,
+                    status: 'danger',
+                    pos: 'top-right',
+            	});
+		        return $q.reject({error : true , response : rejection});
+		    },
+
+		    'response': function(response) {
+		    	return response;
+		    },
+		    'responseError': function(rejection) {
+		    	UIkit.notify({
+                    message: "[ "+rejection.status+" ] "+ rejection.statusText,
+                    status: 'danger',
+                    pos: 'top-right',
+            	});
+		        return $q.reject({error : true , response : rejection});
+		    }
+	  };
+	}),
+	$httpProvider.defaults.headers.common = { 
+        'Accept': 'application/json'
+	};
+});
+
+ 
 /* Run Block */
-altairApp
-    .run([
-        '$rootScope',
-        '$state',
-        '$stateParams',
-        '$http',
-        '$window',
-        '$timeout',
-        'preloaders',
-        'variables',
-        function ($rootScope, $state, $stateParams,$http,$window, $timeout,variables) {
-
-            $rootScope.$state = $state;
+altairApp.run(['$rootScope','$state', '$stateParams','$http', '$window', '$timeout', 'preloaders',   'variables', 'AuthorizationService',
+    function ($rootScope, $state, $stateParams,$http,$window, $timeout,preloaders,variables,AuthorizationService) {
+			AuthorizationService.init();
+			$rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
-
+            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){ 
+    		    if(!AuthorizationService.hasPermission(toState.name)){
+    		    	event.preventDefault(); 
+    		    	$state.go("error.403",{ defaultPage : 'restricted.dashboard' });
+    		    }
+    		})
             $rootScope.$on('$stateChangeSuccess', function () {
                 // scroll view to top
                 $("html, body").animate({
@@ -132,7 +162,10 @@ altairApp
         'PrintToConsole',
         function(PrintToConsole) {
             // app debug
-            PrintToConsole.active = false;
+            PrintToConsole.active = true;
         }
-    ])
-;
+]);
+
+
+
+

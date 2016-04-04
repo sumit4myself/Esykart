@@ -51,8 +51,6 @@ public class Role implements Serializable {
 	@Column(name = "status",length = 1)
 	private Status status;
 
-	
-	@JsonManagedReference
 	@JoinTable(name = "role_permission_mapping", joinColumns = {
 			@JoinColumn(name = "role_id", referencedColumnName = "role_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "permission_id", referencedColumnName = "permission_id") })

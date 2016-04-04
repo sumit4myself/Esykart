@@ -13,15 +13,29 @@ altairApp
             // -- ERROR PAGES --
                 .state("error", {
                     url: "/error",
-                    templateUrl: 'app/views/error.html'
+                    templateUrl: 'app/views/error.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'app/components/error/js/errorController.js'
+                            ]);
+                        }]
+                    }
+                })
+                .state("error.403", {
+                    url: "/403",
+                    templateUrl: 'app/components/error/error_403View.html',
+                    controller : 'ErrorController'
                 })
                 .state("error.404", {
                     url: "/404",
-                    templateUrl: 'app/components/pages/error_404View.html'
+                    templateUrl: 'app/components/error/error_404View.html',
+                    controller : 'ErrorController'
                 })
                 .state("error.500", {
                     url: "/500",
-                    templateUrl: 'app/components/pages/error_500View.html'
+                    templateUrl: 'app/components/error/error_500View.html',
+                    controller : 'ErrorController'
                 })
             // -- LOGIN PAGE --
                 .state("login", {
@@ -1064,7 +1078,7 @@ altairApp
                     controller: 'AddUserController',
                     resolve: {
 	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-	                    	return $ocLazyLoad.load(['lazy_wizard'],{serie:true});
+	                    	return $ocLazyLoad.load(['lazy_pwswitch','user_model'],{serie:true});
 	                    }]
                     },
                     data: {
@@ -1075,6 +1089,11 @@ altairApp
                     url: "/edit",
                     templateUrl: 'app/components/user/createUser.html',
                     controller: 'AddUserController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_pwswitch'],{serie:true});
+	                    }]
+                    },
                     params: { id : null }, 
                     data: {
                         pageTitle: 'Edit User'
@@ -1094,11 +1113,15 @@ altairApp
                     url: "/manage",
                     templateUrl: 'app/components/user/manageUser.html',
                     controller: 'ManageUserController',
+                    resolve: {
+	                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+	                    	return $ocLazyLoad.load(['lazy_datatables'],{serie:true});
+	                    }]
+                    },
                     data: {
                         pageTitle: 'Manage User'
                     }
                 })
-                
                 
                 
                 // -- role --
@@ -1118,7 +1141,7 @@ altairApp
                     controller: 'AddRoleController',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(['role_model','lazy_parsleyjs']);
+                            return $ocLazyLoad.load(['role_model','lazy_parsleyjs','lazy_pwswitch']);
                         }]
                     },
                     data: {
@@ -1152,6 +1175,11 @@ altairApp
                     url: "/manage",
                     templateUrl: 'app/components/role/manageRole.html',
                     controller: 'ManageRoleController',
+                    resolve: {
+                    	deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load(['lazy_datatables']);
+                        }]
+                    },
                     data: {
                         pageTitle: 'Manage Role'
                     }

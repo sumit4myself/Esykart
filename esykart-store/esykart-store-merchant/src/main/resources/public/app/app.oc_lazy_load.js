@@ -197,6 +197,15 @@ altairApp
                         serie: true
                     },
                     {
+                        name: 'lazy_pwswitch',
+                        files: [
+                            'bower_components/pwswitch/dist/jquery.pswitch.min.css',
+                            'bower_components/pwswitch/dist/jquery.pswitch.min.js',
+                            'bower_components/pwswitch/dist/pwSwitch.min.js',
+                        ],
+                        serie: true
+                    },
+                    {
                         name: 'lazy_ionRangeSlider',
                         files: [
                             'bower_components/ion.rangeslider/js/ion.rangeSlider.min.js',

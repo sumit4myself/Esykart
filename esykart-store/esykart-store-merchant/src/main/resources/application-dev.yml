@@ -42,18 +42,25 @@ zuul:
         service-id: apigateway      
     merchantService: 
         path: /merchants/** 
-              /users/**
-              /roles/**
         retryable: true
         stripPrefix: false
         service-id: apigateway  
-            
+    roleService: 
+        path: /roles/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway  
+    userService: 
+        path:  /users/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway  
              
 ribbon:
   eureka:
     enabled: false
 
-APIGATEWAY:
+apigateway:
   ribbon:
     listOfServers: http://localhost:9000     
     

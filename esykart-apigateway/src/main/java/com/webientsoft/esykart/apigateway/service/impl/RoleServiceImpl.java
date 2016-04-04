@@ -3,6 +3,7 @@ package com.webientsoft.esykart.apigateway.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.apigateway.service.RoleService;
 import com.webientsoft.esykart.apigateway.service.client.RoleServiceClient;
@@ -11,6 +12,7 @@ import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.user.RoleModel;
 
+@Service
 public class RoleServiceImpl implements RoleService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(
@@ -21,32 +23,27 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	public void save(RoleModel model) {
-		// TODO Auto-generated method stub
+		client.save(model);
 
 	}
 
 	@Override
 	public void update(Integer id, RoleModel model) {
-		// TODO Auto-generated method stub
-
+		client.update(id, model);
 	}
 
 	@Override
 	public RoleModel find(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return client.find(id);
 	}
 
 	@Override
 	public PaginatedDataModel search(FilterModel model) {
-		// TODO Auto-generated method stub
-		return null;
+		return client.search(model);
 	}
 
 	@Override
 	public void changeStatus(Integer id, Status status) {
-		// TODO Auto-generated method stub
-
+		client.changeStatus(id, status);
 	}
-
 }

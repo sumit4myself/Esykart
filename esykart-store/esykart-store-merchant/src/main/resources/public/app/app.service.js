@@ -21,6 +21,7 @@ altairApp
             }
         }
     ])
+    
     .service('preloaders', [
         '$rootScope',
         '$timeout',
@@ -57,4 +58,91 @@ altairApp
 
         }
     ])
+    
+   	.service('AuthorizationService', ['$http',function($http) {
+		var service = {};
+		var publicPages = new Array();
+        service.init = function(){
+        	$http.get('/details').then(function(response) {
+        		service.userDetails = response.data;
+        		console.log("AuthorizationService = > init ================================ ");
+        		console.log(response);
+        	});
+        	publicPages.push("error");
+        	publicPages.push("error.403");
+        	publicPages.push("error.404");
+        	publicPages.push("error.500");
+        };
+        
+        service.getDefaultPage = function(){
+        	return 'restricted.dashboard';
+        	
+        }
+        
+        service.hasPermission = function(sref){
+        	var granted = false;
+        	$(publicPages).each(function(){
+        		if(this == sref){
+        			granted = true;
+					return false;
+        		}
+        	});
+        	$(service.userDetails.menus).each(function(){
+	    		if(this.link == sref){
+	    			$(this.permissions).each(function(){
+	    				if(this.link == sref){
+	    					granted = true;
+	    					return false;
+	    				}
+	    			})
+	    			
+	    		}else if(this.submenu != null){
+	    			$(this.submenu).each(function(){
+	    				if(this.link == sref){
+	    					granted = true;
+	    					return false;
+	    				}
+	    				$(this.permissions).each(function(){
+    	    				if(this.link == sref){
+    	    					granted = true;
+    	    					return false;
+    	    				}
+    	    			})
+	    				
+	    			})
+	    		}
+    		});
+        	return granted;
+    	},
+    	service.getGrantedPermissions = function(permissionFor){
+    		var permissions = new Array();
+    		$(service.userDetails.menus).each(function(){
+	    		if(this.link == permissionFor){
+	    			permissions = this.permissions;
+	    			
+	    		}else if(this.submenu != null){
+	    			$(this.submenu).each(function(){
+	    				if(this.link == permissionFor){
+	    					permissions = this.permissions;
+	    				}
+	    			})
+	    		}
+    		});
+    		return permissions;
+    	},
+    	service.getGrantedSections = function(){
+    		service.userDetails.menus.sort(function(a, b){
+    			return (a.sortIndex > b.sortIndex ? 1 : -1);
+            });
+    		return service.userDetails.menus;
+    		
+    	},
+    	service.getUserDetails = function(){
+    		return service.userDetails;
+    		
+    	}
+        return service;
+}]);
+    
+    
 ;
