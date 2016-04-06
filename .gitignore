@@ -34,3 +34,9 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+/esykart-apigateway/
+/esykart-common/
+/esykart-config-server/
+/esykart-service/
+/esykart-service-discovery-server/
+/esykart-store/
