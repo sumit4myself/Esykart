@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2016, WebientSoft and/or its affiliates. All rights reserved
- * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
- */
-
 package com.webientsoft.esykart.apigateway.product.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,49 +8,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webientsoft.esykart.apigateway.product.service.ProductService;
+import com.webientsoft.esykart.apigateway.product.service.ProductDetailService;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.common.model.product.ProductModel;
+import com.webientsoft.esykart.common.model.product.ProductDetailModel;
 
-/**
- * 
- * @author DeepakT
- * @since 1.0
- */
 @RestController
-@RequestMapping(value = "/products")
-public class ProductRestController {
+@RequestMapping("/product/details")
+public class ProductDetailRestController {
 
 	@Autowired
-	private ProductService productService;
+	private ProductDetailService productDetailService;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
-	public long save(@RequestBody ProductModel entity) {
-		return productService.save(entity);
+	public long save(@RequestBody ProductDetailModel entity) {
+		return productDetailService.save(entity);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
 			"application/json" })
-	public void update(@PathVariable("id") long id, @RequestBody ProductModel entity) {
-		productService.update(id, entity);
+	public void update(@PathVariable("id") long id, ProductDetailModel entity) {
+		productDetailService.update(id, entity);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json" })
-	public ProductModel find(@PathVariable("id") long id) {
-		return productService.find(id);
+	public ProductDetailModel find(@PathVariable("id") long id) {
+		return productDetailService.find(id);
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST, consumes = { "application/json" }, produces = {
 			"application/json" })
-	public PaginatedDataModel search(FilterModel model) {
-		return productService.search(model);
+	public PaginatedDataModel search(@RequestBody FilterModel model) {
+		return productDetailService.search(model);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = { "application/json" })
 	public void changeStatus(@PathVariable("id") long id, @RequestParam("status") Status status) {
-		productService.changeStatus(id, status);
+		productDetailService.changeStatus(id, status);
 	}
 
 }

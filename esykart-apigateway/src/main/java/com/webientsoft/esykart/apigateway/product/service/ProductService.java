@@ -5,12 +5,21 @@
 
 package com.webientsoft.esykart.apigateway.product.service;
 
+import com.webientsoft.esykart.common.model.Status;
+import com.webientsoft.esykart.common.model.common.FilterModel;
+import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
+import com.webientsoft.esykart.common.model.product.ProductModel;
 
-/**
- * 
- * @author DeepakT
- * @since 1.0
- */
 public interface ProductService {
+
+	long save(ProductModel entity);
+
+	void update(long id, ProductModel entity);
+
+	ProductModel find(long id);
+
+	PaginatedDataModel search(FilterModel model);
+
+	void changeStatus(long id, Status status);
 
 }
