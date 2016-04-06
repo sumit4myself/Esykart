@@ -1,4 +1,4 @@
-package com.webientsoft.esykart.apigateway.rest.controller;
+package com.webientsoft.esykart.apigateway.user.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webientsoft.esykart.apigateway.service.RoleService;
+import com.webientsoft.esykart.apigateway.user.service.RoleService;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;

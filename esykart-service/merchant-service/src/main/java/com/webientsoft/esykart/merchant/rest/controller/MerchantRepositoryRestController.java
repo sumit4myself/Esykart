@@ -1,8 +1,6 @@
 
 package com.webientsoft.esykart.merchant.rest.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
@@ -23,28 +21,23 @@ import com.webientsoft.esykart.merchant.repository.MerchantRepository;
 @RepositoryRestController
 public class MerchantRepositoryRestController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(
-			MerchantRepositoryRestController.class);
-
 	@Autowired
 	private MerchantRepository merchantRepository;
 
-	@RequestMapping(method = RequestMethod.POST, consumes = {
-		"application/json" }, produces = { "application/json" })
+	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Integer> save(@RequestBody Merchant merchant) {
 		return ResponseEntity.ok(merchantRepository.save(merchant).getId());
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = {
-		"application/json" }, produces = { "application/json" })
-	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id,
-			@RequestBody Merchant merchant) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
+			"application/json" })
+	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody Merchant merchant) {
 		merchantRepository.save(merchant);
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}", params = "status", method = RequestMethod.DELETE, consumes = {
-		"application/json" }, produces = { "application/json" })
+			"application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
 		merchantRepository.changeStatus(id, status);
@@ -53,7 +46,7 @@ public class MerchantRepositoryRestController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseEntity<Merchant> getDetail(@PathVariable("id") int id) {
-		 return ResponseEntity.ok(merchantRepository.findOne(id));
+		return ResponseEntity.ok(merchantRepository.findOne(id));
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")

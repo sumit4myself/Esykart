@@ -1,8 +1,6 @@
 
 package com.webientsoft.esykart.user.rest.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +21,6 @@ import com.webientsoft.esykart.user.repository.UserRepository;
 @RequestMapping(value = "/users")
 @RepositoryRestController
 public class UserRepositoryRestController {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserRepositoryRestController.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -56,14 +52,13 @@ public class UserRepositoryRestController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<User> getDetail(@PathVariable("id") int id) {
+	public @ResponseBody ResponseEntity<User> find(@PathVariable("id") int id) {
 		return ResponseEntity.ok(userRepository.findOne(id));
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(@RequestBody FilterModel model) {
-
-		return ResponseEntity.ok(null);
+	public @ResponseBody ResponseEntity<PaginatedDataModel> search(@RequestBody FilterModel model) {
+		return ResponseEntity.ok(userRepository.search(model));
 	}
 
 }

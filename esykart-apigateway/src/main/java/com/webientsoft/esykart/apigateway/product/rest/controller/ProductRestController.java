@@ -3,12 +3,12 @@
  * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
  */
 
-package com.webientsoft.esykart.apigateway.rest.controller;
+package com.webientsoft.esykart.apigateway.product.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webientsoft.esykart.apigateway.service.ProductService;
+import com.webientsoft.esykart.apigateway.product.service.ProductService;
 
 /**
  * 

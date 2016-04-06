@@ -3,7 +3,7 @@
  * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
  */
 
-package com.webientsoft.esykart.apigateway.service.client;
+package com.webientsoft.esykart.apigateway.product.service.client;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;

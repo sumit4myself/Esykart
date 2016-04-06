@@ -3,13 +3,12 @@
  * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
  */
 
-package com.webientsoft.esykart.apigateway.service.impl;
+package com.webientsoft.esykart.apigateway.product.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webientsoft.esykart.apigateway.service.ProductService;
-import com.webientsoft.esykart.apigateway.service.client.ProductServiceClient;
+import com.webientsoft.esykart.apigateway.product.service.client.ProductServiceClient;
 
 /**
  * 

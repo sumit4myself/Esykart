@@ -10,6 +10,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.webientsoft.esykart.common.model.common.FilterModel;
+import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.user.entity.Menu;
 import com.webientsoft.esykart.user.entity.Permission;
 import com.webientsoft.esykart.user.entity.Role;
@@ -39,4 +41,11 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 		return user;
 	}
 
+
+	@Override
+	public PaginatedDataModel search(FilterModel model) {
+		System.out.println("Serach  === > "+model);
+		return null;
+	}
+	
 }

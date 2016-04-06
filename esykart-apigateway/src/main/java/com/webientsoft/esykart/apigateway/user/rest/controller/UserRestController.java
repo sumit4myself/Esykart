@@ -1,8 +1,6 @@
-
-package com.webientsoft.esykart.user.rest.controller;
+package com.webientsoft.esykart.apigateway.user.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,29 +8,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.webientsoft.esykart.apigateway.user.service.UserService;
 import com.webientsoft.esykart.common.model.Status;
+import com.webientsoft.esykart.common.model.common.AuthenticationModel;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.user.entity.Role;
-import com.webientsoft.esykart.user.repository.RoleRepository;
+import com.webientsoft.esykart.common.model.user.UserModel;
 
-@RequestMapping(value = "/roles")
-@RepositoryRestController
-public class RoleRepositoryRestController {
+@RestController
+@RequestMapping("/users")
+public class UserRestController {
 
 	@Autowired
-	private RoleRepository roleRepository;
+	private UserService userService;
+
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, consumes = {
+			"application/json" }, produces = { "application/json" })
+	public @ResponseBody ResponseEntity<UserModel> authenticate(@RequestBody AuthenticationModel model) {
+		return ResponseEntity.ok(userService.authenticate(model));
+	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
-	public @ResponseBody ResponseEntity<Integer> save(@RequestBody Role role) {
-		return ResponseEntity.ok(roleRepository.save(role).getRoleId());
+	public @ResponseBody ResponseEntity<Void> save(@RequestBody UserModel user) {
+		userService.save(user);
+		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
 			"application/json" })
-	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody Role role) {
-		roleRepository.save(role);
+	public @ResponseBody ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody UserModel user) {
+		userService.save(user);
 		return ResponseEntity.noContent().build();
 	}
 
@@ -40,18 +47,19 @@ public class RoleRepositoryRestController {
 			"application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
-		roleRepository.changeStatus(id, status);
+		userService.changeStatus(id, status);
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<Role> getDetail(@PathVariable("id") int id) {
-		return ResponseEntity.ok(roleRepository.findOne(id));
+	public @ResponseBody ResponseEntity<UserModel> getDetail(@PathVariable("id") int id) {
+		return ResponseEntity.ok(userService.find(id));
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseEntity<PaginatedDataModel> findAll(@RequestBody FilterModel model) {
-		return ResponseEntity.ok(roleRepository.search(model));
+
+		return ResponseEntity.ok(null);
 	}
 
 }

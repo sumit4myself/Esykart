@@ -3,7 +3,7 @@
  * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
  */
 
-package com.webientsoft.esykart.apigateway.service;
+package com.webientsoft.esykart.apigateway.product.service;
 
 
 /**
@@ -11,6 +11,6 @@ package com.webientsoft.esykart.apigateway.service;
  * @author DeepakT
  * @since 1.0
  */
-public interface ProductService {
+public interface ProductDetailService {
 
 }
