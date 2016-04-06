@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -Dfile=smartgwt-skins-5.0p.jar -DgroupId=com.smartgwt -DartifactId=smartgwt-skins -Dversion=5.0p -Dpackaging=jar -DrepositoryId=logicaldoc-community -Durl=sftp://web.sourceforge.net/home/groups/l/lo/logicaldoc/htdocs/maven
