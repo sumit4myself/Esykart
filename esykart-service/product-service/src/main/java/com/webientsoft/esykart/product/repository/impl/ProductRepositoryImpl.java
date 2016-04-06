@@ -5,6 +5,8 @@
 
 package com.webientsoft.esykart.product.repository.impl;
 
+import com.webientsoft.esykart.common.model.common.FilterModel;
+import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.product.repository.ProductRepositoryCustom;
 
 /**
@@ -12,7 +14,13 @@ import com.webientsoft.esykart.product.repository.ProductRepositoryCustom;
  * @author DeepakT
  * @since 1.0
  */
-public class MerchantRepositoryImpl implements ProductRepositoryCustom {
+public class ProductRepositoryImpl implements ProductRepositoryCustom {
+
+	@Override
+	public PaginatedDataModel search(FilterModel model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 }

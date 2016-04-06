@@ -8,12 +8,7 @@ package com.webientsoft.esykart.product.repository;
 import com.webientsoft.esykart.common.model.common.FilterModel;
 import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 
-/**
- * 
- * @author DeepakT
- * @since 1.0
- */
-public interface ProductRepositoryCustom {
-
+public interface ProductDetailRepositoryCustom {
+		
 	PaginatedDataModel search(FilterModel model);
 }
