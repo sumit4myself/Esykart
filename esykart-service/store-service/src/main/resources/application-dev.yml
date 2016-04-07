@@ -1,16 +1,17 @@
 server:
-  port: ${PORT:9009} 
- 
+  port: ${port:9010} 
+  
 spring:
   h2:
     console:
       enabled: true
   jpa: 
     show-sql: true
-    open-in-view: false
+    open-in-view: true
     database: H2
     properties:
       hibernate.format_sql: true
+      hibernate.hbm2ddl.import_files : /sql/h2-setup.sql
     hibernate:
       ddl-auto: create-drop
   main: 

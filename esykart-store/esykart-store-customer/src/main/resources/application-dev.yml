@@ -1,5 +1,5 @@
 server:
-  port: ${port:8080}
+  port: ${port:9070}
   session-timeout: 30
   error:
     include-stacktrace: always
@@ -42,6 +42,11 @@ zuul:
         service-id: apigateway      
     merchantService: 
         path: /merchants/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway       
+    storeService: 
+        path: /stores/**
         retryable: true
         stripPrefix: false
         service-id: apigateway        
