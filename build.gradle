@@ -255,6 +255,13 @@ project(':esykart-service:notification-service') {
 	}
 }
 
+project(':esykart-service:store-service') {
+	description = 'Store Service'
+	
+	dependencies {
+	   
+	}
+}
 
 project(':esykart-store') {
 	description = 'Esykart Store'
@@ -326,7 +333,6 @@ project(':esykart-service-discovery-server') {
        compile 'org.springframework.cloud:spring-cloud-netflix-eureka-server:1.0.7.RELEASE'
      }
 }
-
 
 
 def buildEnvironment() {
