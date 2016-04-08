@@ -1,45 +1,597 @@
-<!DOCTYPE HTML>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Broadleaf Commerce Demo Store - Heat Clinic</title>
+<!--     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE"></title> -->
     <th:block th:replace="/layout/partials/head"></th:block>
 </head>
 
-<body th:class="${'locale-' + session.blLocale.localeCode}">
-    <div id="notification_bar"></div>
-    <header th:substituteby="layout/partials/header" />
-    
-    <div id="content" class="width_setter group" role="main">
-        <nav th:substituteby="layout/partials/nav" />
-        <blc:content contentType="Homepage Banner Ad" />       
-        <div id="banners" th:if="${contentItem !=null and contentItem['targetUrl'] != null and contentItem['imageUrl'] != null}">
-            <a th:href="@{${contentItem['targetUrl']}}"><img blc:src="@{${contentItem['imageUrl']}}" /></a>       
-        </div>
-        
-        <blc:content contentType="Homepage Middle Promo Snippet" /> 
-        
-        <a th:href="@{/register}" th:if="${contentItem !=null and contentItem['htmlContent'] !=null}" style="text-decoration:none">
-            <div id="home_feature" th:utext="${contentItem['htmlContent']}"></div>
-        </a>
+<body class="fullwidth">
+<div id="loader-wrapper" class="loader-off">
+<div id="loader"></div>
+</div>
+<!-- Modal Search -->
+<div class="overlay overlay-scale">
+  <button type="button" class="overlay-close"> ✕ </button>
+  <div class="overlay__content">
+    <form id="search-form" class="search-form outer" action="#" method="post">
+      <div class="input-group input-group--wd">
+        <input type="text" class=" input--full" placeholder="search text here ...">
+        <span class="input-group__bar"></span> </div>
+      <button class="btn btn--wd text-uppercase wave waves-effect">Search</button>
+    </form>
+  </div>
+</div>
+<!-- / end Modal Search -->
 
+<div class="wrapper"> 
+<!-- Header section -->
+	<header th:substituteby="layout/partials/header" />
+<!-- End Header section -->
+
+<div id="pageContent" class="page-content">
+   	<th:block th:replace="/layout/partials/banner"></th:block>
+    <!-- End Slider section --> 
+    
+    <!-- Content section -->
+    <section class="content">
+      <div class="container"> 
         
-        <blc:content contentType="Homepage Featured Products Title" />    
-        <div th:if="${contentItem !=null and contentItem['messageText'] !=null}" class="title_bar" th:utext="${contentItem['messageText']}"></div>
+        <!-- Modal -->
+        <div class="modal quick-view zoom" id="quickView"  style=" opacity: 1">
+          <div class="modal-dialog">
+            <div class="modal-content"> </div>
+          </div>
+        </div>
+        <!-- /.modal -->
         
-        <ul th:if="${products}" id="products" class="group">
-            <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-        </ul>
-        
-        <ul th:if="${skus}" id="products" class="group">
-            <li th:each="sku : ${skus}" th:object="${sku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
-        </ul>
+        <h2 class="text-center text-uppercase">Featured Products</h2>
+        <div class="row product-carousel mobile-special-arrows animated-arrows product-grid four-in-row">
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-1.jpg}" alt=""/></a></div>
+              <div class="product-preview__label product-preview__label--left product-preview__label--new"><span>new</span></div>
+              <div class="product-preview__label product-preview__label--right product-preview__label--sale"><span>sale<br>
+                -10%</span></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <ul class="options-swatch options-swatch--color">                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/blue.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/yellow.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/green.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/dark-grey.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/grey.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/red.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/white.png}" width="10" height="10" alt=""/></span></a></li>
+</ul>
+                <div class="price-box "><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-2.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <ul class="options-swatch options-swatch--color">                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/blue.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/yellow.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/green.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/dark-grey.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/grey.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/red.png}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img th:src="@{images/colors/white.png}" width="10" height="10" alt=""/></span></a></li>
+</ul>
+                <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" 	images/products/product-3.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <div class="price-box">$65.00</div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-4.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <div class="price-box">$65.00</div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-5.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <div class="price-box">$65.00</div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-6.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <div class="price-box">$65.00</div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-7.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <div class="price-box">$65.00</div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="product-preview-wrapper">
+            <div class="product-preview">
+              <div class="product-preview__image"><a href="product.html"><img th:src="@{images/products/product-empty.png}" th:attr="data-lazy=@{images/products/product-8.jpg}"  alt=""/></a></div>
+              <div class="product-preview__info text-center">
+                <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+                <div class="product-preview__info__title">
+                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                </div>
+                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                <div class="price-box">$65.00</div>
+                <div class="product-preview__info__description">
+                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+                </div>
+                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content content--parallax" th:attr="data-image=@{images/parallax-bg.jpg}">
+      <div class="container">
+        <div class="blog-widget">
+          <h2 class="blog-widget__title text-uppercase">From The Blog</h2>
+          <div class="blog-carousel mobile-special-arrows  animated-arrows">
+            <div class="blog-widget__item">
+              <div class="blog-widget__item__image-cell pull-left"><img th:src="@{images/blog-author-img-01.jpg}" alt=""/></div>
+              <div class="blog-widget__item__offset-text pull-right">
+                <h3 class="blog-widget__item__offset-text__title text-uppercase"> Nullam ac nisi non <strong>eros gravida</strong> Ut euismod, turpis sollicitudin lobortis</h3>
+                <div class="blog-widget__item__offset-text__date"><span>Friday, 29 May 2015</span></div>
+                <div class="blog-widget__item__offset-text__teaser">
+                  <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Nulla neque purus, ullamcorper nec, eleifend at, fermentum ut, turpis. Mauris et ligula quis erat dignissim imperdiet. Integer ligula magna, dictum et. </p>
+                </div>
+                <a href="#" class="btn btn--wd">READ MORE</a> </div>
+            </div>
+            <div class="blog-widget__item">
+              <div class="blog-widget__item__image-cell pull-left"><img th:src="@{images/blog-author-img-01.jpg}" alt=""/></div>
+              <div class="blog-widget__item__offset-text pull-right">
+                <h3 class="blog-widget__item__offset-text__title text-uppercase"> Nullam ac nisi non <strong>eros gravida</strong> Ut euismod, turpis sollicitudin lobortis</h3>
+                <div class="blog-widget__item__offset-text__date"><span>Friday, 29 May 2015</span></div>
+                <div class="blog-widget__item__offset-text__teaser">
+                  <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Nulla neque purus, ullamcorper nec, eleifend at, fermentum ut, turpis. Mauris et ligula quis erat dignissim imperdiet. Integer ligula magna, dictum et. </p>
+                </div>
+                <a href="#" class="btn btn--wd">READ MORE</a> </div>
+            </div>
+            <div class="blog-widget__item">
+              <div class="blog-widget__item__image-cell pull-left"><img th:src="@{images/blog-author-img-01.jpg}" alt=""/></div>
+              <div class="blog-widget__item__offset-text pull-right">
+                <h3 class="blog-widget__item__offset-text__title text-uppercase"> Nullam ac nisi non <strong>eros gravida</strong> Ut euismod, turpis sollicitudin lobortis</h3>
+                <div class="blog-widget__item__offset-text__date"><span>Friday, 29 May 2015</span></div>
+                <div class="blog-widget__item__offset-text__teaser">
+                  <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Nulla neque purus, ullamcorper nec, eleifend at, fermentum ut, turpis. Mauris et ligula quis erat dignissim imperdiet. Integer ligula magna, dictum et. </p>
+                </div>
+                <a href="#" class="btn btn--wd">READ MORE</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        <h2 class="text-center text-uppercase">products categories</h2>
+        <div class="product-category-carousel mobile-special-arrows animated-arrows slick">
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-01.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-02.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-03.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-04.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-05.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-01.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-02.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-03.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-04.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+          <div class="product-category hover-squared"> <a href="#"><img th:src="@{images/category-empty.png}" th:attr="data-lazy=@{images/category-img-05.jpg}" alt="#"></a>
+            <div class="product-category__hover caption"></div>
+            <div class="product-category__info">
+              <div class="product-category__info__ribbon">
+                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
+                <div class="product-category__info__ribbon__count">32 products</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content content--fill">
+      <div class="container">
+        <h2 class="text-center text-uppercase">products brands</h2>
+        <div class="brands brands-carousel animated-arrows mobile-special-arrowss">
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-01.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-02.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-03.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-04.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-05.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-06.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-07.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-01.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-02.png}" alt=""/></a></div>
+          <div class="brands__item"><a href="#"><img th:src="@{images/brand-empty.png}" th:attr="data-lazy=@{images/brand-03.png}" alt=""/></a></div>
+        </div>
+        <div class="divider"></div>        <div class="row hide-outer-animation">
+          <div class="col-md-6">
+            <div class="text-center">
+              <div class="banner banner--image hover-squared animation" data-animation="fadeInLeft" data-animation-delay="0s" onclick="location.href='#';"> <img th:src="@{images/banner-01.jpg}" alt="" class="img-responsive" />
+<div class="banner--image__text banner--image__text--left banner--image__text--light text-center">
+                  <h5>Get Contemporary</h5>
+                  <h3 id="responsive_headline"><strong>The High Halter</strong></h3>
+                  <h6>Frame your face and shoulders<br>
+                    with the silhouette of season<br>
+                    <strong>Up to 65% OFF</strong></h6>
+                </div>
+                <div class="product-category__hover caption"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="banner banner--icon hover-squared animation" data-animation="fadeInRight" data-animation-delay="0s" onclick="location.href='#';">
+              <div class="banner--icon__icon"> <span class="icon icon-sales"></span> </div>
+              <div class="banner--icon__text text-center">
+                <h4 class="text-uppercase">TOTAL SALE</h4>
+                <div class="banner--icon__text__divider"></div>
+                <div class="text-uppercase">UP TO 70% OFF YOUR FAVOURITE BRANDS</div>
+              </div>
+              <div class="product-category__hover caption"></div>
+            </div>
+            <div class="banner banner--icon banner--last banner--light hover-squared animation" data-animation="fadeInRight" data-animation-delay="0s" onclick="location.href='#';">
+              <div class="banner--icon__icon"> <span class="icon icon-box"></span> </div>
+              <div class="banner--icon__text text-center">
+                <h4 class="text-uppercase">Gift CERTIFICATES</h4>
+                <div class="banner--icon__text__divider"></div>
+                <div class="text-uppercase">Gift certificates are the simplest, speediest way to send something special! </div>
+              </div>
+              <div class="product-category__hover caption"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        <div class="row staggered-animation-container">
+          <div class="col-sm-6 col-md-3 animation" data-animation="fadeInUp" data-animation-delay="0.3s">
+            <h4 class="text-uppercase">New Arrivals</h4>
+            <div class="text-center">
+              <div class="banner banner--image hover-squared"> <a href="#"><img th:src="@{images/banner-small-01.jpg}" class="img-responsive" alt=""/></a>
+                <div class="product-category__hover caption"></div>
+              </div>
+            </div>
+          </div>
+          <div class="divider divider--sm visible-xs"></div>
+          <div class="col-sm-6 col-md-3 animation" data-animation="fadeInUp" data-animation-delay="0.6s">
+            <h4 class="text-uppercase">Testimonials</h4>
+            <div class="testimonials">
+              <div class="testimonials-carousel nav-dot">
+                <div class="testimonials__item">
+                  <div class="testimonials__item__image-sell"><a href="#"><img th:src="@{images/testimonials-author-img-01.jpg}" alt=""/></a>
+                    <div  class="testimonials__item__image-sell__author text-uppercase"><a href="#">Paul Grant</a></div>
+                  </div>
+                  <div class="testimonials__item__text"><em>Lorem ipsum dolor sit amet, con sectetuer adipiscing elit. Donec eros tellus, scelerisqu  nec, rhonc us eget, sollicitudin eu, vehicula venenatis, tem por vitae, est. Praesent vitae dui. Morbi id tellus. Nullam ac nisi non eros gravida venenatis. Ut euismod, turpis sollicitudin lobortis pel lentesque, libero massa.</em></div>
+                </div>
+                <div class="testimonials__item">
+                  <div class="testimonials__item__image-sell"><a href="#"><img th:src="@{images/testimonials-author-img-01.jpg}" alt=""/></a>
+                    <div  class="testimonials__item__image-sell__author text-uppercase"><a href="#">Paul Grant</a></div>
+                  </div>
+                  <div class="testimonials__item__text"><em>Lorem ipsum dolor sit amet, con sectetuer adipiscing elit. Donec eros tellus, scelerisqu  nec, rhonc us eget, sollicitudin eu, vehicula venenatis, tem por vitae, est. Praesent vitae dui. Morbi id tellus. Nullam ac nisi non eros gravida venenatis. Ut euismod, turpis sollicitudin lobortis pel lentesque, libero massa.</em></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider divider--sm visible-sm visible-xs"></div>
+          <div class="col-sm-6 col-md-3 animation" data-animation="fadeInUp" data-animation-delay="0.9s">
+            <h4 class="text-uppercase">New Products</h4>
+            <div class="products-widget card">
+              <div class="products-widget-carousel nav-dot">
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-9.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-11.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-8.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-6.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider divider--sm visible-xs"></div>
+          <div class="col-sm-6 col-md-3 animation" data-animation="fadeInUp" data-animation-delay="1.2s">
+            <h4 class="text-uppercase">Sale Products</h4>
+            <div class="products-widget card">
+              <div class="products-widget-carousel nav-dot">
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-10.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-7.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-6.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-11.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                  </div>
+                </div>
+                <div class="products-widget__item">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img th:src="@{images/products/product-3.jpg}" alt=""/></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Content section --> 
+  </div>
+  
+ <footer th:substituteby="layout/partials/footer" /> 
+</div>
+
+<div class="compare-box" id="compareBox">
+  <div class="container">
+    <div class="compare-box__header">
+      <h3 class="compare-box__header__title">Compare</h3>
+      <div class="compare-box__header__toggle"><span class="compare-box__header__toggle__hide hide-compare">Hide<span class="icon icon-arrow-down"></span></span><span class="compare-box__header__toggle__show show-compare">Show<span class="icon icon-arrow-up"></span></span><span class="compare-box__header__toggle__close close-compare"><span class="icon icon-clear"></span></span></div>
     </div>
-    
-    <footer th:substituteby="layout/partials/footer" />
-    
+    <div class="compare-box__items">
+      <ul class="compare-box__items__list compare-carousel nav-top">
+        <li class="compare-box__items__list__item">
+          <div class="compare-box__items__list__item__delete"><a href="#" class="icon icon-clear"></a></div>
+          <a href="#"><img th:src="@{images/products/product-2.jpg}" alt=""></a></li>
+        <li class="compare-box__items__list__item empty">
+          <div class="compare-box__items__list__item__num">1</div>
+          <img th:src="@{images/products/product-empty.png}" alt=""/></li>
+        <li class="compare-box__items__list__item empty">
+          <div class="compare-box__items__list__item__num">2</div>
+          <img th:src="@{images/products/product-empty.png}" alt=""/></li>
+        <li class="compare-box__items__list__item empty">
+          <div class="compare-box__items__list__item__num">3</div>
+          <img th:src="@{images/products/product-empty.png}" alt=""/></li>
+        <li class="compare-box__items__list__item empty">
+          <div class="compare-box__items__list__item__num">4</div>
+          <img th:src="@{images/products/product-empty.png}" alt=""/></li>
+        <li class="compare-box__items__list__item empty">
+          <div class="compare-box__items__list__item__num">5</div>
+          <img th:src="@{images/products/product-empty.png}" alt=""/></li>
+        <li class="compare-box__items__list__item empty">
+          <div class="compare-box__items__list__item__num">6</div>
+          <img th:src="@{images/products/product-empty.png}" alt=""/></li>
+      </ul>
+      <div class="compare-box__actions">
+        <div class="compare-box__actions__btns"> <a href="#" class="btn btn--wd btn--lg text-uppercase">Compare</a> <a href="#" class="btn btn--wd btn--lg btn--light text-uppercase" id="removeAllCompare">Clear All</a> </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
