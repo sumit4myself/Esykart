@@ -5366,7 +5366,7 @@ body.fullwidth .header__dropdowns-container {
   position: absolute;
   z-index: 1000;
   right: 0;
-  top: -5px;
+  top: -21px;
 }
 @media (max-width: 767px) {
   .header__dropdowns {
@@ -5670,7 +5670,7 @@ body.fullwidth .header__dropdowns-container {
 }
 .navbar.navbar-wd {
   background-color: #ffffff;
-  padding: 26px 0;
+  padding: 10px 0;
   margin-bottom: 0;
   border: 0;
   border-radius: 0;
