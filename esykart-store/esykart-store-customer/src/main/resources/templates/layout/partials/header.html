@@ -14,10 +14,13 @@
         </div>
         <div class="pull-right">
           <div class="user-links">
-            <ul>
-              <li class="user-links__item"><a href="#">Sign In</a></li>
-              <li class="user-links__item"><a href="#">Register</a></li>
-              <li  class="user-links__item user-links__item--separate"><a href="#" class="color-twitter">TWITTER</a> / <a href="#" class="color-facebook">FACEBOOK</a> LOGIN</li>
+            <ul th:if="${USER_ACCOUNT == null}">
+              <li class="user-links__item"><a th:href="@{account/login}">Sign In</a></li>
+              <li class="user-links__item"><a th:href="@{account/register}">Register</a></li>
+            </ul>
+            <ul th:if="${USER_ACCOUNT != null}">
+              <li class="user-links__item"><a href="#">Welcome, Sumit </a></li>
+			  <li class="user-links__item">&nbsp;|&nbsp;<a th:href="@{account/logout}">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -25,16 +28,47 @@
     </div>
     <div class="header__dropdowns-container">
       <div class="header__dropdowns">
-        <div class="header__search pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button search-open"
-><span class="icon icon-search"></span></a> </div>
-        <div class="header__cart pull-left"><span class="header__cart__indicator hidden-xs">$0.00</span>
-          <div class="dropdown pull-right"><a href="#" class="btn dropdown-toggle btn--links--dropdown header__cart__button header__dropdowns__button" data-toggle="dropdown"><span class="icon icon-bag-alt"></span><span class="badge badge--menu">2</span></a>
+        <div class="header__search pull-left"> 
+        <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button search-open"><span class="icon icon-search"></span></a> </div>
+        <div class="header__cart pull-left">
+<!--         	<span class="header__cart__indicator hidden-xs">$0.00</span> -->
+         
+			
+          
+           	<div class="dropdown pull-right" id="cart-container">
+          	<a href="#" class="btn dropdown-toggle btn--links--dropdown header__cart__button header__dropdowns__button" data-toggle="dropdown">
+          		<span class="icon icon-bag-alt"></span><span class="badge badge--menu">2</span>
+       		</a>
             <div class="dropdown-menu animated fadeIn shopping-cart" role="menu">
               <div class="shopping-cart__settings"><a href="#" class="icon icon-gear"></a></div>
-              <div class="shopping-cart__top text-uppercase">Your Cart(2)</div>
-              <ul>
+              <div class="shopping-cart__top text-uppercase">Your Cart</div>
+              <ul id="cart-item-container">
+              	<li class='shopping-cart__item hide' id="cart-item-template">
+                  <div class="shopping-cart__item__image pull-left">
+                  	 <a href="{{VIEW_URL}}"><img src="{{IMAGE_URL}}" alt=""/></a>
+                  </div>
+                  <div class="shopping-cart__item__info">
+                    <div class="shopping-cart__item__info__title">
+                      <h2 class="text-uppercase">
+                      		<a href="{{VIEW_URL}}">{{NAME}}</a>
+                     </h2>
+                    </div>
+                    
+                    <div class="shopping-cart__item__info__option OPTION">{{OPTION}}</div>
+                    
+                    <div class="shopping-cart__item__info__price">{{PRICE}}</div>
+                    <div class="shopping-cart__item__info__qty">Qty:{{PRICE}}</div>
+                    <div class="shopping-cart__item__info__delete">
+                    	<a href="#" class="icon icon-clear"></a>
+                   	</div>
+                  </div>
+                </li>
+                
+              
                 <li class='shopping-cart__item'>
-                  <div class="shopping-cart__item__image pull-left"><a href="#"><img th:src="@{images/products/product.jpg}" alt=""/></a></div>
+                  <div class="shopping-cart__item__image pull-left">
+                  	 <a href="#"><img th:src="@{images/products/product.jpg}" alt=""/></a>
+                  </div>
                   <div class="shopping-cart__item__info">
                     <div class="shopping-cart__item__info__title">
                       <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
@@ -68,7 +102,78 @@
               </div>
             </div>
           </div>
-        </div>        <div class="dropdown pull-right"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown"><span class="icon icon-dots"></span></a>
+          
+          
+         <!-- wishlist -->
+		<div class="dropdown pull-right" id="wishlist-container">
+          	<a href="#" class="btn dropdown-toggle btn--links--dropdown header__cart__button header__dropdowns__button" data-toggle="dropdown">
+          		<span class="icon icon-favorite"></span><span class="badge badge--menu">2</span>
+       		</a>
+          	 <div class="dropdown-menu animated fadeIn shopping-cart" role="menu">
+              <div class="shopping-cart__settings"><a href="#" class="icon icon-gear"></a></div>
+              <div class="shopping-cart__top text-uppercase">Your Wishlist</div>
+              <ul id="wishlist-item-container">
+                <li class='shopping-cart__item hide' id="wishlist-item-template">
+                  <div class="shopping-cart__item__image pull-left">
+                  	 <a href="{{VIEW_URL}}"><img src="{{IMAGE_URL}}" alt=""/></a>
+                  </div>
+                  <div class="shopping-cart__item__info">
+                    <div class="shopping-cart__item__info__title">
+                      <h2 class="text-uppercase">
+                      		<a href="{{VIEW_URL}}">{{NAME}}</a>
+                     </h2>
+                    </div>
+                    <div class="shopping-cart__item__info__price">{{PRICE}}</div>
+                    <div class="shopping-cart__item__info__qty">{{OFFER_PRICE}}</div>
+                    <div class="shopping-cart__item__info__delete">
+                    	<a href="#" class="icon icon-clear"></a>
+                   	</div>
+                  </div>
+                </li>
+                
+                <li class='shopping-cart__item'>
+                  <div class="shopping-cart__item__image pull-left">
+                  	 <a href="#"><img th:src="@{images/products/product.jpg}" alt=""/></a>
+                  </div>
+                  <div class="shopping-cart__item__info">
+                    <div class="shopping-cart__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="shopping-cart__item__info__price price-box__old">$84.00</div>
+                    <div class="shopping-cart__item__info__qty">$23.00</div>
+                    <div class="shopping-cart__item__info__delete"><a href="#" class="icon icon-clear"></a></div>
+                  </div>
+                </li>
+                <li class='shopping-cart__item'>
+                  <div class="shopping-cart__item__image pull-left"><a href="#"><img th:src="@{images/products/product.jpg}" alt=""/></a></div>
+                  <div class="shopping-cart__item__info">
+                    <div class="shopping-cart__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="shopping-cart__item__info__option">Color: Blue</div>
+                    <div class="shopping-cart__item__info__option">Size: Small</div>
+                    <div class="shopping-cart__item__info__price price-box__old">$84.00</div>
+                    <div class="shopping-cart__item__info__qty">$23.00</div>
+                    <div class="shopping-cart__item__info__delete"><a href="#" class="icon icon-clear"></a></div>
+                  </div>
+                </li>
+              </ul>
+              <div class="shopping-cart__bottom">
+                <div class="pull-right">
+                  <button class="btn btn--wd text-uppercase">View All</button>
+                </div>
+              </div>
+            </div>
+            </div>
+          
+        </div> 
+        
+        
+		<!--  account action if user logged in  -->
+        <div class="dropdown pull-right" th:if="${USER_ACCOUNT != null}" > 
+        	<a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown">
+        		<span class="icon icon-dots"></span>
+       		</a>
           <ul class="dropdown-menu ul-row animated fadeIn" role="menu">
             <li class='li-col currency'>
 			  <h4>Currency</h4>
