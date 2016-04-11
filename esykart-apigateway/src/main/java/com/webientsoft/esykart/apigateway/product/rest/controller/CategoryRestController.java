@@ -18,6 +18,7 @@ import com.webientsoft.esykart.common.model.product.CategoryModel;
 @RequestMapping(value = "/categories")
 public class CategoryRestController {
 
+
 	@Autowired
 	private CategoryService categoryService;
 
