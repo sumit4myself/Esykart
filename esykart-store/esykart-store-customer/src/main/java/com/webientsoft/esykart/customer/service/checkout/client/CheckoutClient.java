@@ -1,13 +1,12 @@
-package com.webientsoft.esykart.customer.controller.account;
+package com.webientsoft.esykart.customer.service.checkout.client;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/account/addresses")
-public class AddressesController{
+@RequestMapping(value = "/checkout")
+public class CheckoutClient {
 
    
-    
     
 }

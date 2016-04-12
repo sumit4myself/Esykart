@@ -7,12 +7,18 @@ var esykart = {
 				url: url,
 				method : "GET",
 				dataType: "json",
-				async: true,     
+				async: true,
+				beforeSend : function() {
+		  	    	 $("body").removeClass("loaded");
+		  	    },
+		  	    complete : function () {
+		  	    	 $("body").addClass("loaded");
+		  	    },
 				success: function () {
 					
 				},
-				error: function () {
-					throw new Error("Could not load script " + script);
+				error: function (error) {
+					alert("Error error");
 				}
 			});
 		},
@@ -21,12 +27,18 @@ var esykart = {
 				url: url,
 				data : data,
 				dataType: "json",
-				async: true,     
+				async: true,
+				beforeSend : function() {
+		  	    	 $("body").removeClass("loaded");
+		  	    },
+		  	    complete : function () {
+		  	    	 $("body").addClass("loaded");
+		  	    },
 				success: function () {
 					
 				},
-				error: function () {
-					throw new Error("Could not load script " + script);
+				error: function (error) {
+					alert("Error error");
 				}
 			});
 		}
@@ -52,25 +64,32 @@ var esykart = {
 	},
 	
 	cart = {
-		add : function(){
+		cartUrl : 'account/cart',
+		add : function(data){
 			
 			
 		},
-		remove : function(){
+		remove : function(id){
 			
 			
 		}
 	},
 	
 	wishlist = {
-		add : function(){
+		wishlistUrl : 'account/cart',
+		add : function(data){
 			
 			
 		},
-		remove : function(){
+		remove : function(id){
 			
 			
 		}
+	},
+	product = {
+		view : function(data){
+			
+		}	
 	}
 
 }
