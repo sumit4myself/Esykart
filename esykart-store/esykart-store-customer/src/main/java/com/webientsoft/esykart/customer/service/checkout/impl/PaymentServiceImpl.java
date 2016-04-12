@@ -1,13 +1,12 @@
 package com.webientsoft.esykart.customer.service.checkout.impl;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Service;
 
 /**
  * 
  * @author SumitS2
  */
-
-@RequestMapping(value = "/checkout/payments")
+@Service
 public class PaymentServiceImpl {
 
 }

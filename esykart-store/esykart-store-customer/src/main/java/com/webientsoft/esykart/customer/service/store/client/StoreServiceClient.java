@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.webientsoft.esykart.common.model.store.LayoutModel;
 
 @FeignClient("STORE-SERVICE")
-public interface StoreClient {
+public interface StoreServiceClient {
 
 	String BASE_PATH = "/stores";
 

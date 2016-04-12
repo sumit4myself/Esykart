@@ -14,13 +14,11 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	private AccountServiceClient client;
 
-
 	@Override
 	public void authenticate(UserModel model) {
 		client.authenticate(model);
 	}
 
-	
 	@Override
 	public void register(UserModel model) {
 		client.register(model);

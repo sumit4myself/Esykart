@@ -1,10 +1,8 @@
 package com.webientsoft.esykart.customer.service.checkout.impl;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Service;
 
-@Controller
-@RequestMapping(value = "/checkout")
+@Service
 public class CheckoutServiceImpl {
 
    

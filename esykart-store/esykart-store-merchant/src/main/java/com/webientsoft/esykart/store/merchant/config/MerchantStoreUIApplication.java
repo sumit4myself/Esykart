@@ -1,3 +1,4 @@
+
 package com.webientsoft.esykart.store.merchant.config;
 
 import org.springframework.boot.SpringApplication;
@@ -9,8 +10,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @EnableZuulProxy
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages={"com.webientsoft.esykart"})
-
+@SpringBootApplication(scanBasePackages = { "com.webientsoft.esykart" })
 
 @EnableHystrix
 @EnableFeignClients(basePackages = {

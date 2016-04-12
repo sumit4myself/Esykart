@@ -1,5 +1,5 @@
 package com.webientsoft.esykart.customer.service.catalog;
 
-public interface OfferService {
-
+public interface CategoryService {
+	
 }
