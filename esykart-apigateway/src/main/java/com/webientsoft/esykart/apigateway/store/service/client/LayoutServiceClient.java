@@ -1,6 +1,7 @@
 package com.webientsoft.esykart.apigateway.store.service.client;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,17 +19,17 @@ public interface LayoutServiceClient {
 
 	String BASE_PATH = "/stores/layout";
 
-	@RequestMapping(value = BASE_PATH, method = RequestMethod.POST, consumes = {
+	@RequestMapping(value = BASE_PATH , method = RequestMethod.POST, consumes = {
 		"application/json" }, produces = { "application/json" })
 	Integer save(LayoutModel model);
 
-	@RequestMapping(value = BASE_PATH, method = RequestMethod.PUT, consumes = {
+	@RequestMapping(value = BASE_PATH + "/{id}", method = RequestMethod.PUT, consumes = {
 		"application/json" }, produces = { "application/json" })
-	void update(Integer id, LayoutModel model);
+	void update(@PathVariable("id") Integer id, LayoutModel model);
 
-	@RequestMapping(value = BASE_PATH, method = RequestMethod.GET, consumes = {
+	@RequestMapping(value = BASE_PATH + "/{id}" , method = RequestMethod.GET, consumes = {
 		"application/json" }, produces = { "application/json" })
-	LayoutModel find(Integer id);
+	LayoutModel find(@PathVariable("id") Integer id);
 
 	@RequestMapping(value = BASE_PATH +"/search", method = RequestMethod.GET, consumes = {
 		"application/json" }, produces = { "application/json" })

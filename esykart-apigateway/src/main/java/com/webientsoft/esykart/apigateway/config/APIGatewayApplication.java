@@ -17,7 +17,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
  */
 @EnableHystrix
 @EnableFeignClients(basePackages = {
-	"com.webientsoft.esykart.apigateway.service.client" })
+	"com.webientsoft.esykart.apigateway" })
 @SpringBootApplication(scanBasePackages = { "com.webientsoft.esykart" })
 public class APIGatewayApplication {
 

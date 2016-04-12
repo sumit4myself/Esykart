@@ -56,7 +56,7 @@ public class CustomerRepositoryRestController {
 		"application/json" }, produces = { "application/json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
-		customerRepository.changeStatus(id, status);
+		//customerRepository.changeStatus(id, status);
 		return ResponseEntity.noContent().build();
 	}
 
