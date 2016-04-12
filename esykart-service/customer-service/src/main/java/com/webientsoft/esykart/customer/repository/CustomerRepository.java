@@ -5,7 +5,6 @@
 
 package com.webientsoft.esykart.customer.repository;
 
-import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.customer.entity.Customer;
 
 /**
@@ -21,6 +20,6 @@ public interface CustomerRepository
 	 * @param id
 	 * @param status
 	 */
-	void changeStatus(int id, Status status);
+	//void changeStatus(@Param("id") Integer id, @Param("status") Status status);
 
 }
