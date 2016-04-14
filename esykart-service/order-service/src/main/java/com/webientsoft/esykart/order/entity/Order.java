@@ -1,5 +1,7 @@
 package com.webientsoft.esykart.order.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "esykart_order")
 @SequenceGenerator(name = "orderIdSeq", sequenceName = "ORDER_ID_SEQ", allocationSize = 1)
-public class Order {
-
+public class Order  implements Serializable{
+	private static final long serialVersionUID = -5148244781780846070L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "orderIdSeq")
 	private int id;
