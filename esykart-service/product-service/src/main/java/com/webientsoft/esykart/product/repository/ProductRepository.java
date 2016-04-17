@@ -5,9 +5,8 @@
 
 package com.webientsoft.esykart.product.repository;
 
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.product.entity.Product;
 
 /**
@@ -16,10 +15,9 @@ import com.webientsoft.esykart.product.entity.Product;
  * @since 1.0
  */
 
+@RepositoryRestResource(path = "products")
 public interface ProductRepository
-		extends BaseRepository<Product, Integer>, ProductRepositoryCustom {
+		extends BaseRepository<Product, Integer>,CustomProductRepository {
 
-	void changeStatus(@Param("productId") Integer productId,
-			@Param("status") Status status);
 
 }

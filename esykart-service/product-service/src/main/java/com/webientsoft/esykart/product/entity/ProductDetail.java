@@ -1,3 +1,4 @@
+
 package com.webientsoft.esykart.product.entity;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.webientsoft.esykart.common.model.Status;
@@ -23,11 +25,13 @@ import com.webientsoft.esykart.common.model.Status;
  */
 @Entity
 @Table(name = "product_detail")
+@SequenceGenerator(name = "productDetailIdSeq", sequenceName = "PRODUCT_DETAIL_ID_SEQ", allocationSize = 1)
 public class ProductDetail implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "productDetailIdSeq")
 	private Integer id;
 
 	private String description;
@@ -196,7 +200,8 @@ public class ProductDetail implements Serializable {
 		return productDetailAttrValueMaps;
 	}
 
-	public void setProductDetailAttrValueMaps(List<ProductDetailAttributeValueMap> productDetailAttrValueMaps) {
+	public void setProductDetailAttrValueMaps(
+			List<ProductDetailAttributeValueMap> productDetailAttrValueMaps) {
 		this.productDetailAttrValueMaps = productDetailAttrValueMaps;
 	}
 
@@ -204,7 +209,8 @@ public class ProductDetail implements Serializable {
 		return productDetailMediaMaps;
 	}
 
-	public void setProductDetailMediaMaps(List<ProductDetailMediaMap> productDetailMediaMaps) {
+	public void setProductDetailMediaMaps(
+			List<ProductDetailMediaMap> productDetailMediaMaps) {
 		this.productDetailMediaMaps = productDetailMediaMaps;
 	}
 

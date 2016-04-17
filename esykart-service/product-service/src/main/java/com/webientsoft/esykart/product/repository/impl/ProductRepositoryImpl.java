@@ -5,22 +5,28 @@
 
 package com.webientsoft.esykart.product.repository.impl;
 
-import com.webientsoft.esykart.common.model.common.FilterModel;
-import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
-import com.webientsoft.esykart.product.repository.ProductRepositoryCustom;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.webientsoft.esykart.product.repository.CustomProductRepository;
 
 /**
  * 
  * @author DeepakT
  * @since 1.0
  */
-public class ProductRepositoryImpl implements ProductRepositoryCustom {
 
-	@Override
-	public PaginatedDataModel search(FilterModel model) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class ProductRepositoryImpl implements CustomProductRepository {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(
+			ProductRepositoryImpl.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	
+
 }

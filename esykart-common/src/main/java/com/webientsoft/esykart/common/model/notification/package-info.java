@@ -1,1 +1,0 @@
-package com.webientsoft.esykart.common.model.notification;

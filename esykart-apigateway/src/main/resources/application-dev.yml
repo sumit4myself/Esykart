@@ -22,10 +22,6 @@ ORDER-SERVICE:
   ribbon:
     listOfServers: http://127.0.0.1:9003/   
     
-PRODUCT-SERVICE: 
-  ribbon:
-    listOfServers: http://127.0.0.1:9003/              
-
 CUSTOMER-SERVICE: 
   ribbon:
     listOfServers: http://127.0.0.1:9002/
@@ -33,3 +29,7 @@ CUSTOMER-SERVICE:
 MERCHANT-SERVICE: 
   ribbon:
     listOfServers: http://127.0.0.1:9003/   
+    
+PRODUCT-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9008/      

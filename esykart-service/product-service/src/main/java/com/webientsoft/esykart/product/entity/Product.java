@@ -1,3 +1,4 @@
+
 package com.webientsoft.esykart.product.entity;
 
 import java.io.Serializable;
@@ -14,17 +15,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 /**
  * The persistent class for the product database table.
  * 
  */
 @Entity
+@SequenceGenerator(name = "productIdSeq", sequenceName = "PRODUCT_ID_SEQ", allocationSize = 1)
 public class Product implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "productIdSeq")
 	private Integer id;
 
 	private String manufacture;
@@ -32,7 +36,7 @@ public class Product implements Serializable {
 	private String model;
 
 	private String name;
-	
+
 	@Column(name = "is_taxable")
 	private boolean isTaxable;
 
@@ -52,7 +56,7 @@ public class Product implements Serializable {
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private List<ProductDetail> details;
-	
+
 	@JoinColumn(name = "product_id")
 	@OneToMany()
 	private List<ProductMediaMap> productMediaMaps;

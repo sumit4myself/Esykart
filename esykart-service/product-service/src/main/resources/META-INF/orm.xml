@@ -20,5 +20,5 @@
 				WHERE id = :id
 		</query>
 	</named-query>
-
+	
 </entity-mappings>
