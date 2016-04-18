@@ -4,12 +4,16 @@ package com.webientsoft.esykart.store.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.webientsoft.esykart.common.model.Status;
 
 @Entity
 @Table(name = "nav_menu")
@@ -20,6 +24,9 @@ public class NavMenu {
 	private Integer id;
 
 	private String name;
+
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
 	@JoinColumn(name = "menu_id")
 	@OneToMany
@@ -47,6 +54,14 @@ public class NavMenu {
 
 	public void setItems(List<NavMenuItem> items) {
 		this.items = items;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 }

@@ -14,22 +14,47 @@ ribbon:
   eureka:
    enabled: false
    
-OFFER-SERVICE: 
-  ribbon:
-    listOfServers: http://127.0.0.1:9003/   
-    
-ORDER-SERVICE: 
-  ribbon:
-    listOfServers: http://127.0.0.1:9003/   
-    
+   
+AUCTION-SERVICE:
+   ribbon:
+    listOfServers: http://127.0.0.1:9001/ 
+
 CUSTOMER-SERVICE: 
   ribbon:
     listOfServers: http://127.0.0.1:9002/
-    
-MERCHANT-SERVICE: 
+   
+MERCHANT-SERVICE:
   ribbon:
-    listOfServers: http://127.0.0.1:9003/   
+    listOfServers: http://127.0.0.1:9003/ 
+
+NOTIFICATION-SERVICE:
+  ribbon:
+    listOfServers: http://127.0.0.1:9004/ 
+     
+OFFER-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9005/   
+    
+ORDER-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9006/   
+    
+PAYMENT-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9007/ 
     
 PRODUCT-SERVICE: 
   ribbon:
-    listOfServers: http://127.0.0.1:9008/      
+    listOfServers: http://127.0.0.1:9008/ 
+    
+SHIPPING-SERVICE: 
+  ribbon:
+    listOfServers: http://127.0.0.1:9009/ 
+        
+STORE-SERVICE:
+  ribbon:
+    listOfServers: http://127.0.0.1:9010/ 
+    
+WORKFLOW-SERVICE:
+  ribbon:
+    listOfServers: http://127.0.0.1:9011/ 

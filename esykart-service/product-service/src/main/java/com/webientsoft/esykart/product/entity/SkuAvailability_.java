@@ -1,6 +1,7 @@
 package com.webientsoft.esykart.product.entity;
 
 import java.sql.Timestamp;
+
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;

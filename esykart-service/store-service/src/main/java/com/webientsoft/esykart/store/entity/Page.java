@@ -2,10 +2,14 @@
 package com.webientsoft.esykart.store.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.webientsoft.esykart.common.model.Status;
 
 /**
  * 
@@ -21,6 +25,9 @@ public class Page {
 	private Integer id;
 
 	private String name;
+
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
 	private String url;
 
@@ -46,6 +53,14 @@ public class Page {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 }

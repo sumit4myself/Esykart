@@ -1,11 +1,13 @@
 package com.webientsoft.esykart.product.entity;
 
-import com.webientsoft.esykart.common.model.Status;
 import java.sql.Timestamp;
+
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+
+import com.webientsoft.esykart.common.model.Status;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Sku.class)

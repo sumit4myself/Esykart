@@ -4,5 +4,37 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
 	version="2.1">
 
-	
+	<named-query name="BANNER_UPDATE_STATUS">
+		<query>
+			UPDATE Banner 
+				SET status = :status 
+				WHERE id = :id
+		</query>
+	</named-query>
+
+	<named-query name="LAYOUT_UPDATE_STATUS">
+		<query>
+			UPDATE Layout 
+				SET status = :status 
+				WHERE id = :id
+		</query>
+	</named-query>
+
+	<named-query name="NAVMENU_UPDATE_STATUS">
+		<query>
+			UPDATE NavMenu 
+				SET status = :status 
+				WHERE id = :id
+		</query>
+	</named-query>
+
+	<named-query name="PAGE_UPDATE_STATUS">
+		<query>
+			UPDATE Page 
+				SET status = :status 
+				WHERE id = :id
+		</query>
+	</named-query>
+
+
 </entity-mappings>
