@@ -4,6 +4,9 @@
  */
 package com.webientsoft.esykart.api.customer.service;
 
+import java.util.List;
+
+import com.webientsoft.esykart.api.cutomer.model.WishListModel;
 import com.webientsoft.esykart.api.product.model.SkuModel;
 
 public interface WishlistService {
@@ -14,4 +17,5 @@ public interface WishlistService {
 
 	public void moveToCart(SkuModel sku);
 
+	List<WishListModel> findAll(Integer customerId);
 }

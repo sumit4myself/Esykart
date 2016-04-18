@@ -4,11 +4,14 @@
  */
 package com.webientsoft.esykart.api.customer.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.api.customer.service.WishlistService;
 import com.webientsoft.esykart.api.customer.service.client.WishlistServiceClient;
+import com.webientsoft.esykart.api.cutomer.model.WishListModel;
 import com.webientsoft.esykart.api.product.model.SkuModel;
 
 @Service
@@ -31,5 +34,10 @@ public class WishlistServiceImpl implements WishlistService {
 	public void moveToCart(SkuModel sku) {
 		client.moveToCart(sku);
 	}
+	
+	@Override
+	public List<WishListModel> findAll(Integer customerId) {
+		return client.findAll(customerId);
+		}
 
 }
