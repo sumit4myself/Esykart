@@ -42,8 +42,8 @@ public abstract class CrudServiceWithSearchImpl<T> implements CrudServiceWithSea
 	}
 
 	@Override
-	public ResponseEntity<Resource<T>> find(Integer id) {
-		return getServiceClientWithSearch().find(id);
+	public ResponseEntity<Resource<T>> find(Integer id,String projection) {
+		return getServiceClientWithSearch().find(id,projection);
 	}
 
 	@Override

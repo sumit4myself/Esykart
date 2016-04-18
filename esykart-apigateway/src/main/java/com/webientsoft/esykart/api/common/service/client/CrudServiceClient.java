@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 
@@ -30,14 +31,14 @@ public interface CrudServiceClient<T> {
 
 	@RequestMapping(value = "{id}", method = RequestMethod.PATCH, consumes = {
 		"application/merge-patch+json;charset=UTF-8" })
-	ResponseEntity<Void> updatePartially(@PathVariable("id") Integer id,
-			T entity);
+	ResponseEntity<Void> updatePartially(@PathVariable("id") Integer id, T entity);
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	ResponseEntity<Void> delete(@PathVariable("id") Integer id);
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {
 		MediaTypes.HAL_JSON_VALUE })
-	ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id);
+	ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id,
+			@RequestParam("projection") String projection);
 
 }

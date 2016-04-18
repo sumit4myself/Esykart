@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webientsoft.esykart.api.common.service.CrudService;
 
@@ -50,8 +51,9 @@ public abstract class CrudController<T> {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {
 		MediaTypes.HAL_JSON_VALUE })
-	public ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id) {
-		return getService().find(id);
+	public ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id,
+			@RequestParam(value = "projection", defaultValue = "default") String projection) {
+		return getService().find(id,projection);
 	}
 
 	protected abstract CrudService<T> getService();

@@ -41,7 +41,8 @@ public interface CrudServiceClientWithSearch<T> {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {
 		MediaTypes.HAL_JSON_VALUE })
-	ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id);
+	ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id,
+			@RequestParam("projection") String projection);
 
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaTypes.HAL_JSON_VALUE })
 	ResponseEntity<Resource<Page<T>>> findAll(
