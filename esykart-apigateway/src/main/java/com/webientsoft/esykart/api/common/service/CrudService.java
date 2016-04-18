@@ -23,6 +23,6 @@ public interface CrudService<T> {
 
 	ResponseEntity<Void> delete(Integer id);
 
-	ResponseEntity<Resource<T>> find(Integer id);
+	ResponseEntity<Resource<T>> find(Integer id,String projection);
 
 }

@@ -39,8 +39,8 @@ public abstract class CrudServiceImpl<T> implements CrudService<T> {
 	}
 
 	@Override
-	public ResponseEntity<Resource<T>> find(Integer id) {
-		return getServiceClient().find(id);
+	public ResponseEntity<Resource<T>> find(Integer id,String projection) {
+		return getServiceClient().find(id,projection);
 	}
 
 	protected abstract CrudServiceClient<T> getServiceClient();

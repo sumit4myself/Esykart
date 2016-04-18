@@ -30,4 +30,5 @@ public interface Services {
 
 	String NOTIFICATION_SERVICE = "NOTIFICATION-SERVICE";
 
+	String STORE_SERVICE = "STORE-SERVICE";
 }
