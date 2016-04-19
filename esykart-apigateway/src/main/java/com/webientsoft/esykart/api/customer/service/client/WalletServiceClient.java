@@ -14,32 +14,13 @@
  * limitations under the License.
  */
 
-package com.webientsoft.esykart.customer.service.account.impl;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.webientsoft.esykart.customer.service.account.WalletService;
-import com.webientsoft.esykart.customer.service.account.client.WalletServiceClient;
-
+package com.webientsoft.esykart.api.customer.service.client;
 
 /**
  * 
  * @author Rahuls1
  */
-public class WalletServiceImpl implements WalletService {
-
-	@Autowired
-	private WalletServiceClient client;
-	
-	@Override
-	public void add(Integer customerId, Double amount) {
-		client.add(customerId, find(customerId)+ amount);
-	}
+public interface WalletServiceClient  {
 
 	
-	@Override
-	public Double find(Integer customerId) {
-		return client.find(customerId);
-	}
-
 }

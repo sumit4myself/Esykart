@@ -1,4 +1,4 @@
-package com.webientsoft.esykart.customer.model;
+package com.webientsoft.esykart.api.cutomer.model;
 
 
 public class WalletModel {

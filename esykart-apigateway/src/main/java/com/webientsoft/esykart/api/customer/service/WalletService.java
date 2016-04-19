@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.webientsoft.esykart.customer.service.account;
+package com.webientsoft.esykart.api.customer.service;
 
 
 /**

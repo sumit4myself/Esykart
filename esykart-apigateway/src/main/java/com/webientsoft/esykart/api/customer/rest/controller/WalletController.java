@@ -14,25 +14,16 @@
  * limitations under the License.
  */
 
-package com.webientsoft.esykart.customer.controller.account;
+package com.webientsoft.esykart.api.customer.rest.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.webientsoft.esykart.common.model.cutomer.WalletModel;
-import com.webientsoft.esykart.customer.service.account.WalletService;
 
 
 
 @Controller
 @RequestMapping("/account/wallet")
-public class WalletController {
+public class WalletController {/*
 	
 	private static final String FIND_ALL = "wallet/wallet";
 
@@ -56,4 +47,4 @@ public class WalletController {
 		return FIND_ALL;
 	}
 
-}
+*/}
