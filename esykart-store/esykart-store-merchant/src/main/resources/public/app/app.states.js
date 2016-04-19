@@ -167,7 +167,7 @@ altairApp
                     } 
                 })
                 .state("restricted.category_attribute.view", {
-                    url: "/edit",
+                    url: "/view",
                     templateUrl: 'app/components/category/attribute/viewAttribute.html',
                     controller: 'viewAttributeController',
                     params: { id : null }, 
