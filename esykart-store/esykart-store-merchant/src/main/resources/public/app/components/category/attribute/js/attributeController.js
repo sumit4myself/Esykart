@@ -8,7 +8,7 @@ angular.module('altairApp')
 .constant('attributeValueTemplate',attribute_value_template)
 .controller('AddAttributeController',
 		[ '$scope', '$rootScope','$compile', 'utils', 'AttributeService','attributeValueTemplate',
-		function($scope, $rootScope,$compile, utils, AttributeService,attributeValueTemplate) {
+		function($scope, $rootScope,$compile,$state,$stateParams, utils, AttributeService,attributeValueTemplate) {
 			$scope.attribute = new CategoryAttribute();
 			
 			
@@ -35,20 +35,31 @@ angular.module('altairApp')
 			});
 			
 			
-			$scope.onSave = function (){
+//			event binding
+			$scope.onSave = function() {
+				console.log($scope.attribute.toJson());
 				
-				console.log(this);
-				
+//					TODO validation
+				var $role_form = $("#role_form");
+				AttributeService.save($scope.attribute.toJson()).then(function(response){
+					UIkit.notify({
+	                    message: 'Category attribute saved successfully.',
+	                    status: 'success',
+	                    pos: 'top-right',
+	            	});
+	        	});
 			};
 			
-			$scope.onReset = function (){
-				console.log(this);
-				
+			$scope.onCancel = function() {
+				$state.go("restricted.category_attribute.manage");
 			};
 			
-			$scope.onCancel = function (){
-				console.log(this);
-				
+			$scope.onReset = function() {
+				if($stateParams.id != null){
+					$scope.attribute = $scope.oldAttribute;
+				}else{
+					$scope.attribute = new CategoryAttribute();
+				}
 			};
 			
 			
@@ -145,9 +156,67 @@ angular.module('altairApp')
 		'ManageAttributeController',
 		[ '$scope', '$rootScope', 'utils', 'AttributeService',
 		function($scope, $rootScope, utils, AttributeService) {
-
-			
-			
-			
-			
-		} ])
+			$scope.delete = function (id){
+				UIkit.modal.confirm('Are you sure?', function(){ 
+					CategoryService.changeStatus(id,"D").then(function(response){
+						UIkit.notify({
+		                    message: 'Category deleted successfully.',
+		                    status: 'success',
+		                    pos: 'top-right',
+		            	});
+		        	});
+				});
+			};
+			$scope.activate = function (id){
+				CategoryService.changeStatus(id,"A").then(function(response){
+					UIkit.notify({
+		                message: 'Category attribute activated successfully.',
+		                status: 'success',
+		                pos: 'top-right',
+		        	});
+		    	});
+			};
+			$scope.deactivate = function(id){
+				UIkit.modal.confirm('Are you sure?', function(){ 
+					CategoryService.changeStatus(id,"I").then(function(response){
+						UIkit.notify({
+		                    message: 'Category attribute deactivated successfully.',
+		                    status: 'success',
+		                    pos: 'top-right',
+		            	});
+		        	});
+				});
+			};
+} ])
+.controller('ManageCategoryAttributeTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
+		    var vm = this;
+		    vm.dt_data = [];
+		    vm.dtOptions = DTOptionsBuilder
+		        .fromSource('data/dt_data.json')
+		        .withOption('initComplete', function() {
+		            $timeout(function() {
+		                $compile($('.dt-uikit .md-input'))($scope);
+		            })
+		        })
+		        .withOption('bProcessing',  false)
+		        .withOption('bServerSide',  false)
+		        .withOption( "aLengthMenu" , [ [ 5, 10, 25, 50, 100 ],[ 5, 10, 25, 50, 100 ] ])
+		        .withOption('fnDrawCallback',  function( oSettings ) {
+		        	 $timeout(function() {
+		                    $compile($('user-permission'))($scope);
+		            })
+		        })
+		        .withDisplayLength(5)	           
+		            
+	        vm.dtColumnDefs = [
+	               DTColumnDefBuilder.newColumnDef(0).withTitle('Name'),
+	               DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
+	               DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
+	               DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
+	               DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
+	               DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
+	               .renderWith(function(data){
+	            	   return  '<user-permission data-permission-for="restricted.category_attribute.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
+	              })
+	        ];
+	});
