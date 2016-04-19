@@ -1,33 +1,29 @@
-﻿angular.module('altairApp').constant('url', 'rest/user/')
+﻿angular.module('altairApp').constant('url', 'stores/banners')
 .service('BannerService',
 		['$http','utils','url',
 		function($http, utils, url) {
 			var service = {};
-	        service.save = function (banner){
-	        	return $http.post(url,banner)
-				.then(utils.handleSuccess, utils.handleError('Error occurred while saving banner.'));
-	        };
-	        service.update = function(bannerId,banner){
-				return $http.put(url+"/" +bannerId ,banner)
-				.then(utils.handleSuccess, utils.handleError('Error occurred while updating banner.'));
-	        };
-	        
-	        service.find = function(id){
-				return $http.get(url +"/" +id)
-				.then(utils.handleSuccess, utils.handleError('Error occurred while finding banner.'));
-	        };
-	        service.findAll = function(){
-				return $http.get(url +"/findAll")
-				.then(utils.handleSuccess, utils.handleError('Error occurred while finding banner.'));
-	        };
-	        service.search = function(filter){
-				return $http.get(url +"/search",filter)
-				.then(utils.handleSuccess, utils.handleError('Error occurred while searching banner.'));
-	        };
-	        service.changeStatus = function(ids,status){
-				return $http.delete(url +"/" + status )
-				.then(utils.handleSuccess, utils.handleError('Somting went wrong please retry.'));
-	        }
-	        return service;
+			service.save = function (data){
+		    	return $http.post(url,role);
+		    };
+		    service.update = function(id,data){
+				return $http.put(url+"/" +roleId ,role);
+		    };
+		    
+		    service.find = function(id,projection){
+				return $http.get(url +"/" +id+"?projection="+projection);
+		    };
+		    service.findAll = function(page, size,sort,projection){
+				return $http.get(url +"/" +id+"?projection="+projection);
+		    };
+
+		    service.search = function(filter,projection){
+				return $http.get(url +"/search?projection="+projection,filter);
+		    };
+		    
+		    service.changeStatus = function(id,status){
+		    	return $http.patch(url +"/" + id + "/changeStatus?status="+status);
+		    }
+		    return service;
 		} 
 ]);

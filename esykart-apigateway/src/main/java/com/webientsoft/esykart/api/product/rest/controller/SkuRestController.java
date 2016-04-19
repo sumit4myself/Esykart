@@ -21,7 +21,7 @@ import com.webientsoft.esykart.api.product.service.SkuService;
  * @since 1.0
  */
 @RestController
-@RequestMapping(value = "/sku")
+@RequestMapping(value = "/products/sku")
 public class SkuRestController extends CrudControllerWithSearch<SkuModel> {
 
 	@Autowired

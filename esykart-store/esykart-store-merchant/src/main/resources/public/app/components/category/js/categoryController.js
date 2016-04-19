@@ -118,7 +118,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
                 toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
         }
 		
-		BannerService.findAll().then(function(response){
+		BannerService.search(null,'NameAndId').then(function(response){
 			 if (!response.success) {
                 	UIkit.notify({
                         message: response.message,
@@ -130,7 +130,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
                 }
 		});
 		
-		CategoryService.findAll().then(function (response) {
+		CategoryService.search(null,'NameAndId').then(function (response) {
             if (!response.success) {
             	UIkit.notify({
                     message: response.message,

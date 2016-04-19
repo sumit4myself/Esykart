@@ -1,5 +1,5 @@
-angular.module('altairApp').service('InventoryService',
-		[ '$http', '$q', 'utils', function($http, $q, utils) {
+angular.module('altairApp')
+.service('InventoryService',[ '$http', '$q', 'utils', function($http, $q, utils) {
 			var service = {};
 			service.findAll = function() {
 				var options = [ {

@@ -21,7 +21,7 @@ import com.webientsoft.esykart.api.product.service.ProductDetailService;
  * @since 1.0
  */
 @RestController
-@RequestMapping("/product/details")
+@RequestMapping("/products/details")
 public class ProductDetailRestController
 		extends CrudControllerWithSearch<ProductDetailModel> {
 

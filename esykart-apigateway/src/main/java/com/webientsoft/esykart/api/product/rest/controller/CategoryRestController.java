@@ -21,7 +21,7 @@ import com.webientsoft.esykart.api.product.service.CategoryService;
  * @since 1.0
  */
 @RestController
-@RequestMapping(value = "/categories")
+@RequestMapping(value = "/products/categories")
 public class CategoryRestController extends CrudControllerWithSearch<CategoryModel> {
 
 	@Autowired

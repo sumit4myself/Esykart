@@ -20,6 +20,11 @@ logging:
 zuul: 
   ignored-services: '*'
   routes:
+    storeService: 
+        path: /stores/**
+        retryable: true
+        stripPrefix: false
+        service-id: apigateway
     orderService: 
         path: /ordres/**
         retryable: true

@@ -27,7 +27,7 @@ import com.webientsoft.esykart.common.model.store.PageModel;
  */
 
 @RestController
-@RequestMapping("/pages")
+@RequestMapping("/stores/pages")
 public class PageRestController extends CrudControllerWithSearch<PageModel> {
 
 	@Autowired

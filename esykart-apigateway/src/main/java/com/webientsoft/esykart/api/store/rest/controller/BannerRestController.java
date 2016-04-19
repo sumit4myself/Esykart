@@ -27,7 +27,7 @@ import com.webientsoft.esykart.common.model.store.BannerModel;
  */
 
 @RestController
-@RequestMapping("/banners")
+@RequestMapping("/stores/banners")
 public class BannerRestController extends CrudControllerWithSearch<BannerModel> {
 
 	@Autowired

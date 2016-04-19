@@ -26,7 +26,7 @@ import com.webientsoft.esykart.common.model.store.NavMenuModel;
  * @author SumitS2
  */
 @RestController
-@RequestMapping("/menus")
+@RequestMapping("/stores/menus")
 public class NavMenuRestController  extends CrudControllerWithSearch<NavMenuModel>{
 
 	@Autowired

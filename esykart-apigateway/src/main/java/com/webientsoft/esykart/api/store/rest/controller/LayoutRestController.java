@@ -27,7 +27,7 @@ import com.webientsoft.esykart.common.model.store.LayoutModel;
  * @author SumitS2
  */
 @RestController
-@RequestMapping("/layouts")
+@RequestMapping("/stores/layouts")
 public class LayoutRestController extends CrudControllerWithSearch<LayoutModel> {
 
 	@Autowired
