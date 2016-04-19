@@ -13,7 +13,16 @@
 		return $http.get(url +"/" +id+"?projection="+projection);
     };
     service.findAll = function(page, size,sort,projection){
-		return $http.get(url +"/" +id+"?projection="+projection);
+    	var finalUrl = url+"?projection="+projection;
+		finalUrl += "&page="+page;
+		finalUrl += "&size="+size;
+	 	if(sort!= null && sort.length > 0){
+			$(sort).each(function(){
+				finalUrl += "&sort=";
+				finalUrl += this;
+			});
+		}
+		return $http.get(finalUrl);
     };
 
     service.search = function(filter,projection){

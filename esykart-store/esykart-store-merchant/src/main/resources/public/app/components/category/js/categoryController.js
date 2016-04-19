@@ -15,6 +15,8 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
 		
 		//		event binding
 		$scope.onSave = function() {
+			console.log($scope.category.toJson());
+			
 //				TODO validation
 			var $role_form = $("#role_form");
 			CategoryService.save($scope.category.toJson()).then(function(response){
@@ -56,7 +58,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
                 create: false,
                 maxItems: 1,
                 placeholder: 'Select Inventory Type',
-                valueField: 'id',
+                valueField: 'value',
                 labelField: 'name',
                 searchField: 'name'
             }
@@ -68,7 +70,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
                 create: false,
                 maxItems: 1,
                 placeholder: 'Select Fulfillment Type',
-                valueField: 'id',
+                valueField: 'value',
                 labelField: 'name',
                 searchField: 'name'
             }
@@ -118,7 +120,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
                 toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
         }
 		
-		BannerService.search(null,'NameAndId').then(function(response){
+		BannerService.findAll(0,100,null,'NameAndId').then(function(response){
 			 if (!response.success) {
                 	UIkit.notify({
                         message: response.message,
@@ -130,7 +132,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
                 }
 		});
 		
-		CategoryService.search(null,'NameAndId').then(function (response) {
+		CategoryService.findAll(0,100,null,'NameAndId').then(function (response) {
             if (!response.success) {
             	UIkit.notify({
                     message: response.message,

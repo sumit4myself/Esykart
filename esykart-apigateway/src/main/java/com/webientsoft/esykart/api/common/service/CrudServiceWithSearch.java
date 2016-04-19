@@ -5,6 +5,8 @@
 
 package com.webientsoft.esykart.api.common.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ import com.webientsoft.esykart.common.model.SearchCriteria;
 public interface CrudServiceWithSearch<T> extends CrudService<T> {
 
 	
-	ResponseEntity<Resource<Page<T>>> findAll(int page, int size, String[] sort,
+	ResponseEntity<Resource<Page<T>>> findAll(int page, int size, List<String> sort,
 			String projection);
 
 	ResponseEntity<Page<T>> search(SearchCriteria criteria);

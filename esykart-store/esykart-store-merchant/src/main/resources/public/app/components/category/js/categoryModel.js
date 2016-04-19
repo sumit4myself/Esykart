@@ -20,7 +20,6 @@ function Category() {
 	this.parentCategory = new Object();
 
 	this.categoryAttributes = new Array();
-	this.parentCategory = new Array();
 
 	this.setParentCategory = function(parentCategoryId) {
 		var parentCategory = new Category();

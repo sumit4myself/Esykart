@@ -1,28 +1,37 @@
-﻿angular.module('altairApp').constant('url', 'stores/pages')
+﻿angular.module('altairApp').constant('pageServiceUrl', 'stores/pages')
 .service('StoreService',
-		['$http','utils','url',
-		function($http, utils, url) {
+		['$http','pageServiceUrl',
+		function($http,pageServiceUrl) {
 			var service = {};
 			service.save = function (data){
-		    	return $http.post(url,role);
+		    	return $http.post(pageServiceUrl,role);
 		    };
 		    service.update = function(id,data){
-				return $http.put(url+"/" +roleId ,role);
+				return $http.put(pageServiceUrl+"/" +roleId ,role);
 		    };
 		    
 		    service.find = function(id,projection){
-				return $http.get(url +"/" +id+"?projection="+projection);
+				return $http.get(pageServiceUrl +"/" +id+"?projection="+projection);
 		    };
 		    service.findAll = function(page, size,sort,projection){
-				return $http.get(url +"/" +id+"?projection="+projection);
-		    };
+		    	var finalUrl = pageServiceUrl+"?projection="+projection;
+	    		finalUrl += "&page="+page;
+	    		finalUrl += "&size="+size;
+	     	if(sort!= null && sort.length > 0){
+	    		$(sort).each(function(){
+	    			finalUrl += "&sort=";
+	    			finalUrl += this;
+	    		});
+	    	}
+			return $http.get(finalUrl);
+	    };
 
 		    service.search = function(filter,projection){
-				return $http.get(url +"/search?projection="+projection,filter);
+				return $http.get(pageServiceUrl +"/search?projection="+projection,filter);
 		    };
 		    
 		    service.changeStatus = function(id,status){
-		    	return $http.patch(url +"/" + id + "/changeStatus?status="+status);
+		    	return $http.patch(pageServiceUrl +"/" + id + "/changeStatus?status="+status);
 		    }
 		    return service;
 		} 

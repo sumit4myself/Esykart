@@ -5,6 +5,8 @@
 
 package com.webientsoft.esykart.api.common.service.client;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
@@ -48,7 +50,7 @@ public interface CrudServiceClientWithSearch<T> {
 	ResponseEntity<Resource<Page<T>>> findAll(
 			@RequestParam(value = "page", required = false) int page,
 			@RequestParam(value = "size", required = false) int size,
-			@RequestParam(value = "sort", required = false) String[] sort,
+			@RequestParam(value = "sort", required = false) List<String> sort,
 			@RequestParam("projection") String projection);
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST, consumes = {
