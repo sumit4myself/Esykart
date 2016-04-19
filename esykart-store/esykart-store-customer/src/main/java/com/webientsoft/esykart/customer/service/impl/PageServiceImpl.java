@@ -6,6 +6,7 @@
 package com.webientsoft.esykart.customer.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.FilterModel;
@@ -18,6 +19,7 @@ import com.webientsoft.esykart.customer.service.client.PageServiceClient;
  * 
  * @author SumitS2
  */
+@Service
 public class PageServiceImpl implements PageService {
 
 	@Autowired
