@@ -8,6 +8,7 @@ package com.webientsoft.esykart.api.common.service.impl;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 
@@ -49,7 +50,7 @@ public abstract class CrudServiceWithSearchImpl<T> implements CrudServiceWithSea
 	}
 
 	@Override
-	public ResponseEntity<Resource<Page<T>>> findAll(int page, int size, List<String> sort,
+	public ResponseEntity<PagedResources<Resource<T>>> findAll(Integer page, Integer size, List<String> sort,
 			String projection) {
 		return getServiceClientWithSearch().findAll(page, size, sort, projection);
 	}

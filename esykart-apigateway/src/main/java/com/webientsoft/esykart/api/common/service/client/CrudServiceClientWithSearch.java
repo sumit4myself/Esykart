@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.MediaTypes;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,11 +48,11 @@ public interface CrudServiceClientWithSearch<T> {
 			@RequestParam("projection") String projection);
 
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaTypes.HAL_JSON_VALUE })
-	ResponseEntity<Resource<Page<T>>> findAll(
-			@RequestParam(value = "page", required = false) int page,
-			@RequestParam(value = "size", required = false) int size,
+	ResponseEntity<PagedResources<Resource<T>>> findAll(
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "size", required = false) Integer size,
 			@RequestParam(value = "sort", required = false) List<String> sort,
-			@RequestParam("projection") String projection);
+			@RequestParam(value = "projection", required = false) String projection);
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST, consumes = {
 		MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
