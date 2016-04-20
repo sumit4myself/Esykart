@@ -1,3 +1,4 @@
+
 package com.webientsoft.esykart.user.repository.impl;
 
 import java.util.HashSet;
@@ -7,11 +8,11 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.webientsoft.esykart.common.model.common.FilterModel;
-import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
+import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.user.entity.Menu;
 import com.webientsoft.esykart.user.entity.Permission;
 import com.webientsoft.esykart.user.entity.Role;
@@ -36,16 +37,16 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 			permissions.addAll(role.getPermissions());
 		}
 		Query menuQuery = entityManager.createNamedQuery("User.findMenus");
-		List<Menu> menus = menuQuery.setParameter("permissions", permissions).getResultList();
+		List<Menu> menus = menuQuery.setParameter("permissions",
+				permissions).getResultList();
 		user.setMenus(menus);
 		return user;
 	}
 
-
+	@Transactional
 	@Override
-	public PaginatedDataModel search(FilterModel model) {
-		System.out.println("Serach  === > "+model);
-		return null;
+	public void changeStatus(Integer userId, Status status) {
+		entityManager.createNamedQuery("PRODUCT_DETAIL_UPDATE_STATUS").setParameter("id",
+				userId).setParameter("status", status).executeUpdate();
 	}
-	
 }

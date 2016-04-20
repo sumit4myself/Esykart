@@ -2,6 +2,7 @@
  * Copyright (c) 2016, WebientSoft and/or its affiliates. All rights reserved
  * WebientSoft PROPRIETARY/CONFIDENTIAL.Use is subject to license terms.
  */
+
 package com.webientsoft.esykart.product.repository.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class ProductRepositoryDetailRestController {
 	@Autowired
 	private ProductDetailRepository repository;
 
-	@RequestMapping(value = "/{id}/changeStatus", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/changeStatus", method = RequestMethod.PATCH, consumes = {
+		"application/merge-patchjson;charset=UTF-8" })
 	public ResponseEntity<Void> changeStatus(@PathVariable("id") Integer id,
 			@RequestParam("status") Status status) {
 		repository.changeStatus(id, status);

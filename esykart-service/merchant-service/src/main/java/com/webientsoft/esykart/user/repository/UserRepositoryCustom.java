@@ -5,8 +5,7 @@
 
 package com.webientsoft.esykart.user.repository;
 
-import com.webientsoft.esykart.common.model.common.FilterModel;
-import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
+import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.user.entity.User;
 
 /**
@@ -17,7 +16,6 @@ import com.webientsoft.esykart.user.entity.User;
 public interface UserRepositoryCustom {
 
 	User authenticate(String userName, String password);
-
-	PaginatedDataModel search(FilterModel model);
-
+	
+	void changeStatus(Integer userId, Status status);
 }

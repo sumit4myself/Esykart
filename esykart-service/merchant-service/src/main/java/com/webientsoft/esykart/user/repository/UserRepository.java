@@ -5,9 +5,8 @@
 
 package com.webientsoft.esykart.user.repository;
 
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.merchant.repository.BaseRepository;
 import com.webientsoft.esykart.user.entity.User;
 
@@ -17,7 +16,9 @@ import com.webientsoft.esykart.user.entity.User;
  * @since 1.0
  */
 
-public interface UserRepository extends BaseRepository<User, Integer>, UserRepositoryCustom {
 
-	void changeStatus(@Param("userId") Integer userId, @Param("status") Status status);
+@RepositoryRestResource(path = "users")
+public interface UserRepository
+		extends BaseRepository<User, Integer>, UserRepositoryCustom {
+
 }
