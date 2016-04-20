@@ -39,7 +39,7 @@ function($scope, $rootScope,$state,$stateParams, RoleService,AuthorizationServic
 		}
 		
 		$scope.onReset = function() {
-			if(){
+			if($stateParams.id != null){
 				$scope.role = $scope.oldRole
 				$scope.permissions = $scope.oldRole.getPermissions();
 			}else{
@@ -105,9 +105,46 @@ function($scope, $rootScope, utils, RoleService) {
 function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnBuilder) {
 	var vm = this;
 	vm.dtOptions = DTOptionsBuilder
-	  .fromSource("data/crud_table/students.json")
-//      .withOption('processing', true)
-//      .withOption('serverSide', true)
+		.fromSource('/roles/search')
+		.withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+			var data = {
+      			  "draw": 1,
+      			  "recordsTotal": 2,
+      			  "recordsFiltered": 2,
+      			  "data": [
+      			    {
+      			      "Name" : "Tiger",
+      			      "EmailAddress" : "Nixon",
+      			      "StudentId" : "1"
+      			    },
+      			    {
+      			     "Name" : "Tiger",
+     			      	 "EmailAddress" : "Nixon",
+     			      	 "StudentId" : "1"
+      			    }
+      			  ]
+      			};
+			console.log(data);
+			
+			$(aaData).each(function(){
+				console.log(this);
+			})
+			oSettings.jqXHR = $.ajax( {
+                    'dataType': 'json',
+                    'type': 'GET',
+                    'url': sSource,
+                    'data': aaData,
+                    'success': function(json){ 
+                        fnCallback(data);
+                    },
+                    'error' : function(jqXHR, textStatus, errorThrown) {
+                    	  console.log(textStatus, errorThrown);
+                    	  fnCallback(data);
+                	}
+                });
+        })
+      .withOption('processing', true)
+      .withOption('serverSide', true)
       .withOption('initComplete', function() {
 			$timeout(function() {
 				$compile($('.dt-uikit .md-input'))($scope);

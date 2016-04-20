@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webientsoft.esykart.api.common.service.CrudService;
 import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
 
 /**
@@ -35,6 +34,4 @@ public abstract class CrudControllerWithSearch<T> extends CrudController<T> {
 				projection);
 
 	}
-
-	protected abstract CrudService<T> getService();
 }

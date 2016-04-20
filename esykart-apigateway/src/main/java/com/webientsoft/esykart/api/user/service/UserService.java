@@ -5,24 +5,17 @@
 
 package com.webientsoft.esykart.api.user.service;
 
+import org.springframework.http.ResponseEntity;
+
+import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
 import com.webientsoft.esykart.common.model.Status;
 import com.webientsoft.esykart.common.model.common.AuthenticationModel;
-import com.webientsoft.esykart.common.model.common.FilterModel;
-import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.user.UserModel;
 
-public interface UserService {
-	
-	void save(UserModel model);
+public interface UserService extends CrudServiceWithSearch<UserModel> {
 
-	void update(Integer id, UserModel model);
+	ResponseEntity<Void> changeStatus(Integer id, Status status);
 
-	UserModel find(Integer id);
+	ResponseEntity<UserModel> authenticate(AuthenticationModel model);
 
-	PaginatedDataModel search(FilterModel model);
-
-	void changeStatus(Integer id, Status status);
-	
-	UserModel authenticate(AuthenticationModel model);
-	
 }

@@ -5,21 +5,14 @@
 
 package com.webientsoft.esykart.api.user.service;
 
+import org.springframework.http.ResponseEntity;
+
+import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
 import com.webientsoft.esykart.common.model.Status;
-import com.webientsoft.esykart.common.model.common.FilterModel;
-import com.webientsoft.esykart.common.model.common.PaginatedDataModel;
 import com.webientsoft.esykart.common.model.user.RoleModel;
 
-public interface RoleService {
+public interface RoleService extends CrudServiceWithSearch<RoleModel> {
 
-	void save(RoleModel model);
-
-	void update(Integer id, RoleModel model);
-
-	RoleModel find(Integer id);
-
-	PaginatedDataModel search(FilterModel model);
-
-	void changeStatus(Integer id, Status status);
+	ResponseEntity<Void> changeStatus(Integer id, Status status);
 
 }

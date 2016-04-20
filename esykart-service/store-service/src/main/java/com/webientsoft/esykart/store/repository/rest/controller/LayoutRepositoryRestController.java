@@ -20,8 +20,8 @@ public class LayoutRepositoryRestController {
 	@Autowired
 	private LayoutRepository repository;
 
-	@RequestMapping(value = "/{id}/changeStatus", method = RequestMethod.DELETE, produces = {
-		"application/json" })
+	@RequestMapping(value = "/{id}/changeStatus", method = RequestMethod.PATCH, consumes = {
+	"application/merge-patch+json" })
 	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") Integer id,
 			@RequestParam("status") Status status) {
 		repository.changeStatus(id, status);

@@ -5,8 +5,11 @@
 
 package com.webientsoft.esykart.api.product.service;
 
+import org.springframework.http.ResponseEntity;
+
 import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
 import com.webientsoft.esykart.api.product.model.ProductDetailModel;
+import com.webientsoft.esykart.common.model.Status;
 
 /**
  * 
@@ -15,5 +18,7 @@ import com.webientsoft.esykart.api.product.model.ProductDetailModel;
  * @since 1.0
  */
 public interface ProductDetailService extends CrudServiceWithSearch<ProductDetailModel> {
+
+	ResponseEntity<Void> changeStatus(Integer id, Status status);
 
 }

@@ -6,6 +6,7 @@
 package com.webientsoft.esykart.api.product.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.api.common.service.client.CrudServiceClientWithSearch;
@@ -13,6 +14,7 @@ import com.webientsoft.esykart.api.common.service.impl.CrudServiceWithSearchImpl
 import com.webientsoft.esykart.api.product.model.ProductDetailModel;
 import com.webientsoft.esykart.api.product.service.ProductDetailService;
 import com.webientsoft.esykart.api.product.service.client.ProductDetailServiceClient;
+import com.webientsoft.esykart.common.model.Status;
 
 /**
  * 
@@ -26,6 +28,12 @@ public class ProductDetailServiceImpl extends
 
 	@Autowired
 	private ProductDetailServiceClient productDetailServiceClient;
+
+	@Override
+	public ResponseEntity<Void> changeStatus(Integer id, Status status) {
+		return productDetailServiceClient.changeStatus(id, status);
+
+	}
 
 	@Override
 	protected CrudServiceClientWithSearch<ProductDetailModel> getServiceClientWithSearch() {
