@@ -33,9 +33,7 @@ altairApp.config(function($httpProvider) {
 	$httpProvider.interceptors.push(function($q,$log) {
 		return {
 		   'request': function(config) {
-			   if(config.url.indexOf("search") > 0 || config.url.indexOf("find") > 0){
-				   config.headers["Content-Type"] = 'application/hal+json';
-			   }else if(config.url.indexOf("changeStatus") > 0){
+			   if(config.url.indexOf("changeStatus") > 0){
 				   config.headers["Content-Type"] = 'application/merge-patch+json';
 			   }
 			   return config;

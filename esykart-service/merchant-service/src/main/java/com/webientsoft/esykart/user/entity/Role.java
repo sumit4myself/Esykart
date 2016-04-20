@@ -56,7 +56,7 @@ public class Role implements Serializable {
 	@ManyToMany
 	private Set<Permission> permissions;
 
-	@JsonBackReference
+//	@JsonBackReference
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 

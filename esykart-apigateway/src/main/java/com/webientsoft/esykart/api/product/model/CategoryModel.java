@@ -1,31 +1,48 @@
+
 package com.webientsoft.esykart.api.product.model;
 
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+@JsonRootName(value = "Category")
 public class CategoryModel {
 
-	private Integer categoryId;
+	private Integer id;
+
 	private Date activeEndDate;
+
 	private Date activeStartDate;
+
 	private Integer bannerId;
+
 	private String description;
+
 	private String fulfillmentType;
+
 	private String imageUrl;
+
 	private String inventoryType;
+
 	private String longDescription;
+
 	private String name;
+
 	private String status;
+
 	private String template;
+
 	private String url;
+
 	private List<CategoryAttributeModel> categoryAttributes;
 
-	public Integer getCategoryId() {
-		return categoryId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Date getActiveEndDate() {

@@ -18,6 +18,7 @@ import com.webientsoft.esykart.user.repository.UserRepository;
 
 @RequestMapping(value = "/users")
 @RepositoryRestController
+@ResponseBody
 public class UserRepositoryRestController {
 
 	@Autowired
@@ -26,14 +27,14 @@ public class UserRepositoryRestController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, consumes = {
 		MediaType.APPLICATION_JSON_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public @ResponseBody ResponseEntity<User> authenticate(@RequestBody User user) {
+	public ResponseEntity<User> authenticate(@RequestBody User user) {
 		return ResponseEntity.ok(
 				userRepository.authenticate(user.getUserName(), user.getPassword()));
 	}
 
 	@RequestMapping(value = "/{id}/changeStatus", params = "status", method = RequestMethod.PATCH, consumes = {
 		"application/merge-patchjson;charset=UTF-8" })
-	public @ResponseBody ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
+	public ResponseEntity<Void> changeStatus(@PathVariable("id") int id,
 			@RequestParam("status") Status status) {
 		userRepository.changeStatus(id, status);
 		return ResponseEntity.noContent().build();

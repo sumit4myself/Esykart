@@ -5,7 +5,6 @@
 
 package com.webientsoft.esykart.api.common.rest.controller;
 
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +49,7 @@ public abstract class CrudController<T> {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {
-		MediaTypes.HAL_JSON_VALUE })
+		MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Resource<T>> find(@PathVariable("id") Integer id,
 			@RequestParam(value = "projection", defaultValue = "default") String projection) {
 		return getService().find(id,projection);

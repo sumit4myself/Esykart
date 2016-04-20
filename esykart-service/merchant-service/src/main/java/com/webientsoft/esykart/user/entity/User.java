@@ -22,11 +22,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.webientsoft.esykart.common.model.Status;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"roles"})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -62,7 +64,7 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	@JsonManagedReference
+//	@JsonManagedReference
 	@JoinTable(name = "role_user_mapping", inverseJoinColumns = {
 			@JoinColumn(name = "role_id", referencedColumnName = "role_id") }, joinColumns = {
 					@JoinColumn(name = "user_id", referencedColumnName = "user_id") })

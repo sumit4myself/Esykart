@@ -7,9 +7,9 @@ package com.webientsoft.esykart.api.common.rest.controller;
 
 import java.util.List;
 
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +24,7 @@ import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
  */
 public abstract class CrudControllerWithSearch<T> extends CrudController<T> {
 
-	@RequestMapping(method = RequestMethod.GET, produces = { MediaTypes.HAL_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	ResponseEntity<PagedResources<Resource<T>>> findAll(
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "size", required = false) Integer size,

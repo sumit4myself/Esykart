@@ -46,7 +46,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
 	                create: false,
 	                maxItems: 1,
 	                placeholder: 'Parent Category',
-	                valueField: 'id',
+	                valueField: 'name',
 	                labelField: 'name',
 	                searchField: 'name'
 	            }
@@ -121,27 +121,11 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
         }
 		
 		BannerService.findAll(0,100,null,'NameAndId').then(function(response){
-			 if (!response.success) {
-                	UIkit.notify({
-                        message: response.message,
-                        status: 'danger',
-                        pos: 'top-right',
-                	});
-                } else {
-                	$scope.banner.options = response;
-                }
+        	$scope.banner.options = response._embedded.banners;
 		});
 		
 		CategoryService.findAll(0,100,null,'NameAndId').then(function (response) {
-            if (!response.success) {
-            	UIkit.notify({
-                    message: response.message,
-                    status: 'danger',
-                    pos: 'top-right',
-            	});
-            } else {
-            	$scope.parent_category.options = response;
-            }
+        	$scope.parent_category.options = response.data._embedded.categoryModels;
         });
 		
 		FulfillmentService.findAll().then(function (response) {
