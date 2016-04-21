@@ -24,33 +24,32 @@ altairApp
         	preparefilterDataFromDatatableData : function (dtData) {
         		var columns = null;
         		var filterData = {};
-    			filterData.size = 5;
-    			filterData.page = 0;
+    			filterData.size = null;
+    			filterData.page = null;
     			filterData.criterias = new Array();
     			filterData.sorts = new Array();
     			$(dtData).each(function(){
-    				console.log(this);
-					if(this.name == "columns"){
+					if(this.name = "columns"){
 						columns = this.value;				
-					}else if(this.name == "start"){
+					}else if(this.name = "start"){
 						filterData.page = this.value;
-    				}else if(this.name == "length"){
+    				}else if(this.name = "length"){
     					filterData.size = this.length;
-    				}else if(this.name == "order"){
+    				}else if(this.name = "order"){
     					$(this.value).each(function(){
 							var sort = new Object();
 							sort.property = columns[this.column].data;
 							sort.direction = this.dir;
-							filterData.sorts.push(sort);
+							sorts.push(sort);
     					});
-    				}else if(this.name == "search"){
+    				}else if(this.name = "search"){
     					$(columns).each(function(){
     						if(this.searchable){
     							var criteria = new Object();
     							criteria.key = this.name;
 //								criteria.value = this.value.value;
 								criteria.operator = "=";
-								filterData.criterias.push(criteria);
+								criterias.push(criteria);
     						}
     					});
     				}
