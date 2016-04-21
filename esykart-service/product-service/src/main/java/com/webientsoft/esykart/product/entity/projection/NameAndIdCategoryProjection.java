@@ -17,7 +17,7 @@ import com.webientsoft.esykart.product.entity.Category;
 @Projection(name = "NameAndId", types = Category.class)
 public interface NameAndIdCategoryProjection {
 
-	String getId();
+	Integer getCategoryId();
 
 	String getName();
 

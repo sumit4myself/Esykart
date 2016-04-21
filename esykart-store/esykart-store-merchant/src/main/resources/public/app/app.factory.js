@@ -21,15 +21,54 @@ altairApp
     })
     .factory('utils', function () {
         return {
-        	
-        	handleSuccess : function (response) {
-                return response.data;
+        	preparefilterDataFromDatatableData : function (dtData) {
+        		var columns = null;
+        		var filterData = {};
+    			filterData.size = 5;
+    			filterData.page = 0;
+    			filterData.criterias = new Array();
+    			filterData.sorts = new Array();
+    			$(dtData).each(function(){
+    				console.log(this);
+					if(this.name == "columns"){
+						columns = this.value;				
+					}else if(this.name == "start"){
+						filterData.page = this.value;
+    				}else if(this.name == "length"){
+    					filterData.size = this.length;
+    				}else if(this.name == "order"){
+    					$(this.value).each(function(){
+							var sort = new Object();
+							sort.property = columns[this.column].data;
+							sort.direction = this.dir;
+							filterData.sorts.push(sort);
+    					});
+    				}else if(this.name == "search"){
+    					$(columns).each(function(){
+    						if(this.searchable){
+    							var criteria = new Object();
+    							criteria.key = this.name;
+//								criteria.value = this.value.value;
+								criteria.operator = "=";
+								filterData.criterias.push(criteria);
+    						}
+    					});
+    				}
+    			})
+    			console.log(filterData);
+    			return filterData;
             },
-            handleError : function (error) {
-                return function () {
-                    return { success: false, message: error };
-                };
-            },
+	        prepareDatatableDataFromResponse : function (response) {
+	        	var data = {
+          			  "draw": 1,
+          			  "recordsTotal": 2,
+          			  "recordsFiltered": 2,
+          			  "data": [
+          			    
+          			  ]
+          			};
+				return data;
+	        },
         	
             // Util for finding an object by its 'id' property among an array
             findByItemId: function findById(a, id) {

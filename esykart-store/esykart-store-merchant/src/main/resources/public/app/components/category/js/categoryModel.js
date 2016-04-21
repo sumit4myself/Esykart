@@ -1,6 +1,6 @@
 function Category() {
 
-	this.id = null;
+	this.categoryId = null;
 	this.name = null;
 	this.longDescription = null;
 	this.description = null;

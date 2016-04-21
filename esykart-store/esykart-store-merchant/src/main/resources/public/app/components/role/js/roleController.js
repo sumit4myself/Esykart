@@ -107,28 +107,6 @@ function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnBuilder) {
 	vm.dtOptions = DTOptionsBuilder
 		.fromSource('/roles/search')
 		.withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
-			var data = {
-      			  "draw": 1,
-      			  "recordsTotal": 2,
-      			  "recordsFiltered": 2,
-      			  "data": [
-      			    {
-      			      "Name" : "Tiger",
-      			      "EmailAddress" : "Nixon",
-      			      "StudentId" : "1"
-      			    },
-      			    {
-      			     "Name" : "Tiger",
-     			      	 "EmailAddress" : "Nixon",
-     			      	 "StudentId" : "1"
-      			    }
-      			  ]
-      			};
-			console.log(data);
-			
-			$(aaData).each(function(){
-				console.log(this);
-			})
 			oSettings.jqXHR = $.ajax( {
                     'dataType': 'json',
                     'type': 'GET',

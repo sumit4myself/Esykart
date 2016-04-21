@@ -7,12 +7,11 @@ package com.webientsoft.esykart.api.common.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 
-import com.webientsoft.esykart.common.model.SearchCriteria;
+import com.webientsoft.esykart.common.model.SearchFilter;
 
 /**
  * 
@@ -25,5 +24,5 @@ public interface CrudServiceWithSearch<T> extends CrudService<T> {
 	ResponseEntity<PagedResources<Resource<T>>> findAll(Integer page, Integer size, List<String> sort,
 			String projection);
 
-	ResponseEntity<Page<T>> search(SearchCriteria criteria);
+	ResponseEntity<PagedResources<Resource<T>>> search(SearchFilter filter);
 }

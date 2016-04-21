@@ -26,7 +26,7 @@ public class Category implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer categoryId;
 
 	private String name;
 
@@ -85,17 +85,17 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
-	public Category(Integer id) {
+	public Category(Integer categoryId) {
 		super();
-		this.id = id;
+		this.categoryId = categoryId;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getName() {

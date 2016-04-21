@@ -7,7 +7,6 @@ package com.webientsoft.esykart.api.common.service.client;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webientsoft.esykart.common.model.SearchCriteria;
+import com.webientsoft.esykart.common.model.SearchFilter;
 
 /**
  * 
@@ -57,6 +56,6 @@ public interface CrudServiceClientWithSearch<T> {
 	@RequestMapping(value = "/search", method = RequestMethod.POST, consumes = {
 		MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
-	ResponseEntity<Page<T>> search(SearchCriteria criteria);
+	ResponseEntity<PagedResources<Resource<T>>> search(SearchFilter filter);
 
 }

@@ -7,14 +7,13 @@ package com.webientsoft.esykart.api.common.service.impl;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 
 import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
 import com.webientsoft.esykart.api.common.service.client.CrudServiceClientWithSearch;
-import com.webientsoft.esykart.common.model.SearchCriteria;
+import com.webientsoft.esykart.common.model.SearchFilter;
 
 /**
  * 
@@ -56,8 +55,8 @@ public abstract class CrudServiceWithSearchImpl<T> implements CrudServiceWithSea
 	}
 
 	@Override
-	public ResponseEntity<Page<T>> search(SearchCriteria criteria) {
-		return getServiceClientWithSearch().search(criteria);
+	public ResponseEntity<PagedResources<Resource<T>>> search(SearchFilter filter) {
+		return getServiceClientWithSearch().search(filter);
 	}
 
 	protected abstract CrudServiceClientWithSearch<T> getServiceClientWithSearch();

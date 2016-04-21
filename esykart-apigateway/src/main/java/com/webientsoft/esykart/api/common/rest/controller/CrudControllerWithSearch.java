@@ -11,11 +11,13 @@ import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
+import com.webientsoft.esykart.common.model.SearchFilter;
 
 /**
  * 
@@ -24,7 +26,8 @@ import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
  */
 public abstract class CrudControllerWithSearch<T> extends CrudController<T> {
 
-	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(method = RequestMethod.GET, produces = {
+		MediaType.APPLICATION_JSON_VALUE })
 	ResponseEntity<PagedResources<Resource<T>>> findAll(
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "size", required = false) Integer size,
@@ -34,4 +37,12 @@ public abstract class CrudControllerWithSearch<T> extends CrudController<T> {
 				projection);
 
 	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = {
+		MediaType.APPLICATION_JSON_VALUE }, consumes = {
+			MediaType.APPLICATION_JSON_VALUE })
+	ResponseEntity<PagedResources<Resource<T>>> search(@RequestBody SearchFilter filter) {
+		return ((CrudServiceWithSearch<T>) getService()).search(filter);
+	}
+
 }

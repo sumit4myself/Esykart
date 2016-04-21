@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName(value = "Category")
 public class CategoryModel {
 
-	private Integer id;
+	private Integer categoryId;
 
 	private Date activeEndDate;
 
@@ -37,12 +37,12 @@ public class CategoryModel {
 
 	private List<CategoryAttributeModel> categoryAttributes;
 
-	public Integer getId() {
-		return id;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public Date getActiveEndDate() {

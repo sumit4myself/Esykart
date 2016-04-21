@@ -46,7 +46,7 @@ function($scope, $rootScope,$state,$stateParams, utils, CategoryService,BannerSe
 	                create: false,
 	                maxItems: 1,
 	                placeholder: 'Parent Category',
-	                valueField: 'name',
+	                valueField: 'categoryId',
 	                labelField: 'name',
 	                searchField: 'name'
 	            }
@@ -188,35 +188,52 @@ function($scope, $rootScope, CategoryService) {
 	};
 } ])
 		
-.controller('ManageCategoryTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
+.controller('ManageCategoryTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
 	    var vm = this;
 	    vm.dt_data = [];
 	    vm.dtOptions = DTOptionsBuilder
-	        .fromSource('data/dt_data.json')
-	        .withOption('initComplete', function() {
-	            $timeout(function() {
-	                $compile($('.dt-uikit .md-input'))($scope);
-	            })
+	    .fromSource('/roles/search')
+		.withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+			oSettings.jqXHR = $.ajax({
+                    'dataType': 'json',
+                    'type': 'GET',
+                    'url': sSource,
+                    'data': utils.preparefilterDataFromDatatableData(aaData),
+                    'success': function(response){ 
+                    	fnCallback(utils.prepareDatatableDataFromResponse(response));
+                    },
+                    'error' : function(jqXHR, textStatus, errorThrown) {
+                    	UIkit.notify({
+                            message: 'Something went wrong while geeting data, Please try after some time. ',
+                            status: 'danger',
+                            pos: 'top-right',
+                    	});
+                    }
+                });
+        })
+      .withOption('processing', true)
+      .withOption('serverSide', true)
+      .withOption('initComplete', function() {
+			$timeout(function() {
+				$compile($('.dt-uikit .md-input'))($scope);
+			})
+		})
+		.withOption('fnDrawCallback',  function( oSettings ) {
+	    	 $timeout(function() {
+	                $compile($('user-permission'))($scope);
 	        })
-	        .withOption('bProcessing',  false)
-	        .withOption('bServerSide',  false)
-	        .withOption( "aLengthMenu" , [ [ 5, 10, 25, 50, 100 ],[ 5, 10, 25, 50, 100 ] ])
-	        .withOption('fnDrawCallback',  function( oSettings ) {
-	        	 $timeout(function() {
-	                    $compile($('user-permission'))($scope);
-	            })
-	        })
-	        .withDisplayLength(5)	           
-	            
-        vm.dtColumnDefs = [
-               DTColumnDefBuilder.newColumnDef(0).withTitle('Name'),
-               DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
-               DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
-               DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
-               DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
-               DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
+		})
+		.withOption("aLengthMenu", [ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
+        .withPaginationType('full_numbers')
+        .withDisplayLength(5);	
+	    
+	    vm.dtColumns = [
+            DTColumnBuilder.newColumn("name").withTitle('Name'),
+            DTColumnBuilder.newColumn("fulfillmentType").withTitle('Fulfillment Type'),
+            DTColumnBuilder.newColumn("inventoryType").withTitle('Inventory Type'),
+            DTColumnBuilder.newColumn("categoryId").withTitle('Action').notSortable()
                .renderWith(function(data){
             	   return  '<user-permission data-permission-for="restricted.category.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
-              })
+             })
         ];
 });
