@@ -203,6 +203,25 @@ function dtOptionsBuilder() {
             this.fnServerData = fn;
             return this;
         },
+        
+        withCustomFnServerData: function(dataPrepareCallback,successHnadlerCallback,errorHnadlerCallback) {
+        	this.withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+    			oSettings.jqXHR = $.ajax({
+                        'dataType': 'json',
+                        'contentType' : 'application/json',
+                        'type': 'POST',
+                        'url': oSettings.ajax,
+                        'data': dataPrepareCallback(aaData),
+                        'success': function(response){ 
+                        	fnCallback(successHnadlerCallback(response));
+                        },
+                        'error' : function(jqXHR, textStatus, errorThrown) {
+                        	fnCallback(errorHnadlerCallback(errorThrown));
+                        }
+                    });
+            })
+            return this;	
+        },
 
         /**
          * Set the pagination type.
@@ -359,6 +378,16 @@ function dtColumnBuilder() {
             return this;
         },
 
+        /**
+         * Set the column as not Searchable
+         * @returns {DTColumn} the wrapped datatables column
+         */
+        notSearchable: function() {
+            this.bSearchable = false;
+            return this;
+        },
+
+        
         /**
          * Render each cell with the given parameter
          * @mRender mRender the function/string to render the data

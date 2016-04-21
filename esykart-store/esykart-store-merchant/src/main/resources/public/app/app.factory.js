@@ -29,44 +29,53 @@ altairApp
     			filterData.criterias = new Array();
     			filterData.sorts = new Array();
     			$(dtData).each(function(){
-					if(this.name = "columns"){
-						columns = this.value;				
-					}else if(this.name = "start"){
-						filterData.page = this.value;
-    				}else if(this.name = "length"){
-    					filterData.size = this.length;
-    				}else if(this.name = "order"){
-    					$(this.value).each(function(){
+    				var _$this = this;
+    				console.log(this);
+					if(_$this.name == "columns"){
+						columns = _$this.value;				
+					}else if(_$this.name == "start"){
+						filterData.page = _$this.value;
+    				}else if(_$this.name == "length"){
+    					filterData.size = _$this.value;
+    				}else if(_$this.name == "order"){
+    					$(_$this.value).each(function(){
 							var sort = new Object();
 							sort.property = columns[this.column].data;
 							sort.direction = this.dir;
-							sorts.push(sort);
+							filterData.sorts.push(sort);
     					});
-    				}else if(this.name = "search"){
+    				}else if(_$this.name == "search"){
     					$(columns).each(function(){
     						if(this.searchable){
     							var criteria = new Object();
-    							criteria.key = this.name;
-//								criteria.value = this.value.value;
+    							criteria.key = this.data;
+								criteria.value = _$this.value.value;
 								criteria.operator = "=";
-								criterias.push(criteria);
+								filterData.criterias.push(criteria);
     						}
     					});
     				}
     			})
-    			console.log(filterData);
-    			return filterData;
+    			return JSON.stringify(filterData);
             },
 	        prepareDatatableDataFromResponse : function (response) {
-	        	var data = {
-          			  "draw": 1,
-          			  "recordsTotal": 2,
-          			  "recordsFiltered": 2,
-          			  "data": [
-          			    
-          			  ]
-          			};
+	        	var data = {};
+		        	data.recordsTotal = 0;
+	        		data.recordsFiltered = 0;
+	        		data.data = new Array();
 				return data;
+	        },
+	        prepareDatatableDataFromErrorResponse : function(errorThrown){
+	        	UIkit.notify({
+                    message: 'Something went wrong while geeting data, Please try after some time. ',
+                    status: 'danger',
+                    pos: 'top-right',
+            	});
+	        	var data = {};
+	        	data.recordsTotal = 0;
+        		data.recordsFiltered = 0;
+        		data.data = new Array();
+        		return data;
 	        },
         	
             // Util for finding an object by its 'id' property among an array

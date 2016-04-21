@@ -38,7 +38,7 @@ public abstract class CrudControllerWithSearch<T> extends CrudController<T> {
 
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "/search", method = RequestMethod.POST, produces = {
 		MediaType.APPLICATION_JSON_VALUE }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE })
 	ResponseEntity<PagedResources<Resource<T>>> search(@RequestBody SearchFilter filter) {
