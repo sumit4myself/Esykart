@@ -4,7 +4,7 @@
 			<div class="md-card uk-margin-large-bottom">
 				<div class="md-card-content">
 					<h2 class="heading_a">User details</h2>
-					<div class="uk-grid">
+					<div class="uk-grid" data-uk-grid-margin>
 						<div class="uk-width-medium-1-1 parsley-row">
 							<label for="fullName">Full Name<span class="req">*</span></label>
 							<input type="text" name="fullName" id="fullName" class="md-input"
@@ -13,7 +13,7 @@
 						</div>
 					</div>
 
-					<div class="uk-grid" >
+					<div class="uk-grid" data-uk-grid-margin>
 						<div class="uk-width-medium-1-2 parsley-row">
 							<label for="wizard_birth_place">Email<span class="req">*</span></label>
 							<input type="text" name="email" id="email" class="md-input"
@@ -25,6 +25,15 @@
 							<input type="text" name="mobile" id="mobile" class="md-input"
 								md-input ng-model="user.mobile" data-parsley-required="true"
 								data-parsley-type="number" data-parsley-length="[10,12]" />
+						</div>
+					</div>
+					
+					
+					<div class="uk-grid" data-uk-grid-margin>
+						<div class="uk-width-medium-1-1">
+							<input type="text" selectize config="roles.config" options="roles.options"
+							ng-model="user.roles"
+							 />
 						</div>
 					</div>
 
@@ -50,21 +59,6 @@
 								data-parsley-required="true" data-parsley-equalto="#password" />
 						</div>
 					</div>
-
-				</div>
-			</div>
-
-
-			<div class="md-card uk-margin-large-bottom">
-				<div class="md-card-content">
-					<h2 class="heading_a">Assign role</h2>
-					<div ng-controller="AssignRoleTableController as showCase">
-						<table datatable dt-options="showCase.dtOptions"
-							dt-column-defs="showCase.dtColumnDefs"
-							dt-instance="showCase.dtInstance" class="uk-table"
-							cellspacing="0" width="100%"></table>
-					</div>
-					
 					
 					<div class="uk-grid uk-grid-width-1-1 uk-margin-large-top">
 					<div class="uk-clearfix">
@@ -78,7 +72,7 @@
 						</div>
 					</div>
 				</div>
-					
+
 				</div>
 			</div>
 		</div>

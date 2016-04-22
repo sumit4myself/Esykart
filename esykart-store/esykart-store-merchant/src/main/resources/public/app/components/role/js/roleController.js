@@ -101,48 +101,33 @@ function($scope, $rootScope, utils, RoleService) {
 	};
 } ])
 
-.controller('ManageRoleTableController',
-function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnBuilder) {
-	var vm = this;
-	vm.dtOptions = DTOptionsBuilder
-		.fromSource('/roles/search')
-		.withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
-			oSettings.jqXHR = $.ajax( {
-                    'dataType': 'json',
-                    'type': 'GET',
-                    'url': sSource,
-                    'data': aaData,
-                    'success': function(json){ 
-                        fnCallback(data);
-                    },
-                    'error' : function(jqXHR, textStatus, errorThrown) {
-                    	  console.log(textStatus, errorThrown);
-                    	  fnCallback(data);
-                	}
-                });
+.controller('ManageRoleTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+    var vm = this;
+    vm.dt_data = [];
+    vm.dtOptions = DTOptionsBuilder
+    .fromSource('roles/search')
+    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
+    .withOption('processing', true)
+    .withOption('serverSide', true)
+    .withOption('initComplete', function() {
+		$timeout(function() {
+			$compile($('.dt-uikit .md-input'))($scope);
+		})
+	})
+	.withOption('fnDrawCallback',  function( oSettings ) {
+    	 $timeout(function() {
+                $compile($('user-permission'))($scope);
         })
-      .withOption('processing', true)
-      .withOption('serverSide', true)
-      .withOption('initComplete', function() {
-			$timeout(function() {
-				$compile($('.dt-uikit .md-input'))($scope);
-			})
-		})
-		.withOption('fnDrawCallback',  function( oSettings ) {
-	    	 $timeout(function() {
-	                $compile($('user-permission'))($scope);
-	        })
-		})
-		.withOption("aLengthMenu", [ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
-        .withPaginationType('full_numbers')
-        .withDisplayLength(5);	
-	
-		vm.dtColumns = [
-	                DTColumnBuilder.newColumn("Name").withTitle('Role name'),
-	                DTColumnBuilder.newColumn("EmailAddress").withTitle('Decription'),
-	                DTColumnBuilder.newColumn("StudentId").withTitle('Action').notSortable()
-	                   .renderWith(function(data){
-	                	   return  '<user-permission data-permission-for="restricted.role.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
-                     })
-	            ];
-})
+	})
+	.withOption("aLengthMenu", [ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
+    .withPaginationType('full_numbers')
+    .withDisplayLength(5);	
+    vm.dtColumns = [
+        DTColumnBuilder.newColumn("roleName").withTitle('Name'),
+        DTColumnBuilder.newColumn("description").withTitle('Description'),
+        DTColumnBuilder.newColumn("roleId").withTitle('Action').notSortable().notSearchable()
+           .renderWith(function(data){
+        	   return  '<user-permission data-permission-for="restricted.role.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
+         })
+    ];
+});

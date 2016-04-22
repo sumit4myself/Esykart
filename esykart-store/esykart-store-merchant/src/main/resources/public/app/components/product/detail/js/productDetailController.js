@@ -208,54 +208,70 @@ function($scope, $rootScope, $stateParams, ProductDetailService) {
 } ])
 		
 
-.controller(
-		'ManageProductDetailController',
+.controller('ManageProductDetailController',
 		[ '$scope', '$rootScope', 'utils', 'ProductDetailService',
 		function($scope, $rootScope, utils, ProductDetailService) {
-
 			$scope.delete = function (id){
-				UIkit.modal.confirm('Are you sure?', function(){ UIkit.modal.alert('deleted!'); });
-				console.log(this);
-				console.log(id);
+				UIkit.modal.confirm('Are you sure?', function(){ 
+					ProductDetailService.changeStatus(id,"D").then(function(response){
+						UIkit.notify({
+		                    message: 'Product Detail deleted successfully.',
+		                    status: 'success',
+		                    pos: 'top-right',
+		            	});
+		        	});
+				});
 			};
-			
 			$scope.activate = function (id){
-				console.log(this);
-				console.log(id);
+				ProductDetailService.changeStatus(id,"A").then(function(response){
+					UIkit.notify({
+		                message: 'Product Detail activated successfully.',
+		                status: 'success',
+		                pos: 'top-right',
+		        	});
+		    	});
 			};
-			
 			$scope.deactivate = function(id){
-				UIkit.modal.confirm('Are you sure?', function(){ UIkit.modal.alert('deactivated!'); });
-				console.log(this);
-				console.log(id);
+				UIkit.modal.confirm('Are you sure?', function(){ 
+					ProductDetailService.changeStatus(id,"I").then(function(response){
+						UIkit.notify({
+		                    message: 'Product Detail deactivated successfully.',
+		                    status: 'success',
+		                    pos: 'top-right',
+		            	});
+		        	});
+				});
 			};
-			
-		} ])
-.controller('ManageProductDetailTableController', function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
-            var vm = this;
-            vm.dt_data = [];
-            vm.dtOptions = DTOptionsBuilder
-                .fromSource('data/dt_data.json')
-                .withOption('initComplete', function() {
-                    $timeout(function() {
-                        $compile($('.dt-uikit .md-input'))($scope);
-                    })
-                })
-	            .withOption('bProcessing',  true)
-	            .withOption('bServerSide',  true)
-	            .withOption( "aLengthMenu" , [ [ 5, 10, 25, 50, 100 ],[ 5, 10, 25, 50, 100 ] ])
-	            .withDisplayLength(5)	           
-	            
-            vm.dtColumnDefs = [
-                   
-                   DTColumnDefBuilder.newColumnDef(0).withTitle('Name'),
-                   DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
-                   DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
-                   DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
-                   DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
-                   DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
-                   .renderWith(function(data){
-                	   return  '<user-permission data-permission-for="restricted.product_detail.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
-                  })
-            ];
-        });
+} ])
+
+.controller('ManageProductDetailTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+	    var vm = this;
+	    vm.dt_data = [];
+	    vm.dtOptions = DTOptionsBuilder
+	    .fromSource('/products/search')
+	    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
+        .withOption('processing', true)
+        .withOption('serverSide', true)
+        .withOption('initComplete', function() {
+			$timeout(function() {
+				$compile($('.dt-uikit .md-input'))($scope);
+			})
+		})
+		.withOption('fnDrawCallback',  function( oSettings ) {
+	    	 $timeout(function() {
+	                $compile($('user-permission'))($scope);
+	        })
+		})
+		.withOption("aLengthMenu", [ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
+        .withPaginationType('full_numbers')
+        .withDisplayLength(5);	
+	    vm.dtColumns = [
+            DTColumnBuilder.newColumn("name").withTitle('Name').withOption("order",[[ 0, "desc" ]]),
+            DTColumnBuilder.newColumn("fulfillmentType").withTitle('Fulfillment Type'),
+            DTColumnBuilder.newColumn("inventoryType").withTitle('Inventory Type'),
+            DTColumnBuilder.newColumn("categoryId").withTitle('Action').notSortable().notSearchable()
+               .renderWith(function(data){
+            	   return  '<user-permission data-permission-for="restricted.product_details.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
+             })
+        ];
+});

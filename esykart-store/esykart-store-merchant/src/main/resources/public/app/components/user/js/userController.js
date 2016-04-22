@@ -35,6 +35,26 @@ function($scope, $rootScope,$state,$stateParams, $timeout, UserService) {
 					$scope.user = new User();
 				}
 			}
+			
+			
+			$scope.roles = {
+					options: [],
+	                config : {
+	                	 plugins: {
+	                         'remove_button': {
+	                             label     : ''
+	                         }
+	                     },
+		                create: false,
+		                maxItems: 5,
+		                placeholder: 'Assign Roles',
+		                valueField: 'roleId',
+		                labelField: 'roleName',
+		                searchField: 'roleName'
+		            }
+	        }
+			
+			
 } ])
 
 .controller('ViewUserController',
@@ -86,77 +106,35 @@ function($scope, $rootScope, utils, UserService) {
 				});
 			};
 }])
-
-.controller('AssignRoleTableController',
-		function($compile, $scope, $timeout, DTOptionsBuilder,
-				DTColumnDefBuilder) {
-			var vm = this;
-			vm.dt_data = [];
-			vm.dtOptions = DTOptionsBuilder
-				.fromSource('data/dt_data.json')
-					.withOption('initComplete', function() {
-						$timeout(function() {
-							$compile($('.dt-uikit .md-input'))($scope);
-						})
-					})
-					.withOption('bProcessing', false)
-					.withOption('bServerSide', false)
-					.withOption("aLengthMenu",[ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
-					.withOption('fnDrawCallback',  function( oSettings ) {
-		            	 $timeout(function() {
-	                        $compile($('pw-switch'))($scope);
-	                    })
-					})
-					.withDisplayLength(5)
-			vm.dtColumnDefs = [
-					DTColumnDefBuilder.newColumnDef(0).withTitle('Name')
-					.renderWith(function(data) {
-								return "<a>" + data + "</a>";
-					}),
-					DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
-					DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
-					DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
-					DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
-					DTColumnDefBuilder.newColumnDef(5).withTitle('Assign').notSortable()
-                   .renderWith(function(data){
-                	   var 	html = "<pw-switch ng-model='user.roles[1].roleId' " ;
-                	   		html +=	"ng-true-value='{{data}}' ng-false-value='null' ";
-            	   			html +=	"data-checked='Yes' data-unchecked='No' ></pw-switch>";
-	                	   return html;
-                   })
-				];
+.controller('ManageUserTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+    var vm = this;
+    vm.dt_data = [];
+    vm.dtOptions = DTOptionsBuilder
+    .fromSource('users/search')
+    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
+    .withOption('processing', true)
+    .withOption('serverSide', true)
+    .withOption('initComplete', function() {
+		$timeout(function() {
+			$compile($('.dt-uikit .md-input'))($scope);
 		})
-
-
-.controller('ManageUserTableController',
-function($compile, $scope, $timeout, DTOptionsBuilder, DTColumnDefBuilder) {
-	var vm = this;
-	vm.dt_data = [];
-	vm.dtOptions = DTOptionsBuilder.fromSource('data/dt_data.json')
-			.withOption('initComplete', function() {
-				$timeout(function() {
-					$compile($('.dt-uikit .md-input'))($scope);
-				})
-			})
-			.withOption('bProcessing', false) //TODO change it to True for server side data fetch.
-			.withOption('bServerSide', false)
-			.withOption("aLengthMenu",
-					[ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
-			.withDisplayLength(5)
-			.withOption('fnDrawCallback',  function( oSettings ) {
-        	 $timeout(function() {
+	})
+	.withOption('fnDrawCallback',  function( oSettings ) {
+    	 $timeout(function() {
                 $compile($('user-permission'))($scope);
-            })
         })
-
-	vm.dtColumnDefs = [
-			DTColumnDefBuilder.newColumnDef(0).withTitle('Name'),
-			DTColumnDefBuilder.newColumnDef(1).withTitle('Position'),
-			DTColumnDefBuilder.newColumnDef(2).withTitle('Office'),
-			DTColumnDefBuilder.newColumnDef(3).withTitle('Extn.'),
-			DTColumnDefBuilder.newColumnDef(4).withTitle('Start date'),
-			DTColumnDefBuilder.newColumnDef(5).withTitle('Action').notSortable()
-               .renderWith(function(data){
-            	   return  '<user-permission data-permission-for="restricted.user.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
-              })];
-})
+	})
+	.withOption("aLengthMenu", [ [ 5, 10, 25, 50, 100 ], [ 5, 10, 25, 50, 100 ] ])
+    .withPaginationType('full_numbers')
+    .withDisplayLength(5);	
+    vm.dtColumns = [
+        DTColumnBuilder.newColumn("userName").withTitle('User Name'),
+        DTColumnBuilder.newColumn("name").withTitle('Name'),
+        DTColumnBuilder.newColumn("mobile").withTitle('Mobile'),
+        DTColumnBuilder.newColumn("email").withTitle('Email'),
+        DTColumnBuilder.newColumn("userId").withTitle('Action').notSortable().notSearchable()
+           .renderWith(function(data){
+        	   return  '<user-permission data-permission-for="restricted.user.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
+         })
+    ];
+});

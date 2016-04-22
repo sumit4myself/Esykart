@@ -1,6 +1,6 @@
 ﻿function CategoryAttribute() {
 	
-	this.id = null;
+	this.attributeId = null;
 	this.name = null;
 	this.label = null;
 	this.displayOrder = null;
@@ -17,9 +17,9 @@
 	
 	this.categoryAttributeValues = new Array();
 
-	this.addValue = function(id, label, value) {
-		var categoryAttributeValue = new CategoryAttributeValue();
-		categoryAttributeValue.id = id;
+	this.addValue = function(attributeValueId, label, value) {
+		var categoryAttributeValue = new Object();
+		categoryAttributeValue.attributeValueId = attributeValueId;
 		categoryAttributeValue.lable = label;
 		categoryAttributeValue.value = value;
 		categoryAttributeValues.push(categoryAttributeValue);
@@ -30,8 +30,3 @@
 	}
 }
 
-function CategoryAttributeValue() {
-	this.id = null;
-	this.label = null;
-	this.value = null;
-}

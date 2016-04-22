@@ -2,15 +2,16 @@
 	<div id="page_content_inner">
 		<div class="md-card">
 			<div class="md-card-content">
-				<h3 class="heading_a">Manage Role
+				<h3 class="heading_a">Manage User
 					<div class="uk-float-right">
 						<user-permission data-permission-for="restricted.user.manage" data-permission-type="ADD"/>
 					</div>
 				</h3>
 				<div class="uk-margin-top"
 					ng-controller="ManageUserTableController as TableController">
-					<table datatable dt-options="TableController.dtOptions"
-						dt-column-defs="TableController.dtColumnDefs"
+					<table datatable 
+						dt-options="TableController.dtOptions"
+						dt-columns="TableController.dtColumns"
 						dt-instance="TableController.dtInstance" class="uk-table"
 						cellspacing="0" width="100%">
 						
