@@ -4,14 +4,14 @@
 function($http, userServiceUrl) {
 	var service = {};
 	service.save = function (data){
-    	return $http.post(userServiceUrl,role);
+    	return $http.post(userServiceUrl,data);
     };
     service.update = function(id,data){
-		return $http.put(userServiceUrl+"/" +roleId ,role);
+		return $http.put(userServiceUrl+id ,data);
     };
     
     service.find = function(id,projection){
-		return $http.get(userServiceUrl +"/" +id+"?projection="+projection);
+		return $http.get(userServiceUrl+id+"?projection="+projection);
     };
     service.findAll = function(page, size,sort,projection){
     	var finalUrl = userServiceUrl+"?projection="+projection;
@@ -27,7 +27,7 @@ function($http, userServiceUrl) {
 	};
 
     service.search = function(filter,projection){
-		return $http.get(userServiceUrl +"/search?projection="+projection,filter);
+		return $http.post(userServiceUrl +"/search?projection="+projection,filter);
     };
     
     service.changeStatus = function(id,status){

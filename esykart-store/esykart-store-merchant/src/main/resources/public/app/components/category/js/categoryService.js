@@ -27,7 +27,7 @@ function($http, categoryServiceUrl) {
     };
 
     service.search = function(filter,projection){
-		return $http.get(categoryServiceUrl +"/search?projection="+projection,filter);
+		return $http.post(categoryServiceUrl +"/search?projection="+projection,filter);
     };
     
     service.changeStatus = function(id,status){

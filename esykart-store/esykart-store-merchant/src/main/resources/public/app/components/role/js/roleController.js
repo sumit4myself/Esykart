@@ -105,13 +105,14 @@ function($scope, $rootScope, utils, RoleService) {
     var vm = this;
     vm.dt_data = [];
     vm.dtOptions = DTOptionsBuilder
-    .fromSource('roles/search')
+    .newOptions()
     .withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
     	var filter = utils.preparefilterDataFromDatatableData(aaData);
-    	RoleService.search('search',filter).then(function(response){
+    	console.log(filter);
+    	RoleService.search(filter,'search').then(function(response){
     		fnCallback(utils.prepareDatatableDataFromResponse(response));
     	},function(response){
-    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+    		fnCallback(utils.prepareDatatableDataFromResponse(null));
     	});
     })
     .withOption('processing', true)

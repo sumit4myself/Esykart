@@ -30,7 +30,6 @@ altairApp
     			filterData.sorts = new Array();
     			$(dtData).each(function(){
     				var _$this = this;
-    				console.log(this);
 					if(_$this.name == "columns"){
 						columns = _$this.value;				
 					}else if(_$this.name == "start"){
@@ -66,6 +65,11 @@ altairApp
 	        		if(response == null){
 	        			return data
 	        		}
+	        		$.each(response.data._embedded, function(k, v) {
+	        		    data.data  = v;
+	        		});
+	        		data.recordsTotal = response.data.page.totalElements;
+	        		data.recordsFiltered = response.data.page.totalElements;
 				return data;
 	        },
             // Util for finding an object by its 'id' property among an array

@@ -106,12 +106,19 @@ function($scope, $rootScope, utils, UserService) {
 				});
 			};
 }])
-.controller('ManageUserTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+.controller('ManageUserTableController', function($compile, $scope, $timeout,UserService,utils, DTOptionsBuilder, DTColumnBuilder) {
     var vm = this;
     vm.dt_data = [];
     vm.dtOptions = DTOptionsBuilder
-    .fromSource('users/search')
-    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
+    .newOptions()
+    .withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+    	var filter = utils.preparefilterDataFromDatatableData(aaData);
+    	UserService.search(filter,'search').then(function(response){
+    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+    	},function(response){
+    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+    	});
+    })
     .withOption('processing', true)
     .withOption('serverSide', true)
     .withOption('initComplete', function() {

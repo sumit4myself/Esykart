@@ -188,13 +188,20 @@ function($scope, $rootScope, CategoryService) {
 	};
 } ])
 		
-.controller('ManageCategoryTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+.controller('ManageCategoryTableController', function($compile, $scope, $timeout,CategoryService,utils, DTOptionsBuilder, DTColumnBuilder) {
 	    var vm = this;
 	    vm.dt_data = [];
 	    vm.dtOptions = DTOptionsBuilder
-	    .fromSource('/products/categories/search')
-	    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
-        .withOption('processing', true)
+	    .newOptions()
+	    .withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+	    	var filter = utils.preparefilterDataFromDatatableData(aaData);
+	    	CategoryService.search(filter,'search').then(function(response){
+	    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+	    	},function(response){
+	    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+	    	});
+	    })
+	    .withOption('processing', true)
         .withOption('serverSide', true)
         .withOption('initComplete', function() {
 			$timeout(function() {
@@ -215,7 +222,7 @@ function($scope, $rootScope, CategoryService) {
             DTColumnBuilder.newColumn("inventoryType").withTitle('Inventory Type'),
             DTColumnBuilder.newColumn("categoryId").withTitle('Action').notSortable().notSearchable()
                .renderWith(function(data){
-            	   return  '<user-permission data-permission-for="restricted.category.manage" data-id-value="1" data-id-field="id" data-permission-type="MANAGE"/>';
+            	   return  '<user-permission data-permission-for="restricted.category.manage" data-id-value="'+data+'" data-id-field="id" data-permission-type="MANAGE"/>';
              })
         ];
 });

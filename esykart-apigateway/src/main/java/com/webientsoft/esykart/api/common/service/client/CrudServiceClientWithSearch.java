@@ -54,8 +54,8 @@ public interface CrudServiceClientWithSearch<T> {
 			@RequestParam(value = "projection", required = false) String projection);
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST, consumes = {
-		MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
-			MediaType.APPLICATION_JSON_UTF8_VALUE })
+		MediaType.APPLICATION_JSON_VALUE}, produces = {
+			MediaTypes.HAL_JSON_VALUE })
 	ResponseEntity<PagedResources<Resource<T>>> search(SearchFilter filter);
 
 }

@@ -244,12 +244,19 @@ function($scope, $rootScope, $stateParams, ProductDetailService) {
 			};
 } ])
 
-.controller('ManageProductDetailTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+.controller('ManageProductDetailTableController', function($compile, $scope, $timeout,ProductDetailService,utils, DTOptionsBuilder, DTColumnBuilder) {
 	    var vm = this;
 	    vm.dt_data = [];
 	    vm.dtOptions = DTOptionsBuilder
-	    .fromSource('/products/search')
-	    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
+	    .newOptions()
+	    .withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+	    	var filter = utils.preparefilterDataFromDatatableData(aaData);
+	    	ProductDetailService.search(filter,'search').then(function(response){
+	    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+	    	},function(response){
+	    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+	    	});
+	    })
         .withOption('processing', true)
         .withOption('serverSide', true)
         .withOption('initComplete', function() {

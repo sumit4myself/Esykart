@@ -80,6 +80,7 @@ altairApp
         }
         
         service.hasPermission = function(sref){
+        	console.log(sref);
         	var granted = false;
         	$(publicPages).each(function(){
         		if(this == sref){
@@ -88,9 +89,10 @@ altairApp
         		}
         	});
         	$(service.userDetails.menus).each(function(){
+        		console.log(this);
 	    		if(this.link == sref){
 	    			$(this.permissions).each(function(){
-	    				if(this.link == sref){
+	    				if(this.link.indexOf(sref) >= 0){
 	    					granted = true;
 	    					return false;
 	    				}
@@ -98,12 +100,13 @@ altairApp
 	    			
 	    		}else if(this.submenu != null){
 	    			$(this.submenu).each(function(){
+	    				console.log(this);
 	    				if(this.link == sref){
 	    					granted = true;
 	    					return false;
 	    				}
 	    				$(this.permissions).each(function(){
-    	    				if(this.link == sref){
+    	    				if(this.link.indexOf(sref) >= 0){
     	    					granted = true;
     	    					return false;
     	    				}
