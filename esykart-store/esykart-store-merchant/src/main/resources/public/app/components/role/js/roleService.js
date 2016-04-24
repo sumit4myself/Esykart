@@ -27,7 +27,7 @@ function($http,roleServiceUrl) {
 	};
 
     service.search = function(filter,projection){
-		return $http.get(roleServiceUrl +"/search?projection="+projection,filter);
+		return $http.post(roleServiceUrl +"/search?projection="+projection,filter);
     };
     
     service.changeStatus = function(id,status){

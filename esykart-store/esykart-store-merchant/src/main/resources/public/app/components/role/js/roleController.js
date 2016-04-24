@@ -101,12 +101,19 @@ function($scope, $rootScope, utils, RoleService) {
 	};
 } ])
 
-.controller('ManageRoleTableController', function($compile, $scope, $timeout,utils, DTOptionsBuilder, DTColumnBuilder) {
+.controller('ManageRoleTableController', function($compile, $scope, $timeout,RoleService,utils, DTOptionsBuilder, DTColumnBuilder) {
     var vm = this;
     vm.dt_data = [];
     vm.dtOptions = DTOptionsBuilder
     .fromSource('roles/search')
-    .withCustomFnServerData(utils.preparefilterDataFromDatatableData,utils.prepareDatatableDataFromResponse,utils.prepareDatatableDataFromErrorResponse)
+    .withFnServerData(function (sSource, aaData, fnCallback, oSettings) {
+    	var filter = utils.preparefilterDataFromDatatableData(aaData);
+    	RoleService.search('search',filter).then(function(response){
+    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+    	},function(response){
+    		fnCallback(utils.prepareDatatableDataFromResponse(response));
+    	});
+    })
     .withOption('processing', true)
     .withOption('serverSide', true)
     .withOption('initComplete', function() {

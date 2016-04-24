@@ -63,21 +63,11 @@ altairApp
 		        	data.recordsTotal = 0;
 	        		data.recordsFiltered = 0;
 	        		data.data = new Array();
+	        		if(response == null){
+	        			return data
+	        		}
 				return data;
 	        },
-	        prepareDatatableDataFromErrorResponse : function(errorThrown){
-	        	UIkit.notify({
-                    message: 'Something went wrong while geeting data, Please try after some time. ',
-                    status: 'danger',
-                    pos: 'top-right',
-            	});
-	        	var data = {};
-	        	data.recordsTotal = 0;
-        		data.recordsFiltered = 0;
-        		data.data = new Array();
-        		return data;
-	        },
-        	
             // Util for finding an object by its 'id' property among an array
             findByItemId: function findById(a, id) {
                 for (var i = 0; i < a.length; i++) {
