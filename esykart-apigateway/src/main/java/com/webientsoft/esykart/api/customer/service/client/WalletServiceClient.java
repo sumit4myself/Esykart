@@ -16,11 +16,20 @@
 
 package com.webientsoft.esykart.api.customer.service.client;
 
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.webientsoft.esykart.api.common.service.client.CrudServiceClientWithSearch;
+import com.webientsoft.esykart.api.cutomer.model.WalletModel;
+import com.webientsoft.esykart.services.Services;
+
 /**
  * 
  * @author Rahuls1
  */
-public interface WalletServiceClient  {
+@RequestMapping("/wallet")
+@FeignClient(Services.PAYMENT_SERVICE)
+public interface WalletServiceClient  extends CrudServiceClientWithSearch<WalletModel>{
 
 	
 }

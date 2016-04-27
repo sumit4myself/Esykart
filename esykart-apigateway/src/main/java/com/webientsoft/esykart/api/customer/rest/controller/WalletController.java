@@ -16,16 +16,22 @@
 
 package com.webientsoft.esykart.api.customer.rest.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.webientsoft.esykart.api.customer.service.WalletService;
+import com.webientsoft.esykart.api.cutomer.model.WalletModel;
 
 
 
-@Controller
-@RequestMapping("/account/wallet")
-public class WalletController {/*
+@RestController
+@RequestMapping("/wallet")
+public class WalletController {
 	
-	private static final String FIND_ALL = "wallet/wallet";
 
 	@Autowired
 	private WalletService walletService;
@@ -41,10 +47,4 @@ public class WalletController {/*
 		return ResponseEntity.ok(walletService.find(model.getCustomerId()));
 	}
 	
-	@RequestMapping(value = "/findAll", method = RequestMethod.GET)
-	public String registerGet(@RequestParam("id")Integer customerId, Model model) {
-        model.addAttribute("AMOUNT",walletService.find(customerId));
-		return FIND_ALL;
-	}
-
-*/}
+}

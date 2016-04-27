@@ -17,6 +17,7 @@
 package com.webientsoft.esykart.api.customer.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.webientsoft.esykart.api.customer.service.WalletService;
 import com.webientsoft.esykart.api.customer.service.client.WalletServiceClient;
@@ -26,6 +27,7 @@ import com.webientsoft.esykart.api.customer.service.client.WalletServiceClient;
  * 
  * @author Rahuls1
  */
+@Service
 public class WalletServiceImpl implements WalletService {
 
 	@Autowired
