@@ -17,7 +17,12 @@
 package com.webientsoft.esykart.api.customer.service.client;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webientsoft.esykart.api.common.service.client.CrudServiceClientWithSearch;
 import com.webientsoft.esykart.api.cutomer.model.WalletModel;
@@ -28,8 +33,13 @@ import com.webientsoft.esykart.services.Services;
  * @author Rahuls1
  */
 @RequestMapping("/wallet")
-@FeignClient(Services.PAYMENT_SERVICE)
+@FeignClient(Services.CUSTOMER_SERVICE)
 public interface WalletServiceClient  extends CrudServiceClientWithSearch<WalletModel>{
 
+	@RequestMapping(value = "/{id}/{amount}", method = RequestMethod.PUT, consumes = {
+	"application/merge-patch+json;charset=UTF-8" }, produces = {
+		MediaType.APPLICATION_JSON_UTF8_VALUE })
+ResponseEntity<Void> add(@PathVariable("id") Integer id,
+		@RequestParam(value = "amount") Double amount);
 	
 }

@@ -5,6 +5,9 @@
 
 package com.webientsoft.esykart.customer.repository;
 
+import com.webientsoft.esykart.common.model.Status;
+import com.webientsoft.esykart.customer.entity.Customer;
+
 /**
  * 
  * @author DeepakT
@@ -12,5 +15,7 @@ package com.webientsoft.esykart.customer.repository;
  */
 public interface CustomerRepositoryCustom {
 
+    Customer authenticate(String userName, String password);
 	
+	void changeStatus(Integer userId, Status status);
 }

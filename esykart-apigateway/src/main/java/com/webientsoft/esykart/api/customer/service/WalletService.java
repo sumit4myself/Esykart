@@ -16,12 +16,15 @@
 
 package com.webientsoft.esykart.api.customer.service;
 
+import com.webientsoft.esykart.api.common.service.CrudServiceWithSearch;
+import com.webientsoft.esykart.api.cutomer.model.CustomerModel;
+import com.webientsoft.esykart.api.cutomer.model.WalletModel;
+
 
 /**
  * 
  * @author Rahuls1
  */
-public interface WalletService {
+public interface WalletService extends CrudServiceWithSearch<WalletModel> {
   public void add(Integer customerId , Double amount);
-  public Double find(Integer customerId);
 }

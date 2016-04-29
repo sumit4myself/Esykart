@@ -5,4 +5,21 @@
 	version="2.1">
 
 	
+	<named-query name="customer.authenticate">
+		<query>
+			SELECT C 
+				FROM Customer C 
+					WHERE LOWER(C.userName) = LOWER(:userName) AND C.password =:password
+		
+		</query>
+	</named-query>
+	
+	
+	<named-query name="customer.change.status">
+		<query>
+			UPDATE  Customer C SET status = :status 
+					WHERE C.id = :id 
+		
+		</query>
+	</named-query>
 </entity-mappings>

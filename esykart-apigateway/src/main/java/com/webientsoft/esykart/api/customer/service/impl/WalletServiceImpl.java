@@ -1,26 +1,14 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.webientsoft.esykart.api.customer.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.webientsoft.esykart.api.common.service.client.CrudServiceClientWithSearch;
+import com.webientsoft.esykart.api.common.service.impl.CrudServiceWithSearchImpl;
 import com.webientsoft.esykart.api.customer.service.WalletService;
 import com.webientsoft.esykart.api.customer.service.client.WalletServiceClient;
+import com.webientsoft.esykart.api.cutomer.model.WalletModel;
 
 
 /**
@@ -28,21 +16,19 @@ import com.webientsoft.esykart.api.customer.service.client.WalletServiceClient;
  * @author Rahuls1
  */
 @Service
-public class WalletServiceImpl implements WalletService {
+public class WalletServiceImpl  extends CrudServiceWithSearchImpl<WalletModel>
+implements WalletService {
 
 	@Autowired
 	private WalletServiceClient client;
 	
 	@Override
 	public void add(Integer customerId, Double amount) {
-//		client.add(customerId, find(customerId)+ amount);
+		client.add(customerId,  amount);
 	}
 
+	protected CrudServiceClientWithSearch<WalletModel> getServiceClientWithSearch() {
+		return client;
+	}
 	
-	@Override
-	public Double find(Integer customerId) {
-		return null;
-//		return client.find(customerId);
-	}
-
 }

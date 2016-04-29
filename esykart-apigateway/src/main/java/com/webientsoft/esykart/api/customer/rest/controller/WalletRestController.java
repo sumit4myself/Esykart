@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webientsoft.esykart.api.common.rest.controller.CrudControllerWithSearch;
+import com.webientsoft.esykart.api.common.service.CrudService;
 import com.webientsoft.esykart.api.customer.service.WalletService;
 import com.webientsoft.esykart.api.cutomer.model.WalletModel;
 
@@ -30,21 +32,21 @@ import com.webientsoft.esykart.api.cutomer.model.WalletModel;
 
 @RestController
 @RequestMapping("/wallet")
-public class WalletController {
+public class WalletRestController extends CrudControllerWithSearch<WalletModel>{
 	
 
 	@Autowired
 	private WalletService walletService;
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" })
+	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = { "application/json" })
 	public ResponseEntity<Void> add(@RequestBody WalletModel model) {
 		walletService.add(model.getCustomerId(), model.getAmount());
 		return ResponseEntity.noContent().build();
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" })
-	public ResponseEntity<Double> find(@RequestBody WalletModel model) {
-		return ResponseEntity.ok(walletService.find(model.getCustomerId()));
+	@Override
+	protected CrudService<WalletModel> getService() {
+		return walletService;
 	}
 	
 }
